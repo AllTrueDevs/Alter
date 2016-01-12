@@ -3,6 +3,10 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!
   .field
+    = f.label :name
+    %br/
+    = f.text_field :name, autofocus: true
+  .field
     = f.label :email
     %br/
     = f.email_field :email, autofocus: true
@@ -23,6 +27,26 @@
     %i (we need your current password to confirm your changes)
     %br/
     = f.password_field :current_password, autocomplete: "off"
+  .field
+    = f.label :info
+    %br/
+    = f.text_field :info, autofocus: true
+  .field
+    = label_tag :phone
+    %br/
+    = phone_field_tag :phone
+  .field
+    = label_tag :facebook
+    %br/
+    = text_field_tag :facebook
+  .field
+    = label_tag :skype
+    %br/
+    = text_field_tag :skype
+  .field
+    = label_tag :vk
+    %br/
+    = text_field_tag :vk
   .actions
     = f.submit "Update"
 %h3 Cancel my account
