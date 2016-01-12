@@ -1,6 +1,6 @@
 %h2
   Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f|
   = devise_error_messages!
   .field
     = f.label :name
@@ -14,39 +14,29 @@
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
   .field
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
-  .field
     = f.label :info
     %br/
-    = f.text_field :info, autofocus: true
+    = f.text_area :info, autofocus: true
   .field
     = label_tag :phone
     %br/
-    = phone_field_tag :phone
-  .field
-    = label_tag :facebook
-    %br/
-    = text_field_tag :facebook
+    = phone_field_tag :phone, current_user.contacts.split('|')[0]
   .field
     = label_tag :skype
     %br/
-    = text_field_tag :skype
+    = text_field_tag :skype, current_user.contacts.split('|')[1]
+  .field
+    = label_tag :facebook
+    %br/
+    = text_field_tag :facebook, current_user.contacts.split('|')[2]
   .field
     = label_tag :vk
     %br/
-    = text_field_tag :vk
+    = text_field_tag :vk, current_user.contacts.split('|')[3]
+  .field
+    = f.label :avatar
+    %br/
+    = f.file_field :avatar
   .actions
     = f.submit "Update"
 %h3 Cancel my account

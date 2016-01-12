@@ -20,26 +20,6 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :info
-    %br/
-    = f.text_field :info, autofocus: true
-  .field
-    = label_tag :phone
-    %br/
-    = phone_field_tag :phone
-  .field
-    = label_tag :facebook
-    %br/
-    = text_field_tag :facebook
-  .field
-    = label_tag :skype
-    %br/
-    = text_field_tag :skype
-  .field
-    = label_tag :vk
-    %br/
-    = text_field_tag :vk
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"

@@ -1,5 +1,3 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
 -if user_signed_in?
   = image_tag current_user.avatar.url
   %p= 'hello, ' + current_user.name
@@ -13,6 +11,7 @@
     %p= 'vk: ' + current_user.contacts.split('|')[3]
   = link_to 'Створити запит', new_request_path
   = link_to 'Запити', requests_path
+  = link_to 'Редагувати профіль', edit_user_registration_path
   = link_to 'Вийти', destroy_user_session_path, :method => :delete
 -else
   = link_to 'Зареєструватись', new_user_registration_path
