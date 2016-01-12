@@ -1,6 +1,15 @@
 %h1 Home#index
 %p Find me in app/views/home/index.html.haml
 -if user_signed_in?
+  %p= 'hello, ' + current_user.name
+  -unless current_user.contacts.split('|')[0].to_s.length == 0
+    %p= 'phone: ' + current_user.contacts.split('|')[0]
+  -unless current_user.contacts.split('|')[1].to_s.length == 0
+    %p= 'skype: ' + current_user.contacts.split('|')[1]
+  -unless current_user.contacts.split('|')[2].to_s.length == 0
+    %p= 'facebook: ' + current_user.contacts.split('|')[2]
+  -unless current_user.contacts.split('|')[3].to_s.length == 0
+    %p= 'vk: ' + current_user.contacts.split('|')[3]
   = link_to 'Вийти', destroy_user_session_path, :method => :delete
 -else
   = link_to 'Зареєструватись', new_user_registration_path
