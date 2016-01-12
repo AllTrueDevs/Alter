@@ -10,6 +10,8 @@
     %p= 'facebook: ' + current_user.contacts.split('|')[2]
   -unless current_user.contacts.split('|')[3].to_s.length == 0
     %p= 'vk: ' + current_user.contacts.split('|')[3]
+  = link_to 'Створити запит', new_request_path
+  = link_to 'Запити', requests_path
   = link_to 'Вийти', destroy_user_session_path, :method => :delete
 -else
   = link_to 'Зареєструватись', new_user_registration_path
