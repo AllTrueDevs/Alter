@@ -1,0 +1,7 @@
+%h1 Home#index
+%p Find me in app/views/home/index.html.haml
+-if user_signed_in?
+  = link_to 'Вийти', destroy_user_session_path, :method => :delete
+-else
+  = link_to 'Зареєструватись', new_user_registration_path
+  = link_to 'Ввійти', new_user_session_path
