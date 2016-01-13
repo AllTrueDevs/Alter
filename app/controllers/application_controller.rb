@@ -9,14 +9,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password)}
   end
 
-  def banned?
-    if current_user.present? && current_user.banned?
-      sign_out current_user
-      flash[:error] = "This account has been banned."
-      root_path
-    end
-  end
-
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end

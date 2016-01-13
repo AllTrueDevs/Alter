@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113110108) do
+ActiveRecord::Schema.define(version: 20160113123405) do
 
   create_table "requests", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20160113110108) do
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
     t.string   "role",                   limit: 255,   default: "author"
-    t.boolean  "banned"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

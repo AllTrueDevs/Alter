@@ -20,9 +20,6 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
-    # if cannot? :edit, @request
-    #   redirect_to :back
-    # end
   end
 
   # POST /requests
