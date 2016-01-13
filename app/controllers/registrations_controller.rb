@@ -29,7 +29,7 @@ private
   end
 
   def account_update_params
-    params.require(:user).permit(:name, :info, :contacts, :email, :avatar)
+    params.require(:user).permit(:name, :info, :contacts, :avatar)
   end
 
 end
