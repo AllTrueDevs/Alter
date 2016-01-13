@@ -16,9 +16,9 @@
         %td= request.name
         %td= request.description
         %td= request.user_id
-        %td= link_to 'Show', request
-        %td= link_to 'Edit', edit_request_path(request)
-        %td= link_to 'Destroy', request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Show', request if can? :read, request
+        %td= link_to 'Edit', edit_request_path(request) if can? :edit, request
+        %td= link_to 'Destroy', request, :method => :delete, :data => { :confirm => 'Are you sure?' } if can? :destroy, request
 
 %br
 

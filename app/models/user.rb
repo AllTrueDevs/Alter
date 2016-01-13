@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :requests, :dependent => :destroy
   has_attached_file :avatar, default_url: "missing-avatar.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  ROLES = %w[admin moderator author banned]
 end

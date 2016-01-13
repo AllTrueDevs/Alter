@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
-
+  load_and_authorize_resource
   # GET /requests
   # GET /requests.json
   def index
@@ -20,6 +20,9 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+    # if cannot? :edit, @request
+    #   redirect_to :back
+    # end
   end
 
   # POST /requests
