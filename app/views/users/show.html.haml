@@ -1,1 +1,13 @@
-= @user.info
+= image_tag @user.avatar.url
+-if @user.role == 'admin' || @user.role == 'moderator'
+  %p= @user.role
+%p= 'Name: ' + @user.name
+-unless @user.contacts.split('|')[0].to_s.length == 0
+  %p= 'phone: ' + @user.contacts.split('|')[0]
+-unless @user.contacts.split('|')[1].to_s.length == 0
+  %p= 'skype: ' + @user.contacts.split('|')[1]
+-unless @user.contacts.split('|')[2].to_s.length == 0
+  %p= 'facebook: ' + @user.contacts.split('|')[2]
+-unless @user.contacts.split('|')[3].to_s.length == 0
+  %p= 'vk: ' + @user.contacts.split('|')[3]
+= link_to 'Запити користувача', user_requests_path(@user)

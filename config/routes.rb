@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :users, controllers: { registrations: "registrations" }
   get '/id:id', to: 'users#show', as: :user
-  get '/users', to: 'users#index'
-
+  get '/users', to: 'users#index', as: :users
+  get '/id:id/requests', to: 'requests#index', as: :user_requests
 end

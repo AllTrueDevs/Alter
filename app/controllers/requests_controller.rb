@@ -6,7 +6,11 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all
+    if params[:id].nil?
+      @request = Request.all
+    else
+      @requests = Request.where(:user_id => params[:id])
+    end
   end
 
   # GET /requests/1
