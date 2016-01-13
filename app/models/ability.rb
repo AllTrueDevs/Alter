@@ -3,13 +3,15 @@ class Ability
 
   def initialize(user)
     alias_action :edit, :destroy, :create, :to => :modify
+    alias_action :edit, :update, :destroy, :to => :author_action
     if user.role == 'admin'
       can :manage, :all
     elsif user.role == 'moderator'
       can :manage, Request
     elsif user.role == 'author'
       can :read, Request
-      can :modify, Request do |request|
+      can :create, Request
+      can :author_action, Request do |request|
         request.user == user
       end
     elsif user.role == 'banned'
