@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   # GET /requests
   # GET /requests.json
   def index
@@ -20,9 +20,6 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
-    # if cannot? :edit, @request
-    #   redirect_to :back
-    # end
   end
 
   # POST /requests
@@ -74,6 +71,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:name, :description, :user_id)
+      params.require(:request).permit(:name, :description, :photo)
     end
 end
