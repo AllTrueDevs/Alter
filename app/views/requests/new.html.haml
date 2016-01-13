@@ -1,5 +1,24 @@
 %h1 New request
 
-= render 'form'
+= form_for @request, url: requests_path, html: { multipart: true } do |f|
+  - if @request.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@request.errors.count, "error")} prohibited this request from being saved:"
+      %ul
+        - @request.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :photo
+    = f.file_field :photo
+  .actions
+    = f.submit 'Save'
+
 
 = link_to 'Back', requests_path
