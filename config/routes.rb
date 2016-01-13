@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
   devise_for :users, controllers: { registrations: "registrations" }
-  get '/id:id', to: 'users#show'
+  get '/id:id', to: 'users#show', as: :user
   get '/users', to: 'users#index'
 
 end

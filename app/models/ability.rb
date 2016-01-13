@@ -8,8 +8,9 @@ class Ability
       can :manage, :all
     elsif user.role == 'moderator'
       can :manage, Request
+      can :read, :all
     elsif user.role == 'author'
-      can :read, Request
+      can :read, :all
       can :create, Request
       can :author_action, Request do |request|
         request.user == user
