@@ -19,14 +19,20 @@ class RequestsController < ApplicationController
   end
 
   def edit
+    @collection = @request.required_items.collect(&:category_id)
   end
 
   def create
+
     @request = Request.new(request_params)
     @request.user = current_user
 
     respond_to do |format|
       if @request.save
+        @categories = params[:categories]
+        @categories.each do |x|
+          RequiredItem.create(request_id: @request.id, category_id: x)
+        end
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
       else
         format.html { render :new }
@@ -37,6 +43,11 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
+        RequiredItem.where(:request_id => @request.id).destroy_all
+        @categories = params[:categories]
+        @categories.each do |x|
+          RequiredItem.create(request_id: @request.id, category_id: x)
+        end
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
       else
         format.html { render :edit }
