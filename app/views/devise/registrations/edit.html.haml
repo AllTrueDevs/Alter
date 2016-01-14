@@ -18,21 +18,21 @@
     %br/
     = f.text_area :info
   .field
-    = label_tag :phone
+    = f.label :phone
     %br/
-    = phone_field_tag :phone, current_user.contacts.split('|')[0]
+    = f.phone_field :phone, data: { mask: '(999) 999-9999' }
   .field
-    = label_tag :skype
+    = f.label :skype
     %br/
-    = text_field_tag :skype, current_user.contacts.split('|')[1]
-  .field
-    = label_tag :facebook
-    %br/
-    = text_field_tag :facebook, current_user.contacts.split('|')[2]
-  .field
-    = label_tag :vk
-    %br/
-    = text_field_tag :vk, current_user.contacts.split('|')[3]
+    = f.text_field :skype
+  -#.field
+  -#  = label_tag :facebook
+  -#  %br/
+  -#  = text_field_tag :facebook, current_user.contacts.split('|')[2]
+  -#.field
+  -#  = label_tag :vk
+  -#  %br/
+  -#  = text_field_tag :vk, current_user.contacts.split('|')[3]
   .field
     = f.label :avatar
     %br/
