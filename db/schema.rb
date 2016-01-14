@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Temporary merge branch 1
-ActiveRecord::Schema.define(version: 20160114094208) do
-=======
 ActiveRecord::Schema.define(version: 20160114132827) do
->>>>>>> Temporary merge branch 2
 
   create_table "accepted_items", force: :cascade do |t|
     t.integer  "notification_id",  limit: 4
