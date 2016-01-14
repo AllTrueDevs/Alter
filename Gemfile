@@ -27,7 +27,6 @@ gem 'haml'
 gem 'haml-rails'
 gem 'devise'
 gem 'figaro'
-gem 'better_errors'
 gem 'paperclip', '~> 4.3'
 gem 'cancan'
 
@@ -43,11 +42,16 @@ gem 'cancan'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  gem 'better_errors'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
