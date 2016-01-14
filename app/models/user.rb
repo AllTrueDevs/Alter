@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { maximum: 30 }
   validates :role, presence: true, inclusion: { in: ROLES }
-  validates :contacts, presence: true, length: { in: 3..300  }
+  validates :phone, length:  { maximum: 15 }
+  validates :skype, length:  { maximum: 32 }
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114094208) do
+ActiveRecord::Schema.define(version: 20160114132827) do
 
   create_table "accepted_items", force: :cascade do |t|
     t.integer  "notification_id",  limit: 4
@@ -72,12 +72,13 @@ ActiveRecord::Schema.define(version: 20160114094208) do
     t.datetime "updated_at",                                              null: false
     t.string   "name",                   limit: 255
     t.text     "info",                   limit: 65535
-    t.string   "contacts",               limit: 255
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
     t.string   "role",                   limit: 255,   default: "author"
+    t.string   "skype",                  limit: 255
+    t.string   "phone",                  limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
