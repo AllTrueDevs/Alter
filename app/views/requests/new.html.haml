@@ -17,8 +17,20 @@
   .field
     = f.label :photo
     = f.file_field :photo
+  .field
+    = select_tag 'categories', options_from_collection_for_select(Category.all, 'id', 'name', :selected => @collection), multiple: true
   .actions
     = f.submit 'Save'
 
 
 = link_to 'Back', requests_path
+
+:javascript
+  $(document).ready(function() {
+    $('#categories').multiselect({
+      enableFiltering: true,
+      includeSelectAllOption: true,
+      maxHeight: 200,
+      dropUp: true
+    });
+  });
