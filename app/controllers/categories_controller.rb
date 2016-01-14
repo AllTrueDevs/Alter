@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
       if @category.save
         format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
       else
-        format.html { redirect_to categories_path, notice: 'Category was notcreated.'}
+        format.html { redirect_to categories_path, notice: 'Category was not created.'}
       end
     end
   end

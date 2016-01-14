@@ -12,6 +12,7 @@ class RequestsController < ApplicationController
   end
 
   def show
+    @required_items = @request.required_items
   end
 
   def new

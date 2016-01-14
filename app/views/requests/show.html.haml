@@ -14,6 +14,32 @@
 -@request.required_items.each do |item|
   %p= item.category.name
 
+= button_tag
 = link_to 'Edit', edit_request_path(@request)
 \|
 = link_to 'Back', requests_path
+
+%input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Я можу допомогти")
+
+.modal.fade#exampleModal( tabindex="-1" aria-labelledby="exampleModalLabel" )
+  .modal-dialog
+    .modal-content.create-params
+      .modal-header
+        %button( class="close" data-dismiss="modal" aria-label="Close" )
+          %span
+            &times;
+      = form_for Notification.new do
+        .field
+          = select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'), multiple: true
+
+          = submit_tag 'Підтвердити', :class => 'btn btn-primary'
+
+:javascript
+  $(document).ready(function() {
+    $('#required_items').multiselect({
+      enableFiltering: true,
+      includeSelectAllOption: true,
+      maxHeight: 200,
+      dropUp: true
+    });
+  });
