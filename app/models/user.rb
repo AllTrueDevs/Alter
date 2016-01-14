@@ -10,5 +10,4 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 30 }
   validates :role, presence: true, inclusion: { in: %w(admin moderator author banned) }
   validates :contacts, presence: true, length: { in: 3..300  }
-  validates_associated :requests
 end
