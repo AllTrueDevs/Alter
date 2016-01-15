@@ -44,6 +44,16 @@ class DecisionsController < ApplicationController
     end
   end
 
+  def accept
+    Notification.create(status: 'new', body: current_user.name + ' підтвердив те, що ви дійсно допомогли.', user_id: @decision.helper_id)
+    @decision.destroy
+  end
+
+  def deny
+    Notification.create(status: 'new', body: current_user.name + ' відхилив факт вашої допомоги.', user_id: @decision.helper_id)
+    @decision.destroy
+  end
+
   private
     def set_decision
       @decision = Decision.find(params[:id])

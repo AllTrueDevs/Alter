@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :requests, :dependent => :destroy
+  has_many :notifications, :dependent => :destroy
   has_attached_file :avatar, default_url: "missing-avatar.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { maximum: 30 }

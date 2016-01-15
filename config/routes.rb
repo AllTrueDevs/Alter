@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/id:id/requests', to: 'requests#index', as: :user_requests
   resources :categories, only: [:index, :destroy, :create]
   resources :decisions
+  resources :notifications
 end
