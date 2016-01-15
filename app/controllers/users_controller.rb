@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def dashboard
     new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id)).size
-    @decision_row = (new_decisions.zero?)? 'Сповіщення' : "Сповіщення(#{new_decisions})"
+    @decision_row = (new_decisions.zero?)? 'Відгуки про допомогу' : "Відгуки про допомогу(#{new_decisions})"
   end
 
 end

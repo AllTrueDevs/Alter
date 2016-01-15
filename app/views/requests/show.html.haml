@@ -19,7 +19,8 @@
 \|
 = link_to 'Back', requests_path
 
-%input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Я можу допомогти")
+- unless @request.user == current_user
+  %input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Я можу допомогти")
 
 .modal.fade#exampleModal( tabindex="-1" aria-labelledby="exampleModalLabel" )
   .modal-dialog
