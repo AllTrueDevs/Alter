@@ -1,16 +1,2 @@
--if user_signed_in?
-  = image_tag current_user.avatar.url
-  %p= 'Hello, ' + current_user.name + '. You are ' + current_user.role
-  -if current_user.phone.to_s.length > 0
-    %p= 'phone: ' + current_user.phone
-  -if current_user.skype.to_s.length > 0
-    %p= 'skype: ' + current_user.skype
-  = link_to 'Створити запит', new_request_path
-  = link_to 'Запити', requests_path
-  = link_to @decision_row, decisions_path
-  = link_to 'Інші користувачі', users_path
-  = link_to 'Редагувати профіль', edit_user_registration_path
-  = link_to 'Вийти', destroy_user_session_path, :method => :delete
--else
-  = link_to 'Зареєструватись', new_user_registration_path
-  = link_to 'Ввійти', new_user_session_path
+= link_to 'Зареєструватись', new_user_registration_path
+= link_to 'Ввійти', new_user_session_path
