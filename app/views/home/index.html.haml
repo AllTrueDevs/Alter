@@ -13,20 +13,21 @@
 -else
   = link_to 'Зареєструватись', new_user_registration_path
   = link_to 'Ввійти', new_user_session_path
-%h1 Listing notifications
+-if user_signed_in?
+  %h1 Listing notifications
 
-%table
-  %thead
-    %tr
-      %th Request name
-      %th Helper
-      %th Status
-      %th First item
-
-  %tbody
-    - @notifications.each do |notification|
+  %table
+    %thead
       %tr
-        %td= Request.find(notification.request_id).name
-        %td= notification.helper_id
-        %td= notification.status
-        %td= Category.find(notification.accepted_items.first.id).name
+        %th Request name
+        %th Helper
+        %th Status
+        %th First item
+
+    %tbody
+      - @notifications.each do |notification|
+        %tr
+          %td= Request.find(notification.request_id).name
+          %td= notification.helper_id
+          %td= notification.status
+          %td= Category.find(RequiredItem.find(notification.accepted_items.first.required_item_id).category_id).name
