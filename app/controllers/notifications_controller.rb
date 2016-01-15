@@ -2,10 +2,14 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notifications = Notification.all
+    new_notifications = Notification.where(status: 'new', user_id: current_user.id)
+    old_notifications = Notification.where(status: 'read', user_id: current_user.id)
+    @notifications = new_notifications + old_notifications
   end
 
   def show
+    @notification.update(status: 'read')
+    redirect_to notifications_path
   end
 
   def new
