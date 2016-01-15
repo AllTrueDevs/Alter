@@ -44,6 +44,10 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
+        Decision.where(request_id: @request.id).each do |decision|
+          Notification.create(status: 'new', body: "#{current_user.name} змінив свій запит про допомогу #{@request.name}.", user_id: decision.helper_id)
+        end
+        Decision.where(request_id: @request.id).destroy_all
         RequiredItem.where(:request_id => @request.id).destroy_all
         @categories = params[:categories]
         @categories.each do |x|
