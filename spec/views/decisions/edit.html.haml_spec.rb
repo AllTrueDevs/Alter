@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "notifications/edit", :type => :view do
+RSpec.describe "decisions/edit", :type => :view do
   before(:each) do
-    @notification = assign(:notification, Notification.create!())
+    @notification = assign(:notification, Decision.create!())
   end
 
   it "renders the edit notification form" do

@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index', as: :users
   get '/id:id/requests', to: 'requests#index', as: :user_requests
   resources :categories, only: [:index, :destroy, :create]
-  resources :notifications
+  resources :decisions
 end

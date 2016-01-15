@@ -28,7 +28,7 @@
         %button( class="close" data-dismiss="modal" aria-label="Close" )
           %span
             &times;
-      = form_for Notification.new do
+      = form_for Decision.new do
         .field
           = select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'), multiple: true
 

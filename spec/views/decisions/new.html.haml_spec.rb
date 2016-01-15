@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "notifications/new", :type => :view do
+RSpec.describe "decisions/new", :type => :view do
   before(:each) do
-    assign(:notification, Notification.new())
+    assign(:notification, Decision.new())
   end
 
   it "renders new notification form" do

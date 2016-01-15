@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe NotificationsController, :type => :controller do
+RSpec.describe DecisionsController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Notification. As you add validations to Notification, be sure to
@@ -33,20 +33,20 @@ RSpec.describe NotificationsController, :type => :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # NotificationsController. Be sure to keep this updated too.
+  # DecisionsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all notifications as @notifications" do
-      notification = Notification.create! valid_attributes
+    it "assigns all decisions as @decisions" do
+      notification = Decision.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:notifications)).to eq([notification])
+      expect(assigns(:decisions)).to eq([notification])
     end
   end
 
   describe "GET show" do
     it "assigns the requested notification as @notification" do
-      notification = Notification.create! valid_attributes
+      notification = Decision.create! valid_attributes
       get :show, {:id => notification.to_param}, valid_session
       expect(assigns(:notification)).to eq(notification)
     end
@@ -55,13 +55,13 @@ RSpec.describe NotificationsController, :type => :controller do
   describe "GET new" do
     it "assigns a new notification as @notification" do
       get :new, {}, valid_session
-      expect(assigns(:notification)).to be_a_new(Notification)
+      expect(assigns(:notification)).to be_a_new(Decision)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested notification as @notification" do
-      notification = Notification.create! valid_attributes
+      notification = Decision.create! valid_attributes
       get :edit, {:id => notification.to_param}, valid_session
       expect(assigns(:notification)).to eq(notification)
     end
@@ -72,25 +72,25 @@ RSpec.describe NotificationsController, :type => :controller do
       it "creates a new Notification" do
         expect {
           post :create, {:notification => valid_attributes}, valid_session
-        }.to change(Notification, :count).by(1)
+        }.to change(Decision, :count).by(1)
       end
 
       it "assigns a newly created notification as @notification" do
         post :create, {:notification => valid_attributes}, valid_session
-        expect(assigns(:notification)).to be_a(Notification)
+        expect(assigns(:notification)).to be_a(Decision)
         expect(assigns(:notification)).to be_persisted
       end
 
       it "redirects to the created notification" do
         post :create, {:notification => valid_attributes}, valid_session
-        expect(response).to redirect_to(Notification.last)
+        expect(response).to redirect_to(Decision.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved notification as @notification" do
         post :create, {:notification => invalid_attributes}, valid_session
-        expect(assigns(:notification)).to be_a_new(Notification)
+        expect(assigns(:notification)).to be_a_new(Decision)
       end
 
       it "re-renders the 'new' template" do
@@ -107,20 +107,20 @@ RSpec.describe NotificationsController, :type => :controller do
       }
 
       it "updates the requested notification" do
-        notification = Notification.create! valid_attributes
+        notification = Decision.create! valid_attributes
         put :update, {:id => notification.to_param, :notification => new_attributes}, valid_session
         notification.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested notification as @notification" do
-        notification = Notification.create! valid_attributes
+        notification = Decision.create! valid_attributes
         put :update, {:id => notification.to_param, :notification => valid_attributes}, valid_session
         expect(assigns(:notification)).to eq(notification)
       end
 
       it "redirects to the notification" do
-        notification = Notification.create! valid_attributes
+        notification = Decision.create! valid_attributes
         put :update, {:id => notification.to_param, :notification => valid_attributes}, valid_session
         expect(response).to redirect_to(notification)
       end
@@ -128,13 +128,13 @@ RSpec.describe NotificationsController, :type => :controller do
 
     describe "with invalid params" do
       it "assigns the notification as @notification" do
-        notification = Notification.create! valid_attributes
+        notification = Decision.create! valid_attributes
         put :update, {:id => notification.to_param, :notification => invalid_attributes}, valid_session
         expect(assigns(:notification)).to eq(notification)
       end
 
       it "re-renders the 'edit' template" do
-        notification = Notification.create! valid_attributes
+        notification = Decision.create! valid_attributes
         put :update, {:id => notification.to_param, :notification => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
@@ -143,14 +143,14 @@ RSpec.describe NotificationsController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested notification" do
-      notification = Notification.create! valid_attributes
+      notification = Decision.create! valid_attributes
       expect {
         delete :destroy, {:id => notification.to_param}, valid_session
-      }.to change(Notification, :count).by(-1)
+      }.to change(Decision, :count).by(-1)
     end
 
-    it "redirects to the notifications list" do
-      notification = Notification.create! valid_attributes
+    it "redirects to the decisions list" do
+      notification = Decision.create! valid_attributes
       delete :destroy, {:id => notification.to_param}, valid_session
       expect(response).to redirect_to(notifications_url)
     end
