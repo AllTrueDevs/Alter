@@ -2,7 +2,9 @@ class DecisionsController < ApplicationController
   before_action :set_decision, only: [:show, :edit, :update, :destroy]
 
   def index
-    @decisions = Decision.where(request_id: Request.where(user_id: current_user.id))
+    new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id))
+    unaccepted_decisions = Decision.where(status: 'unaccepted', request_id: Request.where(user_id: current_user.id))
+    @decisions = new_decisions + unaccepted_decisions
   end
 
   def show
