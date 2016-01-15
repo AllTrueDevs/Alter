@@ -1,19 +1,15 @@
 %h1 Listing notifications
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @notifications.each do |notification|
-      %tr
-        %td= link_to 'Show', notification
-        %td= link_to 'Edit', edit_notification_path(notification)
-        %td= link_to 'Destroy', notification, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- @notifications.each do |notification|
+  %div
+    %p= 'Request name: ' + Request.find(notification.request_id).name
+    %p= 'Helper: ' + User.find(notification.helper_id).name
+    %p= 'Status: ' + notification.status
+    %p Категорії
+    - notification.accepted_items.each do |item|
+      %p= item.required_item.category.name
+    = link_to 'Show', notification
+    = link_to 'Edit', edit_notification_path(notification)
+    = link_to 'Destroy', notification, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
-
-= link_to 'New Notification', new_notification_path

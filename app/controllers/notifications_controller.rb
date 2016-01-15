@@ -2,10 +2,11 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notifications = Notification.all
+    @notifications = Notification.where(request_id: Request.where(user_id: current_user.id))
   end
 
   def show
+    Notification.find(params[:id]).update(:status => 'unaccepted')
   end
 
   def create
