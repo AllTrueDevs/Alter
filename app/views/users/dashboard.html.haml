@@ -4,10 +4,3 @@
   %p= 'phone: ' + current_user.phone
 -if current_user.skype.to_s.length > 0
   %p= 'skype: ' + current_user.skype
-= link_to 'Створити запит', new_request_path
-= link_to 'Запити', requests_path
-= link_to @decision_row, decisions_path
-= link_to 'Інші користувачі', users_path
-= link_to @notification_row, notifications_path
-= link_to 'Редагувати профіль', edit_user_registration_path
-= link_to 'Вийти', destroy_user_session_path, :method => :delete
