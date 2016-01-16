@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   get '/id:id', to: 'users#show', as: :user
   get '/users', to: 'users#index', as: :users
-  get '/dashboard', to: 'users#dashboard', as: :dashboard
   get '/id:id/requests', to: 'requests#index', as: :user_requests
   resources :categories, only: [:index, :destroy, :create]
   resources :decisions

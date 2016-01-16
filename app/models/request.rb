@@ -6,4 +6,6 @@ class Request < ActiveRecord::Base
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { maximum: 150 }
   validates :user_id, presence: true, numericality: { only_integer: true }
+  validates :status, presence: true, inclusion: { in: %w(actual archived) }
+
 end

@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
 
   def index
     if params[:id].nil?
-      @request = Request.all
+      @requests = Request.all
     else
       @requests = Request.where(:user_id => params[:id])
     end

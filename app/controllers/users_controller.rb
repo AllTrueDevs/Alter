@@ -9,7 +9,5 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def dashboard
-  end
 
 end
