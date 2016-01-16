@@ -1,32 +1,50 @@
-.user-info
-  = image_tag @user.avatar.url
-  -if @user.role == 'admin' || @user.role == 'moderator'
-    %p= @user.role
-  %p= 'Name: ' + @user.name
-  -if @user.info.to_s.length > 0
-    %p= 'Info: ' + @user.info
-  -if @user.phone.to_s.length > 0
-    %p= 'phone: ' + @user.phone
-  -if @user.skype.to_s.length > 0
-    %p= 'skype: ' + @user.skype
-  -#= link_to 'Запити користувача', user_requests_path(@user)
-.user-requests.clearfix
-  %h3 Запити користувача
+.row.user-info
+  .col-md-3.col-md-offset-2.text-right
+    = image_tag @user.avatar.url, class: 'img-thumbnail'
+  .col-md-5
+    %h3= @user.name
+    -if @user.role == 'admin'
+      %p.text-info Адміністратор
+    -if @user.role == 'moderator'
+      %p.text-warning Модератор
+    -if @user.info.to_s.length > 0
+      %p= @user.info
+    -if @user.phone.to_s.length > 0
+      %p
+        %strong Phone:
+        = @user.phone
+    -if @user.skype.to_s.length > 0
+      %p
+        %strong Skype:
+        = @user.skype
+%a.btn.btn-large{:href => "#"}
+  %i.glyphicon-star
+  Star
+.user-requests
+  %ul.nav.nav-tabs#dashboard_products
+    %li.active
+      %a{"data-target" => "#home", "data-toggle" => "tab", :href => "#home"} Активні запити
+    %li
+      %a{"data-target" => "#profile", "data-toggle" => "tab", :href => "#profile"} Зевершені запити
+  .tab-content
+    #home.tab-pane.active.fade.in
+      %table
+        %thead
+          %tr
+            %th Назва
+            %th Опис
+            %th
+            %th
+            %th
 
-  %table
-    %thead
-      %tr
-        %th Назва
-        %th Опис
-        %th
-        %th
-        %th
+        %tbody
+          - @user.requests.each do |request|
+            %tr
+              %td= request.name
+              %td= request.description
+              %td= link_to 'Перейти', request if can? :read, request
+              %td= link_to 'Редагувати', edit_request_path(request) if can? :edit, request
+              %td= link_to 'Видалити', request, :method => :delete, :data => { :confirm => 'Are you sure?' } if can? :destroy, request
 
-    %tbody
-      - @user.requests.each do |request|
-        %tr
-          %td= request.name
-          %td= request.description
-          %td= link_to 'Перейти', request if can? :read, request
-          %td= link_to 'Редагувати', edit_request_path(request) if can? :edit, request
-          %td= link_to 'Видалити', request, :method => :delete, :data => { :confirm => 'Are you sure?' } if can? :destroy, request
+    #profile.tab-pane profile tab content
+
