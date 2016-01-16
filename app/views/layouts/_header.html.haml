@@ -22,6 +22,7 @@
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = current_user.name
+              %span.badge= (@new_notifications+@new_decisions).to_s unless (@new_notifications+@new_decisions).zero?
               %span.caret
             %ul.dropdown-menu
               %li
@@ -31,9 +32,13 @@
               %li
                 = link_to 'Запити', requests_path
               %li
-                = link_to @notifications_row, notifications_path
+                = link_to notifications_path do
+                  Cповіщення
+                  %span.badge= @new_notifications.to_s unless @new_notifications.zero?
               %li
-                = link_to @decisions_row, decisions_path
+                = link_to decisions_path do
+                  Відгуки
+                  %span.badge= @new_decisions.to_s unless @new_decisions.zero?
               %li
                 = link_to 'Користувачі', users_path
               %li

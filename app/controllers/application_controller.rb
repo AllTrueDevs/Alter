@@ -10,10 +10,8 @@ class ApplicationController < ActionController::Base
 
   def initializer
     if user_signed_in?
-      new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id)).size
-      @decisions_row = (new_decisions.zero?)? 'Відгуки' : "Відгуки про допомогу(#{new_decisions})"
-      new_notifications = Notification.where(status: 'new', user_id: current_user.id).size
-      @notifications_row = (new_notifications.zero?)? 'Сповіщення' : "Сповіщення(#{new_notifications})"
+      @new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id)).size
+      @new_notifications = Notification.where(status: 'new', user_id: current_user.id).size
     end
   end
 
