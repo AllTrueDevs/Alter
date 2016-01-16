@@ -24,6 +24,6 @@
 .tab-content
   #home.tab-pane.active.fade.in
     - @user.requests.each do |request|
-      = render 'requests/request_in_list', request: request
+      = render 'requests/request_in_list', request: request, requests: @user.requests
   #profile.tab-pane profile tab content
 

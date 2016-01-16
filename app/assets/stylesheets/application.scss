@@ -32,6 +32,28 @@ footer p{
   height: 50px;
 }
 
+a{
+  color: #5cb85c;
+}
+
+a:hover, a:focus {
+  color: #1E781E;
+}
+
+hr {
+  border-top: 1px solid #ddd;
+}
+
+.navbar{
+  margin-bottom: 0px;
+}
+
+.content{
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background-color: #f8f8f8;
+}
+
 .tab-content{
   padding: 20px;
 }
