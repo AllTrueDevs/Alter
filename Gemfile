@@ -31,8 +31,6 @@ gem 'figaro'
 gem 'paperclip', '~> 4.3'
 gem 'cancan'
 gem 'bootstrap-multiselect-rails'
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

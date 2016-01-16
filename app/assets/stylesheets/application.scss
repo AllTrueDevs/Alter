@@ -1,5 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-multiselect";
+
+.navbar {
+  margin-bottom: 0px;
+}
 
 .top-user-name{
   margin-top: 8px;
