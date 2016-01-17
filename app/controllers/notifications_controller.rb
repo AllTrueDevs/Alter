@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :destroy]
+  load_and_authorize_resource except: [:clean]
 
   def index
     new_notifications = current_user.notifications.where(status: 'new')
@@ -21,7 +22,7 @@ class NotificationsController < ApplicationController
   end
 
   def clean
-    Notification.delete_all
+    current_user.notifications.destroy_all
     redirect_to notifications_path, notice: 'Всі сповіщення видалено'
   end
 

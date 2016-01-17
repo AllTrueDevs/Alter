@@ -6,7 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-  Category.create([{name: 'Одяг'}, {name: 'Харчі та побут'}, {name: 'Грошова допомога'}, {name: 'Медикаменти'},
-                   {name: 'Іграшки'}, {name: 'Зброя'}, {name: 'Екіпірування'}, {name: 'Апаратура'},
-                   {name: 'Освіта'}])
+  Category.create([{name: 'Одяг', color: 1}, {name: 'Харчі та побут', color: 2},
+                   {name: 'Грошова допомога', color: 3}, {name: 'Медикаменти', color: 4},
+                   {name: 'Іграшки', color: 5}, {name: 'Зброя', color: 6},
+                   {name: 'Екіпірування', color: 7},
+                   {name: 'Апаратура', color: 8}, {name: 'Освіта', color: 1}])
 

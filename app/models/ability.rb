@@ -6,19 +6,22 @@ class Ability
     alias_action :edit, :update, :destroy, :to => :author_action
     alias_action :show, :destroy, :to => :user_action
     alias_action :ban, :unban, :to => :ban_users
-    alias_action :accept, :deny, :to => :decision_action
-    alias_action :actual_requests, :archived_requests, :to => :ajax_request
+    alias_action :accept, :deny, :show, :index, :create, :to => :decision_action
     if user.role == 'admin'
       can :manage, :all
     else
-      can :read, :all
-      cannot :read, Category
+      can :read, Request
       can :create, Request
-      can :create, Decision
+      cannot :read, Category
+      can :modify, Request do |request|
+        request.user == user
+      end
       can :decision_action, Decision do |decision|
         decision.request.user == user
       end
-      can :ajax_request, User
+      can :read, Notification do |notification|
+        notification.user == user
+      end
       if user.role == 'moderator'
         can :destroy, Request
         can :manage, Category
@@ -30,7 +33,6 @@ class Ability
         end
       elsif user.role == 'banned'
         cannot :index, User
-        cannot :create, Decision
         cannot :modify, :all
       end
     end

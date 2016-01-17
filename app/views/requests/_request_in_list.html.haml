@@ -27,6 +27,6 @@
             .col-md-10
               .pull-right
                 - request.required_items.each do |required_item|
-                  %span{:class => "label label-#{rand(1..8)}"}= Category.find(required_item.category_id).name
+                  %span{:class => "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
   - if request!=requests.last
     %hr

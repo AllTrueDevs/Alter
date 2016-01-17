@@ -18,6 +18,9 @@
         .field
           Назва категорії
           = f.text_field :name
+        .field
+          %h3 Колір
+          = select_tag :color, options_from_collection_for_select(colors, :id, :name)
 
         .actions
           = f.submit 'Додати', :class => 'btn btn-primary'

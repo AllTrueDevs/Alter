@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116232738) do
+ActiveRecord::Schema.define(version: 20160117184359) do
 
   create_table "accepted_items", force: :cascade do |t|
     t.integer  "decision_id",      limit: 4
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160116232738) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "color",      limit: 4
   end
 
   create_table "decisions", force: :cascade do |t|

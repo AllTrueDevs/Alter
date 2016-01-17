@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
-  load_and_authorize_resource except: [:create]
+  load_and_authorize_resource except: [:create, :show, :index]
 
   def index
     @requests = Request.where(status: 'actual')
@@ -39,7 +39,7 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.update(request_params)
         @request.decisions.each do |decision|
-          Notification.create(status: 'new', body: "#{current_user.name} змінив свій запит про допомогу #{@request.name}.", user_id: decision.helper_id)
+          Notification.create(body: "#{current_user.name} змінив свій запит про допомогу #{@request.name}.", user_id: decision.helper_id)
         end
         @request.decisions.destroy_all
         @request.required_items.destroy_all
@@ -55,7 +55,7 @@ class RequestsController < ApplicationController
   def destroy
     @request.update(status: 'archived')
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
+      format.html { redirect_to requests_url, notice: 'Запит на допомогу закрито' }
       format.js { render :layout => false }
     end
   end

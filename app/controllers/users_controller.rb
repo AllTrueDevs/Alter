@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:ban, :unban, :moder, :unmoder]
   before_action :authenticate_user!, except: [:index, :show]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:show, :actual_requests, :archived_requests]
 
   def show
     @user = User.find(params[:id])
@@ -19,6 +19,11 @@ class UsersController < ApplicationController
     else
       @user.update(role: 'banned')
       @user.requests.update_all(status: 'archived')
+      decisions = Decision.where(helper_id: @user.id)
+      decisions.each do |decision|
+        decision.accepted_items.destroy_all
+      end
+      decisions.destroy_all
       redirect_to @user
     end
   end

@@ -1,6 +1,6 @@
 class DecisionsController < ApplicationController
   before_action :set_decision, only: [:show, :accept, :deny]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
 
   def index
     new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id))
@@ -30,12 +30,14 @@ class DecisionsController < ApplicationController
 
   def accept
     Notification.create(body: current_user.name + ' підтвердив те, що ви дійсно допомогли.', user_id: @decision.helper_id)
+    @decision.accepted_items.destroy_all
     @decision.destroy
     redirect_to decisions_path
   end
 
   def deny
     Notification.create(body: current_user.name + ' відхилив факт вашої допомоги.', user_id: @decision.helper_id)
+    @decision.accepted_items.destroy_all
     @decision.destroy
     redirect_to decisions_path
   end
