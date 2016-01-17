@@ -56,6 +56,7 @@ class RequestsController < ApplicationController
     @request.update(status: 'archived')
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
+      format.js { render :layout => false }
     end
   end
 
