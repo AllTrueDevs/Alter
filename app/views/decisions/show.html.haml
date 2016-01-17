@@ -1,11 +1,9 @@
 %p#notice= notice
 %p
-  %b Request name:
-  = Request.find(@decision.request_id).name
+  = @decision.request.name
 %p
-  %b Categories:
-  -Request.find(@decision.request_id).required_items.each do |item|
-    %p= item.category.name
+  -@decision.request.required_items.each do |item|
+    %span.label.label-success= item.category.name
 
 
 = link_to 'Підтвердити', accept_path

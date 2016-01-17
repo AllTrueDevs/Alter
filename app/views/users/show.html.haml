@@ -8,7 +8,7 @@
           %small.text-warning Модератор
       -when 'banned'
         %h5
-          %small.text-danger Заблоковано
+          %small.text-danger Заблокований
     -if @user.info.to_s.length > 0
       %p= @user.info
     -if @user.phone.to_s.length > 0

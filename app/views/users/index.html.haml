@@ -1,6 +1,7 @@
 %h1 Користувачі
 - @users.each do |user|
-  %tr
-    %td= user.name
-    %td= link_to 'Show', user_path(user)
+  %div
+    %p= user.name
+    = image_tag user.avatar.url
+    = link_to 'Show', user_path(user)
 

@@ -1,25 +1,13 @@
-%h1 Listing requests
-
-%table
-  %thead
+-if @requests.empty?
+  %h3 Поки що немає запитів на допомогу
+-else
+  %h1 Запити на допомогу
+  - @requests.each do |request|
     %tr
-      %th Name
-      %th Description
-      %th User
-      %th
-      %th
-      %th
-
-  %tbody
-    - @requests.each do |request|
-      %tr
-        %td= request.name
-        %td= request.description
-        %td= request.user_id
-        %td= link_to 'Show', request if can? :read, request
-        %td= link_to 'Edit', edit_request_path(request) if can? :edit, request
-        %td= link_to 'Destroy', request, :method => :delete, :data => { :confirm => 'Are you sure?' } if can? :destroy, request
-
-%br
+      = image_tag request.photo.url
+      %p= request.name
+      %p= request.description
+      %p= request.user_id
+      %td= link_to 'Show', request if can? :read, request
 
 = link_to 'New Request', new_request_path

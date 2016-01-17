@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def ban
     @user.update(role: 'banned')
+    @user.requests.update(status: 'archived')
     redirect_to @user
   end
 

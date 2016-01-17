@@ -27,9 +27,7 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.save
         @categories = params[:categories]
-        @categories.each do |x|
-          RequiredItem.create(request_id: @request.id, category_id: x)
-        end
+        @categories.each{ |category| RequiredItem.create(request_id: @request.id, category_id: category) }
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
       else
         format.html { render :new }
@@ -40,15 +38,13 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
-        Decision.where(request_id: @request.id).each do |decision|
+        @request.decisions.each do |decision|
           Notification.create(status: 'new', body: "#{current_user.name} змінив свій запит про допомогу #{@request.name}.", user_id: decision.helper_id)
         end
-        Decision.where(request_id: @request.id).destroy_all
-        RequiredItem.where(:request_id => @request.id).destroy_all
+        @request.decisions.destroy_all
+        @request.required_items.destroy_all
         @categories = params[:categories]
-        @categories.each do |x|
-          RequiredItem.create(request_id: @request.id, category_id: x)
-        end
+        @categories.each{ |category| RequiredItem.create(request_id: @request.id, category_id: category) }
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
       else
         format.html { render :edit }

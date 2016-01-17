@@ -1,5 +1,5 @@
 class DecisionsController < ApplicationController
-  before_action :set_decision, only: [:show, :edit, :update, :destroy, :accept, :deny]
+  before_action :set_decision, only: [:show, :accept, :deny]
 
   def index
     new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id))
@@ -24,23 +24,6 @@ class DecisionsController < ApplicationController
       else
         format.html { render :back }
       end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @decision.update(decision_params)
-        format.html { redirect_to @decision, notice: 'Decision was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
-    end
-  end
-
-  def destroy
-    @decision.destroy
-    respond_to do |format|
-      format.html { redirect_to decisions_url, notice: 'Decision was successfully destroyed.' }
     end
   end
 

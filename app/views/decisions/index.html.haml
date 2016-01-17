@@ -9,9 +9,8 @@
       %p= 'Status: ' + decision.status
       %p Категорії
       - decision.accepted_items.each do |item|
-        %p= item.required_item.category.name
+        %span.label.label-success= item.required_item.category.name
+
       = link_to 'Show', decision
-      = link_to 'Edit', edit_decision_path(decision)
-      = link_to 'Destroy', decision, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br

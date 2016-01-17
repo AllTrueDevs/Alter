@@ -2,8 +2,8 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :destroy]
 
   def index
-    new_notifications = Notification.where(status: 'new', user_id: current_user.id)
-    old_notifications = Notification.where(status: 'read', user_id: current_user.id)
+    new_notifications = current_user.notifications.where(status: 'new')
+    old_notifications = current_user.notifications.where(status: 'read')
     @notifications = new_notifications + old_notifications
   end
 

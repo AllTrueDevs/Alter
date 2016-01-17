@@ -4,9 +4,12 @@
     .row
       .col-md-11
         %h4= request.name
-        .pull-right
-        %h4
-          %small= time_ago_in_words(request.created_at)+ ' ago.'
+        -if request.status == 'archived'
+          %h4
+            %small= time_ago_in_words(request.updated_at) + ' ago.'
+        -else
+          %h4
+            %small= time_ago_in_words(request.created_at) + ' ago.'
       .col-md-1
         .pull-right
           -if can? :destroy, request

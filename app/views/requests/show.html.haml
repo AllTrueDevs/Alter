@@ -1,22 +1,19 @@
-%p#notice= notice
+-if (@request.status == 'actual') && (can? :modify, @request)
+  = link_to 'Редагувати', edit_request_path(@request)
+
+%p= @request.name
 
 = image_tag @request.photo.url
-%p
-  %b Name:
-  = @request.name
-%p
-  %b Description:
-  = @request.description
-%p
-  %b User:
-  = @request.user_id
 
--@request.required_items.each do |item|
-  %p= item.category.name
--if @request.status == 'actual'
-  = link_to 'Edit', edit_request_path(@request)
-  \|
-= link_to 'Back', requests_path
+%p= @request.description
+
+- @request.required_items.each do |required_item|
+  %span.label.label-success= Category.find(required_item.category_id).name
+
+= image_tag @request.user.avatar.url
+
+%b Користувач:
+= @request.user.name
 
 - unless @request.user == current_user
   %input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Я можу допомогти")

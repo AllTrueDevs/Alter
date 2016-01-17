@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index', as: :users
   get '/id:id/requests', to: 'requests#index', as: :user_requests
   resources :categories, only: [:index, :destroy, :create]
-  resources :decisions, only: [:index, :show]
+  resources :decisions, only: [:index, :show, :create]
   get '/decisions/:id/accept', to: 'decisions#accept', as: :accept
   get '/decisions/:id/deny', to: 'decisions#deny', as: :deny
   resources :notifications, only: [:index, :show, :destroy]

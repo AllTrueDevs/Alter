@@ -4,22 +4,27 @@ class Ability
   def initialize(user)
     alias_action :edit, :destroy, :create, :to => :modify
     alias_action :edit, :update, :destroy, :to => :author_action
+    alias_action :ban, :unban, :to => :ban_users
+    alias_action :actual_requests, :archived_requests, :to => :ajax_request
     if user.role == 'admin'
       can :manage, :all
     else
       can :read, :all
+      can :ajax_request, User
       if user.role == 'moderator'
-        can :manage, Request
+        can :destroy, Request
+        can :manage, Category
         can :ban_users, User
       elsif user.role == 'author'
         can :create, Request
+        cannot :index, User
         can :author_action, Request do |request|
           request.user == user
         end
       elsif user.role == 'banned'
+        cannot :index, User
         cannot :modify, :all
       end
-      cannot :index, User
     end
     # Define abilities for the passed in user here. For example:
     #

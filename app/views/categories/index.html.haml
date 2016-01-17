@@ -1,26 +1,23 @@
-%h1 Listing categories
+%h1 Категорії допомоги
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
+- @categories.order(:name).each do |category|
+  = link_to category.name, category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %br
 
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td= category.name
-        %td= link_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Додати категорію")
 
-%br
+.modal.fade#exampleModal( tabindex="-1" aria-labelledby="exampleModalLabel" )
+  .modal-dialog
+    .modal-content.create-params
+      .modal-header
+        %button( class="close" data-dismiss="modal" aria-label="Close" )
+          %span
+            &times;
+        %h5 Нова категорія допомоги
+      = form_for Category.new do |f|
+        .field
+          Назва категорії
+          = f.text_field :name
 
-= form_for Category.new do |f|
-  .field
-    = f.label :name
-    = f.text_field :name
-
-
-
-  .actions
-    = f.submit 'Save'
+        .actions
+          = f.submit 'Додати', :class => 'btn btn-primary'
