@@ -1,31 +1,32 @@
-.row.request-in-list
-  .col-md-2= image_tag request.photo.url, class: 'img-rounded img-responsive'
-  .col-md-10
-    .row
-      .col-md-11
-        %h4= request.name
-        -if request.status == 'archived'
-          %h4
-            %small= time_ago_in_words(request.updated_at) + ' ago.'
-        -else
-          %h4
-            %small= time_ago_in_words(request.created_at) + ' ago.'
-      .col-md-1
-        .pull-right.delete-request
-          -if (can? :destroy, request) && (request.status == 'actual')
-            = link_to request, :method => :delete, :remote => true, :data => { :confirm => 'Are you sure?' } do
-              %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
-    .row
-      .col-md-12
-        %p= request.description
-        .row
-          .col-md-2
-            .pull-left
-              %p.show
-                = link_to 'Детальніше »', request if can? :read, request
-          .col-md-10
-            .pull-right
-              - request.required_items.each do |required_item|
-                %span.label.label-success= Category.find(required_item.category_id).name
-- if request!=requests.last
-  %hr
+.request-in-list
+  .row
+    .col-md-2= image_tag request.photo.url, class: 'img-rounded img-responsive'
+    .col-md-10
+      .row
+        .col-md-11
+          %h4= request.name
+          -if request.status == 'archived'
+            %h4
+              %small= time_ago_in_words(request.updated_at) + ' ago.'
+          -else
+            %h4
+              %small= time_ago_in_words(request.created_at) + ' ago.'
+        .col-md-1
+          .pull-right.delete-request
+            -if (can? :destroy, request) && (request.status == 'actual')
+              = link_to request, :method => :delete, :remote => true, :data => { :confirm => 'Are you sure?' } do
+                %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
+      .row
+        .col-md-12
+          %p= request.description
+          .row
+            .col-md-2
+              .pull-left
+                %p.show
+                  = link_to 'Детальніше »', request if can? :read, request
+            .col-md-10
+              .pull-right
+                - request.required_items.each do |required_item|
+                  %span.label.label-success= Category.find(required_item.category_id).name
+  - if request!=requests.last
+    %hr
