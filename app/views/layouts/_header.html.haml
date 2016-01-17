@@ -39,8 +39,9 @@
                 = link_to decisions_path do
                   Відгуки
                   %span.badge= @new_decisions.to_s unless @new_decisions.zero?
-              %li
-                = link_to 'Користувачі', users_path
+              -if can? :manage, :users
+                %li
+                  = link_to 'Користувачі', users_path
               %li
                 = link_to 'Налаштування', edit_user_registration_path
               %li.divider

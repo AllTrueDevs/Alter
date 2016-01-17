@@ -13,9 +13,9 @@
 
 -@request.required_items.each do |item|
   %p= item.category.name
-
-= link_to 'Edit', edit_request_path(@request)
-\|
+-if @request.status == 'actual'
+  = link_to 'Edit', edit_request_path(@request)
+  \|
 = link_to 'Back', requests_path
 
 - unless @request.user == current_user

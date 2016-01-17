@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: [:show, :edit, :update, :destroy]
+  before_action :set_notification, only: [:show, :destroy]
 
   def index
     new_notifications = Notification.where(status: 'new', user_id: current_user.id)
@@ -10,35 +10,6 @@ class NotificationsController < ApplicationController
   def show
     @notification.update(status: 'read')
     redirect_to notifications_path
-  end
-
-  def new
-    @notification = Notification.new
-  end
-
-  def edit
-  end
-
-  def create
-    @notification = Notification.new(notification_params)
-
-    respond_to do |format|
-      if @notification.save
-        format.html { redirect_to @notification, notice: 'Notification was successfully created.' }
-      else
-        format.html { render :new }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @notification.update(notification_params)
-        format.html { redirect_to @notification, notice: 'Notification was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
-    end
   end
 
   def destroy

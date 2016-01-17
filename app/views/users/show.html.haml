@@ -2,12 +2,13 @@
   .col-md-4.col-md-offset-1.text-right.user-avatar= image_tag @user.avatar.url, class: 'img-thumbnail'
   .col-md-6.user-info
     %h3.clearfix= @user.name
-    -if @user.role == 'admin'
-      %h5
-        %small.text-success Адміністратор
-    -elsif @user.role == 'moderator'
-      %h5
-        %small.text-warning Модератор
+    -case @user.role
+      -when 'moderator'
+        %h5
+          %small.text-warning Модератор
+      -when 'banned'
+        %h5
+          %small.text-danger Заблоковано
     -if @user.info.to_s.length > 0
       %p= @user.info
     -if @user.phone.to_s.length > 0
@@ -16,14 +17,27 @@
     -if @user.skype.to_s.length > 0
       %p
         %strong= 'Skype: ' + @user.skype
+    -if (can? :ban_users, @user) && (current_user != @user)
+      -if @user.role == 'banned'
+        = button_to 'Розблокувати користувача', unban_path
+      -else
+        = button_to 'Заблокувати користувача', ban_path
+    -if (can? :make_moderators, @user) && (current_user != @user)
+      -if @user.role == 'moderator'
+        = button_to 'Забрати права модератора', unmoder_path
+      -else
+        = button_to 'Зробити модератором', moder_path
+
 %ul.nav.nav-tabs.user-requests#dashboard_products
   %li.active
     %a{'data-target' => '#home', 'data-toggle' => 'tab', :href => '#home'} Активні запити
   %li
-    %a{'data-target' => '#profile', 'data-toggle' => 'tab', :href => '#profile'} Зевершені запити
+    %a{'data-target' => '#profile', 'data-toggle' => 'tab', :href => '#profile'} Завершені запити
 .tab-content
   #home.tab-pane.active.fade.in
-    - @user.requests.each do |request|
+    - @user.requests.where(status: 'actual').each do |request|
       = render 'requests/request_in_list', request: request, requests: @user.requests
-  #profile.tab-pane profile tab content
+  #profile.tab-pane
+    - @user.requests.where(status: 'archived').each do |request|
+      = render 'requests/request_in_list', request: request, requests: @user.requests
 

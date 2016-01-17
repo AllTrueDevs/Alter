@@ -9,7 +9,7 @@
           %small= time_ago_in_words(request.created_at)+ ' ago.'
       .col-md-1
         .pull-right
-          -if can? :destroy, request
+          -if (can? :destroy, request) && (request.status == 'actual')
             = link_to request, :method => :delete, :data => { :confirm => 'Are you sure?' } do
               %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
     .row

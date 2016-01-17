@@ -1,15 +1,17 @@
-%h1 Listing decisions
-
-- @decisions.each do |decision|
-  %div
-    %p= 'Request name: ' + Request.find(decision.request_id).name
-    %p= 'Helper: ' + User.find(decision.helper_id).name
-    %p= 'Status: ' + decision.status
-    %p Категорії
-    - decision.accepted_items.each do |item|
-      %p= item.required_item.category.name
-    = link_to 'Show', decision
-    = link_to 'Edit', edit_decision_path(decision)
-    = link_to 'Destroy', decision, :method => :delete, :data => { :confirm => 'Are you sure?' }
+-if @decisions.empty?
+  %h3 Немає відгуків про допомогу
+-else
+  %h1 Список відгуків на допомогу
+  - @decisions.each do |decision|
+    %div
+      %p= 'Request name: ' + Request.find(decision.request_id).name
+      %p= 'Helper: ' + User.find(decision.helper_id).name
+      %p= 'Status: ' + decision.status
+      %p Категорії
+      - decision.accepted_items.each do |item|
+        %p= item.required_item.category.name
+      = link_to 'Show', decision
+      = link_to 'Edit', edit_decision_path(decision)
+      = link_to 'Destroy', decision, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br

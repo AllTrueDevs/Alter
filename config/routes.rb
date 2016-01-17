@@ -8,8 +8,13 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index', as: :users
   get '/id:id/requests', to: 'requests#index', as: :user_requests
   resources :categories, only: [:index, :destroy, :create]
-  resources :decisions
+  resources :decisions, only: [:index, :show]
   get '/decisions/:id/accept', to: 'decisions#accept', as: :accept
   get '/decisions/:id/deny', to: 'decisions#deny', as: :deny
-  resources :notifications
+  resources :notifications, only: [:index, :show, :destroy]
+  get 'requests/:id/destroy' => 'requests#destroy', as: :destroy
+  post '/id:id/ban', to: 'users#ban', as: :ban
+  post '/id:id/unban', to: 'users#unban', as: :unban
+  post '/id:id/moder', to: 'users#moder', as: :moder
+  post '/id:id/unmoder', to: 'users#unmoder', as: :unmoder
 end

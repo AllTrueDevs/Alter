@@ -20,7 +20,7 @@
   .field
     = f.label :phone
     %br/
-    = f.phone_field :phone, data: { mask: '(999) 999-9999' }
+    = f.phone_field :phone
   .field
     = f.label :skype
     %br/
@@ -36,7 +36,7 @@
   .field
     = f.label :avatar
     %br/
-    = f.file_field :avatar
+    = f.file_field :avatar, accept: 'image/png, image/jpeg'
     .field
     = f.label :role
     %br/

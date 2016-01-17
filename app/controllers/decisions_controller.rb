@@ -1,5 +1,5 @@
 class DecisionsController < ApplicationController
-  before_action :set_decision, only: [:show, :edit, :update, :destroy]
+  before_action :set_decision, only: [:show, :edit, :update, :destroy, :accept, :deny]
 
   def index
     new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id))
@@ -45,14 +45,12 @@ class DecisionsController < ApplicationController
   end
 
   def accept
-    @decision = Decision.find(params[:id])
     Notification.create(body: current_user.name + ' підтвердив те, що ви дійсно допомогли.', user_id: @decision.helper_id)
     @decision.destroy
     redirect_to decisions_path
   end
 
   def deny
-    @decision = Decision.find(params[:id])
     Notification.create(body: current_user.name + ' відхилив факт вашої допомоги.', user_id: @decision.helper_id)
     @decision.destroy
     redirect_to decisions_path

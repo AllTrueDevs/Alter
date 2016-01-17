@@ -6,18 +6,20 @@ class Ability
     alias_action :edit, :update, :destroy, :to => :author_action
     if user.role == 'admin'
       can :manage, :all
-    elsif user.role == 'moderator'
-      can :manage, Request
+    else
       can :read, :all
-    elsif user.role == 'author'
-      can :read, :all
-      can :create, Request
-      can :author_action, Request do |request|
-        request.user == user
+      if user.role == 'moderator'
+        can :manage, Request
+        can :ban_users, User
+      elsif user.role == 'author'
+        can :create, Request
+        can :author_action, Request do |request|
+          request.user == user
+        end
+      elsif user.role == 'banned'
+        cannot :modify, :all
       end
-    elsif user.role == 'banned'
-      can :read, :all
-      cannot :modify, :all
+      cannot :index, User
     end
     # Define abilities for the passed in user here. For example:
     #

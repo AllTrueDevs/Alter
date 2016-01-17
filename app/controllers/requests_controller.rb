@@ -4,11 +4,7 @@ class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def index
-    if params[:id].nil?
-      @requests = Request.all
-    else
-      @requests = Request.where(:user_id => params[:id])
-    end
+    @requests = Request.where(status: 'actual')
   end
 
   def show
@@ -61,7 +57,7 @@ class RequestsController < ApplicationController
   end
 
   def destroy
-    @request.destroy
+    @request.update(status: 'archived')
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
     end
