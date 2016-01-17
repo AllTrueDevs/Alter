@@ -15,7 +15,7 @@
           .pull-right.delete-request
             -if (can? :destroy, request) && (request.status == 'actual')
               = link_to request, :method => :delete, :remote => true, :data => { :confirm => 'Are you sure?' } do
-                %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
+                %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
       .row
         .col-md-12
           %p= request.description
