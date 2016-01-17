@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @actual_requests = User.find(params[:id]).requests.where(status: 'actual')
   end
 
   def index
@@ -29,6 +30,20 @@ class UsersController < ApplicationController
   def unmoder
     @user.update(role: 'author')
     redirect_to @user
+  end
+
+  def actual_requests
+    @actual_requests = User.find(params[:id]).requests.where(status: 'actual')
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def archived_requests
+    @archived_requests = User.find(params[:id]).requests.where(status: 'archived')
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

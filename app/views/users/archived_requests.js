@@ -1,0 +1,1 @@
+$(".tab-pane.active").html("<%= escape_javascript(render 'requests/requests_list', requests: @archived_requests) %>");

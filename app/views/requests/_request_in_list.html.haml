@@ -9,7 +9,7 @@
           %small= time_ago_in_words(request.created_at)+ ' ago.'
       .col-md-1
         .pull-right
-          -if (can? :destroy, request) && (request.status == 'actual')
+          -if can? :destroy, request
             = link_to request, :method => :delete, :data => { :confirm => 'Are you sure?' } do
               %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
     .row
@@ -19,7 +19,7 @@
           .col-md-2
             .pull-left
               %p.show
-                = link_to 'Детальніше »', request if can? :read, @user.requests.first
+                = link_to 'Детальніше »', request if can? :read, request
           .col-md-10
             .pull-right
               - request.required_items.each do |required_item|

@@ -19,25 +19,27 @@
         %strong= 'Skype: ' + @user.skype
     -if (can? :ban_users, @user) && (current_user != @user)
       -if @user.role == 'banned'
-        = button_to 'Розблокувати користувача', unban_path
+        = button_to 'Розблокувати користувача', unban_path, class: 'btn btn-default'
       -else
-        = button_to 'Заблокувати користувача', ban_path
+        = button_to 'Заблокувати користувача', ban_path, class: 'btn btn-default'
     -if (can? :make_moderators, @user) && (current_user != @user)
       -if @user.role == 'moderator'
-        = button_to 'Забрати права модератора', unmoder_path
+        = button_to 'Забрати права модератора', unmoder_path, class: 'btn btn-default'
       -else
-        = button_to 'Зробити модератором', moder_path
+        = button_to 'Зробити модератором', moder_path, class: 'btn btn-default'
+.user-requests
+  %ul.nav.nav-tabs
+    %li.active
+      = link_to 'Активні запити', user_actual_requests_path, :remote => true
+    %li= link_to 'Завершені запити', user_archived_requests_path, :remote => true
+  .tab-content
+    .tab-pane.active
+      = render'requests/requests_list', requests: @actual_requests
 
-%ul.nav.nav-tabs.user-requests#dashboard_products
-  %li.active
-    %a{'data-target' => '#home', 'data-toggle' => 'tab', :href => '#home'} Активні запити
-  %li
-    %a{'data-target' => '#profile', 'data-toggle' => 'tab', :href => '#profile'} Завершені запити
-.tab-content
-  #home.tab-pane.active.fade.in
-    - @user.requests.where(status: 'actual').each do |request|
-      = render 'requests/request_in_list', request: request, requests: @user.requests
-  #profile.tab-pane
-    - @user.requests.where(status: 'archived').each do |request|
-      = render 'requests/request_in_list', request: request, requests: @user.requests
+:javascript
+  $('.nav-tabs a').click(function (e) {
+    $('ul.nav-tabs li.active').removeClass('active')
+    $(this).parent('li').addClass('active')
+  })
+
 
