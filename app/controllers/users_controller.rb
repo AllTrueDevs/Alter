@@ -13,9 +13,14 @@ class UsersController < ApplicationController
   end
 
   def ban
-    @user.update(role: 'banned')
-    @user.requests.update(status: 'archived')
-    redirect_to @user
+    if cannot? :manage, User and (@user.role == 'admin' or @user.role == 'moderator')
+      flash[:error] = 'Немає доступу'
+      redirect_to @user
+    else
+      @user.update(role: 'banned')
+      @user.requests.update_all(status: 'archived')
+      redirect_to @user
+    end
   end
 
   def unban
