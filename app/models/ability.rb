@@ -24,15 +24,14 @@ class Ability
       end
       if user.role == 'moderator'
         can :destroy, Request
+        can :index, User
         can :manage, Category
         can :ban_users, User
       elsif user.role == 'author'
-        cannot :index, User
         can :author_action, Request do |request|
           request.user == user
         end
       elsif user.role == 'banned'
-        cannot :index, User
         cannot :modify, :all
       end
     end

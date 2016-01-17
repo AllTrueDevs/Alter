@@ -1,5 +1,6 @@
--if (@request.status == 'actual') && (can? :modify, @request)
+-if (@request.status == 'actual') && (can? :edit, @request)
   = link_to 'Редагувати', edit_request_path(@request)
+-if (@request.status == 'actual') && (can? :destroy, @request)
   = link_to 'Закрити запит', @request, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %p= @request.name
@@ -16,7 +17,7 @@
 %b Користувач:
 = @request.user.name
 
-- unless (@request.user == current_user) or (cannot? :create, Decision)
+- if (@request.user != current_user) and (can? :create, Decision) and (@request.status =='actual')
   -if @request.decisions.where(helper_id: current_user.id).empty?
     %input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Я можу допомогти")
   -else
