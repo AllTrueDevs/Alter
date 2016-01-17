@@ -15,7 +15,7 @@
           .pull-right.delete-request
             -if (can? :destroy, request) && (request.status == 'actual')
               = link_to request, :method => :delete, :remote => true, :data => { :confirm => 'Are you sure?' } do
-                %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
+                %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
       .row
         .col-md-12
           %p= request.description
@@ -27,6 +27,6 @@
             .col-md-10
               .pull-right
                 - request.required_items.each do |required_item|
-                  %span.label.label-success= Category.find(required_item.category_id).name
+                  %span{:class => "label label-#{rand(1..8)}"}= Category.find(required_item.category_id).name
   - if request!=requests.last
     %hr

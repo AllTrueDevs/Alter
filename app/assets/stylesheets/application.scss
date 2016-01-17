@@ -46,6 +46,11 @@ hr {
   margin-bottom: 0px;
 }
 
+.panel {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .content{
   padding-bottom: 20px;
   padding-top: 20px;
@@ -54,10 +59,6 @@ hr {
 
 .tab-content{
   padding: 20px;
-}
-
-.kek{
-  background: #B00100;
 }
 
 .user-info h3{
@@ -92,3 +93,42 @@ hr {
   border-bottom: 1px solid #ddd;
 }
 
+.delete-request{
+  display: none;
+}
+
+.request-in-list:hover .delete-request{
+  display: block;
+}
+
+.label-1{
+  background-color: #1abc9c;
+}
+
+.label-2{
+  background-color: #2ecc71;
+}
+
+.label-3{
+  background-color: #3498db;
+}
+
+.label-4{
+  background-color: #a366bc;
+}
+
+.label-5{
+  background-color: #f1c40f;
+}
+
+.label-6{
+  background-color: #e67e22;
+}
+
+.label-7{
+  background-color: #e74c3c;
+}
+
+.label-8{
+  background-color: #34495e;
+}
