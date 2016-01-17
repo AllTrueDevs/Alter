@@ -20,6 +20,11 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def clean
+    Notification.delete_all
+    redirect_to notifications_path, notice: 'Всі сповіщення видалено'
+  end
+
   private
     def set_notification
       @notification = Notification.find(params[:id])

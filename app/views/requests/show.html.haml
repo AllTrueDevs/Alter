@@ -15,7 +15,7 @@
 %b Користувач:
 = @request.user.name
 
-- unless @request.user == current_user
+- unless (@request.user == current_user) or (cannot? :create, Decision) or (not @request.decisions.where(helper_id: current_user.id).empty?)
   %input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Я можу допомогти")
 
 .modal.fade#exampleModal( tabindex="-1" aria-labelledby="exampleModalLabel" )

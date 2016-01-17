@@ -39,14 +39,14 @@ class UsersController < ApplicationController
   end
 
   def actual_requests
-    @actual_requests = User.find(params[:id]).requests.where(status: 'actual')
+    @actual_requests = User.find(params[:id]).requests.where(status: 'actual').order(:created_at => :desc)
     respond_to do |format|
       format.js
     end
   end
 
   def archived_requests
-    @archived_requests = User.find(params[:id]).requests.where(status: 'archived')
+    @archived_requests = User.find(params[:id]).requests.where(status: 'archived').order(:updated_at => :desc)
     respond_to do |format|
       format.js
     end

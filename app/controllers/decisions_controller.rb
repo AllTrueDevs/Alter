@@ -1,5 +1,6 @@
 class DecisionsController < ApplicationController
   before_action :set_decision, only: [:show, :accept, :deny]
+  load_and_authorize_resource
 
   def index
     new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id))
@@ -20,7 +21,7 @@ class DecisionsController < ApplicationController
         @required_items.each do |x|
           AcceptedItem.create(decision_id: @decision.id, required_item_id: x)
         end
-        format.html { redirect_to :back, notice: 'Decision was successfully created.' }
+        format.html { redirect_to :back, notice: 'Вашу пропозицію допомоги відправлено' }
       else
         format.html { render :back }
       end
