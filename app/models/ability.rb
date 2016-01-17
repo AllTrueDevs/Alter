@@ -10,13 +10,13 @@ class Ability
       can :manage, :all
     else
       can :read, :all
+      can :create, Request
       can :ajax_request, User
       if user.role == 'moderator'
         can :destroy, Request
         can :manage, Category
         can :ban_users, User
       elsif user.role == 'author'
-        can :create, Request
         cannot :index, User
         can :author_action, Request do |request|
           request.user == user
