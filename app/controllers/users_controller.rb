@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       @user.update(role: 'banned')
-      @user.requests.update(status: 'archived')
+      @user.requests.update_all(status: 'archived')
       redirect_to @user
     end
   end
