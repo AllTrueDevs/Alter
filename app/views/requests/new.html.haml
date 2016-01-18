@@ -1,27 +1,48 @@
-%h1 Новий запит про допомогу
+.panel.panel-default
+  .panel-heading
+    %h4 Новий запит про допомогу
+  .panel-body
+    = form_for @request, url: requests_path, html: { multipart: true, role: 'form' } do |f|
+      .form-group
+        = f.label :Назва
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :Опис
+        = f.text_area :description, autofocus: true, class: 'form-control', rows: '5'
+      .form-group
+        = f.label :Фото
+        = f.file_field :photo, accept: 'image/png, image/jpeg'
+      .form-group
+        = f.label :Категорії
+        %br
+        = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', :selected => @collection), multiple: true
+      = f.submit 'Опублікувати', class: 'btn btn-success'
 
-= form_for @request, url: requests_path, html: { multipart: true } do |f|
-  - if @request.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@request.errors.count, "error")} prohibited this request from being saved:"
-      %ul
-        - @request.errors.full_messages.each do |msg|
-          %li= msg
 
-  .field
-    %h3 Назва
-    = f.text_field :name
-  .field
-    %h3 Опис
-    = f.text_area :description
-  .field
-    %h3 Фото запиту
-    = f.file_field :photo, accept: 'image/png, image/jpeg'
-  .field
-    %h3 Категорії
-    = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', :selected => @collection), multiple: true
-  .actions
-    = f.submit 'Опублікувати'
+-#%h1 Новий запит про допомогу
+-#
+-#= form_for @request, url: requests_path, html: { multipart: true } do |f|
+-#  - if @request.errors.any?
+-#    #error_explanation
+-#      %h2= "#{pluralize(@request.errors.count, "error")} prohibited this request from being saved:"
+-#      %ul
+-#        - @request.errors.full_messages.each do |msg|
+-#          %li= msg
+-#
+-#  .field
+-#    %h3 Назва
+-#    = f.text_field :name
+-#  .field
+-#    %h3 Опис
+-#    = f.text_area :description
+-#  .field
+-#    %h3 Фото запиту
+-#    = f.file_field :photo, accept: 'image/png, image/jpeg'
+-#  .field
+-#    %h3 Категорії
+-#    = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', :selected => @collection), multiple: true
+-#  .actions
+-#    = f.submit 'Опублікувати'
 
 :javascript
   $(document).ready(function() {
