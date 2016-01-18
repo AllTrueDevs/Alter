@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.order(name: :desc).page(params[:page]).per(10)
   end
 
   def ban

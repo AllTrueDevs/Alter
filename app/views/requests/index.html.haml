@@ -1,4 +1,6 @@
-= link_to 'New Request', new_request_path
+= link_to 'Створити запит', new_request_path
+= link_to 'Усі запити', requests_path
+
 = render'requests/requests_list', requests: @requests
 
-
+= paginate @requests

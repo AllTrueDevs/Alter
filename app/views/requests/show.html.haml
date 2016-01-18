@@ -10,7 +10,8 @@
 %p= @request.description
 
 - @request.required_items.each do |required_item|
-  %span{class: "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
+  =link_to requests_path(category_id: required_item.category.id) do
+    %span{class: "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
 
 = image_tag @request.user.avatar.url
 
