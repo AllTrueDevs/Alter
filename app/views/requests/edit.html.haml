@@ -10,12 +10,12 @@
         = f.label :Опис
         = f.text_area :description, autofocus: true, class: 'form-control', rows: '5'
       .form-group
-        = f.label :Фото
-        = f.file_field :photo, accept: 'image/png, image/jpeg'
-      .form-group
         = f.label :Категорії
         %br
         = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', :selected => @collection), multiple: true
+      .form-group
+        = f.label :Фото
+        = f.file_field :photo, accept: 'image/png, image/jpeg'
       = f.submit 'Зберегти', class: 'btn btn-success'
 
 -#%h1 Editing request
@@ -53,7 +53,7 @@
     $('#categories').multiselect({
       enableFiltering: true,
       includeSelectAllOption: true,
-      maxHeight: 200,
+      maxHeight: 180,
       dropUp: true
     });
   });
