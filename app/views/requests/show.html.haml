@@ -14,8 +14,7 @@
           %p
             = select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'), multiple: true
         .modal-footer
-          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Закрити
-          = submit_tag 'Надіслати', :class => 'btn btn-primary'
+          = submit_tag 'Надіслати', :class => 'btn btn-success'
 
 .col-md-9
   .panel.panel-default.panel-100
@@ -27,7 +26,7 @@
           .pull-right.request-actions
             - if (@request.user != current_user) and (can? :create, Decision) and (@request.status =='actual')
               -if @request.decisions.where(helper_id: current_user.id).empty?
-                %button.btn.btn-primary.btn-sm{"data-target" => "#myModal", "data-toggle" => "modal"}
+                %button.btn.btn-success.btn-sm{"data-target" => "#myModal", "data-toggle" => "modal"}
                   Допомогти
               -else
                 %small Очікується відповідь

@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     can :read, Request
     if !user.nil?
-      alias_action :edit, :destroy, :create, :to => :modify
+      alias_action :edit, :destroy, :create, :update, :to => :modify
       alias_action :edit, :update, :destroy, :to => :author_action
       alias_action :show, :destroy, :to => :user_action
       alias_action :ban, :unban, :to => :ban_users

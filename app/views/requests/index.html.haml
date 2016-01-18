@@ -1,10 +1,14 @@
 .panel.panel-default.panel-100
   .panel-heading
-    %h4 Запити
+    .row
+      .col-md-10
+        %h4 Запити
+      .col-md-2
+        .pull-right
+          = link_to requests_path do
+            %span.glyphicon.glyphicon-filter{"aria-hidden" => "true"}
   .panel-body
-    = link_to 'Створити запит', new_request_path
-    = link_to 'Усі запити', requests_path
 
     = render'requests/requests_list', requests: @requests
 
-    = paginate @requests
+= paginate @requests

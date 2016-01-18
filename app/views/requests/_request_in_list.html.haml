@@ -1,10 +1,13 @@
 %div{ class: :"request-in-list request-#{request.id}"}
   .row
-    .col-md-2= image_tag request.photo.url, class: 'img-rounded img-responsive'
+    .col-md-2
+      = link_to request do
+        = image_tag request.photo.url, class: 'img-rounded img-responsive'
     .col-md-10
       .row
         .col-md-11
-          %h4= request.name
+          = link_to request do
+            %h4= request.name
           -if request.status == 'archived'
             %h4
               %small= 'Archived ' + time_ago_in_words(request.updated_at) + ' ago.'
@@ -22,14 +25,9 @@
         .col-md-12
           %p.break-word= request.description.truncate(530, separator:' ')
           .row
-            .col-md-2
-              .pull-left
-                %p.show
-                  = link_to 'Детальніше »', request if can? :read, request
-            .col-md-10
-              .pull-right
-                - request.required_items.each do |required_item|
-                  =link_to requests_path(category_id: required_item.category.id) do
-                    %span{:class => "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
+            .pull-right
+              - request.required_items.each do |required_item|
+                =link_to requests_path(category_id: required_item.category.id) do
+                  %span{:class => "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
   - if request!=requests.last
     %hr

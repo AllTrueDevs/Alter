@@ -22,6 +22,7 @@
             .col-md-10
               .pull-right
                 - decision.accepted_items.each do |accepted_item|
-                  %span{:class => "label label-#{accepted_item.required_item.category.color}"}= Category.find(accepted_item.required_item.category_id).name
+                  =link_to requests_path(category_id: accepted_item.required_item.category.id) do
+                    %span{:class => "label label-#{accepted_item.required_item.category.color}"}= Category.find(accepted_item.required_item.category_id).name
 - if decision!=decisions.last
   %hr
