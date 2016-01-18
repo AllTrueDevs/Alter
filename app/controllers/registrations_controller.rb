@@ -28,7 +28,7 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     respond_to do |format|
       if @user.update(account_update_params)
-        format.html { redirect_to root_path }
+        format.html { redirect_to @user }
       else
         format.html { render :edit }
       end

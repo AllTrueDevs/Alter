@@ -20,7 +20,7 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    redirect_to root_url if @request.status == 'archived'
+    redirect_to root_url, notice: 'Цей запит закрито.' if @request.status == 'archived'
     @collection = @request.required_items.collect(&:category_id)
   end
 
@@ -30,12 +30,13 @@ class RequestsController < ApplicationController
     @request.user = current_user
 
     respond_to do |format|
-      if @request.save
+      if @request.valid? && !params[:categories].nil?
+        @request.save
         @categories = params[:categories]
         @categories.each{ |category| RequiredItem.create(request_id: @request.id, category_id: category) }
-        format.html { redirect_to @request, notice: 'Request was successfully created.' }
+        format.html { redirect_to @request}
       else
-        format.html { render :new }
+        format.html { redirect_to :back, notice: 'Заповніть усі поля' }
       end
     end
   end

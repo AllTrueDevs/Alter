@@ -16,3 +16,24 @@
 //= require turbolinks
 //= require bootstrap-multiselect
 //= require_tree .
+
+function hide_flash(){
+    setTimeout(function(){
+        $('.alert').fadeOut(2000);
+    }, 3500);
+}
+
+var main = function(){
+
+    var hide = hide_flash();
+
+    $('.alert').mouseover(function(){
+        clearTimeout(hide);
+        $(this).stop().animate({opacity: '100'});
+    })
+        .mouseout(function(){
+            hide = hide_flash();
+        });
+};
+
+$(document).ready(main);

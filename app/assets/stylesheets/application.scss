@@ -148,3 +148,15 @@ textarea {
   border-radius: 5px;
   background-color: #ddd;
 }
+
+.field_with_errors{
+  @extend .has-error;
+}
+
+.alert {
+  position: fixed;
+  top: 10vh;
+  right: 15vh;
+  z-index: 2;
+  width: 30vw;
+}
