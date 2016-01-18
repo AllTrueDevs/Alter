@@ -6,7 +6,7 @@ class Ability
     alias_action :edit, :update, :destroy, :to => :author_action
     alias_action :show, :destroy, :to => :user_action
     alias_action :ban, :unban, :to => :ban_users
-    alias_action :accept, :deny, :show, :index, :create, :to => :decision_action
+    alias_action :accept, :deny, :read, :create, :to => :decision_action
     if user.role == 'admin'
       can :manage, :all
     else

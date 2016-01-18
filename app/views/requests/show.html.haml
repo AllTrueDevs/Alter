@@ -19,21 +19,28 @@
 
 - if (@request.user != current_user) and (can? :create, Decision) and (@request.status =='actual')
   -if @request.decisions.where(helper_id: current_user.id).empty?
-    %input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Я можу допомогти")
+    %button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal"}
+      Допомогти
   -else
     %small Очікується відповідь
-.modal.fade#exampleModal( tabindex="-1" aria-labelledby="exampleModalLabel" )
-  .modal-dialog
-    .modal-content.create-params
-      .modal-header
-        %button( class="close" data-dismiss="modal" aria-label="Close" )
-          %span
-            &times;
-      = form_for Decision.new do
-        .field
-          = select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'), multiple: true
 
-          = submit_tag 'Підтвердити', :class => 'btn btn-primary'
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Закрити
+        %h4#myModalLabel.modal-title Підтвердження допомоги
+      = form_for Decision.new do
+        .modal-body
+          .field
+            = select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'), multiple: true
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Закрити
+          = submit_tag 'Надіслати', :class => 'btn btn-primary'
+
+
 
 :javascript
   $(document).ready(function() {

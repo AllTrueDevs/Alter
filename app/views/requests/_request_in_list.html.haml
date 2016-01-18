@@ -30,5 +30,5 @@
               .pull-right
                 - request.required_items.each do |required_item|
                   %span{:class => "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
-  - if request!=requests.last
-    %hr
+- if request!=requests.last
+  %hr

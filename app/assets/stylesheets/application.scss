@@ -38,6 +38,7 @@ a:hover, a:focus {
 }
 
 hr {
+  margin-bottom: 0px;
   margin-top: 10px;
   border-top: 1px solid #ddd;
 }
@@ -85,10 +86,8 @@ hr {
 }
 
 .request-in-list, .decision-in-list{
-  margin-top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
+  margin-top: 10px;
+  padding: 10px;
 }
 
 .tab-content {
@@ -140,5 +139,6 @@ hr {
 }
 
 .decision-new{
+  border-radius: 5px;
   background-color: #ddd;
 }
