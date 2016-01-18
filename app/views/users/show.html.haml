@@ -1,43 +1,45 @@
-.row.user-profile
-  .col-md-4.col-md-offset-1.text-right.user-avatar= image_tag @user.avatar.url, class: 'img-thumbnail'
-  .col-md-6.user-info
-    %h3= @user.name
-    -case @user.role
-      -when 'moderator'
-        %h5
-          %small.text-warning Модератор
-      -when 'banned'
-        %h5
-          %small.text-danger Заблокований
-    %br
-    -if @user.info.to_s.length > 0
-      %p= @user.info
-    -if @user.phone.to_s.length > 0
-      %p
-        %strong Телефон:
-        = @user.phone
-    -if @user.skype.to_s.length > 0
-      %p
-        %strong Skype:
-        = @user.skype
-    -if (can? :ban_users, @user) && (current_user != @user)
-      -if @user.role == 'banned'
-        = button_to 'Розблокувати користувача', unban_path, class: 'btn btn-success'
-      -else
-        = button_to 'Заблокувати користувача', ban_path, class: 'btn btn-success'
-    -if (can? :make_moderators, @user) && (current_user != @user)
-      -if @user.role == 'moderator'
-        = button_to 'Забрати права модератора', unmoder_path, class: 'btn btn-success'
-      -else
-        = button_to 'Зробити модератором', moder_path, class: 'btn btn-success'
-.user-requests
-  %ul.nav.nav-tabs
-    %li.active
-      = link_to 'Активні запити', user_actual_requests_path, :remote => true
-    %li= link_to 'Завершені запити', user_archived_requests_path, :remote => true
-  .tab-content
-    .tab-pane.active
-      = render'requests/requests_list', requests: @actual_requests
+.panel.panel-default.panel-100
+  .panel-body
+    .row.user-profile
+      .col-md-4.col-md-offset-1.text-right.user-avatar= image_tag @user.avatar.url, class: 'img-thumbnail'
+      .col-md-6.user-info
+        %h3= @user.name
+        -case @user.role
+          -when 'moderator'
+            %h5
+              %small.text-warning Модератор
+          -when 'banned'
+            %h5
+              %small.text-danger Заблокований
+        %br
+        -if @user.info.to_s.length > 0
+          %p= @user.info
+        -if @user.phone.to_s.length > 0
+          %p
+            %strong Телефон:
+            = @user.phone
+        -if @user.skype.to_s.length > 0
+          %p
+            %strong Skype:
+            = @user.skype
+        -if (can? :ban_users, @user) && (current_user != @user)
+          -if @user.role == 'banned'
+            = button_to 'Розблокувати користувача', unban_path, class: 'btn btn-success'
+          -else
+            = button_to 'Заблокувати користувача', ban_path, class: 'btn btn-success'
+        -if (can? :make_moderators, @user) && (current_user != @user)
+          -if @user.role == 'moderator'
+            = button_to 'Забрати права модератора', unmoder_path, class: 'btn btn-success'
+          -else
+            = button_to 'Зробити модератором', moder_path, class: 'btn btn-success'
+    .user-requests
+      %ul.nav.nav-tabs
+        %li.active
+          = link_to 'Активні запити', user_actual_requests_path, :remote => true
+        %li= link_to 'Завершені запити', user_archived_requests_path, :remote => true
+      .tab-content
+        .tab-pane.active
+          = render'requests/requests_list', requests: @actual_requests
 
 :javascript
   $('.nav-tabs a').click(function (e) {

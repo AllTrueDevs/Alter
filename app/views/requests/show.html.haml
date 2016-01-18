@@ -18,7 +18,7 @@
           = submit_tag 'Надіслати', :class => 'btn btn-primary'
 
 .col-md-9
-  .panel.panel-default.request-panels
+  .panel.panel-default.panel-100
     .panel-heading
       .row
         .col-md-10
@@ -46,7 +46,7 @@
           %span{class: "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
 
 .col-md-3
-  .panel.panel-default.request-panels
+  .panel.panel-default.panel-100
     .panel-heading 
       %h4 Автор
     .panel-body
