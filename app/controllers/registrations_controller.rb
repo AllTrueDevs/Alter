@@ -1,11 +1,28 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
-    @new_user = User.new(sign_up_params)
-    @new_user.role = 'admin' if User.count.zero?
-    @new_user.skip_confirmation!
-    @new_user.save!
-    redirect_to root_path
+    build_resource(sign_up_params)
+    if User.count.zero?
+      resource.role = 'admin'
+      resource.skip_confirmation!
+    end
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_flashing_format?
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
   end
 
   def update
@@ -25,7 +42,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:name, :info, :phone, :skype, :avatar, :role)
+    params.require(:user).permit(:name, :info, :phone, :skype, :avatar)
   end
 
 end
