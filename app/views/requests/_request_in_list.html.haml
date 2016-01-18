@@ -16,11 +16,11 @@
         .col-md-1
           -if (can? :destroy, request) && (request.status == 'actual')
             .pull-right.delete-request
-              = link_to request, :method => :delete, :remote => true, :data => { :confirm => 'Are you sure?' } do
+              = link_to request, :method => :delete, :remote => true, :data => { :confirm => 'Закрити запит?' } do
                 %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
       .row
         .col-md-12
-          %p= request.description.truncate(530, separator:' ')
+          %p.break-word= request.description.truncate(530, separator:' ')
           .row
             .col-md-2
               .pull-left

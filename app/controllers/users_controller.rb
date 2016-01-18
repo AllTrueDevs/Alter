@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:ban, :unban, :moder, :unmoder]
+  before_action :set_user, only: [:ban, :unban, :moder, :unmoder, :show]
   before_action :authenticate_user!, except: [:index, :show]
   load_and_authorize_resource except: [:show, :actual_requests, :archived_requests]
 
   def show
-    @user = User.find(params[:id])
+    redirect_to root_path, notice: 'Користувач ще не підтвердив реєстрацію' if @user.confirmed_at.nil?
     @actual_requests = User.find(params[:id]).requests.where(status: 'actual')
   end
 
   def index
     if params[:search]
-      @users = User.search(params[:search]).order("name DESC")
+      @users = User.where.not(confirmed_at: nil).search(params[:search]).order("name DESC")
     else
-      @users = User.order("name DESC")
+      @users = User.where.not(confirmed_at: nil).order("name DESC")
     end
     #@users = User.order(name: :desc).page(params[:page]).per(10)
   end

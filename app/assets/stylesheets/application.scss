@@ -75,7 +75,7 @@ textarea {
 }
 
 .user-info h5{
-  margin-top: 0px;
+  margin: 0;
 }
 
 .user-profile{
@@ -159,4 +159,31 @@ textarea {
   right: 15vh;
   z-index: 2;
   width: 30vw;
+}
+
+.request-panels{
+  width: 100%;
+}
+
+.break-word{
+  word-wrap: break-word;
+}
+
+.img-center{
+  margin: 0 auto;
+  padding: 5px;
+  display: block;
+}
+
+.request-photo{
+  max-height: 512px;
+  border-radius: 15px;
+}
+
+.request-actions{
+  padding-top: 5px;
+}
+
+.request-description{
+  padding: 15px 30px;
 }

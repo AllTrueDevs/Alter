@@ -2,37 +2,39 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    alias_action :edit, :destroy, :create, :to => :modify
-    alias_action :edit, :update, :destroy, :to => :author_action
-    alias_action :show, :destroy, :to => :user_action
-    alias_action :ban, :unban, :to => :ban_users
-    alias_action :accept, :deny, :read, :create, :to => :decision_action
-    if user.role == 'admin'
-      can :manage, :all
-    else
-      can :read, Request
-      can :create, Request
-      cannot :read, Category
-      can :modify, Request do |request|
-        request.user == user
-      end
-      can :decision_action, Decision do |decision|
-        decision.request.user == user
-      end
-      can :read, Notification do |notification|
-        notification.user == user
-      end
-      if user.role == 'moderator'
-        can :destroy, Request
-        can :index, User
-        can :manage, Category
-        can :ban_users, User
-      elsif user.role == 'author'
-        can :author_action, Request do |request|
+    can :read, Request
+    if !user.nil?
+      alias_action :edit, :destroy, :create, :to => :modify
+      alias_action :edit, :update, :destroy, :to => :author_action
+      alias_action :show, :destroy, :to => :user_action
+      alias_action :ban, :unban, :to => :ban_users
+      alias_action :accept, :deny, :read, :create, :to => :decision_action
+      if user.role == 'admin'
+        can :manage, :all
+      else
+        can :create, Request
+        cannot :read, Category
+        can :modify, Request do |request|
           request.user == user
         end
-      elsif user.role == 'banned'
-        cannot :modify, :all
+        can :decision_action, Decision do |decision|
+          decision.request.user == user
+        end
+        can :read, Notification do |notification|
+          notification.user == user
+        end
+        if user.role == 'moderator'
+          can :destroy, Request
+          can :index, User
+          can :manage, Category
+          can :ban_users, User
+        elsif user.role == 'author'
+          can :author_action, Request do |request|
+            request.user == user
+          end
+        elsif user.role == 'banned'
+          cannot :modify, :all
+        end
       end
     end
     # Define abilities for the passed in user here. For example:

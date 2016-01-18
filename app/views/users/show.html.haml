@@ -9,14 +9,17 @@
       -when 'banned'
         %h5
           %small.text-danger Заблокований
+    %br
     -if @user.info.to_s.length > 0
       %p= @user.info
     -if @user.phone.to_s.length > 0
       %p
-        %strong= 'Телефон: ' + @user.phone
+        %strong Телефон:
+        = @user.phone
     -if @user.skype.to_s.length > 0
       %p
-        %strong= 'Skype: ' + @user.skype
+        %strong Skype:
+        = @user.skype
     -if (can? :ban_users, @user) && (current_user != @user)
       -if @user.role == 'banned'
         = button_to 'Розблокувати користувача', unban_path, class: 'btn btn-success'
