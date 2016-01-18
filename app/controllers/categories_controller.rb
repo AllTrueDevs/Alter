@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    if @category.required_items.empty?
+    if @category.required_items.empty? && @category.helped_items.empty?
       @category.destroy
       redirect_to categories_url
     else

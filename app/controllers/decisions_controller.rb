@@ -26,7 +26,7 @@ class DecisionsController < ApplicationController
         end
         format.html { redirect_to :back, notice: 'Вашу пропозицію допомоги відправлено' }
       else
-          format.html { redirect_to :back, notice: 'Усі поля повині бути заповнені' }
+        format.html { redirect_to :back, notice: 'Усі поля повині бути заповнені' }
       end
     end
   end
