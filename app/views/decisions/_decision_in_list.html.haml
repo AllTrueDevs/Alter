@@ -13,7 +13,7 @@
               = link_to User.find(decision.helper_id).name, user_path(User.find(decision.helper_id))
       .row
         .col-md-12
-          %p=  Request.find(decision.request.id).description.truncate(530, separator:' ')
+          %p=  decision.description.truncate(530, separator:' ')
           .row
             .col-md-2
               .pull-left
@@ -23,5 +23,5 @@
               .pull-right
                 - decision.accepted_items.each do |accepted_item|
                   %span{:class => "label label-#{accepted_item.required_item.category.color}"}= Category.find(accepted_item.required_item.category_id).name
-- if decision!=decisions.last
-  %hr
+    - if decision!=decisions.last
+      %hr

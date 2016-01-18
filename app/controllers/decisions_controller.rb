@@ -16,17 +16,17 @@ class DecisionsController < ApplicationController
   end
 
   def create
-    @required_items = params[:required_items]
-    @decision = Decision.new(helper_id: current_user.id, request_id: RequiredItem.find(@required_items[0]).request_id)
-
+    @required_items = params[:required_items] if params[:required_items] != nil
+    @decision = Decision.new(description: params[:description], helper_id: current_user.id, request_id: params[:request_id])
     respond_to do |format|
-      if @decision.save
+      if @decision.valid? and @required_items != nil
+        @decision.save
         @required_items.each do |x|
           AcceptedItem.create(decision_id: @decision.id, required_item_id: x)
         end
         format.html { redirect_to :back, notice: 'Вашу пропозицію допомоги відправлено' }
       else
-        format.html { render :back }
+          format.html { redirect_to :back, notice: 'Усі поля повині бути заповнені' }
       end
     end
   end
