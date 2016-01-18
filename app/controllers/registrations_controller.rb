@@ -1,5 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def create
+    @new_user = User.new(sign_up_params)
+    @new_user.role = 'admin' if User.count.zero?
+    @new_user.skip_confirmation!
+    @new_user.save!
+    redirect_to root_path
+  end
+
   def update
     respond_to do |format|
       if @user.update(account_update_params)

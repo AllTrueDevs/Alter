@@ -1,23 +1,23 @@
 .panel.panel-default
   .panel-heading
-    %h4= t('.sign_up', :default => 'Sign up')
+    %h4= t('.sign_up', :default => 'Реєстрація')
   .panel-body
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f|
       = devise_error_messages!
       .form-group
-        = f.label :name
+        = f.label :"Ім'я"
         = f.text_field :name, autofocus: true, class: 'form-control'
       .form-group
-        = f.label :email
+        = f.label :Email
         = f.email_field :email, autofocus: true, class: 'form-control'
       .form-group
-        = f.label :password
+        = f.label :Пароль
         %br/
         = f.password_field :password, class: 'form-control'
       .form-group
-        = f.label :password_confirmation
+        = f.label :"Підтвердження паролю"
         = f.password_field :password_confirmation, class: 'form-control'
-      = f.submit t('.sign_up', :default => 'Sign up'), class: 'btn btn-primary'
+      = f.submit t('.sign_up', :default => 'Зареєструватись'), class: 'btn btn-success'
     = render "devise/shared/links"
 
 -#%h2 Sign up

@@ -18,7 +18,7 @@
                 %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
       .row
         .col-md-12
-          %p= request.description
+          %p= request.description.truncate(530, separator:' ')
           .row
             .col-md-2
               .pull-left

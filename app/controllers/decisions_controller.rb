@@ -9,7 +9,10 @@ class DecisionsController < ApplicationController
   end
 
   def show
-    Decision.find(params[:id]).update(:status => 'unaccepted')
+    if (Decision.find(params[:id]).status == 'new')
+      Decision.find(params[:id]).update(:status => 'unaccepted')
+      @new_notifications = @new_notifications-1
+    end
   end
 
   def create

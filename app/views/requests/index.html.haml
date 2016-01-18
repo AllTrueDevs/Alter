@@ -1,13 +1,3 @@
--if @requests.empty?
-  %h3 Поки що немає запитів на допомогу
--else
-  %h1 Запити на допомогу
-  - @requests.each do |request|
-    %tr
-      = image_tag request.photo.url
-      %p= request.name
-      %p= request.description
-      %p= request.user_id
-      %td= link_to 'Show', request if can? :read, request
+= render'requests/requests_list', requests: @requests
 
 = link_to 'New Request', new_request_path
