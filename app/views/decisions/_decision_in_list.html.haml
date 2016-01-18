@@ -1,0 +1,27 @@
+- row = "decision-in-list decision-#{decision.id}"
+- row = row + " decision-new" if decision.status == 'new'
+%div{ class: row}
+  .row
+    .col-md-2= image_tag User.find(decision.helper_id).avatar.url, class: 'img-rounded img-responsive'
+    .col-md-10
+      .row
+        .col-md-11
+          %h4= Request.find(decision.request.id).name
+          %h4
+            %small
+              = 'Sended ' + time_ago_in_words(decision.created_at) + ' ago, by '
+              = link_to User.find(decision.helper_id).name, user_path(User.find(decision.helper_id))
+      .row
+        .col-md-12
+          %p=  Request.find(decision.request.id).description.truncate(530, separator:' ')
+          .row
+            .col-md-2
+              .pull-left
+                %p.show
+                  = link_to 'Детальніше »', decision if can? :read, decision
+            .col-md-10
+              .pull-right
+                - decision.accepted_items.each do |accepted_item|
+                  %span{:class => "label label-#{accepted_item.required_item.category.color}"}= Category.find(accepted_item.required_item.category_id).name
+  - if decision!=decisions.last
+    %hr
