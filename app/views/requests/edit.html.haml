@@ -2,7 +2,7 @@
   .panel-heading
     %h4 Редагування запиту
   .panel-body
-    = form_for @request, html: { :method => :put, multipart: true, role: 'form' } do |f|
+    = form_for @request, html: { multipart: true, role: 'form' } do |f|
       .form-group
         = f.label :Назва
         = f.text_field :name, class: 'form-control'

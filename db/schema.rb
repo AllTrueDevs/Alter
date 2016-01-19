@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118110207) do
+ActiveRecord::Schema.define(version: 20160118191033) do
 
   create_table "accepted_items", force: :cascade do |t|
     t.integer  "decision_id",      limit: 4
@@ -28,13 +28,20 @@ ActiveRecord::Schema.define(version: 20160118110207) do
   end
 
   create_table "decisions", force: :cascade do |t|
-    t.string   "name",        limit: 255
     t.integer  "helper_id",   limit: 4
     t.integer  "request_id",  limit: 4
     t.string   "status",      limit: 255,   default: "new"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.text     "description", limit: 65535
+  end
+
+  create_table "helped_items", force: :cascade do |t|
+    t.integer  "count",       limit: 4, default: 0
+    t.integer  "user_id",     limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "notifications", force: :cascade do |t|

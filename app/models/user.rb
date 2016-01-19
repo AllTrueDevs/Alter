@@ -13,9 +13,5 @@ class User < ActiveRecord::Base
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
-
-  def self.search(query)
-    # where(:title, query) -> This would return an exact match of the query
-    where("name like ?", "%#{query}%")
-  end
+  scope :search, -> (query) { where("name like ?", "%#{query}%") }
 end

@@ -11,7 +11,6 @@ class Ability
       alias_action :accept, :deny, :read, :create, :to => :decision_action
       if user.role == 'admin'
         can :manage, :all
-        cannot :edit, Request
       else
         can :create, Request
         cannot :read, Category

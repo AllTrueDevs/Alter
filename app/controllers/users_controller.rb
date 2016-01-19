@@ -4,8 +4,11 @@ class UsersController < ApplicationController
   load_and_authorize_resource except: [:show, :actual_requests, :archived_requests]
 
   def show
-    redirect_to root_path, notice: 'Користувач ще не підтвердив реєстрацію' if @user.confirmed_at.nil?
-    @actual_requests = User.find(params[:id]).requests.where(status: 'actual')
+    if @user.confirmed_at.nil?
+      redirect_to root_path, notice: 'Користувач ще не підтвердив реєстрацію'
+    else
+      @actual_requests = User.find(params[:id]).requests.where(status: 'actual')
+    end
   end
 
   def index
@@ -14,7 +17,6 @@ class UsersController < ApplicationController
     else
       @users = User.where.not(confirmed_at: nil).order("name DESC")
     end
-    #@users = User.order(name: :desc).page(params[:page]).per(10)
   end
 
   def ban
