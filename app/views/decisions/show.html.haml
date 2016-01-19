@@ -6,6 +6,33 @@
     %span.label.label-success= item.category.name
 
 
-= link_to 'Підтвердити', accept_path
-= link_to 'Відхилити', deny_path
+= link_to 'Допоміг', accept_path
+%button.btn.btn-success.btn-sm{"data-target" => "#myModal", "data-toggle" => "modal"}
+  Частково допоміг
+= link_to 'Не допоміг', deny_path
 = link_to 'Back', decisions_path
+
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Закрити
+        %h4#myModalLabel.modal-title Підтвердження допомоги
+      = form_tag partly_path do
+        .modal-body
+          %p
+            = select_tag :accepted_items, options_from_collection_for_select(@accepted_items, 'id', 'category_name'), multiple: true
+        .modal-footer
+          = submit_tag 'Надіслати', :class => 'btn btn-success'
+
+:javascript
+  $(document).ready(function() {
+    $('#accepted_items').multiselect({
+      enableFiltering: true,
+      includeSelectAllOption: true,
+      maxHeight: 200,
+      dropUp: true
+    });
+  });

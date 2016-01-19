@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :decisions, only: [:index, :show, :create]
   get '/decisions/:id/accept', to: 'decisions#accept', as: :accept
   get '/decisions/:id/deny', to: 'decisions#deny', as: :deny
+  post '/decisions/:id/partly', to: 'decisions#partly', as: :partly
+  post '/decisions/:id', to: 'decisions#show'
   get '/notifications/clean', to: 'notifications#clean', as: :clean
   resources :notifications, only: [:index, :show, :destroy]
   get 'requests/:id/destroy' => 'requests#destroy', as: :destroy

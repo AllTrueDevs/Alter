@@ -8,9 +8,12 @@ class Ability
       alias_action :edit, :update, :destroy, :to => :author_action
       alias_action :show, :destroy, :to => :user_action
       alias_action :ban, :unban, :to => :ban_users
-      alias_action :accept, :deny, :read, :create, :to => :decision_action
+      alias_action :accept, :deny, :partly, :read, :create, :to => :decision_action
       if user.role == 'admin'
         can :manage, :all
+        cannot :edit, Request do |request|
+          request.user != user
+        end
       else
         can :create, Request
         cannot :read, Category

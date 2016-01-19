@@ -27,11 +27,20 @@ class UsersController < ApplicationController
       @user.update(role: 'banned')
       Notification.create(body: "Вас було заблоковано адміністрацією.", user_id: @user.id)
       @user.requests.update_all(status: 'archived')
+
+      @user.requests.each do |request|
+        request.decisions.each do |decision|
+          decision.accepted_items.destroy_all
+        end
+        request.decisions.destroy_all
+      end
+
       decisions = Decision.where(helper_id: @user.id)
       decisions.each do |decision|
         decision.accepted_items.destroy_all
       end
       decisions.destroy_all
+
       redirect_to @user
     end
   end

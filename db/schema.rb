@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20160118191033) do
   end
 
   create_table "helped_items", force: :cascade do |t|
-    t.integer  "count",       limit: 4, default: 0
+    t.integer  "count",       limit: 4, default: 1
     t.integer  "user_id",     limit: 4
     t.integer  "category_id", limit: 4
     t.datetime "created_at",                        null: false

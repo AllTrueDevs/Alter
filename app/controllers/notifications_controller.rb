@@ -3,9 +3,7 @@ class NotificationsController < ApplicationController
   load_and_authorize_resource except: [:clean]
 
   def index
-    new_notifications = current_user.notifications.where(status: 'new')
-    old_notifications = current_user.notifications.where(status: 'read')
-    @notifications = new_notifications + old_notifications
+    @notifications = current_user.notifications.order(:status, :created_at => :desc)
   end
 
   def show

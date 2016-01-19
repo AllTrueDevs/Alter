@@ -20,7 +20,7 @@
           = f.text_field :name
         .field
           %h3 Колір
-          = select_tag :color, options_from_collection_for_select(colors, :id, :name)
+          = select_tag :color, options_for_select(colors)
 
         .actions
           = f.submit 'Додати', :class => 'btn btn-primary'
