@@ -4,11 +4,12 @@
   %h1 Сповіщення
   - @notifications.each do |notification|
     %div
-
-      = link_to notification do
-        -if notification.status == 'new'
-          %p New
-        %p= notification.body
+      -if notification.status == 'new'
+        = link_to notification do
+          %p= notification.message.html_safe
+          %p= notification.created_at
+      -else
+        %p= notification.message.html_safe
         %p= notification.created_at
       = link_to 'Видалити', notification, method: :delete
 

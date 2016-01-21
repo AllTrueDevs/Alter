@@ -31,7 +31,10 @@ class DecisionsController < ApplicationController
   end
 
   def accept
-    Notification.create(body: current_user.name + ' підтвердив те, що ви дійсно допомогли.', user_id: @decision.helper_id)
+    Notification.create(message_type: 1, reason_user_id: current_user.id, request_id: @decision.request_id, user_id: @decision.helper_id)
+    @decision.accepted_items.each do |item|
+      Decision.update_helped_items(item)
+    end
     @decision.accepted_items.destroy_all
     @decision.destroy
     redirect_to decisions_path
@@ -41,27 +44,22 @@ class DecisionsController < ApplicationController
     @accepted_items = params[:accepted_items]
     respond_to do |format|
       if @accepted_items != nil
-        Notification.create(body: current_user.name + ' підтвердив те, що ви частково допомогли.', user_id: @decision.helper_id)
+        Notification.create(message_type: 2, reason_user_id: current_user.id, request_id: @decision.request_id, user_id: @decision.helper_id)
         @accepted_items.each do |id|
           item = AcceptedItem.find(id)
-          if User.find(item.decision.helper_id).helped_items.where(category_id: item.required_item.category_id).empty?
-            HelpedItem.create(category_id: item.required_item.category_id, user_id: item.decision.helper_id)
-          else
-            helped_item = HelpedItem.find_by_category_id(item.required_item.category_id)
-            helped_item.update(count: helped_item.count + 1)
-          end
+          Decision.update_helped_items(item)
         end
         @decision.accepted_items.destroy_all
         @decision.destroy
         format.html { redirect_to decisions_path }
       else
-        format.html { redirect_to :back, notice: 'Усі поля повині бути заповнені' }
+        format.html { redirect_to :back, notice: 'Оберіть категорії' }
       end
     end
   end
 
   def deny
-    Notification.create(body: current_user.name + ' відхилив факт вашої допомоги.', user_id: @decision.helper_id)
+    Notification.create(message_type: 3, reason_user_id: current_user.id, request_id: @decision.request_id, user_id: @decision.helper_id)
     @decision.accepted_items.destroy_all
     @decision.destroy
     redirect_to decisions_path

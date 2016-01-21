@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       @user.update(role: 'banned')
-      Notification.create(body: "Вас було заблоковано адміністрацією.", user_id: @user.id)
+      Notification.create(message_type: 4, user_id: @user.id)
       @user.requests.update_all(status: 'archived')
 
       @user.requests.each do |request|
@@ -47,19 +47,19 @@ class UsersController < ApplicationController
 
   def unban
     @user.update(role: 'author')
-    Notification.create(body: "Ваш аккаунт було розблоковано.", user_id: @user.id)
+    Notification.create(message_type: 5, user_id: @user.id)
     redirect_to @user
   end
 
   def moder
     @user.update(role: 'moderator')
-    Notification.create(body: "Вам надано права модератора.", user_id: @user.id)
+    Notification.create(message_type: 6, user_id: @user.id)
     redirect_to @user
   end
 
   def unmoder
     @user.update(role: 'author')
-    Notification.create(body: "У вас більше немає прав модератора.", user_id: @user.id)
+    Notification.create(message_type: 7, user_id: @user.id)
     redirect_to @user
   end
 
