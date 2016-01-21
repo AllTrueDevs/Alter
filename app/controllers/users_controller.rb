@@ -20,48 +20,48 @@ class UsersController < ApplicationController
     end
   end
 
-  def ban
-    if cannot? :manage, User and (@user.role == 'admin' or @user.role == 'moderator')
-      flash[:error] = 'Немає доступу'
+  def change_ban_status
+    if @user.role == 'banned'
+      @user.update(role: 'author')
+      Notification.create(message_type: 5, user_id: @user.id)
       redirect_to @user
     else
-      @user.update(role: 'banned')
-      Notification.create(message_type: 4, user_id: @user.id)
-      @user.requests.update_all(status: 'archived')
+      if cannot? :manage, User and (@user.role == 'admin' or @user.role == 'moderator')
+        flash[:error] = 'Немає доступу'
+        redirect_to @user
+      else
+        @user.update(role: 'banned')
+        Notification.create(message_type: 4, user_id: @user.id)
+        @user.requests.update_all(status: 'archived')
 
-      @user.requests.each do |request|
-        request.decisions.each do |decision|
+        @user.requests.each do |request|
+          request.decisions.each do |decision|
+            decision.accepted_items.destroy_all
+          end
+          request.decisions.destroy_all
+        end
+
+        decisions = Decision.where(helper_id: @user.id)
+        decisions.each do |decision|
           decision.accepted_items.destroy_all
         end
-        request.decisions.destroy_all
-      end
+        decisions.destroy_all
 
-      decisions = Decision.where(helper_id: @user.id)
-      decisions.each do |decision|
-        decision.accepted_items.destroy_all
+        redirect_to @user
       end
-      decisions.destroy_all
-
-      redirect_to @user
     end
   end
 
-  def unban
-    @user.update(role: 'author')
-    Notification.create(message_type: 5, user_id: @user.id)
-    redirect_to @user
-  end
-
-  def moder
-    @user.update(role: 'moderator')
-    Notification.create(message_type: 6, user_id: @user.id)
-    redirect_to @user
-  end
-
-  def unmoder
-    @user.update(role: 'author')
-    Notification.create(message_type: 7, user_id: @user.id)
-    redirect_to @user
+  def change_moder_status
+    if @user.role == 'moderator'
+      @user.update(role: 'author')
+      Notification.create(message_type: 7, user_id: @user.id)
+      redirect_to @user
+    else
+      @user.update(role: 'moderator')
+      Notification.create(message_type: 6, user_id: @user.id)
+      redirect_to @user
+    end
   end
 
   def actual_requests

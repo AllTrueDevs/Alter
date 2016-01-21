@@ -2,17 +2,18 @@
   %h5.text-center Немає нових сповіщень
 -else
   %h1 Сповіщення
+  = link_to 'Видалити всі сповіщення', controller: :notifications, action: :clean
   - @notifications.each do |notification|
     %div
       -if notification.status == 'new'
-        = link_to notification do
-          %p= notification.message.html_safe
-          %p= notification.created_at
+        %p New
+        %p= notification.message.html_safe
+        %p= notification.created_at
       -else
         %p= notification.message.html_safe
         %p= notification.created_at
+      = link_to 'Переглянути', notification
       = link_to 'Видалити', notification, method: :delete
 
-  = link_to 'Видалити всі сповіщення', controller: :notifications, action: :clean
 %br
 

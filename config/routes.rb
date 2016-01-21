@@ -16,10 +16,8 @@ Rails.application.routes.draw do
   get '/notifications/clean', to: 'notifications#clean', as: :clean
   resources :notifications, only: [:index, :show, :destroy]
   get 'requests/:id/destroy' => 'requests#destroy', as: :destroy
-  post '/id:id/ban', to: 'users#ban', as: :ban
-  post '/id:id/unban', to: 'users#unban', as: :unban
-  post '/id:id/moder', to: 'users#moder', as: :moder
-  post '/id:id/unmoder', to: 'users#unmoder', as: :unmoder
+  get '/id:id/change_ban_status', to: 'users#change_ban_status', as: :ban
+  get '/id:id/change_moder_status', to: 'users#change_moder_status', as: :moder
   get '/id:id/requests/actual', to: 'users#actual_requests', as: :user_actual_requests
   get '/id:id/requests/archived', to: 'users#archived_requests', as: :user_archived_requests
   get '/id:id/statistic', to: 'users#statistic', as: :user_statistic
