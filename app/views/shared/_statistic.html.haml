@@ -1,4 +1,4 @@
 - if items.size.zero?
   %h5.text-center Запитів не знайдено
 - else
-  = bar_chart items.joins(:category).group(:name).sum(:count)
+  = bar_chart items.joins(:category).group(:name).sum(:count), discrete: true, max: (items.size < 4)? 4 : items.size
