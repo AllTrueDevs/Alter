@@ -1,0 +1,4 @@
+- if items.size.zero?
+  %h5.text-center Запитів не знайдено
+- else
+  = bar_chart items.joins(:category).group(:name).sum(:count)

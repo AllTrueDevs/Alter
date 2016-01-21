@@ -8,6 +8,7 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: 'Користувач ще не підтвердив реєстрацію'
     else
       @actual_requests = User.find(params[:id]).requests.where(status: 'actual')
+      @helped_items = @user.helped_items.sort{ |item_1, item_2| [ item_2.count, item_1.category.name ] <=> [ item_1.count, item_2.category.name ] }
     end
   end
 
@@ -72,6 +73,13 @@ class UsersController < ApplicationController
 
   def archived_requests
     @archived_requests = User.find(params[:id]).requests.where(status: 'archived').order(:updated_at => :desc)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def statistic
+    @items = @user.helped_items
     respond_to do |format|
       format.js
     end

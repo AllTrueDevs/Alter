@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   post '/id:id/unmoder', to: 'users#unmoder', as: :unmoder
   get '/id:id/requests/actual', to: 'users#actual_requests', as: :user_actual_requests
   get '/id:id/requests/archived', to: 'users#archived_requests', as: :user_archived_requests
+  get '/id:id/statistic', to: 'users#statistic', as: :user_statistic
 
 end
