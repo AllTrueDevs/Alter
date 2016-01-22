@@ -23,7 +23,7 @@ class Ability
         can :decision_action, Decision do |decision|
           decision.request.user == user
         end
-        can :read, :destroy, Notification do |notification|
+        can [:read, :destroy], Notification do |notification|
           notification.user == user
         end
         if user.role == 'moderator'
