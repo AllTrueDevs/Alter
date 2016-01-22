@@ -23,15 +23,13 @@
       = form_tag partly_path do
         .modal-body
           %p
-            = select_tag :accepted_items, options_from_collection_for_select(@accepted_items, 'id', 'category_name'), multiple: true
+            = select_tag :accepted_items, options_from_collection_for_select(@accepted_items, 'id', 'category_name', selected: @accepted_items.ids), multiple: true
         .modal-footer
           = submit_tag 'Надіслати', :class => 'btn btn-success'
 
 :javascript
   $(document).ready(function() {
     $('#accepted_items').multiselect({
-      enableFiltering: true,
-      includeSelectAllOption: true,
       maxHeight: 200,
       dropUp: true
     });

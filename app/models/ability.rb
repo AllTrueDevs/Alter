@@ -7,7 +7,6 @@ class Ability
       alias_action :edit, :destroy, :create, :update, :to => :modify
       alias_action :edit, :update, :destroy, :to => :author_action
       alias_action :show, :destroy, :to => :user_action
-      alias_action :ban, :unban, :to => :ban_users
       alias_action :accept, :deny, :partly, :read, :create, :to => :decision_action
       if user.role == 'admin'
         can :manage, :all
@@ -15,6 +14,7 @@ class Ability
           request.user != user
         end
       else
+        can :statistic, User
         can :create, Request
         cannot :read, Category
         can :modify, Request do |request|
@@ -23,14 +23,14 @@ class Ability
         can :decision_action, Decision do |decision|
           decision.request.user == user
         end
-        can :read, Notification do |notification|
+        can :read, :destroy, Notification do |notification|
           notification.user == user
         end
         if user.role == 'moderator'
           can :destroy, Request
           can :index, User
           can :manage, Category
-          can :ban_users, User
+          can :change_ban_status, User
         elsif user.role == 'author'
           can :author_action, Request do |request|
             request.user == user
