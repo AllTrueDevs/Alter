@@ -1,18 +1,15 @@
--if @notifications.empty?
-  %h5.text-center Немає нових сповіщень
--else
-  %h1 Сповіщення
-  - @notifications.each do |notification|
-    %div
-      -if notification.status == 'new'
-        = link_to notification do
-          %p= notification.message.html_safe
-          %p= notification.created_at
-      -else
-        %p= notification.message.html_safe
-        %p= notification.created_at
-      = link_to 'Видалити', notification, method: :delete
-
-  = link_to 'Видалити всі сповіщення', controller: :notifications, action: :clean
-%br
-
+.panel.panel-default.panel-100
+  .panel-heading
+    .row
+      .col-md-10
+        %h4 Сповіщення
+      .col-md-2
+        .pull-right
+          = link_to controller: :notifications, action: :clean do
+            %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"}
+  .panel-body
+    -if @notifications.empty?
+      %h5.text-center Сповіщень не знайдено
+    -else
+      - @notifications.each do |notification|
+        = render 'notifications/notification_in_list', notification: notification, notifications: @notifications

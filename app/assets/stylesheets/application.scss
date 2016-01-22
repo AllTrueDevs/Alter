@@ -85,15 +85,15 @@ textarea {
   margin-bottom: 20px;
 }
 
-.request-in-list h4, .decision-in-list h4{
+.request-in-list h4, .decision-in-list h4, .notification-in-list h4{
   margin: 0px;
 }
 
-.request-in-list p, .decision-in-list p{
+.request-in-list p, .decision-in-list p, .notification-in-list p{
   margin-bottom: 0px;
 }
 
-.request-in-list, .decision-in-list{
+.request-in-list, .decision-in-list, .notification-in-list{
   margin-top: 10px;
   padding: 10px;
 }
@@ -106,11 +106,11 @@ textarea {
   border-bottom: 1px solid #ddd;
 }
 
-.delete-request{
+.delete-request, .delete-notification, .edit-notification{
   display: none;
 }
 
-.request-in-list:hover .delete-request{
+.request-in-list:hover .delete-request, .notification-in-list:hover .delete-notification, .notification-in-list:hover .edit-notification{
   display: block;
 }
 
@@ -146,7 +146,7 @@ textarea {
   background-color: #34495e;
 }
 
-.decision-new{
+.decision-new, .notification-new{
   border-radius: 5px;
   background-color: #ddd;
 }

@@ -1,0 +1,26 @@
+- row = "notification-in-list notification-#{notification.id}"
+- row = row + " notification-new" if notification.status == 'new'
+%div{ class: row}
+  .row
+    .col-md-1= image_tag User.find(notification.reason_user_id).avatar.url, class: 'img-rounded img-responsive'
+    .col-md-11
+      .row
+        .col-md-10
+          -if notification.status == 'new'
+            = link_to notification do
+              %h4= notification.message.html_safe
+          -else
+            %p= notification.message.html_safe
+          %h4
+            %small
+              = time_ago_in_words(notification.created_at) + ' ago.'
+        .col-md-2
+          .pull-right.delete-notification
+            = link_to notification, :method => :delete, :remote => true, :data => { :confirm => 'Видалити сповіщення?' } do
+              %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
+          -if notification.status == 'new'
+            .pull-right.edit-notification
+              = link_to notification do
+                %span.glyphicon.glyphicon-eye-open{'aria-hidden' => 'true'}
+- if notification!=notifications.last
+  %hr

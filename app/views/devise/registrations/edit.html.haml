@@ -4,7 +4,7 @@
   .panel-body
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, role: 'form' }) do |f|
       = label_tag 'Email:'
-      = label_tag nil, current_user.email, {:readonly => true}
+      = current_user.email
       .form-group
         = f.label :"Ім'я"
         = f.text_field :name, class: 'form-control'
