@@ -24,6 +24,10 @@ class NotificationsController < ApplicationController
     redirect_to notifications_path, notice: 'Всі сповіщення видалено'
   end
 
+  def read
+    @notification.update(status: 'read')
+  end
+
   private
     def set_notification
       @notification = Notification.find(params[:id])

@@ -20,7 +20,7 @@
       .form-group
         = f.label :Фото
         = f.file_field :avatar, accept: 'image/png, image/jpeg'
-      = f.submit 'Зберегти', class: 'btn btn-success'
+      = f.submit 'Зберегти', class: 'btn btn-success', data: {disable_with: 'Обробка...'}
 
 
 -#%h2

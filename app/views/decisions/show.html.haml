@@ -25,7 +25,7 @@
           %p
             = select_tag :accepted_items, options_from_collection_for_select(@accepted_items, 'id', 'category_name', selected: @accepted_items.ids), multiple: true
         .modal-footer
-          = submit_tag 'Надіслати', :class => 'btn btn-success'
+          = submit_tag 'Надіслати', :class => 'btn btn-success', data: {disable_with: 'Обробка...'}
 
 :javascript
   $(document).ready(function() {

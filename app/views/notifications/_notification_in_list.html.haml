@@ -3,7 +3,8 @@
 %div{ class: 'not'}
   %div{ class: row}
     .row
-      .col-md-1= image_tag User.find(notification.reason_user_id).avatar.url, class: 'img-rounded img-responsive'
+      .col-md-1
+        = notification.reason_user_id ? (image_tag User.find(notification.reason_user_id).avatar.url, class: 'img-rounded img-responsive') : (image_tag 'bell.png', class: 'img-rounded img-responsive')
       .col-md-11
         .row
           .col-md-10
@@ -20,8 +21,8 @@
               = link_to notification, :method => :delete, :remote => true do
                 %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
             -if notification.status == 'new'
-              .pull-right.edit-notification
-                = link_to notification do
+              #read.pull-right.edit-notification
+                = link_to nil, remote: true do
                   %span.glyphicon.glyphicon-eye-open{'aria-hidden' => 'true'}
   - if notification!=notifications.last
     %hr

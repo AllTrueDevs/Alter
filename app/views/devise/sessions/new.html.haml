@@ -14,7 +14,7 @@
           %label
             = f.check_box :remember_me
             = f.label :"Запам'ятати"
-      = f.submit  t('.sign_in', :default => 'Увійти'), class: 'btn btn-success'
+      = f.submit  t('.sign_in', :default => 'Увійти'), class: 'btn btn-success', data: {disable_with: 'Обробка...'}
     = render "devise/shared/links"
 
 -#%h2 Log in

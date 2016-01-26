@@ -17,7 +17,7 @@
       .form-group
         = f.label :"Підтвердження паролю"
         = f.password_field :password_confirmation, class: 'form-control'
-      = f.submit t('.sign_up', :default => 'Зареєструватись'), class: 'btn btn-success'
+      = f.submit t('.sign_up', :default => 'Зареєструватись'), class: 'btn btn-success', data: {disable_with: 'Обробка...'}
     = render "devise/shared/links"
 
 -#%h2 Sign up

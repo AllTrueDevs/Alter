@@ -1,3 +1,3 @@
-#$ ->
-#  $('#read').click ->
-#    $(this).removeClass("new")
+$ ->
+  $('#read').click ->
+    $(this).toggleClass('notification-new')

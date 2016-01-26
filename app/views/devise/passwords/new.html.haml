@@ -7,7 +7,7 @@
       .form-group
         = f.label :email
         = f.email_field :email, autofocus: true, class: 'form-control'
-      = f.submit t('.send_me_reset_password_instructions', :default => 'Надіслати інтсрукції зміни пароля'), class: 'btn btn-success'
+      = f.submit t('.send_me_reset_password_instructions', :default => 'Надіслати інтсрукції зміни пароля'), class: 'btn btn-success', data: {disable_with: 'Обробка...'}
     = render "devise/shared/links"
 
 -#%h2 Forgot your password?

@@ -16,7 +16,7 @@
       .form-group
         = f.label :Фото
         = f.file_field :photo, accept: 'image/png, image/jpeg'
-      = f.submit 'Зберегти', class: 'btn btn-success'
+      = f.submit 'Зберегти', class: 'btn btn-success', data: {disable_with: 'Обробка...'}
 
 -#%h1 Editing request
 -#
