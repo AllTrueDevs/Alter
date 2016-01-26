@@ -1,0 +1,4 @@
+.col-md-3.inline
+  = link_to user do
+    = image_tag user.avatar.url, class: 'img-responsive img-center img-thumbnail'
+    %p.text-center.nickname= user.name

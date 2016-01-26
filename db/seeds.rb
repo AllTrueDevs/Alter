@@ -6,6 +6,7 @@
                    {name: 'Апаратура', color: 8}, {name: 'Освіта', color: 1}])
 
 #Create Users
+
   user = User.new(
       :name                  => "First Admin",
       :email                 => "first@admin.com",
@@ -45,3 +46,25 @@
   user.skip_confirmation!
   user.save!
 
+  user = User.new(
+      :name                  => "First Admin",
+      :email                 => "first@admin.com",
+      :role                  => "admin",
+      :password              => "12345678",
+      :password_confirmation => "12345678"
+  )
+  user.skip_confirmation!
+  user.save!
+
+  50.times do |x|
+
+    user = User.new(
+        :name                  => "#{x} user",
+        :email                 => "#{x}_user@user.com",
+        :password              => "12345678",
+        :password_confirmation => "12345678"
+    )
+    user.skip_confirmation!
+    user.save!
+
+  end

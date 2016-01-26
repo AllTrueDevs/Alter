@@ -163,7 +163,7 @@ textarea {
   width: 30vw;
 }
 
-.panel-100{
+.width-100 {
   width: 100%;
 }
 
@@ -213,4 +213,61 @@ textarea {
 
 .inline{
   display: inline-block;
+}
+
+.search-field{
+  width: 225px;
+}
+
+.form-header{
+  margin: auto 0;
+}
+
+.filter{
+  font-size: 20px;
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.pagination{
+
+  .active span{
+    background-color: #dfd;
+    border-color: #ddd;
+
+    &:hover{
+      background-color: #efe;
+      color: #777;
+      border-color: #ddd;
+    }
+  }
+
+  li {
+    .first, .last, .current {
+      color: #777;
+    }
+
+    span {
+      font-weight: bold;
+
+      &:hover {
+        background-color: #efe;
+      }
+    }
+  }
+
+}
+
+.nickname{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.users-in-list{
+  margin: 20px auto;
+}
+
+.clear-both{
+  clear: both;
 }

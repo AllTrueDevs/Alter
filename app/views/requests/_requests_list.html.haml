@@ -4,3 +4,4 @@
   -else
     - requests.each do |request|
       = render 'requests/request_in_list', request: request, requests: requests
+    = paginate requests

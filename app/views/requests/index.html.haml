@@ -1,4 +1,4 @@
-.panel.panel-default.panel-100
+.panel.panel-default.width-100
   .panel-heading
     .row
       .col-md-10
@@ -9,5 +9,3 @@
             %span.glyphicon.glyphicon-filter{"aria-hidden" => "true"}
   .panel-body
     = render'requests/requests_list', requests: @requests
-
-= paginate @requests
