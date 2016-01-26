@@ -8,7 +8,6 @@
           = link_to requests_path do
             %span.glyphicon.glyphicon-filter{"aria-hidden" => "true"}
   .panel-body
-
     = render'requests/requests_list', requests: @requests
 
 = paginate @requests

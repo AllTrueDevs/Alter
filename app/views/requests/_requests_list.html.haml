@@ -1,5 +1,6 @@
--if requests.size.zero?
-  %h5.text-center Запитів не знайдено
--else
-  - requests.each do |request|
-    = render 'requests/request_in_list', request: request, requests: requests
+%div{ class: 'requests'}
+  -if requests.size.zero?
+    %h5.text-center Запитів не знайдено
+  -else
+    - requests.each do |request|
+      = render 'requests/request_in_list', request: request, requests: requests

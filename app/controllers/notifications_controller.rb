@@ -14,8 +14,8 @@ class NotificationsController < ApplicationController
   def destroy
     @notification.destroy
     respond_to do |format|
-      format.html { redirect_to notifications_url, notice: 'Notification was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to requests_url, notice: 'Notification was successfully destroyed.' }
+      format.js { render :layout => false }
     end
   end
 

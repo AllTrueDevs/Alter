@@ -8,8 +8,9 @@
           = link_to controller: :notifications, action: :clean do
             %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"}
   .panel-body
-    -if @notifications.empty?
-      %h5.text-center Сповіщень не знайдено
-    -else
-      - @notifications.each do |notification|
-        = render 'notifications/notification_in_list', notification: notification, notifications: @notifications
+    %div{ class: 'notifications'}
+      -if @notifications.empty?
+        %h5.text-center Сповіщень не знайдено
+      -else
+        - @notifications.each do |notification|
+          = render 'notifications/notification_in_list', notification: notification, notifications: @notifications
