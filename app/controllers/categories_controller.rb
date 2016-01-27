@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def index
-    @categories = Category.all
+    @categories = Category.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def create

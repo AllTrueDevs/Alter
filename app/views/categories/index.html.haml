@@ -1,26 +1,84 @@
-%h1 Категорії допомоги
-
-- @categories.order(:name).each do |category|
-  = link_to category.name, category, :method => :delete, :data => { :confirm => 'Are you sure?' }
-  %br
-
-%input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Додати категорію")
-
-.modal.fade#exampleModal( tabindex="-1" aria-labelledby="exampleModalLabel" )
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog
-    .modal-content.create-params
+    .modal-content
       .modal-header
-        %button( class="close" data-dismiss="modal" aria-label="Close" )
-          %span
-            &times;
-        %h5 Нова категорія допомоги
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Закрити
+        %h4#myModalLabel.modal-title Додавання категорії
       = form_for Category.new do |f|
-        .field
-          Назва категорії
-          = f.text_field :name
-        .field
-          %h3 Колір
-          = select_tag :color, options_for_select(colors)
+        .modal-body
+          .field
+            %h4 Назва категорії
+            = f.text_field :name, class: 'form-control'
+          .field
+            %h4 Колір
+            = select_tag :color, options_for_select(colors), class: 'form-control'
+          .actions
+        .modal-footer
+          = f.submit 'Додати', :class => 'btn btn-success', data: {disable_with: 'Обробка...'}
+      -#= form_tag partly_path do
+      -#  .modal-body
+      -#    %p Оберіть категорії з якими вам допомогли (ці категорії записуються в історію допомого користувача)
+      -#    %p
+      -#      = select_tag :accepted_items, options_from_collection_for_select(@accepted_items, 'id', 'category_name', selected: @accepted_items.ids), multiple: true
+      -#  .modal-footer
+      -#    = submit_tag 'Надіслати', :class => 'btn btn-success', data: {disable_with: 'Обробка...'}
 
-        .actions
-          = f.submit 'Додати', :class => 'btn btn-primary'
+.panel.panel-default.width-100
+  .panel-heading
+    .width-100
+      .row.form-header
+        .row
+        .col-md-10
+          %h4.inline Категорії допомоги
+        .col-md-2
+          .pull-right.request-actions
+            -if (can? :create, Category)
+              %a{"data-target" => "#myModal", "data-toggle" => "modal", "href" => "#"}
+                %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+  .panel-body
+    -if @categories.size.zero?
+      %h5.text-center Категорій не знайдено
+    -else
+      %table.table.table-hover.categories
+        %thead
+          %tr
+            %th Назва
+            %th
+            %th
+            %th Колір
+            %th
+        %tbody
+          - @categories.each do |category|
+            %tr
+              %td= category.name
+              %td
+              %td
+              %td{class: "label-#{category.color}"}
+              %td
+                .pull-right
+                  = link_to 'Видалити', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          = paginate @categories
+
+
+
+
+
+
+-#%h1 Категорії допомоги
+-#
+-#- @categories.order(:name).each do |category|
+-#  = link_to category.name, category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+-#  %br
+-#
+-#%input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Додати категорію")
+-#
+-#.modal.fade#exampleModal( tabindex="-1" aria-labelledby="exampleModalLabel" )
+-#  .modal-dialog
+-#    .modal-content.create-params
+-#      .modal-header
+-#        %button( class="close" data-dismiss="modal" aria-label="Close" )
+-#          %span
+-#            &times;
+
