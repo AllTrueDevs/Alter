@@ -1,0 +1,19 @@
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Закрити
+        %h4#myModalLabel.modal-title Додавання категорії
+      = form_for Category.new do |f|
+        .modal-body
+          .field
+            %h4 Назва категорії
+            = f.text_field :name, class: 'form-control'
+          .field
+            %h4 Колір
+            = select_tag :color, options_for_select(colors), class: 'form-control'
+          .actions
+        .modal-footer
+          = f.submit 'Додати', :class => 'btn btn-success', data: {disable_with: 'Обробка...'}

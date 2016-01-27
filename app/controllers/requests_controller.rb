@@ -45,7 +45,7 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.update(request_params)
         @request.decisions.each do |decision|
-          Notification.create(body: "#{current_user.name} змінив запит про допомогу \"#{@request.name}\".", user_id: decision.helper_id)
+          Notification.create(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id, user_id: decision.helper_id)
         end
         @request.decisions.destroy_all
         @request.required_items.destroy_all

@@ -1,30 +1,3 @@
-#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-          %span.sr-only Закрити
-        %h4#myModalLabel.modal-title Додавання категорії
-      = form_for Category.new do |f|
-        .modal-body
-          .field
-            %h4 Назва категорії
-            = f.text_field :name, class: 'form-control'
-          .field
-            %h4 Колір
-            = select_tag :color, options_for_select(colors), class: 'form-control'
-          .actions
-        .modal-footer
-          = f.submit 'Додати', :class => 'btn btn-success', data: {disable_with: 'Обробка...'}
-      -#= form_tag partly_path do
-      -#  .modal-body
-      -#    %p Оберіть категорії з якими вам допомогли (ці категорії записуються в історію допомого користувача)
-      -#    %p
-      -#      = select_tag :accepted_items, options_from_collection_for_select(@accepted_items, 'id', 'category_name', selected: @accepted_items.ids), multiple: true
-      -#  .modal-footer
-      -#    = submit_tag 'Надіслати', :class => 'btn btn-success', data: {disable_with: 'Обробка...'}
-
 .panel.panel-default.width-100
   .panel-heading
     .width-100
@@ -61,24 +34,4 @@
                   = link_to 'Видалити', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
           = paginate @categories
 
-
-
-
-
-
--#%h1 Категорії допомоги
--#
--#- @categories.order(:name).each do |category|
--#  = link_to category.name, category, :method => :delete, :data => { :confirm => 'Are you sure?' }
--#  %br
--#
--#%input( type="button" data-toggle="modal" data-target="#exampleModal" class="link" value="Додати категорію")
--#
--#.modal.fade#exampleModal( tabindex="-1" aria-labelledby="exampleModalLabel" )
--#  .modal-dialog
--#    .modal-content.create-params
--#      .modal-header
--#        %button( class="close" data-dismiss="modal" aria-label="Close" )
--#          %span
--#            &times;
-
+= render 'modals/category_create'

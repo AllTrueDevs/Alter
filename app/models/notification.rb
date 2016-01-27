@@ -14,6 +14,7 @@ class Notification < ActiveRecord::Base
             when 5 then 'Ваш аккаунт було розблоковано.'
             when 6 then 'Вам надано права модератора.'
             when 7 then 'У вас більше немає прав модератора.'
+            when 8 then "#{form_user_link(User.find(self.reason_user_id))} змінив запит про допомогу #{form_request_link(Request.find(self.request_id))}."
             else null
           end
   end
