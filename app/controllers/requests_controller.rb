@@ -33,7 +33,7 @@ class RequestsController < ApplicationController
       if @request.valid? && !params[:categories].nil?
         @request.save
         @categories = params[:categories]
-        @categories.each{ |category| RequiredItem.create(request_id: @request.id, category_id: category) }
+        @categories.each{|category| @request.required_items.create(category_id: category) }
         format.html { redirect_to @request}
       else
         format.html { redirect_to :back, notice: 'Заповніть усі поля' }
@@ -45,12 +45,12 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.update(request_params)
         @request.decisions.each do |decision|
-          Notification.create(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id, user_id: decision.helper_id)
+          User.find(decision.helper_id).notifications.(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id)
         end
         @request.decisions.destroy_all
         @request.required_items.destroy_all
         @categories = params[:categories]
-        @categories.each{ |category| RequiredItem.create(request_id: @request.id, category_id: category) }
+        @categories.each{|category| @request.required_items.create(category_id: category) }
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class RequestsController < ApplicationController
   def destroy
     @request.update(status: 'archived')
     @request.decisions.each do |decision|
-      Notification.create(body: "#{current_user.name} закрив запит про допомогу \"#{@request.name}\".", user_id: decision.helper_id)
+      User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id)
     end
     @request.decisions.destroy_all
 

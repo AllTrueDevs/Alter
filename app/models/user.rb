@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :helped_items, :dependent => :destroy
   has_attached_file :avatar, default_url: "missing-avatar.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  validates :name, presence: true, length: { in: 4..30 }
+  validates :name, presence: true, length: { in: 4..40 }
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
