@@ -22,7 +22,7 @@
                 %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
             -if notification.status == 'new'
               #read.pull-right.edit-notification
-                = link_to nil, remote: true do
+                = link_to notification, remote: true do
                   %span.glyphicon.glyphicon-eye-open{'aria-hidden' => 'true'}
   - if notification!=notifications.last
     %hr

@@ -8,7 +8,10 @@ class NotificationsController < ApplicationController
 
   def show
     @notification.update(status: 'read')
-    redirect_to notifications_path
+    @notifications = current_user.notifications.order(:status, :created_at => :desc)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy
@@ -22,10 +25,6 @@ class NotificationsController < ApplicationController
   def clean
     current_user.notifications.destroy_all
     redirect_to notifications_path, notice: 'Всі сповіщення видалено'
-  end
-
-  def read
-    @notification.update(status: 'read')
   end
 
   private

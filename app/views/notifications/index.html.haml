@@ -12,5 +12,5 @@
       -if @notifications.empty?
         %h5.text-center Сповіщень не знайдено
       -else
-        - @notifications.each do |notification|
-          = render 'notifications/notification_in_list', notification: notification, notifications: @notifications
+        .notifications
+          = render 'notifications/notifications_list', notifications: @notifications
