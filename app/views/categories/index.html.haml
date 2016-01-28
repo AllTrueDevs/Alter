@@ -30,8 +30,10 @@
               %td
               %td{class: "label-#{category.color}"}
               %td
-                .pull-right
-                  = link_to 'Видалити', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
-          = paginate @categories
+                - if category.required_items.empty? && category.helped_items.empty?
+                  .pull-right
+                    %a{"data-target" => "#deleteModal", "data-toggle" => "modal", "href" => "#"} Видалити
+                  = render 'modals/delete', selector: 'deleteModal', title: 'Ви дійсно хочете видалити цю категорію?', link: category
+      = paginate @categories
 
 = render 'modals/category_create'

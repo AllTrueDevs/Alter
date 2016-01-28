@@ -8,18 +8,22 @@
         %h3.inline= @user.name
         -if (can? :ban_users, @user) && (current_user != @user)
           -if @user.role == 'banned'
-            = link_to ban_path, :data => { :confirm => 'Розблокувати користувача?' }, class: 'inline' do
+            %a{"data-target" => "#banModal", "data-toggle" => "modal", "href" => "#"}
               %span.glyphicon.glyphicon-check{"aria-hidden" => "true"}
+            = render 'modals/delete', selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_path
           -else
-            = link_to ban_path, :data => { :confirm => 'Заблокувати користувача?' }, class: 'inline' do
+            %a{"data-target" => "#banModal", "data-toggle" => "modal", "href" => "#"}
               %span.glyphicon.glyphicon-ban-circle{"aria-hidden" => "true"}
+            = render 'modals/delete', selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_path
         -if (can? :make_moderators, @user) && (current_user != @user)
           -if @user.role == 'moderator'
-            = link_to moder_path, :data => { :confirm => 'Забрати права модератора?' }, class: 'inline' do
+            %a{"data-target" => "#modModal", "data-toggle" => "modal", "href" => "#"}
               %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
+            = render 'modals/delete', selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_path
           -else
-            = link_to moder_path, :data => { :confirm => 'Зробити модератором?' }, class: 'inline' do
+            %a{"data-target" => "#modModal", "data-toggle" => "modal", "href" => "#"}
               %span.glyphicon.glyphicon-briefcase{"aria-hidden" => "true"}
+            = render 'modals/delete', selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_path
         -case @user.role
           -when 'moderator'
             %h5
@@ -48,6 +52,8 @@
       .tab-content
         .tab-pane.active
           = render'requests/requests_list', requests: @actual_requests
+
+
 
 :javascript
   $('.nav-tabs a').click(function (e) {

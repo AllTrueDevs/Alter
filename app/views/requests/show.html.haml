@@ -1,3 +1,6 @@
+
+
+
 .col-md-9
   .panel.panel-default.width-100
     .panel-heading
@@ -16,7 +19,7 @@
               = link_to edit_request_path(@request)do
                 %span.glyphicon.glyphicon-pencil{"aria-hidden" => "true"}
             -if (@request.status == 'actual') && (can? :destroy, @request)
-              = link_to @request, :method => :delete, :data => { :confirm => 'Закрити запит?' } do
+              %a{"data-target" => "#deleteModal", "data-toggle" => "modal", "href" => "#"}
                 %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
 
     .panel-body
@@ -44,3 +47,4 @@
           = @request.user.skype
 
 = render 'modals/request_help'
+= render 'modals/delete', selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request
