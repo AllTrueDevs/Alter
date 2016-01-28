@@ -1,5 +1,4 @@
-- if items.size.zero?
+- if @items.size.zero?
   %h5.text-center Запитів не знайдено
 - else
-  - maximum_items = items.pluck(:count).max
-  = bar_chart items.joins(:category).group(:name).sum(:count), discrete: true, max: (maximum_items < 4)? 4 : maximum_items <= 10 ? 12 : maximum_items + 10 - maximum_items % 10
+  = bar_chart @items.joins(:category).group(:name).sum(:count), discrete: true, max: @max
