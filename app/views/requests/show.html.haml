@@ -1,6 +1,3 @@
-
-
-
 .col-md-9
   .panel.panel-default.width-100
     .panel-heading
@@ -21,14 +18,12 @@
             -if (@request.status == 'actual') && (can? :destroy, @request)
               %a{"data-target" => "#deleteModal", "data-toggle" => "modal", "href" => "#"}
                 %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
-
     .panel-body
       = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
       %p.break-word.text-justify.request-description= @request.description
       - @request.required_items.each do |required_item|
         =link_to requests_path(category_id: required_item.category.id) do
           %span{class: "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
-
 .col-md-3
   .panel.panel-default.width-100
     .panel-heading 
@@ -45,6 +40,5 @@
         %p
           %strong Skype:
           = @request.user.skype
-
 = render 'modals/request_help'
 = render 'modals/delete', selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request
