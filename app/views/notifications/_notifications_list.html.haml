@@ -1,2 +1,2 @@
 - notifications.each do |notification|
-  = render 'notifications/notification_in_list', notification: notification, notifications: notifications
+  = render partial: 'notifications/notification_in_list', locals: { notification: notification, notifications: notifications }

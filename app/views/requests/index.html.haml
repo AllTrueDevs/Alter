@@ -8,4 +8,4 @@
           = link_to requests_path do
             %span.glyphicon.glyphicon-filter{"aria-hidden" => "true"}
   .panel-body
-    = render'requests/requests_list', requests: @requests
+    = render partial: 'requests/requests_list', locals: { requests: @requests }

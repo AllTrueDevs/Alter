@@ -31,4 +31,4 @@
                   %span{:class => "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
   - if request!=requests.last
     %hr
-  = render 'modals/delete', selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request
+  = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request }

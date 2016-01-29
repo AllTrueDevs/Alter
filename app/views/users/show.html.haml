@@ -10,20 +10,20 @@
           -if @user.role == 'banned'
             %a{"data-target" => "#banModal", "data-toggle" => "modal", "href" => "#"}
               %span.glyphicon.glyphicon-check{"aria-hidden" => "true"}
-            = render 'modals/delete', selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_path
+            = render partial: 'modals/delete', locals: { selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_path }
           -else
             %a{"data-target" => "#banModal", "data-toggle" => "modal", "href" => "#"}
               %span.glyphicon.glyphicon-ban-circle{"aria-hidden" => "true"}
-            = render 'modals/delete', selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_path
+            = render partial: 'modals/delete', locals: { selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_path }
         -if (can? :make_moderators, @user) && (current_user != @user)
           -if @user.role == 'moderator'
             %a{"data-target" => "#modModal", "data-toggle" => "modal", "href" => "#"}
               %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
-            = render 'modals/delete', selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_path
+            = render partial: 'modals/delete', locals: { selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_path }
           -else
             %a{"data-target" => "#modModal", "data-toggle" => "modal", "href" => "#"}
               %span.glyphicon.glyphicon-briefcase{"aria-hidden" => "true"}
-            = render 'modals/delete', selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_path
+            = render partial: 'modals/delete', locals: { selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_path }
         -case @user.role
           -when 'moderator'
             %h5
@@ -51,7 +51,7 @@
           %li= link_to 'Cтатистика', user_statistic_path, :remote => true
       .tab-content
         .tab-pane.active
-          = render'requests/requests_list', requests: @actual_requests
+          = render partial: 'requests/requests_list', locals: { requests: @actual_requests }
 
 
 

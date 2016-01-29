@@ -41,4 +41,4 @@
           %strong Skype:
           = @request.user.skype
 = render 'modals/request_help'
-= render 'modals/delete', selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request
+= render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }

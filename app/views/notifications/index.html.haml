@@ -13,4 +13,4 @@
         %h5.text-center Сповіщень не знайдено
       -else
         .notifications
-          = render 'notifications/notifications_list', notifications: @notifications
+          = render partial: 'notifications/notifications_list', locals: { notifications: @notifications }
