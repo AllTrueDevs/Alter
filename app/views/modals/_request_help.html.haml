@@ -1,19 +1,17 @@
-#helpRequestModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#helpRequestModal.modal.fade{ 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} &times;
+        %button.close{ 'data-dismiss': :modal, type: :button }
+          %span{ 'aria-hidden': true } ×
         %h4#myModalLabel.modal-title Підтвердження допомоги
       = form_for Decision.new do
         .modal-body
           = hidden_field_tag :request_id, @request.id
-          %p
-            = text_area_tag :description, nil, class: 'form-control', rows: '7'
-          %p
-            = select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'), multiple: true
+          %p= text_area_tag :description, nil, class: 'form-control', rows: '7'
+          %p= select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'), multiple: true
         .modal-footer
-          = submit_tag 'Надіслати', :class => 'btn btn-success', data: {disable_with: 'Обробка...'}
+          = submit_tag 'Надіслати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
 
 :javascript
   $(document).ready(function() {

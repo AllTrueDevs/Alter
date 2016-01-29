@@ -7,21 +7,20 @@
         .col-md-2
           .pull-right.request-actions
             .dropdown
-              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{ 'data-toggle': :dropdown, type: :button }
                 Підтвердження
                 %span.caret
-              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
-                %li{:role => "presentation"}
-                  %a{"data-target" => "#closeDecisionModal", "data-toggle" => "modal", "href" => "#"} Частково допоміг
-                %li{:role => "presentation"}
-                  = link_to 'Допоміг', accept_path
-                %li{:role => "presentation"}
-                  = link_to 'Не допоміг', deny_path
+              %ul.dropdown-menu
+                %li
+                  %a{ 'data-target': '#closeDecisionModal', 'data-toggle': :modal, 'href': '#' } Частково допоміг
+                = render 'modals/decision_close'
+                %li= link_to 'Допоміг', accept_path
+                %li= link_to 'Не допоміг', deny_path
     .panel-body
       %p.break-word.text-justify.request-description= @decision.description
       - @decision.accepted_items.each do |accepted_item|
-        =link_to requests_path(category_id: accepted_item.required_item.category.id) do
-          %span{class: "label label-#{accepted_item.required_item.category.color}"}= Category.find(accepted_item.required_item.category_id).name
+        = link_to requests_path(category_id: accepted_item.required_item.category.id) do
+          %span{ class: "label label-#{accepted_item.required_item.category.color}" }= Category.find(accepted_item.required_item.category_id).name
 .col-md-3
   .panel.panel-default.width-100
     .panel-heading
@@ -38,5 +37,3 @@
         %p
           %strong Skype:
           = @decision.request.user.skype
-
-= render 'modals/decision_close'

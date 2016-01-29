@@ -1,7 +1,7 @@
 %div{ class: 'requests'}
-  -if requests.size.zero?
+  - if requests.size.zero?
     %h5.text-center Запитів не знайдено
-  -else
+  - else
     - requests.each do |request|
       = render partial: 'requests/request_in_list', locals: { request: request, requests: requests }
     = paginate requests

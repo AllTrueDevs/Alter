@@ -1,11 +1,11 @@
-%div{ id: selector, class: 'modal fade', "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+%div{ id: selector, class: 'modal fade', 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
   .modal-dialog.modal-delete
     .modal-content
       .modal-body
         %h4= title
       .modal-footer
-        - if selector=='deleteModal'
+        - if selector == 'deleteModal'
           = link_to 'Так', link, method: :delete, class: 'btn btn-success'
         - else
           = link_to 'Так', link, class: 'btn btn-success'
-        %a.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Ні
+        %a.btn.btn-default{ 'data-dismiss': :modal, type: :button } Ні

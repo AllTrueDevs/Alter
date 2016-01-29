@@ -7,23 +7,25 @@
         .col-md-2
           .pull-right.request-actions
             - if (@request.user != current_user) and (can? :create, Decision) and (@request.status =='actual')
-              -if @request.decisions.where(helper_id: current_user.id).empty?
-                %button.btn.btn-success.btn-sm{"data-target" => "#helpRequestModal", "data-toggle" => "modal"}
+              - if @request.decisions.where(helper_id: current_user.id).empty?
+                %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
                   Допомогти
-              -else
+                = render 'modals/request_help'
+              - else
                 %small Очікується відповідь
-            -if (@request.status == 'actual') && (can? :edit, @request)
+            - if (@request.status == 'actual') && (can? :edit, @request)
               = link_to edit_request_path(@request)do
-                %span.glyphicon.glyphicon-pencil{"aria-hidden" => "true"}
-            -if (@request.status == 'actual') && (can? :destroy, @request)
-              %a{"data-target" => "#deleteModal", "data-toggle" => "modal", "href" => "#"}
-                %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
+                %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
+            - if (@request.status == 'actual') && (can? :destroy, @request)
+              %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#' }
+                %span.glyphicon.glyphicon-remove{'aria-hidden': true }
+              = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
     .panel-body
       = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
       %p.break-word.text-justify.request-description= @request.description
       - @request.required_items.each do |required_item|
-        =link_to requests_path(category_id: required_item.category.id) do
-          %span{class: "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
+        = link_to requests_path(category_id: required_item.category.id) do
+          %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
 .col-md-3
   .panel.panel-default.width-100
     .panel-heading 
@@ -32,13 +34,11 @@
       .text-center
         = link_to @request.user.name, @request.user, class: 'break-word'
         = image_tag @request.user.avatar.url, class: 'img-responsive img-center img-thumbnail'
-      -if @request.user.phone.to_s.length > 0
+      - if @request.user.phone.to_s.length > 0
         %p
           %strong Телефон:
           = @request.user.phone
-      -if @request.user.skype.to_s.length > 0
+      - if @request.user.skype.to_s.length > 0
         %p
           %strong Skype:
           = @request.user.skype
-= render 'modals/request_help'
-= render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }

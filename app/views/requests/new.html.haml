@@ -2,7 +2,7 @@
   .panel-heading
     %h4 Новий запит про допомогу
   .panel-body
-    = form_for @request, url: requests_path, html: { multipart: true, role: 'form' } do |f|
+    = form_for @request, url: requests_path, html: { multipart: true, role: :form } do |f|
       .form-group
         = f.label :Назва
         = f.text_field :name, class: 'form-control'
@@ -12,11 +12,11 @@
       .form-group
         = f.label :Категорії
         %br
-        = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', :selected => @collection), multiple: true
+        = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', selected: @collection), multiple: true
       .form-group
         = f.label :Фото
         = f.file_field :photo, accept: 'image/png, image/jpeg'
-      = f.submit 'Опублікувати', class: 'btn btn-success', data: {disable_with: 'Обробка...'}
+      = f.submit 'Опублікувати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
 
 :javascript
   $(document).ready(function() {

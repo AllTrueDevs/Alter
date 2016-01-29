@@ -8,21 +8,21 @@
       .col-md-11
         .row
           .col-md-10
-            -if notification.status == 'new'
+            - if notification.status == 'new'
               = link_to notification do
                 %h4= notification.message.html_safe
-            -else
+            - else
               %p= notification.message.html_safe
             %h4
               %small
-                = time_ago_in_words(notification.created_at) + ' ago.'
+                = time_ago_in_words(notification.created_at) + ' тому.'
           .col-md-2
             .pull-right.delete-notification
-              = link_to notification, :method => :delete, :remote => true do
-                %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
-            -if notification.status == 'new'
+              = link_to notification, method: :delete, remote: true do
+                %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
+            - if notification.status == 'new'
               #read.pull-right.edit-notification
                 = link_to notification, remote: true do
-                  %span.glyphicon.glyphicon-eye-open{'aria-hidden' => 'true'}
-  - if notification!=notifications.last
+                  %span.glyphicon.glyphicon-eye-open{ 'aria-hidden': true}
+  - if notification != notifications.last
     %hr

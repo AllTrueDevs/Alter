@@ -7,13 +7,14 @@
           %h4.inline Категорії допомоги
         .col-md-2
           .pull-right.request-actions
-            -if (can? :create, Category)
-              %a{"data-target" => "#newCategoryModal", "data-toggle" => "modal", "href" => "#"}
-                %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+            - if (can? :create, Category)
+              %a{ 'data-target': '#newCategoryModal', 'data-toggle': :modal, 'href': '#' }
+                %span.glyphicon.glyphicon-plus{ 'aria-hidden': true }
+              = render partial: 'modals/category_create'
   .panel-body
-    -if @categories.size.zero?
+    - if @categories.size.zero?
       %h5.text-center Категорій не знайдено
-    -else
+    - else
       %table.table.table-hover.categories
         %thead
           %tr
@@ -28,12 +29,10 @@
               %td= category.name
               %td
               %td
-              %td{class: "label-#{category.color}"}
+              %td{ class: "label-#{category.color}" }
               %td
                 - if category.required_items.empty? && category.helped_items.empty?
                   .pull-right
-                    %a{"data-target" => "#deleteModal", "data-toggle" => "modal", "href" => "#"} Видалити
+                    %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, 'href': '#' } Видалити
                   = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете видалити цю категорію?', link: category }
       = paginate @categories
-
-= render 'modals/category_create'

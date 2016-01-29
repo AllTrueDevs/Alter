@@ -6,6 +6,6 @@
       .col-md-2
         .pull-right
           = link_to requests_path do
-            %span.glyphicon.glyphicon-filter{"aria-hidden" => "true"}
+            %span.glyphicon.glyphicon-filter{ 'aria-hidden': true }
   .panel-body
     = render partial: 'requests/requests_list', locals: { requests: @requests }

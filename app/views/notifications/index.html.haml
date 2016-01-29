@@ -6,9 +6,9 @@
       .col-md-2
         .pull-right
           = link_to controller: :notifications, action: :clean do
-            %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"}
+            %span.glyphicon.glyphicon-trash{ 'aria-hidden': true }
   .panel-body
-    %div{ class: 'notifications'}
+    %div{ class: 'notifications' }
       -if @notifications.empty?
         %h5.text-center Сповіщень не знайдено
       -else

@@ -1,4 +1,4 @@
-%div{ class: :"request-in-list request-#{request.id}"}
+%div{ class: "request-in-list request-#{request.id}" }
   .row
     .col-md-2
       = link_to request do
@@ -8,27 +8,27 @@
         .col-md-11
           = link_to request do
             %h4= request.name
-          -if request.status == 'archived'
+          - if request.status == 'archived'
             %h4
-              %small= 'Archived ' + time_ago_in_words(request.updated_at) + ' ago.'
-          -else
+              %small= 'Заархівовано ' + time_ago_in_words(request.updated_at) + ' тому.'
+          - else
             %h4
               %small
-                = 'Posted ' + time_ago_in_words(request.created_at) + ' ago, by '
+                = 'Опубліковано ' + time_ago_in_words(request.created_at) + ' тому, '
                 = link_to request.user.name, user_path(request.user)
         .col-md-1
-          -if (can? :destroy, request) && (request.status == 'actual')
+          - if (can? :destroy, request) && (request.status == 'actual')
             .pull-right.delete-request
-              %a{"data-target" => "#deleteModal", "data-toggle" => "modal", "href" => "#"}
-                %span.glyphicon.glyphicon-remove{'aria-hidden' => 'true'}
+              %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#' }
+                %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
+              = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request }
       .row
         .col-md-12
           %p.break-word= request.description.truncate(530, separator:' ')
           .row
             .pull-right
               - request.required_items.each do |required_item|
-                =link_to requests_path(category_id: required_item.category.id) do
-                  %span{:class => "label label-#{required_item.category.color}"}= Category.find(required_item.category_id).name
-  - if request!=requests.last
+                = link_to requests_path(category_id: required_item.category.id) do
+                  %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
+  - if request != requests.last
     %hr
-  = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request }

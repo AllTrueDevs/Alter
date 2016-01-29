@@ -2,8 +2,8 @@
   .panel-heading
     %h4 Відгуки
   .panel-body
-    -if @decisions.empty?
+    - if @decisions.empty?
       %h5.text-center Відгуків не знайдено
-    -else
+    - else
       - @decisions.each do |decision|
         = render partial: 'decisions/decision_in_list', locals: { decision: decision, decisions: @decisions }
