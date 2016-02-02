@@ -14,10 +14,10 @@
               - else
                 %small Очікується відповідь
             - if (@request.status == 'actual') && (can? :edit, @request)
-              = link_to edit_request_path(@request)do
+              = link_to edit_request_path(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
                 %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
             - if (@request.status == 'actual') && (can? :destroy, @request)
-              %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#' }
+              %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
                 %span.glyphicon.glyphicon-remove{'aria-hidden': true }
               = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
     .panel-body

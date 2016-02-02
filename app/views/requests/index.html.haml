@@ -5,7 +5,7 @@
         %h4 Запити
       .col-md-2
         .pull-right
-          = link_to requests_path do
+          = link_to requests_path, 'data-placement': :bottom, title: 'Показати усі запити.' do
             %span.glyphicon.glyphicon-filter{ 'aria-hidden': true }
   .panel-body
     = render partial: 'requests/requests_list', locals: { requests: @requests }

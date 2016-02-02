@@ -18,11 +18,11 @@
                 = time_ago_in_words(notification.created_at) + ' тому.'
           .col-md-2
             .pull-right.delete-notification
-              = link_to notification, method: :delete, remote: true do
+              = link_to notification, method: :delete, remote: true, 'data-placement': :bottom, title: 'Видалити сповіщення.' do
                 %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
             - if notification.status == 'new'
               #read.pull-right.edit-notification
-                = link_to notification, remote: true do
+                = link_to notification, remote: true, 'data-placement': :bottom, title: 'Відмітити як прочитане.' do
                   %span.glyphicon.glyphicon-eye-open{ 'aria-hidden': true}
   - if notification != notifications.last
     %hr

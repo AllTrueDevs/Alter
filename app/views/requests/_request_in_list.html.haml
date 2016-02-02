@@ -19,7 +19,7 @@
         .col-md-1
           - if (can? :destroy, request) && (request.status == 'actual')
             .pull-right.delete-request
-              %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#' }
+              %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
                 %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
               = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request }
       .row
