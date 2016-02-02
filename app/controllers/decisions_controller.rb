@@ -32,9 +32,10 @@ class DecisionsController < ApplicationController
 
   def accept
     Notification.create(message_type: 1, reason_user_id: current_user.id, request_id: @decision.request_id, user_id: @decision.helper_id)
-    @decision.accepted_items.each do |item|
-      Decision.update_helped_items(item)
-    end
+    @decision.accepted_items.each{ |item| Decision.update_helped_items(item) }
+    # @decision.accepted_items.each do |item|
+    #   Decision.update_helped_items(item)
+    # end
     @decision.accepted_items.destroy_all
     @decision.destroy
     redirect_to decisions_path
@@ -45,10 +46,11 @@ class DecisionsController < ApplicationController
     respond_to do |format|
       if @accepted_items != nil
         Notification.create(message_type: 2, reason_user_id: current_user.id, request_id: @decision.request_id, user_id: @decision.helper_id)
-        @accepted_items.each do |id|
-          item = AcceptedItem.find(id)
-          Decision.update_helped_items(item)
-        end
+        @accepted_items.each{ |id| item = AcceptedItem.find(id); Decision.update_helped_items(item) }
+        # @accepted_items.each do |id|
+        #   item = AcceptedItem.find(id)
+        #   Decision.update_helped_items(item)
+        # end
         @decision.accepted_items.destroy_all
         @decision.destroy
         format.html { redirect_to decisions_path }

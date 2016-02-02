@@ -13,11 +13,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    if params[:search]
-      @users = User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
-    else
-      @users = User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
-    end
+    @users = params[:search] ? User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12) : User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
   end
 
   def change_ban_status
@@ -56,26 +52,21 @@ class UsersController < ApplicationController
     if @user.role == 'moderator'
       @user.update(role: 'author')
       Notification.create(message_type: 7, user_id: @user.id)
-      redirect_to @user
     else
       @user.update(role: 'moderator')
       Notification.create(message_type: 6, user_id: @user.id)
-      redirect_to @user
     end
+    redirect_to @user
   end
 
   def actual_requests
     @actual_requests = User.find(params[:id]).requests.where(status: 'actual').order(:created_at => :desc).page(params[:page]).per(10)
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   def archived_requests
     @archived_requests = User.find(params[:id]).requests.where(status: 'archived').order(:updated_at => :desc).page(params[:page]).per(10)
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   def statistic

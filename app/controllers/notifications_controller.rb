@@ -9,9 +9,7 @@ class NotificationsController < ApplicationController
   def show
     @notification.update(status: 'read')
     @notifications = current_user.notifications.order(:status, :created_at => :desc)
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   def destroy

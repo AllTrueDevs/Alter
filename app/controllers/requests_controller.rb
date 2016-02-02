@@ -4,11 +4,7 @@ class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create, :show, :index]
 
   def index
-    if params[:category_id].nil?
-      @requests = Request.where(status: 'actual').order(created_at: :desc).page(params[:page]).per(10)
-    else
-      @requests = Request.where(status: 'actual').joins(:required_items).where(required_items: {category_id: params[:category_id]}).order(created_at: :desc).page(params[:page]).per(10)
-    end
+    @requests = params[:category_id].nil? ? Request.where(status: 'actual').order(created_at: :desc).page(params[:page]).per(10) : Request.where(status: 'actual').joins(:required_items).where(required_items: {category_id: params[:category_id]}).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
@@ -25,15 +21,13 @@ class RequestsController < ApplicationController
   end
 
   def create
-
     @request = Request.new(request_params)
     @request.user = current_user
-
     respond_to do |format|
       if @request.valid? && !params[:categories].nil?
         @request.save
         @categories = params[:categories]
-        @categories.each{|category| @request.required_items.create(category_id: category) }
+        @categories.each{ |category| @request.required_items.create(category_id: category) }
         format.html { redirect_to @request}
       else
         format.html { redirect_to :back, notice: 'Заповніть усі поля' }
@@ -44,13 +38,11 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
-        @request.decisions.each do |decision|
-          User.find(decision.helper_id).notifications.(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id)
-        end
+        @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id) }
         @request.decisions.destroy_all
         @request.required_items.destroy_all
         @categories = params[:categories]
-        @categories.each{|category| @request.required_items.create(category_id: category) }
+        @categories.each{ |category| @request.required_items.create(category_id: category) }
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
       else
         format.html { render :edit }
@@ -60,11 +52,8 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.update(status: 'archived')
-    @request.decisions.each do |decision|
-      User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id)
-    end
+    @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id) }
     @request.decisions.destroy_all
-
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Запит на допомогу закрито' }
       format.js { render :layout => false }
