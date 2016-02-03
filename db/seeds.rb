@@ -85,7 +85,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         :skype                 => "#{x}_user_skype",
         :phone                 => "+38096#{Random.rand(10000000)}",
         :avatar_file_name      => "avatar.jpg",
-        :info                  => RANDOM_TEXT.slice(0..Random.rand(200)),
+        :info                  => BetterLorem.p(1, true, true ),
         :password              => "12345678",
         :password_confirmation => "12345678"
     )
@@ -96,6 +96,21 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 ###################
 
 #############Create Requests
+
+  (6..30).each do |i|
+    User.find(i).requests.create(Random.rand(6).times.map do |x|
+                      {
+                          name: "Р#{BetterLorem.w(15, true, true)}",
+                          description: BetterLorem.p(7, true, true ),
+                          status: Random.rand(2) == 0 ? 'archived' : 'actual'
+                      }
+                    end
+    )
+    User.find(i).requests.each do |request|
+      temp = Random.rand(9)
+      request.required_items.create((1..Random.rand(1..5)).map{ |x| {category_id:  temp + x } })
+    end
+  end
 
   User.first.requests.create([
       {
@@ -396,29 +411,13 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       {category_id: 13}
   ])
 
-  (6..30).each do |i|
-    User.find(i).requests.create(Random.rand(6).times.map do |x|
-                      {
-                          name: RANDOM_TEXT.slice(0..Random.rand(140)),
-                          description: RANDOM_TEXT.slice(0..Random.rand(200)),
-                          status: Random.rand(2) == 0 ? 'archived' : 'actual'
-                      }
-                    end
-    )
-    User.find(i).requests.each do |request|
-      temp = Random.rand(9)
-      request.required_items.create((1..Random.rand(1..5)).map{ |x| {category_id:  temp + x } })
-    end
-
-  end
-
 ####################
 
 ################Create HelpedItems
 
   User.all.each do |usr|
     temp = Random.rand(8)
-    usr.helped_items.create(Random.rand(1..6).times.map do |x|
+    usr.helped_items.create((1..Random.rand(1..6)).map do |x|
                                {
                                    category_id: temp + x,
                                    count: Random.rand(1..50)
@@ -444,7 +443,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         end
         decisions << {
             helper_id: helper_id,
-            description: RANDOM_TEXT.slice(0..Random.rand(200)),
+            description: BetterLorem.p(3, true, true ),
             status: Random.rand(2) == 0 ? 'unaccepted' : 'new'
         }
       end

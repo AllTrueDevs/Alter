@@ -34,6 +34,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'kaminari'
 gem 'chartkick'
 gem 'bootstrap-filestyle-rails'
+gem 'betterlorem'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
