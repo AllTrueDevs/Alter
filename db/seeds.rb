@@ -100,9 +100,10 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
   (6..30).each do |i|
     User.find(i).requests.create(Random.rand(6).times.map do |x|
                       {
-                          name: "Р#{BetterLorem.w(15, true, true)}",
+                          name: "#{BetterLorem.w(15, true, true)}",
                           description: BetterLorem.p(7, true, true ),
-                          status: Random.rand(2) == 0 ? 'archived' : 'actual'
+                          status: Random.rand(2) == 0 ? 'archived' : 'actual',
+                          :photo_file_name => Random.rand(2) == 0 ? 'photo.jpg' : nil
                       }
                     end
     )
