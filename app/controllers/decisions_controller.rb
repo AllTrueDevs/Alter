@@ -3,13 +3,13 @@ class DecisionsController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def index
-    @decisions = Decision.where(request_id: Request.where(user_id: current_user.id)).order(:status, :created_at => :desc)
+    @decisions = Decision.where(request: current_user.requests).order(:status, :created_at => :desc)
   end
 
   def show
     @accepted_items = @decision.accepted_items
-    if (Decision.find(params[:id]).status == 'new')
-      Decision.find(params[:id]).update(:status => 'unaccepted')
+    if @decision.status == 'new'
+      @decision.update(:status => 'unaccepted')
       @new_notifications = @new_notifications-1
     end
   end
@@ -21,7 +21,7 @@ class DecisionsController < ApplicationController
       if @decision.valid? and @required_items != nil
         @decision.save
         @required_items.each do |x|
-          AcceptedItem.create(decision_id: @decision.id, required_item_id: x)
+          @decision.accepted_items.create(required_item_id: x)
         end
         format.html { redirect_to :back, notice: 'Вашу пропозицію допомоги відправлено' }
       else
@@ -31,7 +31,7 @@ class DecisionsController < ApplicationController
   end
 
   def accept
-    Notification.create(message_type: 1, reason_user_id: current_user.id, request_id: @decision.request_id, user_id: @decision.helper_id)
+    User.find(@decision.helper_id).notifications.create(message_type: 1, reason_user_id: current_user.id, request_id: @decision.request_id)
     @decision.accepted_items.each{ |item| Decision.update_helped_items(item) }
     # @decision.accepted_items.each do |item|
     #   Decision.update_helped_items(item)
@@ -45,7 +45,7 @@ class DecisionsController < ApplicationController
     @accepted_items = params[:accepted_items]
     respond_to do |format|
       if @accepted_items != nil
-        Notification.create(message_type: 2, reason_user_id: current_user.id, request_id: @decision.request_id, user_id: @decision.helper_id)
+        User.find(@decision.helper_id).notifications.create(message_type: 2, reason_user_id: current_user.id, request_id: @decision.request_id)
         @accepted_items.each{ |id| item = AcceptedItem.find(id); Decision.update_helped_items(item) }
         # @accepted_items.each do |id|
         #   item = AcceptedItem.find(id)
@@ -61,9 +61,9 @@ class DecisionsController < ApplicationController
   end
 
   def deny
-    Notification.create(message_type: 3, reason_user_id: current_user.id, request_id: @decision.request_id, user_id: @decision.helper_id)
+    User.find(@decision.helper_id).notifications.create(message_type: 3, reason_user_id: current_user.id, request_id: @decision.request_id)
     @decision.accepted_items.destroy_all
-    @decision.destroy
+    @decision.destroy!
     redirect_to decisions_path
   end
 

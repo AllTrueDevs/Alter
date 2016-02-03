@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def change_ban_status
     if @user.role == 'banned'
       @user.update(role: 'author')
-      Notification.create(message_type: 5, user_id: @user.id)
+      @user.notifications.create(message_type: 5)
       redirect_to @user
     else
       if cannot? :manage, User and (@user.role == 'admin' or @user.role == 'moderator')
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         redirect_to @user
       else
         @user.update(role: 'banned')
-        Notification.create(message_type: 4, user_id: @user.id)
+        @user.notifications.create(message_type: 4)
         @user.requests.update_all(status: 'archived')
 
         @user.requests.each do |request|
@@ -51,10 +51,10 @@ class UsersController < ApplicationController
   def change_moder_status
     if @user.role == 'moderator'
       @user.update(role: 'author')
-      Notification.create(message_type: 7, user_id: @user.id)
+      @user.notifications.create(message_type: 7)
     else
       @user.update(role: 'moderator')
-      Notification.create(message_type: 6, user_id: @user.id)
+      @user.notifications.create(message_type: 6)
     end
     redirect_to @user
   end

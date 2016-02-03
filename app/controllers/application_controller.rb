@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def initializer
     if user_signed_in?
-      @new_decisions = Decision.where(status: 'new', request_id: Request.where(user_id: current_user.id)).size
+      @new_decisions = Decision.where(status: 'new', request: current_user.requests).size
       @new_notifications = current_user.notifications.where(status: 'new').size
     end
   end
