@@ -1,3 +1,5 @@
+= content_for :plugins do
+  = javascript_include_tag 'multiselect'
 #helpRequestModal.modal.fade{ 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
   .modal-dialog
     .modal-content
@@ -9,19 +11,7 @@
         .modal-body
           = hidden_field_tag :request_id, @request.id
           %p= text_area_tag :description, nil, class: 'form-control', rows: '7'
-          %p= select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'), multiple: true
+          %p= select_tag :required_items, options_from_collection_for_select(@required_items, 'id', 'category_name'),
+                  multiple: true, class: 'selector'
         .modal-footer
           = submit_tag 'Надіслати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
-
-:javascript
-  $(document).ready(function() {
-    $('#required_items').multiselect({
-      enableFiltering: true,
-      nonSelectedText: 'Нічого не обрано',
-      numberDisplayed: 9,
-      nSelectedText: 'обраних категорії',
-      includeSelectAllOption: true,
-      maxHeight: 200,
-      dropUp: true
-    });
-  });

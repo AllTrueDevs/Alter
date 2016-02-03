@@ -1,3 +1,5 @@
+= content_for :plugins do
+  = javascript_include_tag 'user-tabs'
 .panel.panel-default.width-100
   .panel-body
     .row.user-profile
@@ -49,13 +51,5 @@
       .tab-content
         .tab-pane.active
           = render partial: 'requests/requests_list', locals: { requests: @actual_requests }
-
-
-
-:javascript
-  $('.nav-tabs a').click(function (e) {
-    $('ul.nav-tabs li.active').removeClass('active')
-    $(this).parent('li').addClass('active')
-  })
 
 

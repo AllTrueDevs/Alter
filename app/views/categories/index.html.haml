@@ -7,7 +7,7 @@
           %h4.inline Категорії допомоги
         .col-md-2
           .pull-right.request-actions
-            - if (can? :create, Category)
+            - if can? :create, Category
               %a{ 'data-target': '#newCategoryModal', 'data-toggle': :modal, 'href': '#', 'data-placement': :bottom, title: 'Створити категорію.' }
                 %span.glyphicon.glyphicon-plus{ 'aria-hidden': true }
               = render partial: 'modals/category_create'

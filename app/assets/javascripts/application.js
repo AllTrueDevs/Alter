@@ -17,7 +17,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-multiselect
-//= require_tree .
+//= require bootstrap.js
 
 function hide_flash(){
     setTimeout(function(){

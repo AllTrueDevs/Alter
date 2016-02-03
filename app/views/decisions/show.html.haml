@@ -13,9 +13,9 @@
               %ul.dropdown-menu
                 %li
                   %a{ 'data-target': '#closeDecisionModal', 'data-toggle': :modal, 'href': '#' } Частково допоміг
-                = render 'modals/decision_close'
                 %li= link_to 'Допоміг', accept_path
                 %li= link_to 'Не допоміг', deny_path
+          = render 'modals/decision_close'
     .panel-body
       %p.break-word.text-justify.request-description= @decision.description
       - @decision.accepted_items.each do |accepted_item|

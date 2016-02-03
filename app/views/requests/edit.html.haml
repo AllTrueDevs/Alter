@@ -1,3 +1,5 @@
+= content_for :plugins do
+  = javascript_include_tag 'multiselect'
 .panel.panel-default
   .panel-heading
     %h4 Редагування запиту
@@ -12,19 +14,9 @@
       .form-group
         = f.label :Категорії
         %br
-        = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', selected: @collection), multiple: true
+        = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', selected: @collection),
+              multiple: true, class: 'selector'
       .form-group
         = f.label :Фото
         = f.file_field :photo, accept: 'image/png, image/jpeg'
       = f.submit 'Зберегти', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
-
-:javascript
-  $(document).ready(function() {
-    $('#categories').multiselect({
-      enableFiltering: true,
-      includeSelectAllOption: true,
-      maxHeight: 180,
-      dropUp: true
-    });
-  });
-
