@@ -1,3 +1,5 @@
+= content_for :plugins do
+  = javascript_include_tag 'file-field'
 .panel.panel-default
   .panel-heading
     %h4 Редагування особистої інформації
@@ -19,7 +21,8 @@
         = f.text_field :skype, class: 'form-control'
       .form-group
         = f.label :Фото
-        = f.file_field :avatar, accept: 'image/png, image/jpeg'
+        .file-field-container
+          = f.file_field :avatar, accept: 'image/png, image/jpeg'
       = f.submit 'Зберегти', class: 'btn btn-success', data: {disable_with: 'Обробка...'}
 
 

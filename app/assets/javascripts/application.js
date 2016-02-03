@@ -18,6 +18,7 @@
 //= require turbolinks
 //= require bootstrap-multiselect
 //= require bootstrap.js
+//= require bootstrap-filestyle
 
 function hide_flash(){
     setTimeout(function(){

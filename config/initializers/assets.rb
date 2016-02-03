@@ -13,4 +13,5 @@ Rails.application.config.assets.precompile += %w( user_tabs.js
                                                   *.png
                                                   multiselect.js.coffee
                                                   user-tabs.js.coffee
+                                                  file-field.js.coffee
 )

@@ -1,4 +1,4 @@
-$(document).on 'ready page:load', ->
+$ ->
   $('.selector').multiselect({
     enableFiltering: true,
     nonSelectedText: 'Нічого не обрано',

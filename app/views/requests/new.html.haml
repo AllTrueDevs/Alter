@@ -1,5 +1,6 @@
 = content_for :plugins do
   = javascript_include_tag 'multiselect'
+  = javascript_include_tag 'file-field'
 .panel.panel-default
   .panel-heading
     %h4 Новий запит про допомогу
@@ -18,5 +19,6 @@
               multiple: true, class: 'selector'
       .form-group
         = f.label :Фото
-        = f.file_field :photo, accept: 'image/png, image/jpeg'
+        .file-field-container
+          = f.file_field :photo, accept: 'image/png, image/jpeg'
       = f.submit 'Опублікувати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
