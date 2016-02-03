@@ -3,7 +3,7 @@ class DecisionsController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def index
-    @decisions = Decision.where(request: current_user.requests).order(:status, :created_at => :desc)
+    @decisions = Decision.where(request: current_user.requests).order(:status, :created_at => :desc).page(params[:page]).per(8)
   end
 
   def show

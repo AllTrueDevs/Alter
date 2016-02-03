@@ -17,6 +17,9 @@
   $(document).ready(function() {
     $('#required_items').multiselect({
       enableFiltering: true,
+      nonSelectedText: 'Нічого не обрано',
+      numberDisplayed: 9,
+      nSelectedText: 'обраних категорії',
       includeSelectAllOption: true,
       maxHeight: 200,
       dropUp: true

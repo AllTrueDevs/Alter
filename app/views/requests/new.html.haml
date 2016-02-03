@@ -22,8 +22,11 @@
   $(document).ready(function() {
     $('#categories').multiselect({
       enableFiltering: true,
+      nonSelectedText: 'Нічого не обрано',
+      numberDisplayed: 13,
+      nSelectedText: 'обраних категорії',
       includeSelectAllOption: true,
-      maxHeight: 180,
+      maxHeight: 200,
       dropUp: true
     });
   });

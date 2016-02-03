@@ -8,7 +8,7 @@
             .input-append
               = text_field_tag :search, params[:search], class: 'form-control search-field inline', placeholder: 'Введіть ім\'я користувача'
               %button.inline.btn.btn-success{ type: :submit } Знайти
-              .filter
+              .all-filter
                 = link_to users_path, 'data-placement': :bottom, title: 'Показати усіх користувачів.' do
                   %span.glyphicon.glyphicon-filter{ 'aria-hidden': true }
   .panel-body

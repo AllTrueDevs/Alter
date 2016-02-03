@@ -64,6 +64,12 @@ textarea {
   padding: 20px;
 }
 
+.multiselect{
+  word-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+}
+
 
 .content{
   min-height: calc(100vh - 104px);
@@ -223,7 +229,7 @@ textarea {
   margin: auto 0;
 }
 
-.panel-heading .filter{
+.panel-heading .all-filter{
   font-size: 20px;
   margin-left: 50px;
   display: inline-block;
