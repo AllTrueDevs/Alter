@@ -1,9 +1,15 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:destroy]
+  before_action :set_category, only: [:destroy, :show]
   load_and_authorize_resource except: [:create]
 
   def index
     @categories = Category.all.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
+  def show
+    respond_to do |format|
+      format.json { render json: @category }
+    end
   end
 
   def create
