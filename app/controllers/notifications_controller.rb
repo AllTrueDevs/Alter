@@ -3,12 +3,12 @@ class NotificationsController < ApplicationController
   load_and_authorize_resource except: [:clean]
 
   def index
-    @notifications = current_user.notifications.order(:status, :created_at => :desc).page(params[:page]).per(15)
+    @notifications = current_user.notifications.paginated(params[:page], 15)
   end
 
   def show
     @notification.update(status: 'read')
-    @notifications = current_user.notifications.order(:status, :created_at => :desc)
+    @notifications = current_user.notifications.paginated(params[:page], 15)
     respond_to :js
   end
 

@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:destroy]
+  before_action :set_category, only: [:destroy, :update, :updating]
   load_and_authorize_resource except: [:create]
 
   def index
@@ -10,12 +10,14 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category.color = params[:color].to_i
     respond_to do |format|
-      if @category.save
-        format.html { redirect_to categories_path, notice: 'Категорію успішно додано.' }
-      else
-        format.html { redirect_to categories_path, notice: 'Заповніть усі поля.'}
-      end
+      @category.save ? format.html { redirect_to categories_path, notice: 'Категорію успішно додано.' } :
+          format.html { redirect_to categories_path, notice: 'Заповніть усі поля.'}
     end
+  end
+
+  def update
+    @category.update(color: params[:color])
+    respond_to :js
   end
 
   def destroy

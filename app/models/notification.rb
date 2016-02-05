@@ -20,4 +20,8 @@ class Notification < ActiveRecord::Base
           end
   end
 
+  def self.paginated(params, pages)
+    order(:status, :created_at => :desc).page(params).per(pages)
+  end
+
 end

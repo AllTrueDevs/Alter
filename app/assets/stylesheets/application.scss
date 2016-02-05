@@ -40,6 +40,10 @@ a:hover, a:focus {
   text-decoration: none;
 }
 
+a:focus{
+  outline: none;
+}
+
 hr {
   margin-bottom: 0px;
   margin-top: 10px;
@@ -118,38 +122,6 @@ textarea {
 
 .request-in-list:hover .delete-request, .notification-in-list:hover .delete-notification, .notification-in-list:hover .edit-notification{
   display: block;
-}
-
-.label-1{
-  background-color: #1abc9c;
-}
-
-.label-2{
-  background-color: #2ecc71;
-}
-
-.label-3{
-  background-color: #3498db;
-}
-
-.label-4{
-  background-color: #a366bc;
-}
-
-.label-5{
-  background-color: #f1c40f;
-}
-
-.label-6{
-  background-color: #e67e22;
-}
-
-.label-7{
-  background-color: #e74c3c;
-}
-
-.label-8{
-  background-color: #34495e;
 }
 
 .decision-new, .notification-new{
@@ -264,6 +236,38 @@ textarea {
 
 }
 
+.label-1{
+  background-color: #1abc9c;
+}
+
+.label-2{
+  background-color: #2ecc71;
+}
+
+.label-3{
+  background-color: #3498db;
+}
+
+.label-4{
+  background-color: #a366bc;
+}
+
+.label-5{
+  background-color: #f1c40f;
+}
+
+.label-6{
+  background-color: #e67e22;
+}
+
+.label-7{
+  background-color: #e74c3c;
+}
+
+.label-8{
+  background-color: #34495e;
+}
+
 .nickname{
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -278,8 +282,8 @@ textarea {
   clear: both;
 }
 
-.modal-delete{
-  width: 400px;
+.modal-kek{
+  width: 450px;
 
   a {
     width: 60px;
@@ -297,4 +301,28 @@ textarea {
 
 .file-field-container{
   width: 50%;
+}
+
+.table-category-name{
+  width: 500px;
+}
+
+.category-erase{
+
+  margin-left: 5px;
+
+}
+
+.table-category-color{
+  width: 200px;
+  padding: 0 !important;
+  position: relative;
+
+  .label{
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    z-index: 1;
+  }
 }

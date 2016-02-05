@@ -8,7 +8,7 @@
         .col-md-2
           .pull-right.request-actions
             - if can? :create, Category
-              %a{ 'data-target': '#newCategoryModal', 'data-toggle': :modal, 'href': '#', 'data-placement': :bottom, title: 'Створити категорію.' }
+              %a{ 'data-target': '#newCategoryModal', 'data-toggle': :modal, 'href': '#', 'data-placement': :bottom}
                 %span.glyphicon.glyphicon-plus{ 'aria-hidden': true }
               = render partial: 'modals/category_create'
   .panel-body
@@ -21,18 +21,24 @@
             %th Назва
             %th
             %th
+            %th
+            %th
             %th Колір
             %th
         %tbody
           - @categories.each do |category|
             %tr
-              %td= category.name
-              %td
-              %td
-              %td{ class: "label-#{category.color}" }
-              %td
+              %td.table-category-name
+                = category.name
                 - if category.required_items.empty? && category.helped_items.empty?
-                  .pull-right
-                    %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, 'href': '#' } Видалити
-                  = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете видалити цю категорію?', link: category }
+                  = link_to '#', data: {target: "#deleteModal_#{category.id}", toggle: 'modal'}, class: 'category-erase' do
+                    .glyphicon.glyphicon-erase
+                  = render partial: 'modals/delete', locals: {id: category.id, selector: 'deleteModal', title: 'Ви дійсно хочете видалити цю категорію?', classname: Category}
+              %td
+              %td
+              %td
+              %td
+              %td.table-category-color{id: "category_#{category.id}"}
+                = render partial: 'category_color', locals: {category: category}
+              %td
       = paginate @categories
