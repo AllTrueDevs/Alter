@@ -1,5 +1,5 @@
 = content_for :plugins do
-  = javascript_include_tag 'multiselect'
+  = javascript_include_tag 'categories_with_labels'
   = javascript_include_tag 'file-field'
 .panel.panel-default
   .panel-heading
@@ -12,7 +12,8 @@
       .form-group
         = f.label :Опис
         = f.text_area :description, autofocus: true, class: 'form-control', rows: '5'
-      .form-group
+      .categories
+        .categories-labels
         = f.label :Категорії
         %br
         = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', selected: @collection),

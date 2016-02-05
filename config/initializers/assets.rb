@@ -14,4 +14,5 @@ Rails.application.config.assets.precompile += %w( user_tabs.js
                                                   multiselect.js.coffee
                                                   user-tabs.js.coffee
                                                   file-field.js.coffee
+                                                  categories_with_labels.js
 )

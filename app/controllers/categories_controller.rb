@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:destroy, :update, :updating]
+  before_action :set_category, only: [:destroy]
   load_and_authorize_resource except: [:create]
 
   def index

@@ -124,6 +124,38 @@ textarea {
   display: block;
 }
 
+.label-1{
+  background-color: #1abc9c;
+}
+
+.label-2{
+  background-color: #2ecc71;
+}
+
+.label-3{
+  background-color: #3498db;
+}
+
+.label-4{
+  background-color: #a366bc;
+}
+
+.label-5{
+  background-color: #f1c40f;
+}
+
+.label-6{
+  background-color: #e67e22;
+}
+
+.label-7{
+  background-color: #e74c3c;
+}
+
+.label-8{
+  background-color: #34495e;
+}
+
 .decision-new, .notification-new{
   border-radius: 5px;
   background-color: #ddd;
@@ -325,4 +357,9 @@ textarea {
     position: absolute;
     z-index: 1;
   }
+}
+
+.category-label{
+  margin-left: 3px;
+  display: inline-block;
 }
