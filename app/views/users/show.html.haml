@@ -10,20 +10,23 @@
           - if @user.role == 'banned'
             %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Розблокувати користувача.' }
               %span.glyphicon.glyphicon-check{ 'aria-hidden': true }
-            = render partial: 'modals/delete', locals: { selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_path }
+            = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_path }
           - else
             %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Заблокувати користувача.' }
               %span.glyphicon.glyphicon-ban-circle{ 'aria-hidden': true }
-            = render partial: 'modals/delete', locals: { selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_path }
+            = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_path }
         - if (can? :make_moderators, @user) && (current_user != @user)
           - if @user.role == 'moderator'
             %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Забрати права модератора.' }
               %span.glyphicon.glyphicon-user{ 'aria-hidden': true }
-            = render partial: 'modals/delete', locals: { selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_path }
+            = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_path }
           - else
             %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Надати права модератора.' }
               %span.glyphicon.glyphicon-briefcase{ 'aria-hidden': true }
-            = render partial: 'modals/delete', locals: { selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_path }
+            = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_path }
+        %a{ 'data-target': '#userModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Вхід на користувача.' }
+          %span.glyphicon.glyphicon-search{ 'aria-hidden': true }
+        = render partial: 'modals/agree_modal', locals: { selector: 'userModal', title: 'Зайти на аккаунт даного користувача?', link: admin_login_path }
         - case @user.role
           - when 'moderator'
             %h5

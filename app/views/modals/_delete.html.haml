@@ -1,8 +1,0 @@
-.modal.fade{ id: defined?(id) ? "#{selector}_#{id}" : selector, 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
-  .modal-dialog.modal-kek
-    .modal-content
-      .modal-body
-        %h4= title
-      .modal-footer
-        = link_to 'Так', defined?(classname) ? classname.find(id) : link, method: :delete, class: 'btn btn-success'
-        %a.btn.btn-default{ 'data-dismiss': :modal, type: :button } Ні

@@ -9,11 +9,13 @@ class NotificationsController < ApplicationController
   def show
     @notification.update(status: 'read')
     @notifications = current_user.notifications.paginated(params[:page], 15)
+    @new_notifications = @new_notifications - 1
     respond_to :js
   end
 
   def destroy
     @notification.destroy
+    @new_notifications = @new_notifications - 1
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Notification was successfully destroyed.' }
       format.js { render :layout => false }

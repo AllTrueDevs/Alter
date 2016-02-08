@@ -19,7 +19,7 @@
             - if (@request.status == 'actual') && (can? :destroy, @request)
               %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
                 %span.glyphicon.glyphicon-remove{'aria-hidden': true }
-              = render partial: 'modals/delete', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
+              = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
     .panel-body
       = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
       %p.break-word.text-justify.request-description= @request.description

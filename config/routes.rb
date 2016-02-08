@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'requests/:id/destroy' => 'requests#destroy', as: :destroy
   get '/id:id/change_ban_status', to: 'users#change_ban_status', as: :ban
   get '/id:id/change_moder_status', to: 'users#change_moder_status', as: :moder
+  get '/user/id:id/admin_login', to: 'users#admin_login', as: :admin_login
   get '/id:id/requests/actual', to: 'users#actual_requests', as: :user_actual_requests
   get '/id:id/requests/archived', to: 'users#archived_requests', as: :user_archived_requests
   get '/id:id/statistic', to: 'users#statistic', as: :user_statistic

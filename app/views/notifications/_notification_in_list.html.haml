@@ -9,8 +9,7 @@
         .row
           .col-md-10
             - if notification.status == 'new'
-              = link_to notification do
-                %h4= notification.message.html_safe
+              %h4= notification.message.html_safe
             - else
               %p= notification.message.html_safe
             %h4

@@ -10,7 +10,7 @@ class DecisionsController < ApplicationController
     @accepted_items = @decision.accepted_items
     if @decision.status == 'new'
       @decision.update(:status => 'unaccepted')
-      @new_notifications = @new_notifications-1
+      @new_decisions = @new_decisions - 1
     end
   end
 

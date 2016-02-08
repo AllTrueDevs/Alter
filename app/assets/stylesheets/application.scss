@@ -96,11 +96,11 @@ textarea {
 }
 
 .request-in-list h4, .decision-in-list h4, .notification-in-list h4{
-  margin: 0px;
+  margin: 0;
 }
 
 .request-in-list p, .decision-in-list p, .notification-in-list p{
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .request-in-list, .decision-in-list, .notification-in-list{
@@ -317,8 +317,12 @@ textarea {
 .modal-kek{
   width: 450px;
 
-  a {
-    width: 60px;
+  .agree {
+    width: 110px;
+  }
+
+  .decline {
+    width: 100px;
   }
 }
 
@@ -340,9 +344,7 @@ textarea {
 }
 
 .category-erase{
-
   margin-left: 5px;
-
 }
 
 .table-category-color{

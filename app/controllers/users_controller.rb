@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:ban, :unban, :moder, :unmoder, :show]
+  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show]
   before_action :authenticate_user!, except: [:index, :show]
   load_and_authorize_resource except: [:show, :actual_requests, :archived_requests]
 
@@ -57,6 +57,11 @@ class UsersController < ApplicationController
       @user.notifications.create(message_type: 6)
     end
     redirect_to @user
+  end
+
+  def admin_login
+    sign_in(@user)
+    redirect_to root_url
   end
 
   def actual_requests
