@@ -1,0 +1,7 @@
+- if current_user.send(social).nil?
+  = link_to t("edit_#{social}_new"), user_omniauth_authorize_path(social)
+- else
+  %label= "#{social.capitalize}:"
+  = text_field_tag social, current_user.send(social), class: 'form-control add-url', disabled: true
+  = link_to user_omniauth_authorize_path(social) do
+    %span.glyphicon.glyphicon-edit{ 'aria-hidden': true, title: t("edit_#{social}_change") }

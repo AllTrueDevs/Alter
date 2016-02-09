@@ -5,20 +5,25 @@
     %h4 Редагування особистої інформації
   .panel-body
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, role: 'form' }) do |f|
-      = label_tag 'Email:'
-      = current_user.email
       .form-group
-        = f.label :"Ім'я"
+        %label Поштова скринька
+        = text_field_tag :email, current_user.email, class: 'form-control', disabled: true
+      .form-group
+        %label Ім'я
         = f.text_field :name, class: 'form-control'
       .form-group
-        = f.label :"Особиста інформація"
+        %label Особиста інформація
         = f.text_area :info, class: 'form-control', rows: '5'
       .form-group
-        = f.label :"Телефон"
+        %label Телефон
         = f.text_field :phone, class: 'form-control'
       .form-group
-        = f.label :skype
+        %label Skype
         = f.text_field :skype, class: 'form-control'
+      .form-group
+        = render partial: 'edit_url', locals: {social: :vkontakte}
+      .form-group
+        = render partial: 'edit_url', locals: {social: :facebook}
       .form-group
         = f.label :Фото
         .file-field-container

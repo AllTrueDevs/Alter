@@ -46,12 +46,20 @@
           %p
             %strong Skype:
             = @user.skype
+        - if @user.vkontakte.to_s.length > 0
+          %p
+            %strong Vkontakte:
+            = link_to @user.vkontakte_name, @user.vkontakte
+        - if @user.facebook.to_s.length > 0
+          %p
+            %strong Facebook:
+            = link_to @user.facebook_name, @user.facebook
     .user-requests
       %ul.nav.nav-tabs
-        %li.active= link_to 'Активні запити', user_actual_requests_url, remote: true
-        %li= link_to 'Завершені запити', user_archived_requests_url, remote: true
+        %li.active= link_to 'Активні запити', actual_requests_user_url, remote: true
+        %li= link_to 'Завершені запити', archived_requests_user_url, remote: true
         - unless @user.helped_items.size.zero?
-          %li= link_to 'Cтатистика', user_statistic_url, remote: true
+          %li= link_to 'Cтатистика', statistic_user_url, remote: true
       .tab-content
         .tab-pane.active
           = render partial: 'requests/requests_list', locals: { requests: @actual_requests, ajax: true }

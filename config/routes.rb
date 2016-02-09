@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
 
+  namespace :users do
+    get 'omniauth_callbacks/vkontakte'
+  end
+
   resources :home, only: :index
 
   root to: 'home#index'
 
   resources :requests
 
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: {
+                       registrations: 'registrations',
+                       omniauth_callbacks: 'users/omniauth_callbacks'
+                   }
 
   resources :categories, only: [:index, :destroy, :create, :update]
 

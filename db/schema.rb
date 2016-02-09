@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121085215) do
+ActiveRecord::Schema.define(version: 20160209161045) do
 
   create_table "accepted_items", force: :cascade do |t|
     t.integer  "decision_id",      limit: 4
@@ -100,6 +100,10 @@ ActiveRecord::Schema.define(version: 20160121085215) do
     t.string   "role",                   limit: 255,   default: "author"
     t.string   "skype",                  limit: 255
     t.string   "phone",                  limit: 255
+    t.string   "vkontakte",              limit: 255
+    t.string   "vkontakte_name",         limit: 255
+    t.string   "facebook",               limit: 255
+    t.string   "facebook_name",          limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
