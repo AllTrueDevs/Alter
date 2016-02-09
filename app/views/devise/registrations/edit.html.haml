@@ -1,31 +1,71 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .field
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
-  .actions
-    = f.submit "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+= content_for :plugins do
+  = javascript_include_tag 'file-field'
+.panel.panel-default
+  .panel-heading
+    %h4 Редагування особистої інформації
+  .panel-body
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, role: 'form' }) do |f|
+      = label_tag 'Email:'
+      = current_user.email
+      .form-group
+        = f.label :"Ім'я"
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :"Особиста інформація"
+        = f.text_area :info, class: 'form-control', rows: '5'
+      .form-group
+        = f.label :"Телефон"
+        = f.text_field :phone, class: 'form-control'
+      .form-group
+        = f.label :skype
+        = f.text_field :skype, class: 'form-control'
+      .form-group
+        = f.label :Фото
+        .file-field-container
+          = f.file_field :avatar, accept: 'image/png, image/jpeg'
+      = f.submit 'Зберегти', class: 'btn btn-success', data: {disable_with: 'Обробка...'}
+
+
+-#%h2
+-#  Edit #{resource_name.to_s.humanize}
+-#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f|
+-#  = devise_error_messages!
+-#  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+-#    %div
+-#      Currently waiting confirmation for: #{resource.unconfirmed_email}
+-#  .field
+-#    = label_tag 'Email:'
+-#    %br/
+-#    = text_field_tag nil, current_user.email, {:readonly => true}
+-#  .field
+-#    = f.label :name
+-#    %br/
+-#    = f.text_field :name
+-#  .field
+-#    = f.label :info
+-#    %br/
+-#    = f.text_area :info
+-#  .field
+-#    = f.label :phone
+-#    %br/
+-#    = f.phone_field :phone
+-#  .field
+-#    = f.label :skype
+-#    %br/
+-#    = f.text_field :skype
+-#  -#.field
+-#  -#  = label_tag :facebook
+-#  -#  %br/
+-#  -#  = text_field_tag :facebook, current_user.contacts.split('|')[2]
+-#  -#.field
+-#  -#  = label_tag :vk
+-#  -#  %br/
+-#  -#  = text_field_tag :vk, current_user.contacts.split('|')[3]
+-#  .field
+-#    = f.label :avatar
+-#    %br/
+-#    = f.file_field :avatar, accept: 'image/png, image/jpeg'
+-#  .actions
+-#    = f.submit 'Обновити профіль'
+-#
+-#= link_to 'Повернутись до профіля', :back

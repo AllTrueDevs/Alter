@@ -10,7 +10,33 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jsapi
+//= require chartkick
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require bootstrap-multiselect
+//= require bootstrap.js
+//= require bootstrap-filestyle
+
+function hide_flash(){
+    setTimeout(function(){
+        $('.alert').fadeOut(2000);
+    }, 3500);
+}
+
+var main = function(){
+
+    var hide = hide_flash();
+
+    $('.alert').mouseover(function(){
+        clearTimeout(hide);
+        $(this).stop().animate({opacity: '100'});
+    })
+        .mouseout(function(){
+            hide = hide_flash();
+        });
+};
+
+$(document).ready(main);

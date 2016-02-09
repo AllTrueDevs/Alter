@@ -1,59 +1,26 @@
 Rails.application.routes.draw do
+
+  resources :requests
   get 'home/index'
   root 'home#index'
   devise_for :users, controllers: { registrations: "registrations" }
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  get '/id:id', to: 'users#show', as: :user
+  get '/users', to: 'users#index', as: :users
+  get '/id:id/requests', to: 'requests#index', as: :user_requests
+  resources :categories, only: [:index, :destroy, :create, :update]
+  resources :decisions, only: [:index, :show, :create]
+  get '/decisions/:id/accept', to: 'decisions#accept', as: :accept
+  get '/decisions/:id/deny', to: 'decisions#deny', as: :deny
+  post '/decisions/:id/partly', to: 'decisions#partly', as: :partly
+  post '/decisions/:id', to: 'decisions#show'
+  get '/notifications/clean', to: 'notifications#clean', as: :clean
+  resources :notifications, only: [:index, :show, :destroy]
+  get 'requests/:id/destroy' => 'requests#destroy', as: :destroy
+  get '/id:id/change_ban_status', to: 'users#change_ban_status', as: :ban
+  get '/id:id/change_moder_status', to: 'users#change_moder_status', as: :moder
+  get '/user/id:id/admin_login', to: 'users#admin_login', as: :admin_login
+  get '/id:id/requests/actual', to: 'users#actual_requests', as: :user_actual_requests
+  get '/id:id/requests/archived', to: 'users#archived_requests', as: :user_archived_requests
+  get '/id:id/statistic', to: 'users#statistic', as: :user_statistic
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

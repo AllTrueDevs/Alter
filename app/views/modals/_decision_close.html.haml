@@ -1,0 +1,17 @@
+= content_for :plugins do
+  = javascript_include_tag 'multiselect'
+#closeDecisionModal.modal.fade{ 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ 'data-dismiss': :modal, type: :button }
+          %span{ 'aria-hidden': true } ×
+          %span.sr-only Закрити
+        %h4#myModalLabel.modal-title Підтвердження допомоги
+      = form_tag partly_path do
+        .modal-body
+          %p Оберіть категорії з якими вам допомогли (ці категорії записуються в історію допомоги користувача)
+          %p= select_tag :accepted_items, options_from_collection_for_select(@accepted_items, 'id', 'category_name', selected: @accepted_items.ids), 
+                  multiple: true, class: 'selector'
+        .modal-footer
+          = submit_tag 'Надіслати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }

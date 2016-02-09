@@ -1,0 +1,45 @@
+.panel.panel-default.width-100
+  .panel-heading
+    .width-100
+      .row.form-header
+        .row
+        .col-md-10
+          %h4.inline Категорії допомоги
+        .col-md-2
+          .pull-right.request-actions
+            - if can? :create, Category
+              %a{ 'data-target': '#newCategoryModal', 'data-toggle': :modal, 'href': '#', 'data-placement': :bottom}
+                %span.glyphicon.glyphicon-plus{ 'aria-hidden': true }
+              = render partial: 'modals/category_create'
+  .panel-body
+    - if @categories.size.zero?
+      %h5.text-center Категорій не знайдено
+    - else
+      %table.table.table-hover.categories
+        %thead
+          %tr
+            %th Назва
+            %th
+            %th
+            %th
+            %th
+            %th Колір
+            %th
+        %tbody
+          - @categories.each do |category|
+            %tr
+              %td.table-category-name
+                = category.name
+                - if category.required_items.empty? && category.helped_items.empty?
+                  = link_to '#', data: {target: "#deleteModal_#{category.id}", toggle: 'modal'}, class: 'category-erase' do
+                    .glyphicon.glyphicon-erase
+              %td
+              %td
+              %td
+              %td
+              %td.table-category-color{id: "category_#{category.id}"}
+                = render partial: 'category_color', locals: {category: category}
+              %td
+            = render partial: 'modals/agree_modal', locals: {id: category.id, selector: 'deleteModal', title: 'Ви дійсно хочете видалити цю категорію?', classname: Category}
+
+      = paginate @categories
