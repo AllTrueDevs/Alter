@@ -16,7 +16,7 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    redirect_to root_url, notice: 'Цей запит закрито.' if @request.status == 'archived'
+    redirect_to root_url, notice: 'Цей запит закрито.' if @request.archived?
     @collection = @request.required_items.collect(&:category_id)
   end
 
@@ -55,8 +55,7 @@ class RequestsController < ApplicationController
     @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id) }
     @request.decisions.destroy_all
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Запит на допомогу закрито' }
-      format.js { render :layout => false }
+      format.js
     end
   end
 

@@ -8,4 +8,12 @@ class Request < ActiveRecord::Base
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :status, presence: true, inclusion: { in: %w(actual archived) }
 
+  def actual?
+    status == 'actual'
+  end
+
+  def archived?
+    status == 'archived'
+  end
+
 end

@@ -8,9 +8,8 @@
           = link_to controller: :notifications, action: :clean, 'data-placement': :bottom, title: 'Видалити всі сповіщення.' do
             %span.glyphicon.glyphicon-trash{ 'aria-hidden': true }
   .panel-body
-    %div{ class: 'notifications' }
-      -if @notifications.empty?
+    .notifications
+      - if @notifications.empty?
         %h5.text-center Сповіщень не знайдено
-      -else
-        .notifications
-          = render partial: 'notifications/notifications_list', locals: { notifications: @notifications }
+      - else
+        = render partial: 'notifications/notifications_list', locals: { notifications: @notifications }

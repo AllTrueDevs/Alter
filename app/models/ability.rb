@@ -6,7 +6,6 @@ class Ability
     can :statistic, User
     if user
       alias_action :edit, :destroy, :create, :update, :to => :modify
-      alias_action :edit, :update, :destroy, :to => :author_action
       alias_action :show, :destroy, :to => :user_action
       alias_action :accept, :deny, :partly, :read, :create, :to => :decision_action
       if user.role == 'admin'
@@ -31,12 +30,9 @@ class Ability
           can :index, User
           can :manage, Category
           can :change_ban_status, User
-        elsif user.role == 'author'
-          can :author_action, Request do |request|
-            request.user == user
-          end
         elsif user.role == 'banned'
           cannot :modify, :all
+          can :destroy, Notification
         end
       end
     end

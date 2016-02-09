@@ -18,7 +18,7 @@
           %li.dropdown
             %a.dropdown-toggle{ 'aria-expanded': false, 'aria-haspopup': true, 'data-toggle': :dropdown, href: '#', role: :button }
               = current_user.name
-              %span.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
+              %span#new-info.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
               %span.caret
             %ul.dropdown-menu
               %li= link_to 'Мій профіль', user_path(current_user)
@@ -28,7 +28,7 @@
               %li
                 = link_to notifications_path do
                   Cповіщення
-                  %span.badge= @new_notifications.to_s unless @new_notifications.zero?
+                  %span#new-notifications.badge= @new_notifications.to_s unless @new_notifications.zero?
               %li
                 = link_to decisions_path do
                   Відгуки

@@ -6,20 +6,23 @@
           %h4.break-word= @request.name
         .col-md-3
           .pull-right.request-actions
-            - if (@request.user != current_user) and (can? :create, Decision) and (@request.status =='actual')
-              - if @request.decisions.where(helper_id: current_user.id).empty?
-                %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
-                  Допомогти
-                = render 'modals/request_help'
-              - else
-                %small Очікується відповідь
-            - if (@request.status == 'actual') && (can? :edit, @request)
-              = link_to edit_request_path(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
-                %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
-            - if (@request.status == 'actual') && (can? :destroy, @request)
-              %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
-                %span.glyphicon.glyphicon-remove{'aria-hidden': true }
-              = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
+            - if @request.actual?
+              - if @request.user != current_user && can?(:create, Decision)
+                - if @request.decisions.where(helper_id: current_user.id).empty?
+                  %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
+                    Допомогти
+                  = render 'modals/request_help'
+                - else
+                  %small Очікується відповідь
+                  - if can? :edit, @request
+                    = link_to edit_request_path(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
+                      %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
+                  - if can? :destroy, @request
+                    %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
+                      %span.glyphicon.glyphicon-remove{'aria-hidden': true }
+                    = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
+            - else
+              %p.label.label-danger= @request.archived? ? 'Закрито' : ''
     .panel-body
       = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
       %p.break-word.text-justify.request-description= @request.description

@@ -33,7 +33,6 @@
                 - if category.required_items.empty? && category.helped_items.empty?
                   = link_to '#', data: {target: "#deleteModal_#{category.id}", toggle: 'modal'}, class: 'category-erase' do
                     .glyphicon.glyphicon-erase
-                  = render partial: 'modals/agree_modal', locals: {id: category.id, selector: 'deleteModal', title: 'Ви дійсно хочете видалити цю категорію?', classname: Category}
               %td
               %td
               %td
@@ -41,4 +40,6 @@
               %td.table-category-color{id: "category_#{category.id}"}
                 = render partial: 'category_color', locals: {category: category}
               %td
+            = render partial: 'modals/agree_modal', locals: {id: category.id, selector: 'deleteModal', title: 'Ви дійсно хочете видалити цю категорію?', classname: Category}
+
       = paginate @categories
