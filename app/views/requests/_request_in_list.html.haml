@@ -17,8 +17,8 @@
                 = 'Опубліковано ' + time_ago_in_words(request.created_at) + ' тому, '
                 = link_to request.user.name, user_path(request.user)
         .col-md-1
-          - if (can? :destroy, request) && (request.actual?)
-            = render partial: 'modals/agree_modal', locals: { id: request.id, selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request }
+          - if can?(:destroy, request) && (request.actual?)
+            = render partial: 'modals/agree_modal', locals: { id: request.id, selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request, ajax: defined?(ajax) ? ajax : nil }
             .pull-right.delete-request
               = link_to '#', data: {target: "#deleteModal_#{request.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запит.'} do
                 %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }

@@ -5,5 +5,5 @@
         %h4= title
       .modal-footer
         = link_to 'Підтвердити', defined?(classname) ? classname.find(id) : link, method: !defined?(id) ? :get : :delete,
-              class: 'btn btn-success agree', remote: true
+              class: 'btn btn-success agree', remote: defined?(ajax) ? true : false
         %a.decline.btn.btn-default{ 'data-dismiss': :modal, type: :button } Відмінити

@@ -15,4 +15,12 @@ class User < ActiveRecord::Base
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
   scope :search, -> (query) { where('name like ?', "%#{query}%") }
+
+  def banned?
+    role == 'banned'
+  end
+
+  def moderator?
+    role == 'moderator'
+  end
 end

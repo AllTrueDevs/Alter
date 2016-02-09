@@ -5,7 +5,7 @@
         %h4 Сповіщення
       .col-md-2
         .pull-right
-          = link_to controller: :notifications, action: :clean, 'data-placement': :bottom, title: 'Видалити всі сповіщення.' do
+          = link_to clean_notifications_url, 'data-placement': :bottom, title: 'Видалити всі сповіщення.' do
             %span.glyphicon.glyphicon-trash{ 'aria-hidden': true }
   .panel-body
     .notifications
