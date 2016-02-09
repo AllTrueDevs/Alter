@@ -25,7 +25,7 @@ en:
         subject: "Як розблокувати аккаунт"
     omniauth_callbacks:
       failure: "Ви не можете увійти %{kind}, бо \"%{reason}\"."
-      success: "Успішно  %{kind} аккаует."
+      success: "Успішно %{kind} аккаует."
     passwords:
       no_token: "Ви отримали листа для відновлення доступу до аккаунту."
       send_instructions: "Через декілька хвилин на вказану вами електронну адресу буде відправлено лист з відновленням паролю."
@@ -33,17 +33,17 @@ en:
       updated: "Ваш пароль успішно змінено."
       updated_not_active: "Ваш пароль успішно змінено."
     registrations:
-      destroyed: "Ваш аккаунт успішно видалено."
-      signed_up: "Ви успішно зареєструвались."
+      destroyed: ""
+      signed_up: ""
       signed_up_but_inactive: "Спочатку активуйте свій аккаунт."
-      signed_up_but_locked: "Ваш аккаунт заблоковано."
+      signed_up_but_locked: ""
       signed_up_but_unconfirmed: "Спочатку підтвердіть свою електронну адресу."
       update_needs_confirmation: "Дані успішно змінено. Через декілька хвилин на нову електронну адресу буде відправлено листа з підтвердженням."
       updated: "Дані успішно змінені."
     sessions:
-      signed_in: "Вітаємо вас."
-      signed_out: "До зустрічі."
-      already_signed_out: "До зустрічі."
+      signed_in: ""
+      signed_out: ""
+      already_signed_out: ""
     unlocks:
       send_instructions: "Через декілька хвилин на вашу електронну адресу прийде лист з інструкціями щодо розблокування аккаунту."
       send_paranoid_instructions: "Через декілька хвилин на вашу електронну адресу прийде лист з інструкціями щодо розблокування аккаунту."
