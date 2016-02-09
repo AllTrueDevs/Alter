@@ -1,3 +1,5 @@
+= content_for :plugins do
+  = javascript_include_tag 'selection_color'
 .modal.fade{ id: id ? "#{selector}_#{id}" : selector, 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
   .modal-dialog.modal-kek
     .modal-content
@@ -8,9 +10,8 @@
         %h4#myModalLabel.modal-title Змінити колір
       - category = id ? Category.find(id) : Category.first
       = form_for category, remote: true do |f|
-        .modal-body
-          .field
-            = select_tag :color, options_for_select(colors, category.color), class: 'form-control'
+        .modal-body{class: "label-#{category.color}"}
+          = select_tag :color, options_for_select(colors, category.color), class: 'form-control'
           .actions
         .modal-footer
           = f.submit 'Змінити', class: 'btn btn-success'
