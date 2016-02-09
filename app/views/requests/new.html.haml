@@ -17,7 +17,7 @@
         = f.label :Категорії
         %br
         = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', selected: @collection),
-              multiple: true, class: 'selector'
+              multiple: true, class: 'selector', data: {cater: Category.all.order(:name)}
       .form-group
         = f.label :Фото
         .file-field-container
