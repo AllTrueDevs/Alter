@@ -1,2 +1,6 @@
 GMAIL_USERNAME: "username"
 GMAIL_PASSWORD: "password"
+VK_APP: "app_id"
+VK_SECRET: "app_secret"
+FACEBOOK_APP: "app_id"
+FACEBOOK_SECRET: "app_secret"
