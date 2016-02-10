@@ -1,8 +1,9 @@
+= content_for :title, 'Налаштування профілю'
 = content_for :plugins do
   = javascript_include_tag 'file-field'
 .panel.panel-default
   .panel-heading
-    %h4 Редагування особистої інформації
+    %h4 Налаштування профілю
   .panel-body
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, role: 'form' }) do |f|
       .form-group
