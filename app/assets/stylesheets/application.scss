@@ -370,3 +370,19 @@ textarea {
   width: 90%;
   display: inline-block;
 }
+
+#modal-color{
+  div{
+    height: 32px;
+    width: 32px;
+    display: inline-table;
+    margin: 1px auto;
+    border-radius: 3px;
+    vertical-align: top;
+  }
+
+  .form-control{
+    display: inline;
+    width: 91%;
+  }
+}

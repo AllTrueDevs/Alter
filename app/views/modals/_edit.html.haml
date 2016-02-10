@@ -10,8 +10,9 @@
         %h4#myModalLabel.modal-title Змінити колір
       - category = id ? Category.find(id) : Category.first
       = form_for category, remote: true do |f|
-        .modal-body{class: "label-#{category.color}"}
+        .modal-body#modal-color
+          %div{class: "label-#{category.color}"}
+            &nbsp;
           = select_tag :color, options_for_select(colors, category.color), class: 'form-control'
-          .actions
         .modal-footer
           = f.submit 'Змінити', class: 'btn btn-success'
