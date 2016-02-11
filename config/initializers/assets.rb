@@ -15,5 +15,6 @@ Rails.application.config.assets.precompile += %w( user_tabs.js
                                                   user-tabs.js.coffee
                                                   file-field.js.coffee
                                                   categories_with_labels.js.erb
-                                                  selection_color.js
+                                                  selection_color.js.coffee
+                                                  share_buttons.js
 )

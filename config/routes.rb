@@ -1,26 +1,47 @@
 Rails.application.routes.draw do
 
+  namespace :users do
+    get 'omniauth_callbacks/vkontakte'
+  end
+
+  resources :home, only: :index
+
+  root to: 'home#index'
+
   resources :requests
-  get 'home/index'
-  root 'home#index'
-  devise_for :users, controllers: { registrations: "registrations" }
-  get '/id:id', to: 'users#show', as: :user
-  get '/users', to: 'users#index', as: :users
-  get '/id:id/requests', to: 'requests#index', as: :user_requests
+
+  devise_for :users, controllers: {
+                       registrations: 'registrations',
+                       omniauth_callbacks: 'users/omniauth_callbacks'
+                   }
+
   resources :categories, only: [:index, :destroy, :create, :update]
-  resources :decisions, only: [:index, :show, :create]
-  get '/decisions/:id/accept', to: 'decisions#accept', as: :accept
-  get '/decisions/:id/deny', to: 'decisions#deny', as: :deny
-  post '/decisions/:id/partly', to: 'decisions#partly', as: :partly
-  post '/decisions/:id', to: 'decisions#show'
-  get '/notifications/clean', to: 'notifications#clean', as: :clean
-  resources :notifications, only: [:index, :show, :destroy]
-  get 'requests/:id/destroy' => 'requests#destroy', as: :destroy
-  get '/id:id/change_ban_status', to: 'users#change_ban_status', as: :ban
-  get '/id:id/change_moder_status', to: 'users#change_moder_status', as: :moder
-  get '/user/id:id/admin_login', to: 'users#admin_login', as: :admin_login
-  get '/id:id/requests/actual', to: 'users#actual_requests', as: :user_actual_requests
-  get '/id:id/requests/archived', to: 'users#archived_requests', as: :user_archived_requests
-  get '/id:id/statistic', to: 'users#statistic', as: :user_statistic
+
+  resources :decisions, only: [:index, :show, :create] do
+    member do
+      get :accept
+      get :deny
+      get :partly
+    end
+  end
+
+  resources :notifications, only: [:index, :show, :destroy] do
+    collection do
+      get :clean
+    end
+  end
+
+  resources :users, only: :index do
+    member do
+      get :change_ban_status, as: :ban
+      get :change_moder_status, as: :moder
+      get :admin_login
+      get :actual_requests
+      get :archived_requests
+      get :statistic
+    end
+  end
+
+  get '/id:id', to: 'users#show', as: :user
 
 end

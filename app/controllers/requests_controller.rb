@@ -54,9 +54,7 @@ class RequestsController < ApplicationController
     @request.update(status: 'archived')
     @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id) }
     @request.decisions.destroy_all
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   private

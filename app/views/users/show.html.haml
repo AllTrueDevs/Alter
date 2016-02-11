@@ -1,3 +1,4 @@
+= content_for :title, @user.name
 = content_for :plugins do
   = javascript_include_tag 'user-tabs'
 .panel.panel-default.width-100
@@ -6,27 +7,28 @@
       .col-md-4.col-md-offset-1.text-right.user-avatar= image_tag @user.avatar.url, class: 'img-thumbnail'
       .col-md-6.user-info
         %h3.inline= @user.name
-        - if (can? :ban_users, @user) && (current_user != @user)
-          - if @user.role == 'banned'
+        - if can?(:ban_users, @user) && (current_user != @user)
+          - if @user.banned?
             %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Розблокувати користувача.' }
               %span.glyphicon.glyphicon-check{ 'aria-hidden': true }
-            = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_path }
+            = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_user_path }
           - else
             %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Заблокувати користувача.' }
               %span.glyphicon.glyphicon-ban-circle{ 'aria-hidden': true }
-            = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_path }
-        - if (can? :make_moderators, @user) && (current_user != @user)
-          - if @user.role == 'moderator'
+            = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_user_path }
+        - if can?(:make_moderators, @user) && (current_user != @user)
+          - if @user.moderator?
             %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Забрати права модератора.' }
               %span.glyphicon.glyphicon-user{ 'aria-hidden': true }
-            = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_path }
+            = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_user_path }
           - else
             %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Надати права модератора.' }
               %span.glyphicon.glyphicon-briefcase{ 'aria-hidden': true }
-            = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_path }
-        %a{ 'data-target': '#userModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Вхід на користувача.' }
-          %span.glyphicon.glyphicon-search{ 'aria-hidden': true }
-        = render partial: 'modals/agree_modal', locals: { selector: 'userModal', title: 'Зайти на аккаунт даного користувача?', link: admin_login_path }
+            = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_user_path }
+        - if can?(:admin_login, @user) && (current_user != @user)
+          %a{ 'data-target': '#userModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Вхід на користувача.' }
+            %span.glyphicon.glyphicon-search{ 'aria-hidden': true }
+          = render partial: 'modals/agree_modal', locals: { selector: 'userModal', title: 'Зайти на аккаунт даного користувача?', link: admin_login_user_path }
         - case @user.role
           - when 'moderator'
             %h5
@@ -36,7 +38,7 @@
               %small.text-danger Заблокований
         %br
         - if @user.info.to_s.length > 0
-          %p= @user.info
+          %p.info= @user.info
         - if @user.phone.to_s.length > 0
           %p
             %strong Телефон:
@@ -45,14 +47,22 @@
           %p
             %strong Skype:
             = @user.skype
+        - if @user.vkontakte.to_s.length > 0
+          %p
+            %strong VK:
+            = link_to @user.vkontakte, @user.vkontakte
+        - if @user.facebook.to_s.length > 0
+          %p
+            %strong Facebook:
+            = link_to @user.facebook, @user.facebook
     .user-requests
       %ul.nav.nav-tabs
-        %li.active= link_to 'Активні запити', user_actual_requests_path, remote: true
-        %li= link_to 'Завершені запити', user_archived_requests_path, remote: true
+        %li.active= link_to 'Активні запити', actual_requests_user_url, remote: true
+        %li= link_to 'Завершені запити', archived_requests_user_url, remote: true
         - unless @user.helped_items.size.zero?
-          %li= link_to 'Cтатистика', user_statistic_path, remote: true
+          %li= link_to 'Cтатистика', statistic_user_url, remote: true
       .tab-content
         .tab-pane.active
-          = render partial: 'requests/requests_list', locals: { requests: @actual_requests }
+          = render partial: 'requests/requests_list', locals: { requests: @actual_requests, ajax: true }
 
 

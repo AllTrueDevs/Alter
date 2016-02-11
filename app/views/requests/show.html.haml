@@ -1,9 +1,12 @@
+= content_for :plugins do
+  = javascript_include_tag 'share_buttons'
+= content_for :title, @request.name
 .col-md-9
   .panel.panel-default.width-100
     .panel-heading
       .row
         .col-md-9
-          %h4.break-word= @request.name
+          %h4.request-title.break-word= @request.name
         .col-md-3
           .pull-right.request-actions
             - if @request.actual?
@@ -31,7 +34,7 @@
           %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
 .col-md-3
   .panel.panel-default.width-100
-    .panel-heading 
+    .panel-heading
       %h4 Автор
     .panel-body
       .text-center
@@ -45,3 +48,9 @@
         %p
           %strong Skype:
           = @request.user.skype
+      %a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
+        Поділитись
+        .vk-logo.pull-left
+      %a.share-button.share-twitter.pull-right{onclick: 'Share.twitter()'}
+        Tweet
+        .twitter-logo.pull-left
