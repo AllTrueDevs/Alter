@@ -2,7 +2,7 @@ Share = {
     vkontakte: function() {
         url  = 'http://vkontakte.ru/share.php?';
         url += 'url='          + encodeURIComponent(window.location.href);
-        url += '&title='       + encodeURIComponent($('.request-title').text());
+        url += '&title='       + encodeURIComponent($('.request-title').text().substring(0, 300));
         url += '&description=' + encodeURIComponent($('.request-description').text());
         url += '&image='       + encodeURIComponent($('.request-photo').attr('src'));
         url += '&noparse=true';
