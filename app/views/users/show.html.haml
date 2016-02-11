@@ -38,7 +38,7 @@
               %small.text-danger Заблокований
         %br
         - if @user.info.to_s.length > 0
-          %p= @user.info
+          %p.info= @user.info
         - if @user.phone.to_s.length > 0
           %p
             %strong Телефон:
@@ -49,12 +49,12 @@
             = @user.skype
         - if @user.vkontakte.to_s.length > 0
           %p
-            %strong Vkontakte:
-            = link_to @user.vkontakte_name, @user.vkontakte
+            %strong VK:
+            = link_to @user.vkontakte, @user.vkontakte
         - if @user.facebook.to_s.length > 0
           %p
             %strong Facebook:
-            = link_to @user.facebook_name, @user.facebook
+            = link_to @user.facebook, @user.facebook
     .user-requests
       %ul.nav.nav-tabs
         %li.active= link_to 'Активні запити', actual_requests_user_url, remote: true
