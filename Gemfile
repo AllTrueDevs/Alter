@@ -38,6 +38,7 @@ gem 'betterlorem'
 gem 'omniauth'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook'
+gem 'aws-sdk-v1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
