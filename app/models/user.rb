@@ -41,4 +41,8 @@ class User < ActiveRecord::Base
     update(facebook: "https://facebook.com/#{url}", facebook_name: name)
   end
 
+  def helped_items_count
+    helped_items.pluck(:count).inject(0){|sum, count| sum += count }
+  end
+
 end
