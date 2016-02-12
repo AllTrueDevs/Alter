@@ -30,7 +30,7 @@ class RequestsController < ApplicationController
         @categories.each{ |category| @request.required_items.create(category_id: category) }
         format.html { redirect_to @request}
       else
-        format.html { redirect_to :back, notice: 'Заповніть усі поля' }
+        format.html { redirect_to :back, notice: 'Помилка введення даних' }
       end
     end
   end
@@ -43,7 +43,7 @@ class RequestsController < ApplicationController
         @request.required_items.destroy_all
         @categories = params[:categories]
         @categories.each{ |category| @request.required_items.create(category_id: category) }
-        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
+        format.html { redirect_to @request, notice: 'Запит успішно оновлено' }
       else
         format.html { render :edit }
       end
