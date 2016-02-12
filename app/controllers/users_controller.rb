@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if @user.confirmed_at.nil?
       redirect_to root_path, notice: 'Користувач ще не підтвердив реєстрацію'
     else
-      @actual_requests = User.find(params[:id]).requests.where(status: 'actual').page(params[:page]).per(10)
+      @actual_requests = User.find(params[:id]).requests.actual.page(params[:page]).per(10)
       @helped_items = @user.helped_items.sort{ |item_1, item_2| [ item_2.count, item_1.category.name ] <=> [ item_1.count, item_2.category.name ] }
     end
   end
@@ -65,12 +65,12 @@ class UsersController < ApplicationController
   end
 
   def actual_requests
-    @actual_requests = User.find(params[:id]).requests.where(status: 'actual').order(:created_at => :desc).page(params[:page]).per(10)
+    @actual_requests = User.find(params[:id]).requests.actual.order(:created_at => :desc).page(params[:page]).per(10)
     respond_to :js
   end
 
   def archived_requests
-    @archived_requests = User.find(params[:id]).requests.where(status: 'archived').order(:updated_at => :desc).page(params[:page]).per(10)
+    @archived_requests = User.find(params[:id]).requests.archived.order(:updated_at => :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

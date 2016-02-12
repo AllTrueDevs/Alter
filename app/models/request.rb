@@ -7,6 +7,8 @@ class Request < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 150 }
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :status, presence: true, inclusion: { in: %w(actual archived) }
+  scope :actual, -> { where(status: 'actual') }
+  scope :archived, -> { where(status: 'archived') }
 
   def actual?
     status == 'actual'
