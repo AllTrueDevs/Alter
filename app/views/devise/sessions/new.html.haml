@@ -16,22 +16,4 @@
             = f.check_box :remember_me
             = f.label :"Запам'ятати"
       = f.submit  t('.sign_in', :default => 'Увійти'), class: 'btn btn-success', data: {disable_with: 'Обробка...'}
-    = render "devise/shared/links"
-
--#%h2 Log in
--#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
--#  .field
--#    = f.label :email
--#    %br/
--#    = f.email_field :email, autofocus: true
--#  .field
--#    = f.label :password
--#    %br/
--#    = f.password_field :password, autocomplete: "off"
--#  - if devise_mapping.rememberable?
--#    .field
--#      = f.check_box :remember_me
--#      = f.label :remember_me
--#  .actions
--#    = f.submit "Log in"
--#= render "devise/shared/links"
+    = render 'devise/shared/links'

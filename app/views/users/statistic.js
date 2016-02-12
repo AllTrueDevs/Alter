@@ -1,1 +1,1 @@
-$(".tab-pane.active").html("<%= escape_javascript(render 'shared/statistic', items: @items) %>");
+$(".tab-pane.active").html("<%= escape_javascript(render 'users/statistic', items: @items) %>");
