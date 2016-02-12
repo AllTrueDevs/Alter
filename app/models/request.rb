@@ -10,6 +10,8 @@ class Request < ActiveRecord::Base
   scope :actual, -> { where(status: 'actual') }
   scope :archived, -> { where(status: 'archived') }
 
+  scope :actual, -> { where(status: 'actual') }
+
   def actual?
     status == 'actual'
   end
