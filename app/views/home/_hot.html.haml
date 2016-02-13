@@ -1,8 +1,10 @@
 .home-block.height-1#hot
   %p.caption Актуальне
   %hr.divider
-  .block-content
-    .response-img
-      %img.title-img.img-thumbnail{src: @actual_request.photo.url}
-      .fade
-    %p= @actual_request.name + 'kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kkek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. kek. ek. kek. kek. kek. kek. kek. '
+  = link_to @actual_request do
+    .block-content
+      .responsive-img
+        .fade
+          &nbsp;
+        %img.title-img.img-thumbnail{src: @actual_request.photo.url}
+      %p= @actual_request.name
