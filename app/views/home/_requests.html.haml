@@ -2,6 +2,20 @@
   %p.caption Запити про допомогу
   %hr.divider
     .block-content
-      = link_to 'До усіх запитів', requests_url
       - @requests.each_with_index do |request|
-        = render partial: 'requests/request_in_list', locals: { request: request, requests: @requests }
+        %div
+          = link_to request do
+            %h4= request.name
+          - if request.archived?
+            %h4
+              %small= 'Закрито ' + time_ago_in_words(request.updated_at) + ' тому.'
+          - else
+            %h4
+              %small
+                = 'Опубліковано ' + time_ago_in_words(request.created_at) + ' тому, '
+                = link_to request.user.name, user_path(request.user)
+            %p.break-word.home-description= request.description.truncate(530, separator:' ')
+        - if request != @requests.last
+          %hr
+
+      .pull-right= link_to 'До усіх запитів', requests_url

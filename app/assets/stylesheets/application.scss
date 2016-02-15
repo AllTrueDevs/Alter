@@ -563,10 +563,17 @@ textarea {
   //###################################REQUESTS
   #requests{
     .block-content{
-      padding: 20px 60px 20px 20px;
+      padding: 20px 40px;
+      hr{
+        margin: 20px 40px;
+      }
+      .pull-right{
+        margin-top: 20px;
+        font-weight: 500;
+      }
       .home-description{
         line-height: 1.5em;
-        max-height: 6em;
+        height: 6em;
         overflow: hidden;
       }
     }
