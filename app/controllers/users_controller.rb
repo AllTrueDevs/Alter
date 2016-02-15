@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show]
-  before_action :authenticate_user!, except: [:show, :actual_requests, :archived_requests, :statistic]
+  before_action :authenticate_user!, except: [:show, :actual_requests, :archived_request]
   load_and_authorize_resource except: [:show, :actual_requests, :archived_requests]
 
   def show

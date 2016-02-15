@@ -12,6 +12,7 @@ class Ability
           request.user != user
         end
       else
+        can :statistic, User
         can :create, Request
         cannot :read, Category
         can :modify, Request do |request|

@@ -1,3 +1,7 @@
 .home-block.height-2#requests
   %p.caption Запити про допомогу
   %hr.divider
+    .block-content
+      = link_to 'До усіх запитів', requests_url
+      - @requests.each_with_index do |request|
+        = render partial: 'requests/request_in_list', locals: { request: request, requests: @requests }

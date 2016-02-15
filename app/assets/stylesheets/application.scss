@@ -562,6 +562,14 @@ textarea {
 
   //###################################REQUESTS
   #requests{
+    .block-content{
+      padding: 20px 60px 20px 20px;
+      .home-description{
+        line-height: 1.5em;
+        max-height: 6em;
+        overflow: hidden;
+      }
+    }
   }
 
   //###################################INFO BLOCK

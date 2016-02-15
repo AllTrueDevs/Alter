@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create, :show, :index]
 
   def index
-    @requests = params[:category_id].nil? ? Request.where(status: 'actual').order(created_at: :desc).page(params[:page]).per(10) : Request.where(status: 'actual').joins(:required_items).where(required_items: {category_id: params[:category_id]}).order(created_at: :desc).page(params[:page]).per(10)
+    @requests = params[:category_id].nil? ? Request.actual.order(created_at: :desc).page(params[:page]).per(10) : Request.where(status: 'actual').joins(:required_items).where(required_items: {category_id: params[:category_id]}).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

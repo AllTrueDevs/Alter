@@ -17,13 +17,13 @@
                 = 'Опубліковано ' + time_ago_in_words(request.created_at) + ' тому, '
                 = link_to request.user.name, user_path(request.user)
         .col-md-1
-          - if can?(:destroy, request) && (request.actual?)
+          - if can?(:destroy, request) && (request.actual?) && (controller_name != 'home')
             = render partial: 'modals/agree_modal', locals: { id: request.id, selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request, ajax: defined?(ajax) ? ajax : nil }
             .pull-right.delete-request
               = link_to '#', data: {target: "#deleteModal_#{request.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запит.'} do
                 %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
         .col-md-12
-          %p.break-word= request.description.truncate(530, separator:' ')
+          %p.break-word{class: controller_name == 'home' ? 'home-description' : ''}= request.description.truncate(530, separator:' ')
           .row
             .pull-right
               - request.required_items.each do |required_item|
