@@ -3,3 +3,46 @@ en:
   edit_facebook_change: "Змінити аккаунт Facebook"
   edit_vkontakte_new: "Прив'язати до ВКонтакте"
   edit_vkontakte_change: "Змінити аккаунт ВКонтакте"
+  datetime:
+      distance_in_words:
+        half_a_minute: "half a minute"
+        less_than_x_seconds:
+          one:   "меньше ніж 1 секунду"
+          other: "меньше ніж %{count} секунд"
+        x_seconds:
+          one:   "1 секунду"
+          other: "%{count} секунд"
+        less_than_x_minutes:
+          one:   "меньше ніж хвилину"
+          other: "меньше ніж %{count} хвилин"
+        x_minutes:
+          one:   "1 хвилину"
+          other: "%{count} хвилин"
+        about_x_hours:
+          one:   "близько години"
+          other: "близько %{count} годин"
+        x_days:
+          one:   "1 день"
+          other: "%{count} дні"
+        about_x_months:
+          one:   "близько місяця"
+          other: "близько %{count} місяців"
+        x_months:
+          one:   "1 місяць"
+          other: "%{count} місяці"
+        about_x_years:
+          one:   "близько року"
+          other: "близько %{count} років"
+        over_x_years:
+          one:   "більше ніж рік"
+          other: "більше ніж %{count} роки"
+        almost_x_years:
+          one:   "майже рік"
+          other: "майже %{count} роки"
+      prompts:
+        year:   "Років"
+        month:  "Місяців"
+        day:    "Днів"
+        hour:   "Годин"
+        minute: "Хвилин"
+        second: "Секунд"
