@@ -4,7 +4,7 @@ $(window).on 'load', ->
   , 100
 
 $ ->
-  $('body').css('overflow-y', 'hidden');
+  $('body').css('overflow-y', 'hidden')
   $('body').on 'mousewheel', (e) ->
     if e.target.id == 'el'
       return
@@ -12,8 +12,8 @@ $ ->
     e.stopPropagation()
 
   setTimeout ->
-    $('body').css('overflow-y', 'scroll');
-    $('body').unbind('mousewheel');
+    $('body').css('overflow-y', 'scroll')
+    $('body').unbind('mousewheel')
     $('#preload').remove()
   , 1000
 
