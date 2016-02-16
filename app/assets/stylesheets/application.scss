@@ -84,6 +84,20 @@ textarea {
   text-align: left;
 }
 
+.navbar-brand{
+  background: url('Lel.png');
+  background-repeat: no-repeat;
+  background-size: 75px 35px;
+  background-position: left, right;
+  width: 75px;
+  &:hover{
+    background: url('Kek.png');
+    background-repeat: no-repeat;
+    background-size: 75px 35px;
+    background-position: left, right;
+    width: 75px;
+  }
+}
 
 .content{
   min-height: calc(100vh - 104px);
