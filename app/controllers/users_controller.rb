@@ -77,7 +77,7 @@ class UsersController < ApplicationController
   def statistic
     @items = @user.helped_items
     unless @items.size.zero?
-      max_vals = [4, 12, 20, 25, 40, 60, 100, 150, 200, 250, 500, 1000]
+      max_vals = [4, 12, 20, 30, 40, 60, 100, 150, 200, 250, 500, 1000]
       maximum_items = max_vals.detect{|value| value >= @items.pluck(:count).max }
       @max = maximum_items ? maximum_items : @items.pluck(:count).max
     end
