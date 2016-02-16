@@ -1,3 +1,21 @@
 .home-block.height-2#news
   %p.caption Новини
   %hr.divider
+  .block-content
+    - HomeHelper::NEWS.each do |article|
+      = link_to '#' do
+        %h4.news-title= article[:name]
+      .article
+        .photo
+          = link_to '#' do
+            .responsive-img
+              .fade
+                &nbsp;
+              %img.title-img.img-thumbnail{src:  "#{article[:photo]}"}
+        .text
+          %small
+            = '23.11.2015'
+          %p.break-word.home-description= article[:description].truncate(530, separator:' ')
+        %hr
+
+    .pull-right= link_to 'До усіх новостей', '#'
