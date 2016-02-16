@@ -42,6 +42,7 @@ gem 'hamlit'
 gem 'hamlit-rails'
 gem 'figaro'
 gem 'betterlorem'
+gem 'awesome_print'
 
 group :development, :test do
   gem 'byebug'

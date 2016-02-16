@@ -1,0 +1,20 @@
+.home-block.height-2#requests
+  %p.caption Запити про допомогу
+  %hr.divider
+    .block-content
+      - @requests.each do |request|
+        %div
+          = link_to request do
+            %h4.request-title= request.name
+          - if request.archived?
+            %h4
+              %small= 'Закрито ' + time_ago_in_words(request.updated_at) + ' тому.'
+          - else
+            %h4
+              %small
+                = 'Опубліковано ' + time_ago_in_words(request.created_at) + ' тому, '
+                = link_to request.user.name, user_path(request.user)
+            %p.break-word.home-description= request.description.truncate(530, separator:' ')
+        %hr
+
+      .pull-right= link_to 'До усіх запитів', requests_url

@@ -1,0 +1,12 @@
+.home-block.height-2#top
+  %p.caption Топ 5 користувачів
+  %hr.divider
+  .block-content
+    - @top_users.each_with_index do |user, index|
+      = link_to user do
+        .user.center-block
+          .responsive-img
+            .fade.top-fade
+              %h1= index + 1
+            %img.title-img.img-thumbnail{src: user.avatar.url}
+          %p= user.name

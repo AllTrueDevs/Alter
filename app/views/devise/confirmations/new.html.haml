@@ -1,4 +1,4 @@
-= content_for :title, 'Переслати інструкції підтвердження'
+= content_for :title, 'Надіслати інструкції підтвердження'
 .panel.panel-default
   .panel-heading
     %h4= t('.resend_confirmation_instructions', :default => 'Переслати інструкції підтвердження')
@@ -8,8 +8,8 @@
       .form-group
         = f.label :email
         = f.email_field :email, autofocus: true, class: 'form-control'
-      = f.submit t('.resend_confirmation_instructions', :default => 'Переслати інструкції підтвердження'), class: 'btn btn-success', data: {disable_with: 'Обробка...'}
-    = render "devise/shared/links"
+      = f.submit t('.resend_confirmation_instructions', :default => 'Надіслати інструкції підтвердження'), class: 'btn btn-success', data: {disable_with: 'Обробка...'}
+    = render 'devise/shared/links'
 
 -#%h2 Resend confirmation instructions
 -#= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|

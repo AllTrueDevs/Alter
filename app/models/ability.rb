@@ -2,8 +2,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Request
-    can :statistic, User
     if user
       alias_action :edit, :destroy, :create, :update, :to => :modify
       alias_action :show, :destroy, :to => :user_action
@@ -14,6 +12,7 @@ class Ability
           request.user != user
         end
       else
+        can :statistic, User
         can :create, Request
         cannot :read, Category
         can :modify, Request do |request|

@@ -28,13 +28,13 @@
       %h4 Автор
     .panel-body
       .text-center
-        = link_to @decision.request.user.name, @decision.request.user.name, class: 'break-word'
-        = image_tag @decision.request.user.avatar.url, class: 'img-responsive img-center img-thumbnail'
-      -if @decision.request.user.phone.to_s.length > 0
+        = link_to @decision.helper.name, @decision.helper, class: 'break-word'
+        = image_tag @decision.helper.avatar.url, class: 'img-responsive img-center img-thumbnail'
+      -if @decision.helper.phone.to_s.length > 0
         %p
           %strong Телефон:
-          = @decision.request.user.phone
-      -if @decision.request.user.skype.to_s.length > 0
+          = @decision.helper.phone
+      -if @decision.helper.skype.to_s.length > 0
         %p
           %strong Skype:
-          = @decision.request.user.skype
+          = @decision.helper.skype

@@ -1,4 +1,4 @@
 %p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+  Ласкаво просимо #{@email}!
+%p Щоб підтвердити реєстрацію перейдіть за посиланням нище.
+%p= link_to 'Підтвердити реєстрацію', confirmation_url(@resource, confirmation_token: @token)

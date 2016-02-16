@@ -6,15 +6,10 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Alter', root_path, class: 'navbar-brand'
+      = link_to '', root_path, class: 'navbar-brand'
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        - unless user_signed_in?
-          %li= link_to 'Головна', root_path
-          %li= link_to 'Реєстрація', new_user_registration_path
-          %li= link_to 'Вхід', new_user_session_path
-        - else
-
+        - if user_signed_in?
           %li.dropdown
             %a.dropdown-toggle{ 'aria-expanded': false, 'aria-haspopup': true, 'data-toggle': :dropdown, href: '#', role: :button }
               = current_user.name
@@ -43,3 +38,6 @@
                 = link_to destroy_user_session_path, :method => :delete do
                   %span.glyphicon.glyphicon-log-out{ 'aria-hidden': true }
                   Вийти
+        - else
+          %li= link_to 'Регістрація', new_user_registration_path
+          %li= link_to 'Вхід', new_user_session_path

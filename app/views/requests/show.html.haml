@@ -17,13 +17,13 @@
                   = render 'modals/request_help'
                 - else
                   %small Очікується відповідь
-                  - if can? :edit, @request
-                    = link_to edit_request_path(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
-                      %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
-                  - if can? :destroy, @request
-                    %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
-                      %span.glyphicon.glyphicon-remove{'aria-hidden': true }
-                    = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
+              - if can? :edit, @request
+                = link_to edit_request_path(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
+                  %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
+              - if can? :destroy, @request
+                %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
+                  %span.glyphicon.glyphicon-remove{'aria-hidden': true }
+                = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
             - else
               %p.label.label-danger= @request.archived? ? 'Закрито' : ''
     .panel-body
@@ -33,24 +33,4 @@
         = link_to requests_path(category_id: required_item.category.id) do
           %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
 .col-md-3
-  .panel.panel-default.width-100
-    .panel-heading
-      %h4 Автор
-    .panel-body
-      .text-center
-        = link_to @request.user.name, @request.user, class: 'break-word'
-        = image_tag @request.user.avatar.url, class: 'img-responsive img-center img-thumbnail'
-      - if @request.user.phone.to_s.length > 0
-        %p
-          %strong Телефон:
-          = @request.user.phone
-      - if @request.user.skype.to_s.length > 0
-        %p
-          %strong Skype:
-          = @request.user.skype
-      %a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
-        Поділитись
-        .vk-logo.pull-left
-      %a.share-button.share-twitter.pull-right{onclick: 'Share.twitter()'}
-        Tweet
-        .twitter-logo.pull-left
+  = render partial: 'user_block'

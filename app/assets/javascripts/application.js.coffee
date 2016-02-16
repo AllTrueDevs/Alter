@@ -1,0 +1,10 @@
+#= require jsapi
+#= require chartkick
+#= require jquery
+#= require bootstrap-sprockets
+#= require jquery_ujs
+#= require turbolinks
+#= require bootstrap-multiselect
+#= require bootstrap.js
+#= require bootstrap-filestyle
+#= require flashes

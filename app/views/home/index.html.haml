@@ -1,4 +1,19 @@
 = content_for :title, 'Головна'
-.jumbotron
-  %h1 Ласкаво просимо в Alter!
-  %p Існує багато варіацій уривків з Lorem Ipsum, але більшість з них зазнала певних змін на кшталт жартівливих вставок або змішування слів, які навіть не виглядають правдоподібно. Якщо ви збираєтесь використовувати Lorem Ipsum, ви маєте упевнитись в тому, що всередині тексту не приховано нічого, що могло б викликати у читача конфуз. Більшість відомих генераторів Lorem Ipsum в Мережі генерують текст шляхом повторення наперед заданих послідовностей Lorem Ipsum.
+= content_for :plugins do
+  = javascript_include_tag 'preloader'
+  = javascript_include_tag 'slider'
+= render partial: 'slider'
+%hr.divider
+.main-block
+  .col-md-8
+    .col-md-6
+      = render partial: 'hot'
+      = render partial: 'info'
+    .col-md-6
+      = render partial: 'top'
+      = render partial: 'daily_photo'
+    .col-md-12
+      = render partial: 'contacts'
+  .col-md-4
+    = render partial: 'requests'
+    = render partial: 'news'

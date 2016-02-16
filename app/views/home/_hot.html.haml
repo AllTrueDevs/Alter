@@ -1,0 +1,10 @@
+.home-block.height-1#hot
+  %p.caption Актуальне
+  %hr.divider
+  = link_to @actual_request do
+    .block-content
+      .responsive-img
+        .fade
+          &nbsp;
+        %img.title-img.img-thumbnail{src: @actual_request.photo.url}
+      %p= @actual_request.name
