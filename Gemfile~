@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 
 #############################
-##  Database gems
+### Database gems
 #############################
 gem 'mysql2', '~>0.3.20'
 
