@@ -28,7 +28,7 @@
                 = link_to decisions_path do
                   Відгуки
                   %span.badge= @new_decisions.to_s unless @new_decisions.zero?
-              - if can? :ban_users, User
+              - if can? :change_ban_status, User
                 %li= link_to 'Користувачі', users_path
               - if can? :manage, Category
                 %li= link_to 'Категорії', categories_path

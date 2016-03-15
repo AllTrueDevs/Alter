@@ -1,5 +1,5 @@
-$('select').on 'change', (e) ->
+$(document).on 'change', 'select', ->
   example = $(this).parent().find('div')
-  example.attr('class', '#modal-color div')
+  example.attr('class', '')
   example.addClass('label-' + this.value)
 

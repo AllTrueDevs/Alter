@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
 
+  def with_privileges?
+    admin? || moderator?
+  end
+
   def vkontakte_oauth!(access_token)
     url = access_token.info.urls.Vkontakte
     name = "#{access_token.extra.raw_info.first_name} #{access_token.extra.raw_info.last_name}"

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :actual_requests, :archived_requests]
-  before_action :authenticate_user!, except: [:show, :actual_requests, :archived_requests]
-  load_and_authorize_resource except: [:show, :actual_requests, :archived_requests]
+  before_action :authenticate_user!, except: [:actual_requests, :archived_requests]
+  load_and_authorize_resource except: [:actual_requests, :archived_requests]
 
   def show
     if @user.confirmed_at.nil?
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   end
 
   def archived_requests
-    @archived_requests = @user.find(params[:id]).requests.archived.order(:updated_at => :desc).page(params[:page]).per(10)
+    @archived_requests = @user.requests.archived.order(:updated_at => :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

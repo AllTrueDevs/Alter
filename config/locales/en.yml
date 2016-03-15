@@ -1,11 +1,16 @@
 en:
+  unauthorized:
+    default: "У вас недостатньо прав, щоб здійснити це"
+    show:
+      user: "Ваc заблоковано, Ви не можете цього зробити"
+
   edit_facebook_new: "Прив'язати до Facebook"
   edit_facebook_change: "Змінити аккаунт Facebook"
   edit_vkontakte_new: "Прив'язати до ВКонтакте"
   edit_vkontakte_change: "Змінити аккаунт ВКонтакте"
   datetime:
       distance_in_words:
-        half_a_minute: "half a minute"
+        half_a_minute: "пів хвилини"
         less_than_x_seconds:
           one:   "меньше ніж 1 секунду"
           other: "меньше ніж %{count} секунд"
