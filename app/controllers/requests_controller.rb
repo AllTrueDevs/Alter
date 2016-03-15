@@ -38,7 +38,7 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
-        @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id) }
+        @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.create(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id) }
         @request.decisions.destroy_all
         @request.required_items.destroy_all
         @categories = params[:categories]

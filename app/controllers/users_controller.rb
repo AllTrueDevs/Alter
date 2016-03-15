@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show]
-  before_action :authenticate_user!, except: [:show, :actual_requests, :archived_request]
-  load_and_authorize_resource except: [:show, :actual_requests, :archived_requests]
+  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :actual_requests, :archived_requests]
+  before_action :authenticate_user!, except: [:actual_requests, :archived_requests]
+  load_and_authorize_resource except: [:actual_requests, :archived_requests]
 
   def show
     if @user.confirmed_at.nil?
       redirect_to root_path, notice: 'Користувач ще не підтвердив реєстрацію'
     else
-      @actual_requests = User.find(params[:id]).requests.actual.page(params[:page]).per(10)
+      @actual_requests = @user.requests.actual.order(:created_at => :desc).page(params[:page]).per(10)
       @helped_items = @user.helped_items.sort{ |item_1, item_2| [ item_2.count, item_1.category.name ] <=> [ item_1.count, item_2.category.name ] }
     end
   end
@@ -65,12 +65,12 @@ class UsersController < ApplicationController
   end
 
   def actual_requests
-    @actual_requests = User.find(params[:id]).requests.actual.order(:created_at => :desc).page(params[:page]).per(10)
+    @actual_requests = @user.requests.actual.order(:created_at => :desc).page(params[:page]).per(10)
     respond_to :js
   end
 
   def archived_requests
-    @archived_requests = User.find(params[:id]).requests.archived.order(:updated_at => :desc).page(params[:page]).per(10)
+    @archived_requests = @user.requests.archived.order(:updated_at => :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

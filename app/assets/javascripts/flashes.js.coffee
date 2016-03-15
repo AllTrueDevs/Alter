@@ -1,15 +1,15 @@
-hide_flash = setTimeout ->
+hide_flash = window.setTimeout ->
   $('.alert').fadeOut(2000)
 , 3500
 
 $ ->
-  hide = setTimeout ->
+  hide = window.setTimeout ->
     $('.alert').fadeOut(2000)
   , 2000
 
-  $('.alert').on 'mouseover', (e) ->
-    clearTimeout(hide)
-    $(this).stop().animate({opacity: '100'})
+  $(document).on 'mouseover', '.alert', ->
+    window.clearTimeout(hide)
+    $('.alert').stop().animate({opacity: '100'})
 
-  $('.alert').on 'mouseout', (e) ->
+  $(document).on 'mouseout', '.alert', ->
     hide = hide_flash

@@ -5,14 +5,15 @@
     .text-center
       = link_to @request.user.name, @request.user, class: 'break-word'
       = image_tag @request.user.avatar.url, class: 'img-responsive img-center img-thumbnail'
-    - if @request.user.phone.to_s.length > 0
-      %p
-        %strong Телефон:
-        = @request.user.phone
-    - if @request.user.skype.to_s.length > 0
-      %p
-        %strong Skype:
-        = @request.user.skype
+    - if can? :show, @request.user
+      - if @request.user.phone.to_s.length > 0
+        %p
+          %strong Телефон:
+          = @request.user.phone
+      - if @request.user.skype.to_s.length > 0
+        %p
+          %strong Skype:
+          = @request.user.skype
     %a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
       Поділитись
       .vk-logo.pull-left
