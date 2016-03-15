@@ -5,14 +5,11 @@ class Ability
     alias_action [ :destroy, :create, :update ], to: :cud
 
     can [ :actual_requests, :archived_requests ], User
-
     can :read, Request
 
     if user
       can [ :show, :statistic ], User
-
       cannot :read, Category
-
       can :create, Request
 
       can :destroy, Request do |request|
@@ -22,8 +19,6 @@ class Ability
       can :update, Request do |request|
         request.user == user
       end
-
-      can :create, Request
 
       can :manage, Decision do |decision|
         decision.request.user == user
@@ -35,7 +30,6 @@ class Ability
 
       if user.with_privileges?
         can :manage, Category
-
         can :destroy, Request
       end
 
@@ -46,9 +40,7 @@ class Ability
         can [ :change_ban_status, :index ], User
       when 'banned'
         cannot :cud, Request
-
         cannot :cud, Decision
-
         cannot [ :update, :edit ], User
 
         cannot :show, User do |usr|
