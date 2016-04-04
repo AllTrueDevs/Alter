@@ -5,7 +5,7 @@ gem 'rails', '4.2.4'
 #############################
 ##  Database gems
 #############################
-gem 'mysql2', '~>0.3.20'
+gem 'pg'
 
 #############################
 ### Authentication
@@ -33,8 +33,6 @@ gem 'kaminari'
 gem 'chartkick'
 gem 'bootstrap-filestyle-rails'
 
-gem 'sdoc', '~> 0.4.0', group: :doc
-
 #############################
 ### Backend
 #############################
@@ -56,3 +54,7 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'rails_12factor', '0.0.2'
+  gem 'aws-sdk-v1'
+end
