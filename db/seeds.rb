@@ -327,13 +327,13 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
                                                       {category_id: 2},
                                                       {category_id: 7}
                                                   ])
-  User.fourth.requests.fifth.required_items.create(category_id: 7)
-  User.fourth.requests[5].required_items.create(category_id: 10)
-  User.fourth.requests[6].required_items.create([
+  Request.find(User.fourth.requests.fourth.id + 1).required_items.create(category_id: 7)
+  Request.find(User.fourth.requests.fourth.id + 2).required_items.create(category_id: 10)
+  Request.find(User.fourth.requests.fourth.id + 3).required_items.create([
                                                        {category_id: 1},
                                                        {category_id: 7}
                                                    ])
-  User.fourth.requests[7].required_items.create([
+  Request.find(User.fourth.requests.fourth.id + 4).required_items.create([
                                                       {category_id: 4},
                                                       {category_id: 3}
                                                   ])
