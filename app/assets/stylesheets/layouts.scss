@@ -2,7 +2,9 @@ body{
   height:100vh;
   display:flex;
   flex-direction: column;
+}
 
+.home-page-bg {
   background: url('HomeBG.png');
   background-size: cover;
 }
@@ -99,18 +101,6 @@ header.light-theme {
 }
 
 footer {
-}
-
-footer.dark-theme {
-  height: 50px;
-  text-align: center;
-  .contacts li {
-    display: inline-block;
-    margin: 0 15px;
-  }
-}
-
-footer.light-theme {
 }
 
 .content{

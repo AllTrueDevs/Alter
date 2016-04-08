@@ -16,10 +16,10 @@
   vertical-align: middle;
 
   margin: 0 auto;
-  width: 550px;
-  height: 550px;
+  width: 450px;
+  height: 450px;
   background: rgba(0, 0, 0, 0.15);
-  border-radius: 275px;
+  border-radius: 225px;
   border: 3px solid rgba(255, 255, 255, 0.2);
   color: #000;
 
@@ -65,29 +65,35 @@
   .first-news {
     position: relative;
     top: 200px;
+    left: -8px;
   }
 
   .second-news {
     position: relative;
     top: 19px;
-    left: 120px
+    left: 85px
   }
 
   .third-news {
     position: relative;
     top: 37px;
-    left: 451px;
+    left: 382px;
   }
 
   .fourth-news {
     position: relative;
-    top: 449px;
-    left: 413px;
+    top: 360px;
+    left: 332px;
   }
 
   .fifth-news {
     position: relative;
-    top: 449px;
+    top: 366px;
     left: 144px;
   }
+}
+
+.contacts li {
+  display: inline-block;
+  margin: 0 15px;
 }
