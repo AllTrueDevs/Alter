@@ -1,8 +1,11 @@
-%footer
-  .container
+- if default_page?
+  %footer.light-theme
+    kek
+- else
+  %footer.dark-theme
     %ul.contacts
-      -#%li
-      -#  = link_to image_tag('pinterest.png'), root_path
+      %li
+        = link_to image_tag('pinterest.png'), root_path
       %li
         = link_to image_tag('twitter.png'), root_path
       %li
