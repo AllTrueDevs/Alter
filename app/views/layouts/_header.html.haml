@@ -41,7 +41,7 @@
 -#        - else
 -#          %li= link_to 'Регістрація', new_user_registration_path
 -#          %li= link_to 'Вхід', new_user_session_path
-%header
+%header{class: "#{default_page? ? 'light' : 'dark'}-theme"}
   %nav.navbar.navbar-default
     .container
       .navbar-header
