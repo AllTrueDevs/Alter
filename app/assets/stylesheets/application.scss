@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import "bootstrap-multiselect";
 @import "reset";
+@import "fonts";
 
 body{
   height:100vh;
@@ -12,8 +13,9 @@ body{
   background-size: cover;
 }
 
-header{
-
+header {
+  font-family: 'GothaPro';
+  text-transform: uppercase;
 }
 
 footer{

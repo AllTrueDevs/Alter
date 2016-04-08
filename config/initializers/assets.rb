@@ -1,5 +1,15 @@
 Rails.application.config.assets.version = '1.0'
+Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
 
+######################### Stylesheets
+Rails.application.config.assets.precompile += %w(
+  applications.scss
+  fonts.scss
+  layouts.scss
+  scaffolds.scss
+)
+
+######################### JS
 Rails.application.config.assets.precompile += %w(
   user_tabs.js
   *.png
