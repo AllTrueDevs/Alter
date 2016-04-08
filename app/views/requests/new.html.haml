@@ -1,7 +1,9 @@
 = content_for :title, 'Створення нового запиту на допомогу'
 = content_for :plugins do
+  = javascript_include_tag 'plugins/file-field'
+= content_for :javascript do
   = javascript_include_tag 'categories_with_labels'
-  = javascript_include_tag 'file-field'
+
 .panel.panel-default
   .panel-heading
     %h4 Новий запит про допомогу

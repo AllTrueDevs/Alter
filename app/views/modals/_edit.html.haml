@@ -1,5 +1,6 @@
-= content_for :plugins do
+= content_for :javascript do
   = javascript_include_tag 'selection_color'
+
 .modal.fade{ id: id ? "#{selector}_#{id}" : selector, 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
   .modal-dialog.modal-kek
     .modal-content

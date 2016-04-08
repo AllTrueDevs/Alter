@@ -3,8 +3,7 @@
 #= require jquery
 #= require bootstrap-sprockets
 #= require jquery_ujs
-#= require turbolinks
 #= require bootstrap-multiselect
-#= require bootstrap.js
+#= require bootstrap/bootstrap
 #= require bootstrap-filestyle
-#= require flashes
+#= require plugins/flashes
