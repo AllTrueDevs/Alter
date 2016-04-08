@@ -28,7 +28,7 @@
     font-weight: bold;
     font-family: 'GothaPro';
     color: #fff;
-    padding-top: 50%;
+    padding-top: 37%;
 
     .first {
       float: left;
@@ -43,5 +43,51 @@
     .alter img {
       margin-top: -25px;
     }
+  }
+
+  .news {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: double 4px rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.5);
+    background-clip: padding-box;
+  }
+
+  .news:hover, .news:focus {
+    cursor: pointer;
+    border-color: #fff;
+    background: #fff;
+    background-clip: padding-box;
+  }
+
+
+  .first-news {
+    position: relative;
+    top: 200px;
+  }
+
+  .second-news {
+    position: relative;
+    top: 19px;
+    left: 120px
+  }
+
+  .third-news {
+    position: relative;
+    top: 37px;
+    left: 451px;
+  }
+
+  .fourth-news {
+    position: relative;
+    top: 449px;
+    left: 413px;
+  }
+
+  .fifth-news {
+    position: relative;
+    top: 449px;
+    left: 144px;
   }
 }
