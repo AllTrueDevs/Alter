@@ -16,9 +16,7 @@ Rails.application.config.assets.precompile += %w(
   plugins/multiselect.coffee
   plugins/file-field.coffee
   plugins/preloader.coffee
-  plugins/slider.coffee
   plugins/share_buttons.js
-  plugins/bank_widget.js
   user-tabs.coffee
   categories_with_labels.js
   selection_color.coffee
