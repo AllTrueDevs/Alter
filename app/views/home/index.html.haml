@@ -1,5 +1,12 @@
 = content_for :title, 'Головна'
-.kek Hello
+= content_for :styles do
+  = stylesheet_link_tag 'home'
+.parentbox
+  .circle
+    .phrases
+      %span.first Дрібниця для одного
+      %span.alter= image_tag 'Alter.png'
+      %span.second Весь світ для іншого
 -#= content_for :plugins do
 -#  = javascript_include_tag 'preloader'
 -#  = javascript_include_tag 'slider'
