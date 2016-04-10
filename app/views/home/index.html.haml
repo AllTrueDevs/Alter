@@ -12,18 +12,9 @@
       %span.first Дрібниця для одного
       %span.alter= image_tag 'Alter.png'
       %span.second Весь світ для іншого
-  %ul.contacts
-    %li
-      = link_to image_tag('pinterest.png'), root_path
-    %li
-      = link_to image_tag('twitter.png'), root_path
-    %li
-      = link_to image_tag('linkedin.png'), root_path
-    %li
-      = link_to image_tag('instagram.png'), root_path
-    %li
-      = link_to image_tag('facebook.png'), root_path
-    %li
--#= content_for :plugins do
+
+-#.responsive-circle.nyc-circle
+-#  .circle-inner NYC
+    -#= content_for :plugins do
 -#  = javascript_include_tag 'preloader'
 

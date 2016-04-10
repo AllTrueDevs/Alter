@@ -32,6 +32,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'kaminari'
 gem 'chartkick'
 gem 'bootstrap-filestyle-rails'
+gem 'font-awesome-rails'
 
 #############################
 ### Backend

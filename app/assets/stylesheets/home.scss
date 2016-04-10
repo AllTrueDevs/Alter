@@ -11,6 +11,41 @@
   height: 100%;
 }
 
+////////////////////
+
+.responsive-circle {
+  font-size: 80px;
+  font-weight: 700;
+  margin: 0 auto 20px;
+  width: 45%;
+}
+.responsive-circle::after {
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 0;
+  margin-bottom: 20px;
+  padding-bottom: 100%;
+  width: 100%;
+}
+.responsive-circle div {
+  color: white;
+  float: left;
+  line-height: 1em;
+  margin-top: -0.5em;
+  padding-top: 50%;
+  text-align: center;
+  width: 100%;
+}
+.nyc-circle::after {
+  background: rgba(0, 0, 0, 0.15);
+  //border-radius: 225px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  color: #000;
+}
+
+/////////////////////
+
 .circle {
   display: inline-block;
   vertical-align: middle;
@@ -24,20 +59,20 @@
   color: #000;
 
   .phrases {
-    font-size: 18pt;
+    font-size: 14pt;
     font-weight: bold;
     font-family: 'GothaPro';
     color: #fff;
-    padding-top: 37%;
+    padding-top: 34%;
 
     .first {
       float: left;
-      margin-left: -120px;
+      margin-left: -93px;
     }
 
     .second {
       float: right;
-      margin-right: -120px;
+      margin-right: -110px;
     }
 
     .alter img {
@@ -91,9 +126,4 @@
     top: 366px;
     left: 144px;
   }
-}
-
-.contacts li {
-  display: inline-block;
-  margin: 0 15px;
 }

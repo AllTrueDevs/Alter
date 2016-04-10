@@ -15,20 +15,20 @@ header {
     margin-bottom: 0px;
   }
 
-  .navbar-custom {
+  .custom-header {
     border-radius:0;
     border: none;
 
-    .navbar-brand {
-      padding-top: 15px !important;
-    }
-
     .navbar-brand, .navbar-nav li a {
-      font-family: 'GothaPro';
-      text-transform: uppercase;
       line-height: 80px;
       height: 80px;
       padding-top: 0;
+    }
+
+    .navbar-brand {
+      font-family: 'NeldaFree';
+      font-size: 3em;
+      letter-spacing: 3px;
     }
 
     .navbar-nav{
@@ -36,10 +36,9 @@ header {
       float: none;
       vertical-align: top;
 
-      .glyphicon {
-        display: inline-block;
-        vertical-align: text-top;
-        font-size: 0.6em;
+      li a {
+        font-family: 'GothaPro';
+        text-transform: uppercase;
       }
 
       .dropdown-menu {
@@ -80,7 +79,7 @@ header {
 }
 ///////Header styles for Dark theme
 .dark-theme {
-  .navbar-custom {
+  .custom-header {
     background: rgba(19, 18, 41, 0.6);
     .navbar-brand, .navbar-nav li a {
       color:#fff;
@@ -88,7 +87,7 @@ header {
 
     .navbar-nav{
       a:hover, a:focus {
-        color: #fff !important;
+        color:#fff;
         background: rgba(19, 18, 41, 0.3);
       }
 
@@ -101,34 +100,101 @@ header {
       }
     }
   }
+
+  .custom-footer {
+    line-height: 50px;
+    height: 50px;
+    text-align: center;
+
+    .contacts li {
+      font-size: 2em;
+      margin: 0 10px;
+    }
+  }
 }
 
 ///////Header styles for Light theme
 .light-theme {
-  .navbar-custom {
-    background: rgb(255, 255, 255);
+  .custom-header{
+    background: #fff;
     .navbar-brand, .navbar-nav li a {
-      color:#000;
+      color: #35353f;
     }
 
     .navbar-nav{
       a:hover, a:focus {
-        color: #000 !important;
-        background: rgba(0, 0, 0, 0.05);
+        color: #35353f;
+        background: rgba(0, 0, 0, 0.15);
       }
 
       .open > a, .open > a:hover, .open > a:focus {
-        background: rgba(0, 0, 0, 0.05);
+        background: rgba(0, 0, 0, 0.15);
       }
 
       .dropdown-menu {
-        background: rgb(255, 255, 255);
+        background: #fff;
       }
+    }
+  }
+
+  .custom-footer {
+    .contacts li {
+      margin: 0 5px;
+    }
+
+    .top{
+      line-height: 100px;
+      height: 100px;
+      background: #35353f;
+
+      .brand {
+        font-family: 'NeldaFree';
+        font-size: 2.5em;
+        letter-spacing: 3px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .contact-information{
+        text-align: right;
+        transform: translateY(33px);
+        li {
+          line-height: normal;
+        }
+      }
+    }
+
+    .bottom {
+      text-transform: uppercase;
+      color: #35353f;
+      line-height: 50px;
+      height: 50px;
+      text-align: center;
     }
   }
 }
 
 footer {
+  font-family: 'GothaPro';
+  color: #fff;
+  .contacts li {
+    display: inline-block;
+    a {
+      color: #fff;
+    }
+
+    a:hover, a:focus {
+      color: #d3d3d3;
+    }
+  }
+}
+
+///////Footer styles for Dark theme
+
+
+///////Footer styles for Light theme
+.light-theme {
+
 }
 
 .content{
