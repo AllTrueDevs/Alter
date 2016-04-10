@@ -1,17 +1,21 @@
 = content_for :title, 'Головна'
 = content_for :styles do
   = stylesheet_link_tag 'home'
+= content_for :plugins do
+  = javascript_include_tag 'plugins/home'
 .parentbox
+  %span.phrases.first Дрібниця для одного
   .circle
+    -#%p Kek
+    -#%ul.news-preview
+    -#  %li.news-title Kek
+    -#  %li.news-description Kek
     .news.first-news
     .news.second-news
     .news.third-news
     .news.fourth-news
     .news.fifth-news
-    .phrases
-      %span.first Дрібниця для одного
-      %span.brand Alter
-      %span.second Весь світ для іншого
+  %span.phrases.second Весь світ для іншого
 
 -#.responsive-circle.nyc-circle
 -#  .circle-inner NYC

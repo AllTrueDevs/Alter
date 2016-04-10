@@ -1,7 +1,76 @@
 .parentbox {
   height: calc(100vh - 130px);
   text-align: center;
-  font: 0/0 a;
+
+  .phrases {
+    font-size: 14pt;
+    font-weight: bold;
+    font-family: 'GothaPro';
+    color: #fff;
+  }
+
+  @keyframes circle {
+    from {
+      transform:rotate(0deg);
+    }
+    to {
+      transform:rotate(360deg);
+    }
+  }
+
+  .circle {
+    //animation: circle 45s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+
+    margin: 0 auto;
+    width: 450px;
+    height: 450px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 225px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    color: #000;
+
+    .news {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: double 4px rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.5);
+      background-clip: padding-box;
+    }
+
+    .news:hover, .news:focus {
+      cursor: pointer;
+      border-color: #fff;
+      background: #fff;
+      background-clip: padding-box;
+    }
+
+
+    .first-news {
+      transform: rotate(-18deg) translate(13.6em);
+    }
+
+    .second-news {
+      transform: rotate(54deg)  translate(14.2em);
+    }
+
+    .third-news {
+      transform: rotate(126deg)  translate(14.4em);
+    }
+
+    .fourth-news {
+      transform: rotate(198deg)  translate(14em);
+    }
+
+    .fifth-news {
+      transform: rotate(270deg)  translate(13.4em);
+    }
+  }
 }
 
 .parentbox:before {
@@ -11,119 +80,3 @@
   height: 100%;
 }
 
-////////////////////
-
-.responsive-circle {
-  font-size: 80px;
-  font-weight: 700;
-  margin: 0 auto 20px;
-  width: 45%;
-}
-.responsive-circle::after {
-  border-radius: 50%;
-  content: "";
-  display: block;
-  height: 0;
-  margin-bottom: 20px;
-  padding-bottom: 100%;
-  width: 100%;
-}
-.responsive-circle div {
-  color: white;
-  float: left;
-  line-height: 1em;
-  margin-top: -0.5em;
-  padding-top: 50%;
-  text-align: center;
-  width: 100%;
-}
-.nyc-circle::after {
-  background: rgba(0, 0, 0, 0.15);
-  //border-radius: 225px;
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  color: #000;
-}
-
-/////////////////////
-
-.circle {
-  display: inline-block;
-  vertical-align: middle;
-
-  margin: 0 auto;
-  width: 450px;
-  height: 450px;
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 225px;
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  color: #000;
-
-  .phrases {
-    font-size: 14pt;
-    font-weight: bold;
-    font-family: 'GothaPro';
-    color: #fff;
-    padding-top: 34%;
-
-    .first {
-      float: left;
-      margin-left: -93px;
-    }
-
-    .second {
-      float: right;
-      margin-right: -110px;
-    }
-
-    .brand {
-      font-weight: normal;
-    }
-  }
-
-  .news {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: double 4px rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.5);
-    background-clip: padding-box;
-  }
-
-  .news:hover, .news:focus {
-    cursor: pointer;
-    border-color: #fff;
-    background: #fff;
-    background-clip: padding-box;
-  }
-
-
-  .first-news {
-    position: relative;
-    top: 200px;
-    left: -8px;
-  }
-
-  .second-news {
-    position: relative;
-    top: 19px;
-    left: 85px
-  }
-
-  .third-news {
-    position: relative;
-    top: 37px;
-    left: 382px;
-  }
-
-  .fourth-news {
-    position: relative;
-    top: 360px;
-    left: 332px;
-  }
-
-  .fifth-news {
-    position: relative;
-    top: 366px;
-    left: 144px;
-  }
-}
