@@ -79,15 +79,15 @@ header {
 }
 ///////Header styles for Dark theme
 .dark-theme {
-  .custom-header {
+ .custom-header{
     background: rgba(19, 18, 41, 0.6);
     .navbar-brand, .navbar-nav li a {
-      color:#fff;
+      color: #fff;
     }
 
     .navbar-nav{
       a:hover, a:focus {
-        color:#fff;
+        color: #fff;
         background: rgba(19, 18, 41, 0.3);
       }
 
@@ -102,11 +102,11 @@ header {
   }
 
   .custom-footer {
-    line-height: 50px;
-    height: 50px;
     text-align: center;
 
     .contacts li {
+      line-height: 50px;
+      height: 50px;
       font-size: 2em;
       margin: 0 10px;
     }
@@ -187,14 +187,6 @@ footer {
       color: #d3d3d3;
     }
   }
-}
-
-///////Footer styles for Dark theme
-
-
-///////Footer styles for Light theme
-.light-theme {
-
 }
 
 .content{

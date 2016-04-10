@@ -1,6 +1,6 @@
-%footer{class: "#{default_page? ? 'light' : 'dark'}-theme"}
-  .custom-footer
-    - if default_page?
+- if default_page?
+  %footer.light-theme
+    .custom-footer
       .top
         .container
           .pull-left
@@ -26,7 +26,9 @@
             %li support@alter.com
       .bottom
         .container &copy;Alter, 2016. Всі права зихищені.
-    - else
+- else
+  %footer.dark-theme
+    .custom-footer
       %ul.contacts
         %li
           = link_to root_path do
