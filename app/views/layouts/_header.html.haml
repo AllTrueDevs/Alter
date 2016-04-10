@@ -2,12 +2,12 @@
   %nav.navbar.navbar-default.custom-header
     .container
       .navbar-header
-        %button.navbar-toggle.collapsed{ 'aria-expanded' => false, 'data-target' => '#navbar', 'data-toggle' => 'collapse', 'type' => 'button' }
+        %button.navbar-toggle.collapsed{ aria: { expanded: false }, data: { toggle: 'collapse', target: '#navbar' }, type: 'button' }
           %span.sr-only Toggle navigation
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to 'Alter', root_path, class: 'navbar-brand'
+        = link_to 'Alter', root_path, class: 'navbar-brand brand'
       #navbar.colapse.navbar-collapse
         %ul.nav.navbar-nav
           %li
@@ -19,7 +19,7 @@
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li.dropdown
-              %a.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+              %a.dropdown-toggle{ title: "#{current_user.name}", data: { toggle: 'dropdown' }, href: '#' }
                 %i.fa.fa-angle-down
                 %span.name= current_user.name
                 -#%span#new-info.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
@@ -48,7 +48,7 @@
                 %li
                   = link_to 'Налаштування', edit_user_registration_path
                 %li
-                  = link_to 'Вийти', destroy_user_session_path, :method => :delete
+                  = link_to 'Вийти', destroy_user_session_path, method: 'delete'
           - else
             %li
               = link_to 'Увійти', new_user_session_path
