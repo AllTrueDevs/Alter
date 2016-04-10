@@ -1,11 +1,5 @@
-body{
-  height:100vh;
-  display:flex;
-  flex-direction: column;
-}
-
 .home-page-bg {
-  background: url('HomeBG.png');
+  background: url('HomeBG.png') no-repeat;
   background-size: cover;
 }
 
@@ -31,7 +25,6 @@ header {
       vertical-align: top;
 
       li a {
-        font-family: 'GothaPro';
         text-transform: uppercase;
       }
 
@@ -79,7 +72,6 @@ header {
 }
 ////////All footer styles
 footer {
-  font-family: 'GothaPro';
   color: #fff;
   .contacts li {
     display: inline-block;
@@ -154,12 +146,13 @@ footer {
 
   .custom-footer {
     .contacts li {
+      font-size: 1.3em;
       margin: 0 5px;
     }
 
     .top{
-      line-height: 100px;
-      height: 100px;
+      line-height: 133px;
+      height: 133px;
       background: #35353f;
 
       .brand {
@@ -170,9 +163,9 @@ footer {
 
       .contact-information{
         text-align: right;
-        transform: translateY(33px);
+        transform: translateY(43px);
         li {
-          line-height: normal;
+          line-height: 30px;
         }
       }
     }
@@ -180,14 +173,9 @@ footer {
     .bottom {
       text-transform: uppercase;
       color: #35353f;
-      line-height: 50px;
-      height: 50px;
+      line-height: 70px;
+      height: 70px;
       text-align: center;
     }
   }
-}
-
-
-.content{
-  flex: 1;
 }

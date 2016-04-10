@@ -10,7 +10,7 @@
   %body{ class: default_page? ? '' : 'home-page-bg'}
     -#= render partial: 'home/preloader' unless default_page?
     = render partial: 'layouts/header'
-    .content.container
+    .content
       -#-flash.each do |name, msg|
       -#  .alert.alert-info.alert-dismissible
       -#    %button.close{ 'data-dismiss': :alert, type: :button }

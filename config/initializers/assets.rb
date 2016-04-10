@@ -9,6 +9,7 @@ Rails.application.config.assets.precompile += %w(
   layouts.scss
   scaffolds.scss
   home.scss
+  about.scss
 )
 
 ######################### JS

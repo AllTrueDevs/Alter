@@ -6,6 +6,17 @@
 @import 'layouts';
 @import "font-awesome";
 
+body{
+  height:100vh;
+  display:flex;
+  flex-direction: column;
+  font-family: 'GothaPro';
+}
+
+.content{
+  flex: 1;
+}
+
 .brand {
   font-family: 'NeldaFree';
   letter-spacing: 3px;
