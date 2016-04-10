@@ -9,8 +9,8 @@ body{
   background-size: cover;
 }
 
+////////All header styles
 header {
-  ////////All header styles
   .navbar {
     margin-bottom: 0px;
   }
@@ -77,15 +77,30 @@ header {
     }
   }
 }
-///////Header styles for Dark theme
-.dark-theme {
- .custom-header{
-    background: rgba(19, 18, 41, 0.6);
-    .navbar-brand, .navbar-nav li a {
+////////All footer styles
+footer {
+  font-family: 'GothaPro';
+  color: #fff;
+  .contacts li {
+    display: inline-block;
+    a {
       color: #fff;
     }
 
-    .navbar-nav{
+    a:hover, a:focus {
+      color: #d3d3d3;
+    }
+  }
+}
+///////Styles for Dark theme
+.dark-theme {
+  .custom-header{
+   background: rgba(19, 18, 41, 0.6);
+   .navbar-brand, .navbar-nav li a {
+      color: #fff;
+    }
+
+   .navbar-nav{
       a:hover, a:focus {
         color: #fff;
         background: rgba(19, 18, 41, 0.3);
@@ -99,7 +114,7 @@ header {
         background: rgba(19, 18, 41, 0.6);
       }
     }
-  }
+ }
 
   .custom-footer {
     text-align: center;
@@ -113,7 +128,7 @@ header {
   }
 }
 
-///////Header styles for Light theme
+///////Styles for Light theme
 .light-theme {
   .custom-header{
     background: #fff;
@@ -172,20 +187,6 @@ header {
   }
 }
 
-footer {
-  font-family: 'GothaPro';
-  color: #fff;
-  .contacts li {
-    display: inline-block;
-    a {
-      color: #fff;
-    }
-
-    a:hover, a:focus {
-      color: #d3d3d3;
-    }
-  }
-}
 
 .content{
   flex: 1;
