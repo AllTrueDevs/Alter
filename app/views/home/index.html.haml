@@ -2,19 +2,32 @@
 = content_for :styles do
   = stylesheet_link_tag 'home'
 = content_for :plugins do
-  = javascript_include_tag 'plugins/home'
+  = javascript_include_tag 'home'
 .parentbox
   %span.phrases.first Дрібниця для одного
   .circle
-    -#%p Kek
-    -#%ul.news-preview
-    -#  %li.news-title Kek
-    -#  %li.news-description Kek
-    .news.first-news
-    .news.second-news
-    .news.third-news
-    .news.fourth-news
-    .news.fifth-news
+    .news-circles.first-news-circle{ data: { title: @requests[0].name } }
+    .news-circles.second-news-circle{ data: { title: @requests[1].name } }
+    .news-circles.third-news-circle{ data: { title: @requests[2].name } }
+    .news-circles.fourth-news-circle{ data: { title: @requests[3].name } }
+    .news-circles.fifth-news-circle{ data: { title: @requests[4].name } }
+    .news
+      %p.title{ title: @requests[0].name } Mittetur. Igitur ex fructibus eorum cognoscetis eos. Non omnis who dicit mihi, Domine, Domine, intrabit Domine, Domine, intrabit Domine, Domine, int
+      -#%p.description{ title: @requests[0].description }= @requests[0].description
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
+      %p Kek
   %span.phrases.second Весь світ для іншого
 
 -#.responsive-circle.nyc-circle

@@ -11,10 +11,10 @@
 
   @keyframes circle {
     from {
-      transform:rotate(0deg);
+      transform: rotate(0deg);
     }
     to {
-      transform:rotate(360deg);
+      transform: rotate(360deg);
     }
   }
 
@@ -31,44 +31,104 @@
     border: 3px solid rgba(255, 255, 255, 0.2);
     color: #000;
 
-    .news {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+    .news-circles {
+      position: relative;
+      left: 214.5px;
       width: 15px;
       height: 15px;
       border-radius: 50%;
-      border: double 4px rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.5);
+      border: double 4px rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.5);
       background-clip: padding-box;
     }
 
-    .news:hover, .news:focus {
+    .news-circles:hover, .news-circles:focus {
       cursor: pointer;
       border-color: #fff;
       background: #fff;
       background-clip: padding-box;
     }
 
-
-    .first-news {
-      transform: rotate(-18deg) translate(13.6em);
+    .news{
+      margin: 0 auto;
+      max-width: 310px;
+      max-height: 310px;
+      //p {
+      //  white-space: nowrap;
+      //  overflow: hidden;
+      //  text-overflow: ellipsis;
+      //}
     }
 
-    .second-news {
-      transform: rotate(54deg)  translate(14.2em);
+    //TODO create animation with js
+    @keyframes first-news-circle {
+      from {
+        transform: rotate(0deg) translateX(223px);
+      }
+      to {
+        transform: rotate(360deg) translateX(223px);
+      }
     }
 
-    .third-news {
-      transform: rotate(126deg)  translate(14.4em);
+    @keyframes second-news-circle {
+      from {
+        transform: rotate(72deg) translateX(223px);
+      }
+      to {
+        transform: rotate(432deg) translateX(223px);
+      }
     }
 
-    .fourth-news {
-      transform: rotate(198deg)  translate(14em);
+    @keyframes third-news-circle {
+      from {
+        transform: rotate(144deg) translateX(223px);
+      }
+      to {
+        transform: rotate(504deg) translateX(223px);
+      }
     }
 
-    .fifth-news {
-      transform: rotate(270deg)  translate(13.4em);
+    @keyframes fourth-news-circle {
+      from {
+        transform: rotate(216deg) translateX(223px) rotate(216deg);
+      }
+      to {
+        transform: rotate(576deg) translateX(223px) rotate(-576deg);
+      }
+    }
+
+    @keyframes fifth-news-circle {
+      from {
+        transform: rotate(288deg) translateX(223px) rotate(288deg);
+      }
+      to {
+        transform: rotate(648deg) translateX(223px) rotate(-648deg);
+      }
+    }
+
+    .first-news-circle {
+      top: 214.5px;
+      animation: first-news-circle 25s linear infinite;
+    }
+
+    .second-news-circle {
+      top: 199.5px;
+      animation: second-news-circle 25s linear infinite;
+    }
+
+    .third-news-circle {
+      top: 184.5px;
+      animation: third-news-circle 25s linear infinite;
+    }
+
+    .fourth-news-circle {
+      top: 169.5px;
+      animation: fourth-news-circle 25s linear infinite;
+    }
+
+    .fifth-news-circle {
+      top: 154.5px;
+      animation: fifth-news-circle 25s linear infinite;
     }
   }
 }

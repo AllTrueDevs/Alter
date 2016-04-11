@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     loop do
       request = Request.actual.offset(Random.rand(Request.actual.size)).first
       @requests << request unless @requests.include? request
-      break if @requests.size == 3
+      break if @requests.size == 5
     end
   end
 end
