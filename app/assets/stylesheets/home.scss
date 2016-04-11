@@ -3,7 +3,8 @@
   text-align: center;
 
   .phrases {
-    font-size: 14pt;
+    padding: 0 15px;
+    font-size: 1.2em;
     font-weight: bold;
     font-family: 'GothaPro';
     color: #fff;
@@ -19,7 +20,6 @@
   }
 
   .circle {
-    //animation: circle 45s linear infinite;
     display: inline-block;
     vertical-align: middle;
 
@@ -49,15 +49,15 @@
       background-clip: padding-box;
     }
 
-    .news{
+    .news {
+      color: #fff;
       margin: 0 auto;
       max-width: 310px;
       max-height: 310px;
-      //p {
-      //  white-space: nowrap;
-      //  overflow: hidden;
-      //  text-overflow: ellipsis;
-      //}
+
+      p {
+        padding-bottom: 15px;
+      }
     }
 
     //TODO create animation with js

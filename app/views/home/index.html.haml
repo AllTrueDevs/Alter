@@ -6,32 +6,14 @@
 .parentbox
   %span.phrases.first Дрібниця для одного
   .circle
-    .news-circles.first-news-circle{ data: { title: @requests[0].name } }
-    .news-circles.second-news-circle{ data: { title: @requests[1].name } }
-    .news-circles.third-news-circle{ data: { title: @requests[2].name } }
-    .news-circles.fourth-news-circle{ data: { title: @requests[3].name } }
-    .news-circles.fifth-news-circle{ data: { title: @requests[4].name } }
+    .news-circles.first-news-circle{ data: { title: @requests[0].name, description: truncate(@requests[0].description, length: 500, separator: ' ') } }
+    .news-circles.second-news-circle{ data: { title: @requests[1].name, description: truncate(@requests[1].description, length: 500, separator: ' ')  } }
+    .news-circles.third-news-circle{ data: { title: @requests[2].name, description: truncate(@requests[2].description, length: 500, separator: ' ')  } }
+    .news-circles.fourth-news-circle{ data: { title: @requests[3].name, description: truncate(@requests[3].description, length: 500, separator: ' ')  } }
+    .news-circles.fifth-news-circle{ data: { title: @requests[4].name, description: truncate(@requests[4].description, length: 500, separator: ' ')  } }
     .news
-      %p.title{ title: @requests[0].name } Mittetur. Igitur ex fructibus eorum cognoscetis eos. Non omnis who dicit mihi, Domine, Domine, intrabit Domine, Domine, intrabit Domine, Domine, int
-      -#%p.description{ title: @requests[0].description }= @requests[0].description
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
-      %p Kek
+      %p.title= @requests[0].name
+      %p.description= truncate(@requests[0].description, length: 500, separator: ' ')
   %span.phrases.second Весь світ для іншого
-
--#.responsive-circle.nyc-circle
--#  .circle-inner NYC
-    -#= content_for :plugins do
 -#  = javascript_include_tag 'preloader'
 
