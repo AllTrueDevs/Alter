@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :articles
   namespace :users do
     get 'omniauth_callbacks/vkontakte'
   end
@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   resources :requests
 
   devise_for :users, controllers: {
-                       registrations: 'registrations',
-                       omniauth_callbacks: 'users/omniauth_callbacks'
-                   }
+    registrations: 'registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   resources :categories, only: [:index, :destroy, :create, :update]
 

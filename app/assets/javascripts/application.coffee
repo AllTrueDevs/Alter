@@ -7,3 +7,4 @@
 #= require bootstrap/bootstrap
 #= require bootstrap-filestyle
 #= require plugins/flashes
+#= require selectize
