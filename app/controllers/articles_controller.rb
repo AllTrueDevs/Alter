@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     respond_to do |format|
       if @article.save
-        @article.tags.add(article_params[:tags], parse: true)
+        @article.tags.add(params[:tags], parse: true)
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to news_url, notice: 'Article was successfully destroyed.' }
     end
   end
 

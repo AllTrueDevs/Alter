@@ -3,13 +3,23 @@
 %table
   %thead
     %tr
+      %th Id
+      %th Name
+      %th Src
+      %th Photo
+      %th Tags
       %th
       %th
       %th
 
   %tbody
-    - @articles.each do |article|
+    - @articles.try(:each) do |article|
       %tr
+        %td= article.id
+        %td= article.name
+        %td= article.src
+        %td= article.photo
+        %td= article.tags
         %td= link_to 'Show', article
         %td= link_to 'Edit', edit_article_path(article)
         %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }

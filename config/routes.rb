@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :articles
   namespace :users do
     get 'omniauth_callbacks/vkontakte'
   end
@@ -9,6 +8,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :requests
+  resources :articles, except: :index
+  get '/news', to: 'articles#index', as: :news
 
   devise_for :users, controllers: {
     registrations: 'registrations',
