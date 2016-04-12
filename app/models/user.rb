@@ -8,14 +8,15 @@ class User < ActiveRecord::Base
   has_many :requests, :dependent => :destroy
   has_many :notifications, :dependent => :destroy
   has_many :helped_items, :dependent => :destroy
-  has_many :decisions
+  has_many :decisions, foreign_key: 'helper_id'
   has_attached_file :avatar, default_url: 'missing-avatar.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { in: 4..40 }
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
-  scope :search, -> (query) { where('name like ?', "%#{query}%") }
+  #TODO galimuy sposob poiska
+  scope :search_user, -> (query) { where('name like ?', "%#{query}%") }
 
   def banned?
     role == 'banned'

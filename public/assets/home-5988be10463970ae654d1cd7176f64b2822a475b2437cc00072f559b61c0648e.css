@@ -1,0 +1,135 @@
+/* line 1, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox {
+  height: calc(100vh - 130px);
+  text-align: center;
+}
+/* line 5, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .phrases {
+  padding: 0 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: 'GothaPro';
+  color: #fff;
+}
+@keyframes circle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* line 22, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  width: 450px;
+  height: 450px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 225px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  color: #000;
+}
+/* line 34, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .news-circles {
+  position: relative;
+  left: 214.5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: double 4px rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
+  background-clip: padding-box;
+}
+/* line 45, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .news-circles:hover, .parentbox .circle .news-circles:focus {
+  cursor: pointer;
+  border-color: #fff;
+  background: #fff;
+  background-clip: padding-box;
+}
+/* line 52, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .news {
+  color: #fff;
+  margin: 0 auto;
+  max-width: 310px;
+  max-height: 310px;
+}
+/* line 58, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .news p {
+  padding-bottom: 15px;
+}
+@keyframes first-news-circle {
+  from {
+    transform: rotate(0deg) translateX(223px);
+  }
+  to {
+    transform: rotate(360deg) translateX(223px);
+  }
+}
+@keyframes second-news-circle {
+  from {
+    transform: rotate(72deg) translateX(223px);
+  }
+  to {
+    transform: rotate(432deg) translateX(223px);
+  }
+}
+@keyframes third-news-circle {
+  from {
+    transform: rotate(144deg) translateX(223px);
+  }
+  to {
+    transform: rotate(504deg) translateX(223px);
+  }
+}
+@keyframes fourth-news-circle {
+  from {
+    transform: rotate(216deg) translateX(223px) rotate(216deg);
+  }
+  to {
+    transform: rotate(576deg) translateX(223px) rotate(-576deg);
+  }
+}
+@keyframes fifth-news-circle {
+  from {
+    transform: rotate(288deg) translateX(223px) rotate(288deg);
+  }
+  to {
+    transform: rotate(648deg) translateX(223px) rotate(-648deg);
+  }
+}
+/* line 109, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .first-news-circle {
+  top: 214.5px;
+  animation: first-news-circle 25s linear infinite;
+}
+/* line 114, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .second-news-circle {
+  top: 199.5px;
+  animation: second-news-circle 25s linear infinite;
+}
+/* line 119, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .third-news-circle {
+  top: 184.5px;
+  animation: third-news-circle 25s linear infinite;
+}
+/* line 124, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .fourth-news-circle {
+  top: 169.5px;
+  animation: fourth-news-circle 25s linear infinite;
+}
+/* line 129, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox .circle .fifth-news-circle {
+  top: 154.5px;
+  animation: fifth-news-circle 25s linear infinite;
+}
+
+/* line 136, /home/devpc/Projects/alter_beta/app/assets/stylesheets/home.scss */
+.parentbox:before {
+  content: ' ';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}

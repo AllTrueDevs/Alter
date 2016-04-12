@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   namespace :users do
     get 'omniauth_callbacks/vkontakte'
   end
