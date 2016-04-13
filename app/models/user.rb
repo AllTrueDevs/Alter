@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def with_privileges?
-    admin? || moderator?
+    role?(:admin) || role?(:moderator)
   end
 
   def vkontakte_oauth!(access_token)

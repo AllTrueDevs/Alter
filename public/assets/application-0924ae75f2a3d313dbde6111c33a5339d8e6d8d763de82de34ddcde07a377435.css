@@ -8868,31 +8868,31 @@ button.close {
   margin-right: 0;
 }
 
-/* line 5, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 5, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 html {
   position: relative;
   min-height: calc(100vh - 1px);
 }
 
-/* line 10, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 10, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .navbar-header img {
   width: 24px;
   height: 24px;
   display: inline-block;
 }
 
-/* line 16, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 16, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .navbar-brand {
   padding: 12px 0;
 }
 
-/* line 20, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 20, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 body {
   background-color: #e1fae1;
   margin-bottom: 51px;
 }
 
-/* line 25, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 25, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 footer {
   position: absolute;
   bottom: 0;
@@ -8901,7 +8901,7 @@ footer {
   background-color: #f8f8f8;
   border-top: 1px solid #e7e7e7;
 }
-/* line 33, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 33, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 footer p {
   margin-bottom: 0;
   margin-left: -15px;
@@ -8911,102 +8911,102 @@ footer p {
   line-height: 20px;
 }
 
-/* line 44, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 44, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 a {
   color: #5cb85c;
 }
 
-/* line 48, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 48, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 a:hover, a:focus {
   color: #1E781E;
   text-decoration: none;
 }
 
-/* line 53, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 53, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 a:focus {
   outline: none;
 }
 
-/* line 57, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 57, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 hr {
   margin-bottom: 0;
   margin-top: 10px;
   border-top: 1px solid #ddd;
 }
 
-/* line 63, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 63, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 textarea {
   resize: none;
 }
 
-/* line 67, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 67, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
 }
 
-/* line 72, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 72, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .panel {
   width: 50%;
   margin: 0 auto;
 }
 
-/* line 77, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 77, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .tab-content {
   padding: 20px;
 }
 
-/* line 81, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 81, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .multiselect {
   word-wrap: break-word;
   white-space: normal;
   text-align: left;
 }
 
-/* line 88, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 88, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .content {
   min-height: calc(100vh - 104px);
   padding: 30px 0;
 }
 
-/* line 93, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 93, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .user-info h3 {
   margin: 0;
 }
 
-/* line 97, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 97, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .user-info h5 {
   margin: 0;
 }
 
-/* line 101, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 101, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .user-info .info {
   white-space: pre-line;
 }
 
-/* line 105, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 105, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .user-profile {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-/* line 110, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 110, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .request-in-list .col-md-11 h4, .decision-in-list h4, .notification-in-list h4 {
   margin: 0;
 }
 
-/* line 114, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 114, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .request-in-list p, .decision-in-list p, .notification-in-list p {
   margin-bottom: 0;
 }
 
-/* line 118, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 118, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .request-in-list, .decision-in-list, .notification-in-list {
   margin-top: 10px;
   padding: 10px;
 }
 
-/* line 123, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 123, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .tab-content {
   padding: 20px;
   background-color: #f8f8f8;
@@ -9015,63 +9015,63 @@ textarea {
   border-bottom: 1px solid #ddd;
 }
 
-/* line 131, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 131, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .delete-request, .delete-notification, .edit-notification {
   display: none;
 }
 
-/* line 135, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 135, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .request-in-list:hover .delete-request, .notification-in-list:hover .delete-notification, .notification-in-list:hover .edit-notification {
   display: block;
 }
 
-/* line 139, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 139, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-1 {
   background-color: #1abc9c;
 }
 
-/* line 143, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 143, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-2 {
   background-color: #2ecc71;
 }
 
-/* line 147, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 147, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-3 {
   background-color: #3498db;
 }
 
-/* line 151, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 151, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-4 {
   background-color: #a366bc;
 }
 
-/* line 155, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 155, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-5 {
   background-color: #f1c40f;
 }
 
-/* line 159, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 159, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-6 {
   background-color: #e67e22;
 }
 
-/* line 163, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 163, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-7 {
   background-color: #e74c3c;
 }
 
-/* line 167, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 167, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-8 {
   background-color: #34495e;
 }
 
-/* line 171, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 171, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .decision-new, .notification-new {
   border-radius: 5px;
   background-color: #ddd;
 }
 
-/* line 180, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 180, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .alert {
   position: fixed;
   top: 10vh;
@@ -9080,215 +9080,215 @@ textarea {
   width: 30vw;
 }
 
-/* line 188, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 188, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .width-100 {
   width: 100%;
 }
 
-/* line 192, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 192, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .break-word {
   word-wrap: break-word;
 }
 
-/* line 196, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 196, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .img-center {
   margin: 0 auto;
   padding: 5px;
   display: block;
 }
 
-/* line 202, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 202, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .request-photo {
   max-height: 512px;
   border-radius: 15px;
 }
 
-/* line 207, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 207, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .request-actions {
   padding-top: 5px;
 }
 
-/* line 211, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 211, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .request-description {
   white-space: pre-line;
   padding: 15px 30px;
 }
 
-/* line 216, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 216, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   background-color: #f8f8f8;
 }
 
-/* line 220, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 220, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .badge {
   background-color: #5cb85c;
 }
 
-/* line 224, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 224, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .navbar-default .navbar-brand {
   color: #5cb85c;
 }
 
-/* line 228, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 228, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .navbar-default .navbar-brand:hover, .navbar-brand:focus {
   color: #1E781E;
 }
 
-/* line 232, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 232, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .moder-status {
   width: 150px;
   font-size: 10px;
 }
 
-/* line 237, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 237, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .inline {
   display: inline-block;
 }
 
-/* line 241, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 241, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .search-field {
   width: 225px;
 }
 
-/* line 245, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 245, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .form-header {
   margin: auto 0;
 }
 
-/* line 249, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 249, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .panel-heading .all-filter {
   font-size: 20px;
   margin-left: 50px;
   display: inline-block;
 }
 
-/* line 257, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 257, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .pagination .active span {
   background-color: #dfd;
   border-color: #ddd;
 }
-/* line 261, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 261, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .pagination .active span:hover {
   background-color: #efe;
   color: #777;
   border-color: #ddd;
 }
-/* line 269, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 269, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .pagination li .first, .pagination li .last, .pagination li .current {
   color: #777;
 }
-/* line 273, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 273, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .pagination li span {
   font-weight: bold;
 }
-/* line 276, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 276, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .pagination li span:hover {
   background-color: #efe;
 }
 
-/* line 284, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 284, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-1 {
   background-color: #1abc9c;
 }
 
-/* line 288, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 288, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-2 {
   background-color: #2ecc71;
 }
 
-/* line 292, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 292, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-3 {
   background-color: #3498db;
 }
 
-/* line 296, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 296, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-4 {
   background-color: #a366bc;
 }
 
-/* line 300, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 300, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-5 {
   background-color: #f1c40f;
 }
 
-/* line 304, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 304, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-6 {
   background-color: #e67e22;
 }
 
-/* line 308, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 308, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-7 {
   background-color: #e74c3c;
 }
 
-/* line 312, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 312, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .label-8 {
   background-color: #34495e;
 }
 
-/* line 316, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 316, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .nickname {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-/* line 322, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 322, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .users-in-list {
   margin: 20px auto;
 }
 
-/* line 326, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 326, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .clear-both {
   clear: both;
 }
 
-/* line 330, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 330, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .modal-kek {
   width: 450px;
 }
-/* line 333, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 333, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .modal-kek .agree {
   width: 110px;
 }
-/* line 337, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 337, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .modal-kek .decline {
   width: 100px;
 }
 
-/* line 342, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 342, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .img-template {
   max-width: 185px;
   max-height: 185px;
 }
 
-/* line 347, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 347, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .user-container {
   width: 185px;
 }
 
-/* line 351, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 351, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .file-field-container {
   width: 50%;
 }
 
-/* line 355, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 355, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .table-category-name {
   width: 500px;
 }
 
-/* line 359, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 359, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .category-erase {
   margin-left: 5px;
 }
 
-/* line 363, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 363, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .table-category-color {
   width: 200px;
   padding: 0 !important;
   position: relative;
 }
-/* line 368, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 368, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .table-category-color .label {
   height: 100%;
   width: 100%;
@@ -9297,18 +9297,18 @@ textarea {
   z-index: 1;
 }
 
-/* line 377, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 377, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .category-label {
   margin-left: 3px;
   display: inline-block;
 }
 
-/* line 382, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 382, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .add-url {
   cursor: pointer !important;
 }
 
-/* line 387, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 387, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #modal-color div {
   height: 32px;
   width: 32px;
@@ -9317,29 +9317,29 @@ textarea {
   border-radius: 3px;
   vertical-align: top;
 }
-/* line 396, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 396, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #modal-color .form-control {
   display: inline;
   width: 91%;
 }
 
-/* line 402, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 402, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #carousel-example-generic img {
   height: 500px;
   width: 100%;
 }
 
-/* line 407, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 407, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #carousel-example-generic img, #carousel-example-generic a {
   border-radius: 8px;
 }
 
-/* line 411, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 411, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .divider {
   margin: 20px 100px;
 }
 
-/* line 418, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 418, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block {
   overflow: hidden;
   border-radius: 8px;
@@ -9349,40 +9349,40 @@ textarea {
   font-family: 'Exo 2';
   color: #333;
 }
-/* line 427, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 427, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .col-md-4, .main-block .col-md-6, .main-block .col-md-8, .main-block .col-md-12 {
   margin: 0;
   padding: 0;
   background-color: transparent !important;
 }
-/* line 433, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 433, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .height-1 {
   height: 400px;
 }
-/* line 437, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 437, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .height-2 {
   height: 800px;
 }
-/* line 441, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 441, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .height-3 {
   height: 1200px;
 }
-/* line 446, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 446, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .home-block {
   box-shadow: #ddd 0 0 0 1px;
   font-weight: 300;
   text-align: justify;
   overflow: hidden;
 }
-/* line 452, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 452, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .home-block .title-img {
   width: 100%;
 }
-/* line 456, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 456, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .home-block .responsive-img {
   position: relative;
 }
-/* line 460, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 460, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .home-block .fade {
   background-color: #000;
   opacity: 0.4;
@@ -9392,21 +9392,21 @@ textarea {
   height: 100%;
   width: 100%;
 }
-/* line 469, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 469, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .home-block .fade:hover {
   opacity: 0;
   filter: alpha(opacity=0);
   -webkit-transition: opacity 0.5s linear;
 }
-/* line 476, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 476, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .home-block .block-content {
   padding: 20px;
 }
-/* line 480, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 480, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .home-block .divider {
   margin: 0;
 }
-/* line 484, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 484, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block .home-block .caption {
   font-size: 20px;
   padding: 10px 20px;
@@ -9414,11 +9414,11 @@ textarea {
   background-color: #f5f5f5;
   margin: 0;
 }
-/* line 494, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 494, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #hot {
   font-size: 14px;
 }
-/* line 497, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 497, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #hot .block-content {
   opacity: 0.65;
   filter: alpha(opacity=50);
@@ -9426,154 +9426,154 @@ textarea {
   height: 100%;
   color: #333;
 }
-/* line 503, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 503, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #hot .block-content p {
   padding: 0 30px;
   overflow: hidden;
   line-height: 1.5em;
   height: 3em;
 }
-/* line 510, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 510, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #hot .block-content .responsive-img {
   margin-bottom: 10px;
 }
-/* line 514, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 514, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #hot .block-content:hover {
   opacity: 1;
   filter: alpha(opacity=100);
   -webkit-transition: opacity 0.5s linear;
 }
-/* line 529, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 529, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #daily-photo .block-content h4 {
   margin: 0;
 }
-/* line 538, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 538, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #top .block-content {
   padding: 20px 0;
   color: #333;
 }
-/* line 542, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 542, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #top .block-content .user {
   width: 50%;
   margin-bottom: 30px;
   text-align: center;
 }
-/* line 547, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 547, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #top .block-content .user p {
   color: #333;
 }
-/* line 551, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 551, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #top .block-content .user h1 {
   margin: 0;
   line-height: 194px;
   vertical-align: middle;
 }
-/* line 556, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 556, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #top .block-content .user .top-fade {
   color: #fff;
 }
-/* line 565, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 565, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #requests .block-content {
   padding: 20px 40px;
 }
-/* line 567, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 567, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #requests .block-content hr {
   margin: 20px 40px;
 }
-/* line 570, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 570, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #requests .block-content .pull-right {
   margin-top: 20px;
   font-weight: 500;
 }
-/* line 574, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 574, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #requests .block-content .home-description {
   line-height: 1.5em;
   height: 6em;
   overflow: hidden;
 }
-/* line 584, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 584, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .main-block #info .block-content {
   padding: 40px 20px;
 }
 @media screen and (max-width: 992px) {
-  /* line 596, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 596, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #hot {
     height: 800px;
     font-size: 24px;
   }
-  /* line 600, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 600, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #hot .block-content p {
     line-height: 1.5em;
     height: 6em;
   }
-  /* line 607, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 607, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #news {
     height: 1600px;
   }
-  /* line 612, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 612, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #daily-photo {
     height: 800px;
   }
-  /* line 615, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 615, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #daily-photo .block-content {
     padding: 90px 20px !important;
   }
-  /* line 617, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 617, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #daily-photo .block-content h4 {
     font-size: 32px;
   }
-  /* line 624, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 624, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #top {
     height: 1600px;
   }
-  /* line 627, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 627, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #top .block-content {
     padding: 40px 0 !important;
   }
-  /* line 629, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 629, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #top .block-content .user {
     width: 58% !important;
     font-size: 24px !important;
   }
-  /* line 634, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 634, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #top .block-content .user .top-fade h1 {
     line-height: 434px !important;
     font-size: 72px !important;
   }
-  /* line 649, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 649, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #info .block-content {
     padding: 40px 20px;
   }
 }
 @media screen and (max-width: 1200px) {
-  /* line 663, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 663, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #hot .block-content p {
     line-height: 1.5em;
     height: 6em;
   }
-  /* line 675, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 675, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #daily-photo .block-content {
     padding: 40px 20px;
   }
-  /* line 682, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 682, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #top .block-content {
     padding: 20px 0;
   }
-  /* line 685, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 685, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #top .block-content .user {
     width: 60%;
   }
-  /* line 689, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 689, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #top .block-content .user .top-fade h1 {
     font-size: 36px;
   }
-  /* line 703, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+  /* line 703, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
   .main-block #info .block-content {
     padding: 40px 0;
   }
 }
 
-/* line 717, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 717, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #preload {
   display: flex;
   position: absolute;
@@ -9586,7 +9586,7 @@ textarea {
   background-color: #96c896;
 }
 
-/* line 729, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 729, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .spinner {
   margin: 100px auto;
   width: 40px;
@@ -9594,7 +9594,7 @@ textarea {
   position: relative;
 }
 
-/* line 736, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 736, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .cube1, .cube2 {
   background-color: #fff;
   width: 15px;
@@ -9606,7 +9606,7 @@ textarea {
   animation: sk-cubemove 1.8s infinite ease-in-out;
 }
 
-/* line 748, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 748, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .cube2 {
   -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
@@ -9648,7 +9648,7 @@ textarea {
     -webkit-transform: rotate(-360deg);
   }
 }
-/* line 779, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 779, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .text-box {
   background-color: rgba(0, 0, 0, 0.6);
   text-align: justify;
@@ -9657,7 +9657,7 @@ textarea {
   border-radius: 10px;
 }
 
-/* line 787, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 787, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .share-button {
   width: 44%;
   border: none;
@@ -9675,16 +9675,16 @@ textarea {
   cursor: pointer;
 }
 
-/* line 804, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 804, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .share-twitter {
   background: #1b95e0;
 }
-/* line 806, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 806, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .share-twitter:hover {
   color: #fff;
   background: #0c7abf;
 }
-/* line 810, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 810, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .share-twitter .twitter-logo {
   margin-right: 4px;
   background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E") 0px 0px no-repeat;
@@ -9692,16 +9692,16 @@ textarea {
   height: 15px;
 }
 
-/* line 818, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 818, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .share-vk {
   background: #5f83aa;
 }
-/* line 820, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 820, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .share-vk:hover {
   color: #fff;
   background: #557599;
 }
-/* line 824, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 824, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 .share-vk .vk-logo {
   margin-right: 4px;
   background: url("//vk.com/images/icons/share_logo.png") 0px 0px no-repeat;
@@ -9709,20 +9709,20 @@ textarea {
   height: 15px;
 }
 
-/* line 833, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 833, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 {
   min-width: 175px;
   width: 75%;
   cursor: pointer;
 }
 
-/* line 834, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 834, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 * {
   margin: 0;
   padding: 0;
 }
 
-/* line 835, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 835, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 .bank {
   overflow: hidden;
   padding: 4px;
@@ -9734,7 +9734,7 @@ textarea {
   border-radius: 5px;
 }
 
-/* line 836, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 836, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 h1 {
   overflow: hidden;
   margin-top: -4px;
@@ -9745,13 +9745,13 @@ textarea {
   color: #000000;
 }
 
-/* line 837, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 837, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 h1 span {
   float: left;
   white-space: nowrap;
 }
 
-/* line 838, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 838, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 h1 i {
   float: right;
   display: inline-block;
@@ -9761,14 +9761,14 @@ textarea {
   opacity: .3;
 }
 
-/* line 839, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 839, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 a, #IUAfinance14 a:hover {
   border: none;
   text-decoration: underline;
   color: #000000;
 }
 
-/* line 840, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 840, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 dl {
   overflow: hidden;
   background: #e1fae1;
@@ -9776,19 +9776,19 @@ textarea {
   margin-bottom: 4px;
 }
 
-/* line 841, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 841, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 dl dt {
   font-weight: bold;
   font-size: 12px;
 }
 
-/* line 842, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 842, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 dl dd {
   clear: left;
   border-top: 1px dotted #DDD;
 }
 
-/* line 843, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 843, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 dl span {
   display: block;
   float: left;
@@ -9797,26 +9797,26 @@ textarea {
   text-align: right;
 }
 
-/* line 844, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 844, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 dl span.th {
   width: 22%;
   text-align: left;
 }
 
-/* line 845, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 845, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 dl dt span {
   font-size: 10px;
   font-weight: normal;
 }
 
-/* line 846, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 846, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 dl dd span {
   line-height: 24px;
   font-size: 20px;
   font-family: Trebuchet MS;
 }
 
-/* line 847, /home/shpak/Projects/alter/app/assets/stylesheets/application.scss */
+/* line 847, /home/shpak/Projects/alter/app/assets/stylesheets/application.sass */
 #IUAfinance14 dl dd span img {
   vertical-align: middle;
   margin-right: 1px;
