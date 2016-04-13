@@ -146,6 +146,7 @@ uk:
       model_name: "Назва моделі"
       records: "Записи"
       username: "Користувач"
+      last_created: "Остання активність"
   home:
     name: "Домашня сторінка"
   views:

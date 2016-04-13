@@ -14,6 +14,21 @@ uk:
       request:
         one: 'Запит'
         other: 'Запити'
+      required_item:
+        one: 'Потрібна річ'
+        other: 'Потрібні речі'
+      notification:
+        one: 'Сповіщення'
+        other: 'Сповіщення'
+      helped_item:
+        one: 'Річ з якої допомогли'
+        other: 'Речі з якими допомогли'
+      decision:
+        one: 'Відгук'
+        other: 'Відгуки'
+      category:
+        one: 'Категорія'
+        other: 'Категорії'
     attributes:
       user:
         id: '№'
@@ -29,6 +44,56 @@ uk:
         vkontakte: 'Vk'
         fecebook: 'Facebook'
         avatar: 'Фото'
+        reset_password_sent_at: 'Дата скидання паролю'
+        current_sign_in_at: 'Поточна IP-адреса'
+        last_sign_in_at: 'Дата останнього входу'
+        current_sign_in_ip: 'Дата поточного входу'
+        confirmation_token: 'Ключ підтвердження'
+        confirmed_at: 'Дата підтвердження'
+        confirmation_sent_at: 'Дата відправлення підтвердження'
+        requests: 'Запити'
+        decisions: 'Відгуки'
+        requests_count: 'Запитів'
+        decisions_count: 'Відгуків'
+      request:
+        id: '№'
+        status: 'Статус'
+        name: 'Назва'
+        user: 'Користувач'
+        updated_at: 'Дата оновлення'
+        created_at: 'Дата створення'
+        description: 'Опис'
+        required_items: 'Потрібні речі'
+        decisions: 'Відгуки'
+        photo: 'Фото'
+      decision:
+        id: '№'
+        status: 'Статус'
+        helper: 'Користувач'
+        request: 'Запит'
+        updated_at: 'Дата оновлення'
+        created_at: 'Дата створення'
+        description: 'Опис'
+      category:
+        id: '№'
+        name: 'Назва'
+        color: 'Колір'
+        updated_at: 'Дата оновлення'
+        created_at: 'Дата створення'
+      notification:
+        id: '№'
+        status: 'Статус'
+        user: 'Користувач'
+        message: 'Текст'
+        updated_at: 'Дата оновлення'
+        created_at: 'Дата створення'
+        request: 'Запит'
+        message_type: 'Тип сповіщення'
+        reason_user: 'Користувач(від якого надійшло)'
+
+
+
+
   date:
     abbr_day_names:
     - нд.

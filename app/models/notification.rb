@@ -1,6 +1,8 @@
 class Notification < ActiveRecord::Base
   include NotificationsHelper
   belongs_to :user
+  belongs_to :request
+  belongs_to :reason_user,  class_name: 'User', foreign_key: 'reason_user_id'
   validates :message_type, presence: true, numericality: { only_integer: true }
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :status, presence: true, inclusion: { in: %w(new read) }

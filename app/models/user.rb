@@ -18,16 +18,21 @@ class User < ActiveRecord::Base
   #TODO galimuy sposob poiska
   scope :search_user, -> (query) { where('name like ?', "%#{query}%") }
 
-  def banned?
-    role == 'banned'
-  end
+  #TODO huynya
+    def banned?
+      role == 'banned'
+    end
 
-  def moderator?
-    role == 'moderator'
-  end
+    def moderator?
+      role == 'moderator'
+    end
 
-  def admin?
-    role == 'admin'
+    def admin?
+      role == 'admin'
+    end
+
+  def role?(user_role)
+    role.include?(user_role.to_s)
   end
 
   def with_privileges?

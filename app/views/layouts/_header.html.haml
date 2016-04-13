@@ -29,6 +29,9 @@
                 - if can? :create, Request
                   %li
                     = link_to 'Створити запит', new_request_path
+                - if current_user.role?(:admin)
+                  %li
+                    = link_to 'Панель адміністратора', rails_admin_url
                 %li
                   = link_to 'Запити', requests_path
                 %li
