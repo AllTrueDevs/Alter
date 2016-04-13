@@ -8,7 +8,7 @@
       .col-md-6.user-info
         %h3.inline= @user.name
         - if can?(:change_ban_status, @user) && (current_user != @user)
-          - if @user.banned?
+          - if @user.role?(:banned)
             %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Розблокувати користувача.' }
               %span.glyphicon.glyphicon-check{ 'aria-hidden': true }
             = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_user_path }
@@ -17,7 +17,7 @@
               %span.glyphicon.glyphicon-ban-circle{ 'aria-hidden': true }
             = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_user_path }
         - if can?(:change_moder_status, @user) && (current_user != @user)
-          - if @user.moderator?
+          - if @user.role?(:moderator)
             %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Забрати права модератора.' }
               %span.glyphicon.glyphicon-user{ 'aria-hidden': true }
             = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_user_path }

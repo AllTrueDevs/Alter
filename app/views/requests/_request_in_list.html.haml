@@ -8,7 +8,7 @@
         .col-md-11
           = link_to request do
             %h4= request.name
-          - if request.archived?
+          - if request.status?(:archived)
             %h4
               %small= 'Закрито ' + time_ago_in_words(request.updated_at) + ' тому.'
           - else

@@ -9,7 +9,7 @@
           %h4.request-title.break-word= @request.name
         .col-md-3
           .pull-right.request-actions
-            - if @request.actual?
+            - if @request.status?(:actual)
               - if @request.user != current_user && can?(:create, Decision)
                 - if @request.decisions.where(helper_id: current_user.id).empty?
                   %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
@@ -25,7 +25,7 @@
                   %span.glyphicon.glyphicon-remove{'aria-hidden': true }
                 = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
             - else
-              %p.label.label-danger= @request.archived? ? 'Закрито' : ''
+              %p.label.label-danger= @request.status?(:archived) ? 'Закрито' : ''
     .panel-body
       = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
       %p.break-word.text-justify.request-description= @request.description

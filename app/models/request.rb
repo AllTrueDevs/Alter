@@ -11,17 +11,7 @@ class Request < ActiveRecord::Base
   scope :actual, -> { where(status: 'actual') }
   scope :archived, -> { where(status: 'archived') }
 
-  #TODO huynya
-    def actual?
-      status == 'actual'
-    end
-
-    def archived?
-      status == 'archived'
-    end
-
   def status?(request_status)
     status.include?(request_status.to_s)
   end
-
 end
