@@ -32,16 +32,7 @@ RailsAdmin.config do |config|
   config.model 'User' do
     list do
       field :id
-      field :role do
-        formatted_value do
-          case value
-          when 'admin' then 'Адміністратор'
-          when 'moderator' then 'Модератор'
-          when 'author' then 'Користувач'
-          when 'banned' then 'Заблокований'
-          end
-        end
-      end
+      field :role
       field :email
       field :name
       field :requests_count, :integer do
