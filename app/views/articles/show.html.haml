@@ -1,6 +1,12 @@
 %p#notice= notice
 
+%h1= @article.name
+= image_tag @article.photo.url, class: 'request-photo img-responsive img-center'
+%h3= @article.body
+- @article.tags.each do |tag|
+  %ul
+    %li= tag
 
-= link_to 'Edit', edit_article_path(@article)
+= link_to 'Edit', edit_article_url(@article, url: @article.article_url)
 \|
 = link_to 'Back', news_url

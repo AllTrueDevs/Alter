@@ -21,7 +21,7 @@
         = f.text_field :src, class: 'form-control'
       .form-group
         = f.label :Теги
-        = text_field_tag :tags, '', class: 'tags-field'
+        = f.text_field :tag_list, value: '', class: 'tags-field'
       .form-group
         = f.label :Фото
         .file-field-container

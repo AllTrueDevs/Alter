@@ -28,8 +28,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     respond_to do |format|
       if @article.save
-        @article.tags.add(params[:tags], parse: true)
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to show_article_url(@article, url: @article.article_url), notice: 'Article was successfully created.' }
       else
         format.html { render :new }
       end
@@ -41,7 +40,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to show_article_url(@article, url: @article.article_url), notice: 'Article was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -65,6 +64,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:name, :body, :photo, :src, :tags)
+      params.require(:article).permit(:name, :body, :photo, :src, :tag_list)
     end
 end

@@ -8,8 +8,13 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :requests
-  resources :articles, except: :index
+
   get '/news', to: 'articles#index', as: :news
+  get '/news/:id/:url', to: 'articles#show', as: :show_article
+  get '/news/:id/:url/edit', to: 'articles#edit', as: :edit_article
+  get '/news/new', to: 'articles#new', as: :new_article
+
+  resources :articles, except: [:index, :edit, :new, :show]
 
   devise_for :users, controllers: {
     registrations: 'registrations',
