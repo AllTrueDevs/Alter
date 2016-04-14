@@ -8,7 +8,6 @@
     = csrf_meta_tags
     = favicon_link_tag '/assets/favicon.png', rel: 'shortcut icon'
   %body{ class: home_page? ? 'home-page-bg' : ''}
-    -#= render partial: 'home/preloader' unless default_page?
     = render partial: 'layouts/header'
     .content
       -flash.each do |name, msg|

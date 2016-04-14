@@ -12,7 +12,6 @@
       transform: rotate(0deg)
     to
       transform: rotate(360deg)
-
   .circle
     display: inline-block
     vertical-align: middle
@@ -26,9 +25,9 @@
     .news-circles
       display: none
       position: relative
-      left: 214.5px
-      width: 15px
-      height: 15px
+      left: 212px
+      width: 20px
+      height: 20px
       border-radius: 50%
       border: double 4px rgba(255, 255, 255, 0.5)
       background: rgba(255, 255, 255, 0.5)
@@ -42,55 +41,55 @@
       display: none
       color: #fff
       margin: 0 auto
-      max-width: 310px
-      max-height: 310px
+      margin-top: -20px
+      max-width: 305px
+      max-height: 305px
       p
         padding-bottom: 15px
     //TODO create animation with js
     @keyframes first-news-circle
       from
-        transform: rotate(0deg) translateX(223px)
+        transform: rotate(0deg) translateX(223.5px)
       to
-        transform: rotate(360deg) translateX(223px)
+        transform: rotate(360deg) translateX(223.5px)
 
     @keyframes second-news-circle
       from
-        transform: rotate(72deg) translateX(223px)
+        transform: rotate(72deg) translateX(223.5px)
       to
-        transform: rotate(432deg) translateX(223px)
+        transform: rotate(432deg) translateX(223.5px)
 
     @keyframes third-news-circle
       from
-        transform: rotate(144deg) translateX(223px)
+        transform: rotate(144deg) translateX(223.5px)
       to
-        transform: rotate(504deg) translateX(223px)
+        transform: rotate(504deg) translateX(223.5px)
 
     @keyframes fourth-news-circle
       from
-        transform: rotate(216deg) translateX(223px) rotate(216deg)
+        transform: rotate(216deg) translateX(223.5px)
       to
-        transform: rotate(576deg) translateX(223px) rotate(-576deg)
+        transform: rotate(576deg) translateX(223.5px)
 
     @keyframes fifth-news-circle
       from
-        transform: rotate(288deg) translateX(223px) rotate(288deg)
+        transform: rotate(288deg) translateX(223.5px)
       to
-        transform: rotate(648deg) translateX(223px) rotate(-648deg)
-
+        transform: rotate(648deg) translateX(223.5px)
     #first-news-circle
-      top: 214.5px
+      top: 212px
       animation: first-news-circle 25s linear infinite
-    .second-news-circle
-      top: 199.5px
+    #second-news-circle
+      top: 192px
       animation: second-news-circle 25s linear infinite
-    .third-news-circle
-      top: 184.5px
+    #third-news-circle
+      top: 172px
       animation: third-news-circle 25s linear infinite
-    .fourth-news-circle
-      top: 169.5px
+    #fourth-news-circle
+      top: 152px
       animation: fourth-news-circle 25s linear infinite
-    .fifth-news-circle
-      top: 154.5px
+    #fifth-news-circle
+      top: 132px
       animation: fifth-news-circle 25s linear infinite
 
 .parentbox:before
