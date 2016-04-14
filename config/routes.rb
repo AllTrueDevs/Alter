@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   namespace :users do
     get 'omniauth_callbacks/vkontakte'
   end
 
-  resources :home, only: :index
+  resources :page, only: :home
+  get '/about', to: 'page#about', as: :about
 
-  root to: 'home#index'
+  root to: 'page#home'
 
   resources :requests
 
@@ -49,5 +51,4 @@ Rails.application.routes.draw do
   end
 
   get '/id:id', to: 'users#show', as: :user
-
 end

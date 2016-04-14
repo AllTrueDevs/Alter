@@ -8,6 +8,10 @@ module Alter
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
 
+    # config.i18n.default_locale = :uk
+    config.i18n.locale = :uk
+    config.i18n.default_locale =:uk
+
     ActionMailer::Base.smtp_settings = {
         :address        => 'smtp.gmail.com',
         :domain         => 'mail.google.com',

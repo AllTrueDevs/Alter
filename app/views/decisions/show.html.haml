@@ -21,7 +21,7 @@
     .panel-body
       %p.break-word.text-justify.request-description= @decision.description
       - @decision.accepted_items.each do |accepted_item|
-        = link_to requests_path(category_id: accepted_item.required_item.category.id) do
+        = link_to requests_url(category_id: accepted_item.required_item.category.id) do
           %span{ class: "label label-#{accepted_item.required_item.category.color}" }= Category.find(accepted_item.required_item.category_id).name
 .col-md-3
   .panel.panel-default.width-100

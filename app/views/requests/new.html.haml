@@ -8,7 +8,7 @@
   .panel-heading
     %h4 Новий запит про допомогу
   .panel-body
-    = form_for @request, url: requests_path, html: { multipart: true, role: :form } do |f|
+    = form_for @request, url: requests_url, html: { multipart: true, role: :form } do |f|
       .form-group
         = f.label :Назва
         = f.text_field :name, class: 'form-control'

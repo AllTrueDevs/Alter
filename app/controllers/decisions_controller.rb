@@ -35,7 +35,7 @@ class DecisionsController < ApplicationController
     @decision.accepted_items.each{ |item| Decision.update_helped_items!(item) }
     @decision.accepted_items.destroy_all
     @decision.destroy
-    redirect_to decisions_path
+    redirect_to decision_url
   end
 
   def partly
@@ -46,7 +46,7 @@ class DecisionsController < ApplicationController
         @accepted_items.each{ |id| item = AcceptedItem.find(id); Decision.update_helped_items!(item) }
         @decision.accepted_items.destroy_all
         @decision.destroy
-        format.html { redirect_to decisions_path }
+        format.html { redirect_to decisions_url }
       else
         format.html { redirect_to :back, notice: 'Оберіть категорії' }
       end
@@ -57,7 +57,7 @@ class DecisionsController < ApplicationController
     User.find(@decision.helper_id).notifications.create(message_type: 3, reason_user_id: current_user.id, request_id: @decision.request_id)
     @decision.accepted_items.destroy_all
     @decision.destroy!
-    redirect_to decisions_path
+    redirect_to decisions_url
   end
 
   private

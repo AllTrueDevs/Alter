@@ -28,7 +28,7 @@ class NotificationsController < ApplicationController
 
   def clean
     current_user.notifications.destroy_all
-    redirect_to notifications_path, notice: 'Всі сповіщення видалено'
+    redirect_to notifications_url, notice: 'Всі сповіщення видалено'
   end
 
   private
