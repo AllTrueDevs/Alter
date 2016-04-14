@@ -1,0 +1,7 @@
+%h1 Editing article
+
+= render 'form'
+
+= link_to 'Show', show_article_url(@article, url: @article.article_url)
+\|
+= link_to 'Back', news_url

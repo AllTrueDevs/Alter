@@ -33,6 +33,10 @@ gem 'kaminari'
 gem 'chartkick'
 gem 'bootstrap-filestyle-rails'
 gem 'font-awesome-rails'
+gem 'acts-as-taggable-on'
+gem 'translit'
+gem 'selectize-rails'
+gem 'gon'
 
 #############################
 ### Backend

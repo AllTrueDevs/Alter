@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   namespace :users do
     get 'omniauth_callbacks/vkontakte'
@@ -8,15 +7,21 @@ Rails.application.routes.draw do
   resources :page, only: :home
   get '/about', to: 'page#about', as: :about
 
-
   root to: 'page#home'
 
   resources :requests
 
+  get '/news', to: 'articles#index', as: :news
+  get '/news/:id/:url', to: 'articles#show', as: :show_article
+  get '/news/:id/:url/edit', to: 'articles#edit', as: :edit_article
+  get '/news/new', to: 'articles#new', as: :new_article
+
+  resources :articles, except: [:index, :edit, :new, :show]
+
   devise_for :users, controllers: {
-                       registrations: 'registrations',
-                       omniauth_callbacks: 'users/omniauth_callbacks'
-                   }
+    registrations: 'registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   resources :categories, only: [:index, :destroy, :create, :update]
 
@@ -46,5 +51,4 @@ Rails.application.routes.draw do
   end
 
   get '/id:id', to: 'users#show', as: :user
-
 end

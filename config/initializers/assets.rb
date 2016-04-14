@@ -19,8 +19,10 @@ Rails.application.config.assets.precompile += %w(
   plugins/file-field.coffee
   plugins/preloader.coffee
   plugins/share_buttons.js
+  plugins/tags-field.coffee
   user-tabs.coffee
   categories_with_labels.js
   selection_color.coffee
   home.coffee
+  articles.coffee
 )
