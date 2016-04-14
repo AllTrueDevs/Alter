@@ -1,4 +1,4 @@
-%header{class: "#{default_page? ? 'light' : 'dark'}-theme"}
+%header{class: "#{home_page? ? 'dark' : 'light'}-theme"}
   %nav.navbar.navbar-default.custom-header
     .container
       .navbar-header
@@ -7,15 +7,15 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to 'Alter', root_path, class: 'navbar-brand brand'
+        = link_to 'Alter', root_url, class: 'navbar-brand brand'
       #navbar.colapse.navbar-collapse
         %ul.nav.navbar-nav
           %li
-            = link_to 'Запити', requests_path
+            = link_to 'Запити', requests_url
           %li
-            = link_to 'Про Нас', requests_path
+            = link_to 'Про Нас', about_url
           %li
-            = link_to 'Контакти', requests_path
+            = link_to 'Контакти', requests_url
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li.dropdown
@@ -25,7 +25,7 @@
                 -#%span#new-info.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
               %ul.dropdown-menu
                 %li
-                  = link_to 'Мій профіль', user_path(current_user)
+                  = link_to 'Мій профіль', user_url(current_user)
                 - if can? :create, Request
                   %li
                     = link_to 'Створити запит', new_request_path
@@ -33,21 +33,21 @@
                   %li
                     = link_to 'Панель адміністратора', rails_admin_url
                 %li
-                  = link_to 'Запити', requests_path
+                  = link_to 'Запити', requests_url
                 %li
-                  = link_to notifications_path do
+                  = link_to notifications_url do
                     Cповіщення
                     %span#new-notifications.number= @new_notifications.to_s unless @new_notifications.zero?
                 %li
-                  = link_to decisions_path do
+                  = link_to decisions_url do
                     Відгуки
                     %span.number= @new_decisions.to_s unless @new_decisions.zero?
                 - if can? :change_ban_status, User
                   %li
-                    = link_to 'Користувачі', users_path
+                    = link_to 'Користувачі', users_url
                 - if can? :manage, Category
                   %li
-                    = link_to 'Категорії', categories_path
+                    = link_to 'Категорії', categories_url
                 %li
                   = link_to 'Налаштування', edit_user_registration_path
                 %li

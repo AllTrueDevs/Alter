@@ -1,18 +1,18 @@
-module HomeHelper
+module PageHelper
   NEWS = [
       {
-        name: 'Hola kek. Hola kek. Hola kek. Hola kek. Hola kek.
+          name: 'Hola kek. Hola kek. Hola kek. Hola kek. Hola kek.
           Hola kek. Hola kek. Hola kek. Hola kek. Hola kek. Hola kek. Hola kek. Hola kek. Hola kek.Hola kek.',
-        description: 'Example of text. Example of text. Example of text. Example of text. Example of text.
+          description: 'Example of text. Example of text. Example of text. Example of text. Example of text.
           Example of text. Example of text. Example of text. Example of text. Example of text. Example of text. Example of text. Example of text. Example of text.
           Example of text. Example of text. Example of text. Example of text. Example of text. Example of text.',
-        photo: '/assets/missing-photo.jpg'
+          photo: '/assets/missing-photo.jpg'
       },
       {
-        name: 'Hola kek.',
-        description: 'Example of text. Example of text. Example of text. Example of text. Example of text.
+          name: 'Hola kek.',
+          description: 'Example of text. Example of text. Example of text. Example of text. Example of text.
               Example of text. Example of text.',
-        photo: '/assets/missing-photo.jpg'
+          photo: '/assets/missing-photo.jpg'
       },
       {
           name: 'Hola kek. Hola kek. Hola kek. Hola kek. Hola kek.',

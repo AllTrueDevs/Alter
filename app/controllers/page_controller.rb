@@ -1,6 +1,5 @@
-class HomeController < ApplicationController
-
-  def index
+class PageController < ApplicationController
+  def home
     @actual_request = Request.actual.last
     @top_users = User.all.sort_by {|post| post.helped_items_count }.reverse.take(3)
     @requests = []
@@ -10,5 +9,7 @@ class HomeController < ApplicationController
       break if @requests.size == 5
     end
   end
-end
 
+  def about
+  end
+end

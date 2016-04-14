@@ -10,8 +10,8 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category.color = params[:color].to_i
     respond_to do |format|
-      @category.save ? format.html { redirect_to categories_path, notice: 'Категорію успішно додано.' } :
-          format.html { redirect_to categories_path, notice: 'Заповніть усі поля.'}
+      @category.save ? format.html { redirect_to categories_url, notice: 'Категорію успішно додано.' } :
+          format.html { redirect_to categories_url, notice: 'Заповніть усі поля.'}
     end
   end
 

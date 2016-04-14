@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     if @user.confirmed_at.nil?
-      redirect_to root_path, notice: 'Користувач ще не підтвердив реєстрацію'
+      redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію'
     else
       @actual_requests = @user.requests.actual.order(:created_at => :desc).page(params[:page]).per(10)
       @helped_items = @user.helped_items.sort{ |item_1, item_2| [ item_2.count, item_1.category.name ] <=> [ item_1.count, item_2.category.name ] }
