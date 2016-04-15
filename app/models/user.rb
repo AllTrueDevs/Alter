@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  ROLES = %w[admin moderator author banned]
+  ROLES = %w[admin moderator newsmaker author banned]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:vkontakte, :facebook]
@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :helped_items, :dependent => :destroy
   has_many :decisions, foreign_key: 'helper_id'
   has_many :user_tags, :dependent => :destroy
+  has_many :articles
   has_attached_file :avatar, default_url: 'missing-avatar.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { in: 4..40 }

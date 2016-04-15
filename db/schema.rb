@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414135353) do
+ActiveRecord::Schema.define(version: 20160415125421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,10 @@ ActiveRecord::Schema.define(version: 20160414135353) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -43,13 +46,16 @@ ActiveRecord::Schema.define(version: 20160414135353) do
   end
 
   create_table "decisions", force: :cascade do |t|
+    t.string   "status",      default: "new"
     t.integer  "helper_id"
     t.integer  "request_id"
-    t.string   "status",      default: "new"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.text     "description"
   end
+
+  add_index "decisions", ["helper_id"], name: "index_decisions_on_helper_id", using: :btree
+  add_index "decisions", ["request_id"], name: "index_decisions_on_request_id", using: :btree
 
   create_table "helped_items", force: :cascade do |t|
     t.integer  "count",       default: 1
@@ -59,15 +65,21 @@ ActiveRecord::Schema.define(version: 20160414135353) do
     t.datetime "updated_at",              null: false
   end
 
+  add_index "helped_items", ["category_id"], name: "index_helped_items_on_category_id", using: :btree
+  add_index "helped_items", ["user_id"], name: "index_helped_items_on_user_id", using: :btree
+
   create_table "notifications", force: :cascade do |t|
     t.string   "status",         default: "new"
     t.integer  "user_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "message_type"
-    t.integer  "reason_user_id"
     t.integer  "request_id"
+    t.integer  "reason_user_id"
   end
+
+  add_index "notifications", ["reason_user_id"], name: "index_notifications_on_reason_user_id", using: :btree
+  add_index "notifications", ["request_id"], name: "index_notifications_on_request_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.string   "name"
@@ -117,6 +129,8 @@ ActiveRecord::Schema.define(version: 20160414135353) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "user_tags", ["user_id"], name: "index_user_tags_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",       null: false
     t.string   "encrypted_password",     default: "",       null: false
@@ -153,4 +167,18 @@ ActiveRecord::Schema.define(version: 20160414135353) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "accepted_items", "decisions"
+  add_foreign_key "accepted_items", "required_items"
+  add_foreign_key "articles", "users"
+  add_foreign_key "decisions", "requests"
+  add_foreign_key "decisions", "users", column: "helper_id"
+  add_foreign_key "helped_items", "categories"
+  add_foreign_key "helped_items", "users"
+  add_foreign_key "notifications", "requests"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "reason_user_id"
+  add_foreign_key "requests", "users"
+  add_foreign_key "required_items", "categories"
+  add_foreign_key "required_items", "requests"
+  add_foreign_key "user_tags", "users"
 end
