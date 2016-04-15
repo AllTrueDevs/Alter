@@ -168,6 +168,9 @@ GEM
     nested_form (0.3.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    numbers_and_words (0.10.5)
+      activesupport
+      i18n
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0, < 1.5.2)
@@ -315,6 +318,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
+  numbers_and_words
   omniauth
   omniauth-facebook
   omniauth-vkontakte
