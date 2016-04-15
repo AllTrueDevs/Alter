@@ -322,7 +322,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.4)
   rails-i18n (~> 4.0.0)
-  rails_12factor (= 0.0.2)
+  rails_12factor
   rails_admin!
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
