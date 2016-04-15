@@ -6,6 +6,7 @@ class Ability
 
     can [ :actual_requests, :archived_requests ], User
     can :read, Request
+    can :read, Article
 
     if user
       can [ :show, :statistic ], User
@@ -36,8 +37,11 @@ class Ability
       case user.role
       when 'admin'
         can :manage, User
+        can :manage, Article
       when 'moderator'
         can [ :change_ban_status, :index ], User
+      when 'newsmaker'
+         can :manage, Article
       when 'banned'
         cannot :cud, Request
         cannot :cud, Decision

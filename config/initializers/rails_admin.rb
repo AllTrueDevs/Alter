@@ -55,6 +55,7 @@ RailsAdmin.config do |config|
           case value
             when 'admin' then 'Адміністратор'
             when 'moderator' then 'Модератор'
+            when 'newsmaker' then 'Редактор'
             when 'author' then 'Користувач'
             when 'banned' then 'Заблокований'
           end
@@ -73,7 +74,7 @@ RailsAdmin.config do |config|
       end
       field :role, :enum do
         enum do
-          Hash[ ['Адміністратор', 'Модератор', 'Користувач', 'Заблокований'].zip(['admin', 'moderator', 'author', 'banned']) ]
+          Hash[ ['Адміністратор', 'Модератор', 'Редактор', 'Користувач', 'Заблокований'].zip(['admin', 'moderator', 'newsmaker', 'author', 'banned']) ]
         end
       end
       field :reset_password_sent_at
