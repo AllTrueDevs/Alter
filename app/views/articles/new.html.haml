@@ -1,31 +1,9 @@
-= include_gon
 = content_for :title, 'Додати новину'
-= content_for :javascript do
-  = javascript_include_tag 'articles'
-
-%h1 New article
 
 .panel.panel-default
   .panel-heading
     %h4 Додати новину
   .panel-body
-    = form_for @article, html: { multipart: true, role: :form } do |f|
-      .form-group
-        = f.label :Назва
-        = f.text_field :name, class: 'form-control'
-      .form-group
-        = f.label :Опис
-        = f.text_area :body, autofocus: true, class: 'form-control', rows: '5'
-      .form-group
-        = f.label :Джерело
-        = f.text_field :src, class: 'form-control'
-      .form-group
-        = f.label :Теги
-        = f.text_field :tag_list, value: '', class: 'tags-field'
-      .form-group
-        = f.label :Фото
-        .file-field-container
-          = f.file_field :photo, accept: 'image/png, image/jpeg'
-      = f.submit 'Опублікувати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
+    = render partial: 'form', locals: { article: @article }
 
 = link_to 'Back', news_url

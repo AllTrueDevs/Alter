@@ -1,6 +1,10 @@
-%h1 Editing article
+= content_for :title, 'Редагувати новину'
 
-= render 'form'
+.panel.panel-default
+  .panel-heading
+    %h4 Редагувати новину
+  .panel-body
+    = render partial: 'form', locals: { article: @article }
 
 = link_to 'Show', show_article_url(@article, url: @article.article_url)
 \|
