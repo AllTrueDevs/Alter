@@ -3,7 +3,7 @@
   text-align: center
   .phrases
     padding: 0 15px
-    font-size: 1.2em
+    font-size: 1.3em
     font-weight: bold
     font-family: 'GothaProBol'
     color: #fff
@@ -41,11 +41,19 @@
       display: none
       color: #fff
       margin: 0 auto
-      margin-top: -20px
-      max-width: 305px
-      max-height: 305px
+      padding-top: 65px
+      max-width: 200px
       p
         padding-bottom: 15px
+      .title
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        font-size: 1.3em
+        font-family: 'GothaProBol'
+      .description
+        font-size: 0.8em
+        text-align: left
     //TODO create animation with js
     @keyframes first-news-circle
       from
