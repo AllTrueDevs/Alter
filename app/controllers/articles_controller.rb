@@ -1,33 +1,26 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :fill_tags, only: [:new, :edit]
 
-  # GET /articles
-  # GET /articles.json
   def index
     @articles = Article.all.order(:name)
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
   end
 
-  # GET /articles/new
   def new
     @article = Article.new
-    gon.default_tags_collection = %w(music sport politic hot)
   end
 
-  # GET /articles/1/edit
   def edit
   end
 
-  # POST /articles
-  # POST /articles.json
   def create
     @article = Article.new(article_params)
     respond_to do |format|
       if @article.save
+        current_user.create_unique_tags(article_params[:tag_list], :news)
         format.html { redirect_to show_article_url(@article, url: @article.article_url), notice: 'Article was successfully created.' }
       else
         format.html { render :new }
@@ -35,11 +28,10 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/1
-  # PATCH/PUT /articles/1.json
   def update
     respond_to do |format|
       if @article.update(article_params)
+        current_user.create_unique_tags(article_params[:tag_list], :news)
         format.html { redirect_to show_article_url(@article, url: @article.article_url), notice: 'Article was successfully updated.' }
       else
         format.html { render :edit }
@@ -47,8 +39,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # DELETE /articles/1
-  # DELETE /articles/1.json
   def destroy
     @article.destroy
     respond_to do |format|
@@ -56,14 +46,19 @@ class ArticlesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:name, :body, :photo, :src, :tag_list)
-    end
+  private
+
+
+  def fill_tags
+    gon.default_tags_collection = current_user.news_tags.pluck(:value)
+  end
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  def article_params
+    params.require(:article).permit(:name, :body, :photo, :src, :tag_list)
+  end
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tag/destroy'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   namespace :users do
     get 'omniauth_callbacks/vkontakte'
@@ -11,12 +13,13 @@ Rails.application.routes.draw do
 
   resources :requests
 
+  resources :articles, except: [:index, :edit, :new, :show]
   get '/news', to: 'articles#index', as: :news
   get '/news/:id/:url', to: 'articles#show', as: :show_article
   get '/news/:id/:url/edit', to: 'articles#edit', as: :edit_article
   get '/news/new', to: 'articles#new', as: :new_article
 
-  resources :articles, except: [:index, :edit, :new, :show]
+  resources :user_tag, only: :destroy
 
   devise_for :users, controllers: {
     registrations: 'registrations',

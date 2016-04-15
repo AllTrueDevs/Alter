@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :notifications, :dependent => :destroy
   has_many :helped_items, :dependent => :destroy
   has_many :decisions, foreign_key: 'helper_id'
+  has_many :user_tags, :dependent => :destroy
   has_attached_file :avatar, default_url: 'missing-avatar.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { in: 4..40 }
@@ -17,6 +18,10 @@ class User < ActiveRecord::Base
   validates :skype, length:  { maximum: 32 }
   #TODO galimuy sposob poiska
   scope :search_user, -> (query) { where('name like ?', "%#{query}%") }
+
+  after_create do
+    user_tags.create(form_tags(default_tags, :news))
+  end
 
   def role?(user_role)
     role.include?(user_role.to_s)
@@ -42,4 +47,24 @@ class User < ActiveRecord::Base
     helped_items.pluck(:count).inject(0){|sum, count| sum += count }
   end
 
+  def news_tags
+    user_tags.where(tag_type: :news).order(:value)
+  end
+
+  def create_unique_tags(tags, tag_type)
+    result = tags.split(',').inject([]){|array, tag| array << { value: tag, tag_type: tag_type } if user_tags.where(tag_type: tag_type).where.not(value: tag) }
+    user_tags.create(result)
+  end
+
+
+  private
+
+
+  def default_tags
+    %w(Волонтери АТО Допомога Терміново)
+  end
+
+  def form_tags(tags, tag_type)
+    tags.map{ |tag| { value: tag, tag_type: tag_type } }
+  end
 end
