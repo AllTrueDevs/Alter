@@ -2,11 +2,18 @@
   height: calc(100vh - 180px)
   text-align: center
   .phrases
+    position: relative
+    z-index: 99999999
     padding: 0 15px
     font-size: 1.3em
     font-weight: bold
     font-family: 'GothaProBol'
     color: #fff
+  .first
+    margin-right: -100px
+  .second
+    margin-left: -120px
+
   @keyframes circle
     from
       transform: rotate(0deg)
@@ -14,6 +21,7 @@
       transform: rotate(360deg)
 
   .circle
+    position: relative
     display: inline-block
     vertical-align: middle
     margin: 0 auto
@@ -39,10 +47,15 @@
       background: #fff
       background-clip: padding-box
     .news
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 200px
+      margin: 0 auto
+      margin-top: -50px
+      margin-left: -100px
       display: none
       color: #fff
-      margin: 0 auto
-      padding-top: 65px
       max-width: 200px
       p
         padding-bottom: 15px
