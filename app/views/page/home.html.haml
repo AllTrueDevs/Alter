@@ -4,7 +4,7 @@
 = content_for :plugins do
   = javascript_include_tag 'home'
 .parentbox
-  %span.phrases.first Дрібниця для одного
+  %span.phrases.first Дрібниця для одного.
   .circle
     = link_to '', request_url(@requests[0]),id: 'first-news-circle', class: 'news-circles', data: { title: @requests[0].name, description: truncate(@requests[0].description, length: 500, separator: ' ') }
     = link_to '', request_url(@requests[1]),id: 'second-news-circle', class: 'news-circles', data: { title: @requests[1].name, description: truncate(@requests[1].description, length: 500, separator: ' ') }
@@ -14,6 +14,6 @@
     .news
       %p.title= @requests[0].name
       %p.description= truncate(@requests[0].description, length: 500, separator: ' ')
-  %span.phrases.second Весь світ для іншого
+  %span.phrases.second Весь світ для іншого.
   -#  = javascript_include_tag 'preloader'
 
