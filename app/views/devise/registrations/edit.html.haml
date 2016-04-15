@@ -1,4 +1,6 @@
 = content_for :title, 'Налаштування профілю'
+= content_for :styles do
+  = stylesheet_link_tag 'users'
 = content_for :plugins do
   = javascript_include_tag 'plugins/file-field'
 
@@ -22,10 +24,10 @@
       .form-group
         %label Skype
         = f.text_field :skype, class: 'form-control'
-      .form-group
-        = render partial: 'edit_url', locals: {social: :vkontakte}
-      .form-group
-        = render partial: 'edit_url', locals: {social: :facebook}
+      .form-group.social.vk
+        = render partial: 'edit_url', locals: { social: :vkontakte, user: resource }
+      .form-group.social.facebook
+        = render partial: 'edit_url', locals: { social: :facebook, user: resource }
       .form-group
         = f.label :Фото
         .file-field-container

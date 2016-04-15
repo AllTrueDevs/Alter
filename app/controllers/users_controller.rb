@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :actual_requests, :archived_requests]
+  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :actual_requests, :archived_requests, :detach_social_link]
   before_action :authenticate_user!, except: [:actual_requests, :archived_requests]
   load_and_authorize_resource except: [:actual_requests, :archived_requests]
 
@@ -62,6 +62,13 @@ class UsersController < ApplicationController
   def admin_login
     sign_in(@user)
     redirect_to root_url
+  end
+
+  def detach_social_link
+    @user.send("#{params[:social]}=", nil)
+    @user.send("#{params[:social]}_name=", nil)
+    @user.save
+    redirect_to edit_user_registration_path
   end
 
   def actual_requests

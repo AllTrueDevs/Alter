@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get :actual_requests
       get :archived_requests
       get :statistic
+      get :detach_social_link
     end
   end
 

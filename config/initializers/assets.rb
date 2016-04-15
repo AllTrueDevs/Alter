@@ -10,6 +10,7 @@ Rails.application.config.assets.precompile += %w(
   scaffolds.sass
   home.sass
   about.sass
+  users.sass
 )
 
 ######################### JS

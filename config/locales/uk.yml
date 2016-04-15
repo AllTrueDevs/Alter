@@ -3,6 +3,11 @@ uk:
       default: "У вас недостатньо прав, для доступу до цієї сторінки"
       show:
         user: "Ваc заблоковано, Ви не можете цього зробити"
+  edit_facebook_new: "Прив'язати до Facebook"
+  edit_facebook_change: "Змінити аккаунт Facebook"
+  edit_vkontakte_new: "Прив'язати до ВКонтакте"
+  edit_vkontakte_change: "Змінити аккаунт ВКонтакте"
+
   activerecord:
     errors:
       messages:

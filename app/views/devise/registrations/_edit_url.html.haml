@@ -1,7 +1,10 @@
-- if current_user.send(social).nil?
+- if user.send(social).nil?
   = link_to t("edit_#{social}_new"), user_omniauth_authorize_path(social)
 - else
   %label= "#{social.capitalize}:"
-  = link_to user_omniauth_authorize_path(social) do
-    = text_field_tag social, current_user.send(social), class: 'form-control add-url',
-        disabled: true, title: t("edit_#{social}_change")
+  = text_field_tag social, user.send(social), class: 'form-control add-url', disabled: true
+  .actions
+    = link_to user_omniauth_authorize_path(social) do
+      %i.fa.fa-pencil
+    = link_to detach_social_link_user_url(user, social: social) do
+      %i.fa.fa-trash
