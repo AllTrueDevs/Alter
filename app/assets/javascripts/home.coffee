@@ -1,6 +1,4 @@
 $ ->
-  $('.news-circles').each ->
-    $(this).addClass('hidden') if $(this).attr('href') == '#'
   $('.news-circles').delay(250).fadeIn()
   $('.news').delay(550).fadeIn 'slow'
   $('.news-circles').hover (->
