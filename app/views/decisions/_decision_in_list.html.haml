@@ -10,7 +10,7 @@
           %h4
             %small
               = 'Надіслано ' + time_ago_in_words(decision.created_at) + ' тому, '
-              = link_to User.find(decision.helper_id).name, user_path(User.find(decision.helper_id))
+              = link_to User.find(decision.helper_id).name, user_url(User.find(decision.helper_id))
       .row
         .col-md-12
           %p=  decision.description.truncate(530, separator:' ')
@@ -18,7 +18,7 @@
             .col-md-10.col-md-offset-2
               .pull-right
                 - decision.accepted_items.each do |accepted_item|
-                  = link_to requests_path(category_id: accepted_item.required_item.category.id) do
+                  = link_to requests_url(category_id: accepted_item.required_item.category.id) do
                     %span{ class: "label label-#{accepted_item.required_item.category.color}" }= Category.find(accepted_item.required_item.category_id).name
 - if decision != decisions.last
   %hr

@@ -4,14 +4,12 @@
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
     %title= "Alter | #{yield(:title)}"
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
-    = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Exo+2:300,500&subset=latin,cyrillic'
-    = javascript_include_tag 'application'
+    = yield :styles
     = csrf_meta_tags
-    = favicon_link_tag '/assets/favicon.png', :rel => 'shortcut icon'
-  %body
-    = render partial: 'home/preloader' if controller_name == 'home'
+    = favicon_link_tag '/assets/favicon.png', rel: 'shortcut icon'
+  %body{ class: home_page? ? 'home-page-bg' : ''}
     = render partial: 'layouts/header'
-    .container.content
+    .content
       -flash.each do |name, msg|
         .alert.alert-info.alert-dismissible
           %button.close{ 'data-dismiss': :alert, type: :button }
@@ -19,5 +17,7 @@
             %span.sr-only Close
           = msg
       = yield
+      = javascript_include_tag 'application'
       = yield :plugins
+      = yield :javascript
     = render partial: 'layouts/footer'

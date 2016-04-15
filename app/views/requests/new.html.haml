@@ -1,12 +1,14 @@
 = content_for :title, 'Створення нового запиту на допомогу'
 = content_for :plugins do
+  = javascript_include_tag 'plugins/file-field'
+= content_for :javascript do
   = javascript_include_tag 'categories_with_labels'
-  = javascript_include_tag 'file-field'
+
 .panel.panel-default
   .panel-heading
     %h4 Новий запит про допомогу
   .panel-body
-    = form_for @request, url: requests_path, html: { multipart: true, role: :form } do |f|
+    = form_for @request, url: requests_url, html: { multipart: true, role: :form } do |f|
       .form-group
         = f.label :Назва
         = f.text_field :name, class: 'form-control'

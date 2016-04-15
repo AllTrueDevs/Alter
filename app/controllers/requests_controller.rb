@@ -16,7 +16,7 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    redirect_to root_url, notice: 'Цей запит закрито.' if @request.archived?
+    redirect_to root_url, notice: 'Цей запит закрито.' if @request.status?(:archived)
     @collection = @request.required_items.collect(&:category_id)
   end
 

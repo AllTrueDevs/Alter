@@ -1,3 +1,47 @@
-%footer
-  .container
-    %p © Alter, 2016. All rights reserved.
+- if home_page?
+  %footer.dark-theme
+    .custom-footer
+      %ul.contacts
+        %li
+          = link_to root_path do
+            %i.fa.fa-pinterest-p
+        %li
+          = link_to root_path do
+            %i.fa.fa-twitter
+        %li
+          = link_to root_path do
+            %i.fa.fa-linkedin
+        %li
+          = link_to root_path do
+            %i.fa.fa-instagram
+        %li
+          = link_to root_path do
+            %i.fa.fa-facebook
+- else
+  %footer.light-theme
+    .custom-footer
+      .top
+        .container
+          .pull-left
+            = link_to 'Alter', root_url, class: 'brand'
+          %ul.pull-right.contact-information
+            %li
+              %ul.contacts
+                %li
+                  = link_to root_path do
+                    %i.fa.fa-pinterest-p
+                %li
+                  = link_to root_path do
+                    %i.fa.fa-twitter
+                %li
+                  = link_to root_path do
+                    %i.fa.fa-linkedin
+                %li
+                  = link_to root_path do
+                    %i.fa.fa-instagram
+                %li
+                  = link_to root_path do
+                    %i.fa.fa-facebook
+            %li support@alter.com
+      .bottom
+        .container &copy;Alter, 2016. Всі права захищені.

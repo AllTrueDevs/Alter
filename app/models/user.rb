@@ -14,27 +14,26 @@ class User < ActiveRecord::Base
                     :url => ':s3_domain_url',
                     :path => '/:class/:attachment/:id_partition/:style/:filename',
                     :default_url => 'missing-avatar.png'
+  has_many :decisions, foreign_key: 'helper_id'
+  has_many :user_tags, :dependent => :destroy
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { in: 4..40 }
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
-  scope :search, -> (query) { where('name like ?', "%#{query}%") }
+  #TODO galimuy sposob poiska
+  scope :search_user, -> (query) { where('name like ?', "%#{query}%") }
 
-  def banned?
-    role == 'banned'
+  after_create do
+    user_tags.create(form_tags(default_tags, :news))
   end
 
-  def moderator?
-    role == 'moderator'
-  end
-
-  def admin?
-    role == 'admin'
+  def role?(user_role)
+    role.include?(user_role.to_s)
   end
 
   def with_privileges?
-    admin? || moderator?
+    role?(:admin) || role?(:moderator)
   end
 
   def vkontakte_oauth!(access_token)
@@ -53,4 +52,24 @@ class User < ActiveRecord::Base
     helped_items.pluck(:count).inject(0){|sum, count| sum += count }
   end
 
+  def news_tags
+    user_tags.where(tag_type: :news).order(:value)
+  end
+
+  def create_unique_tags(tags, tag_type)
+    result = tags.split(',').inject([]){|array, tag| array << { value: tag, tag_type: tag_type } if user_tags.where(tag_type: tag_type).where.not(value: tag) }
+    user_tags.create(result)
+  end
+
+
+  private
+
+
+  def default_tags
+    %w(Волонтери АТО Допомога Терміново)
+  end
+
+  def form_tags(tags, tag_type)
+    tags.map{ |tag| { value: tag, tag_type: tag_type } }
+  end
 end

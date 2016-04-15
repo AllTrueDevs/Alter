@@ -1,0 +1,19 @@
+= content_for :title, 'Головна'
+= content_for :styles do
+  = stylesheet_link_tag 'home'
+= content_for :plugins do
+  = javascript_include_tag 'home'
+.parentbox
+  %span.phrases.first Дрібниця для одного
+  .circle
+    = link_to '', request_url(@requests[0]),id: 'first-news-circle', class: 'news-circles', data: { title: @requests[0].name, description: truncate(@requests[0].description, length: 500, separator: ' ') }
+    = link_to '', request_url(@requests[1]),id: 'second-news-circle', class: 'news-circles', data: { title: @requests[1].name, description: truncate(@requests[1].description, length: 500, separator: ' ') }
+    = link_to '', request_url(@requests[2]),id: 'third-news-circle', class: 'news-circles', data: { title: @requests[2].name, description: truncate(@requests[2].description, length: 500, separator: ' ') }
+    = link_to '', request_url(@requests[3]),id: 'fourth-news-circle', class: 'news-circles', data: { title: @requests[3].name, description: truncate(@requests[3].description, length: 500, separator: ' ') }
+    = link_to '', request_url(@requests[4]),id: 'fifth-news-circle', class: 'news-circles', data: { title: @requests[4].name, description: truncate(@requests[4].description, length: 500, separator: ' ') }
+    .news
+      %p.title= @requests[0].name
+      %p.description= truncate(@requests[0].description, length: 500, separator: ' ')
+  %span.phrases.second Весь світ для іншого
+  -#  = javascript_include_tag 'preloader'
+

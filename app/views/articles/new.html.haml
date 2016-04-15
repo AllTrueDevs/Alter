@@ -1,0 +1,9 @@
+= content_for :title, 'Додати новину'
+
+.panel.panel-default
+  .panel-heading
+    %h4 Додати новину
+  .panel-body
+    = render partial: 'form', locals: { article: @article }
+
+= link_to 'Back', news_url

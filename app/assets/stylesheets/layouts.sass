@@ -1,0 +1,115 @@
+.home-page-bg
+  background: url("HomeBG.png") no-repeat
+  background-size: cover
+
+////////All header styles
+header
+  .navbar
+    margin-bottom: 0px
+  .custom-header
+    border-radius: 0
+    border: none
+    .navbar-brand, .navbar-nav li a
+      line-height: 80px
+      height: 80px
+      padding-top: 0
+    .navbar-nav
+      display: inline-block
+      float: none
+      vertical-align: top
+      li a
+        text-transform: uppercase
+      .dropdown-menu
+        border: none
+        padding: 0px
+        li a
+          text-transform: none
+          line-height: 35px
+          height: 35px
+        li:last-child a
+          line-height: 50px
+          height: 50px
+        .number
+          font-weight: bold
+          padding-left: 8px
+    .navbar-collapse
+      text-align: center
+    .navbar-right
+      text-align: center
+      font-weight: bold
+    .dropdown a
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+    .navbar-right li, .dropdown-menu
+      width: 210px
+
+////////All footer styles
+footer
+  color: #fff
+  .contacts li
+    display: inline-block
+    a
+      color: #fff
+    a:hover, a:focus
+      color: #d3d3d3
+
+///////Styles for Dark theme
+.dark-theme
+  .custom-header
+    background: rgba(19, 18, 41, 0.6)
+    .navbar-brand, .navbar-nav li a
+      color: #fff
+    .navbar-nav
+      a:hover, a:focus
+        color: #fff
+        background: rgba(19, 18, 41, 0.3)
+      .open > a, .open > a:hover, .open > a:focus
+        background: rgba(19, 18, 41, 0.3)
+      .dropdown-menu
+        background: rgba(19, 18, 41, 0.6)
+  .custom-footer
+    text-align: center
+    .contacts li
+      line-height: 50px
+      height: 50px
+      font-size: 2em
+      margin: 0 10px
+
+///////Styles for Light theme
+.light-theme
+  .custom-header
+    background: #fff
+    .navbar-brand, .navbar-nav li a
+      color: #35353f
+    .navbar-nav
+      a:hover, a:focus
+        color: #35353f
+        background: rgba(0, 0, 0, 0.15)
+      .open > a, .open > a:hover, .open > a:focus
+        background: rgba(0, 0, 0, 0.15)
+      .dropdown-menu
+        background: #fff
+  .custom-footer
+    .contacts li
+      font-size: 1.3em
+      margin: 0 5px
+    .top
+      line-height: 133px
+      height: 133px
+      background: #35353f
+      .brand
+        font-size: 2.5em
+        color: #fff
+        text-decoration: none
+      .contact-information
+        text-align: right
+        transform: translateY(43px)
+        li
+          line-height: 30px
+    .bottom
+      text-transform: uppercase
+      color: #35353f
+      line-height: 70px
+      height: 70px
+      text-align: center

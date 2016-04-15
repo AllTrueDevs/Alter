@@ -1,5 +1,5 @@
 = content_for :plugins do
-  = javascript_include_tag 'share_buttons'
+  = javascript_include_tag 'plugins/share_buttons'
 = content_for :title, @request.name
 .col-md-9
   .panel.panel-default.width-100
@@ -9,7 +9,7 @@
           %h4.request-title.break-word= @request.name
         .col-md-3
           .pull-right.request-actions
-            - if @request.actual?
+            - if @request.status?(:actual)
               - if @request.user != current_user && can?(:create, Decision)
                 - if @request.decisions.where(helper_id: current_user.id).empty?
                   %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
@@ -18,19 +18,19 @@
                 - else
                   %small Очікується відповідь
               - if can? :edit, @request
-                = link_to edit_request_path(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
+                = link_to edit_request_url(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
                   %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
               - if can? :destroy, @request
                 %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
                   %span.glyphicon.glyphicon-remove{'aria-hidden': true }
                 = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
             - else
-              %p.label.label-danger= @request.archived? ? 'Закрито' : ''
+              %p.label.label-danger= @request.status?(:archived) ? 'Закрито' : ''
     .panel-body
       = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
       %p.break-word.text-justify.request-description= @request.description
       - @request.required_items.each do |required_item|
-        = link_to requests_path(category_id: required_item.category.id) do
+        = link_to requests_url(category_id: required_item.category.id) do
           %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
 .col-md-3
   = render partial: 'user_block'

@@ -13,7 +13,7 @@ class Ability
       can :create, Request
 
       can :destroy, Request do |request|
-        request.user == user && request.actual? || user.with_privileges?
+        request.user == user && request.status?(:actual) || user.with_privileges?
       end
 
       can :update, Request do |request|
