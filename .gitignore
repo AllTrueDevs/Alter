@@ -17,6 +17,6 @@ public/system
 
 .byebug_history
 
-
+/Gemfile.lock
 /config/database.yml
 /config/application.yml
