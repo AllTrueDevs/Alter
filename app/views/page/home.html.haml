@@ -10,7 +10,7 @@
       - break if @requests[i].nil?
       = link_to '', circle_link(@requests[i]),id: "#{I18n.with_locale(:en) { (i + 1).to_words ordinal: true }}-news-circle", class: 'news-circles', data: { title: @requests[i].name, description: truncate(@requests[i].description, length: 150, separator: ' ') }
     .news
-      %p.title= @requests[0].name unless @requests[0].nil?
+      %p.title{ title: @requests[0].name }= @requests[0].name unless @requests[0].nil?
       %p.description= truncate(@requests[0].description, length: 150, separator: ' ') unless @requests[0].nil?
   %span.phrases.second Весь світ для іншого.
   -#  = javascript_include_tag 'preloader'
