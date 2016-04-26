@@ -5,6 +5,8 @@ class RequiredItem < ActiveRecord::Base
   validates :category_id, :request_id, presence: true, numericality: { only_integer: true }
   validates :request_id, presence: true, numericality: { only_integer: true }
 
+  #TODO refactor this
+
   def category_name
     self.category.name
   end

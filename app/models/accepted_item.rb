@@ -4,6 +4,8 @@ class AcceptedItem < ActiveRecord::Base
 
   validates :required_item_id, :decision_id, presence: true, numericality: { only_integer: true }
 
+  #TODO refactor this
+
   def category_name
     self.required_item.category.name
   end

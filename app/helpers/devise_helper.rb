@@ -8,9 +8,9 @@ module DeviseHelper
                         resource: resource.class.model_name.human.downcase)
 
       html = <<-HTML
-   <div class="alert-error alert-block">
-    #{messages}
-   </div>
+       <div class="alert-error alert-block">
+        #{messages}
+       </div>
       HTML
 
       html.html_safe
