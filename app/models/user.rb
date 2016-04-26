@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
+  validates :current_password, presence: true, length: { in: 8..16 }, 'Минулий пароль введено невірно' if:
+  validates :password, :password_confirmation, presence: true, length: { in: 8..16 }
   #TODO galimuy sposob poiska
   scope :search_user, -> (query) { where('name like ?', "%#{query}%") }
 

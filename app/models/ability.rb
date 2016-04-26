@@ -10,7 +10,7 @@ class Ability
 
     if user
       can [:show, :statistic], User
-      can [:detach_social_link], User do |usr|
+      can [:detach_social_link, :change_password], User do |usr|
         user == usr
       end
 

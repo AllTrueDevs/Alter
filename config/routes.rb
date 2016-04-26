@@ -52,6 +52,9 @@ Rails.application.routes.draw do
       get :statistic
       get :detach_social_link
     end
+    collection do
+      patch :change_password
+    end
   end
 
   get '/id:id', to: 'users#show', as: :user

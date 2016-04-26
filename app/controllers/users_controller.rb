@@ -64,6 +64,23 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def change_password
+    @user = User.find(current_user.id)
+    if @user.valid_password?(params[:user][:current_password])
+      if @user.update_with_password(password_params)
+        sign_in @user, :bypass => true
+        flash[:notice] = 'Пароль успішно змінено'
+      else
+        flash[:warning] = 'Введені паролі не співпадають'
+      end
+    else
+      flash[:warning] = 'Минулий пароль введено невірно'
+    end
+    respond_to do |format|
+      format.html { redirect_to edit_user_registration_path }
+    end
+  end
+
   def detach_social_link
     @user.send("#{params[:social]}=", nil)
     @user.send("#{params[:social]}_name=", nil)
@@ -97,6 +114,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def password_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
 end
