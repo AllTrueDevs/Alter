@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = params[:search] ? User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12) : User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
+    @users = if params[:search].nil?
+               User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
+             else
+               User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
+             end
   end
 
   def change_ban_status
@@ -22,7 +26,7 @@ class UsersController < ApplicationController
       @user.notifications.create(message_type: 5)
       redirect_to @user
     else
-      if cannot? :manage, User and (@user.role == 'admin' or @user.role == 'moderator')
+      if cannot? :manage, User and (@user.role == 'admin' or @user.role == 'moderator') #check if need and
         flash[:error] = 'Немає доступу'
         redirect_to @user
       else
@@ -70,6 +74,8 @@ class UsersController < ApplicationController
     @user.save
     redirect_to edit_user_registration_path
   end
+
+  #TODO refoctor next two methods
 
   def actual_requests
     @actual_requests = @user.requests.actual.order(:created_at => :desc).page(params[:page]).per(10)

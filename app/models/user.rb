@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
   #TODO galimuy sposob poiska
-  scope :search_user, -> (query) { where('name like ?', "%#{query}%") }
+  scope :search, -> (query) { where('name like ?', "%#{query}%") }
 
   after_create do
     user_tags.create(form_tags(default_tags, :news))
