@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
   acts_as_ordered_taggable
+  belongs_to :user
   validates :name, presence: true, length: { maximum: 150 }
   validates_presence_of :body, :tag_list
   has_attached_file :photo, default_url: 'missing-photo.jpg'

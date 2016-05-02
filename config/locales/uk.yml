@@ -13,6 +13,9 @@ uk:
       messages:
         record_invalid: 'Виникли помилки: %{errors}'
     models:
+      article:
+        one: 'Новина'
+        other: 'Новини'
       user:
         one: 'Користувач'
         other: 'Користувачі'

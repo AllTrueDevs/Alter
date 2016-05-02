@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
+  load_and_authorize_resource except: [:create, :show, :index]
   before_action :fill_tags, only: [:new, :edit]
 
   def index
@@ -18,10 +20,11 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
     respond_to do |format|
       if @article.save
         current_user.create_unique_tags(article_params[:tag_list], :news)
-        format.html { redirect_to show_article_url(@article, url: @article.article_url), notice: 'Article was successfully created.' }
+        format.html { redirect_to show_article_url(@article, url: @article.article_url), notice: 'Новину успішно добавлено.' }
       else
         format.html { render :new }
       end
@@ -32,7 +35,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.update(article_params)
         current_user.create_unique_tags(article_params[:tag_list], :news)
-        format.html { redirect_to show_article_url(@article, url: @article.article_url), notice: 'Article was successfully updated.' }
+        format.html { redirect_to show_article_url(@article, url: @article.article_url), notice: 'Новину успішно відредаговано.' }
       else
         format.html { render :edit }
       end
@@ -42,7 +45,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to news_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to news_url, notice: 'Новину успішно видалено.' }
     end
   end
 

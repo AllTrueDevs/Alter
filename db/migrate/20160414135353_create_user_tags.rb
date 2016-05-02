@@ -3,9 +3,10 @@ class CreateUserTags < ActiveRecord::Migration
     create_table :user_tags do |t|
       t.string :value
       t.string :tag_type
-      t.integer :user_id
+      t.references :user, index: true
 
       t.timestamps null: false
     end
+    add_foreign_key :user_tags, :users
   end
 end

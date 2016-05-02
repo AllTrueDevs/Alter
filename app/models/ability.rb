@@ -2,13 +2,18 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    alias_action [ :destroy, :create, :update ], to: :cud
+    alias_action [:destroy, :create, :update], to: :cud
 
-    can [ :actual_requests, :archived_requests ], User
+    can [:actual_requests, :archived_requests], User
     can :read, Request
+    can :read, Article
 
     if user
-      can [ :show, :statistic ], User
+      can [:show, :statistic], User
+      can [:detach_social_link], User do |usr|
+        user == usr
+      end
+
       cannot :read, Category
       can :create, Request
 
@@ -36,18 +41,21 @@ class Ability
       case user.role
       when 'admin'
         can :manage, User
+        can :manage, Article
       when 'moderator'
-        can [ :change_ban_status, :index ], User
+        can [:change_ban_status, :index], User
+      when 'newsmaker'
+         can :manage, Article
       when 'banned'
         cannot :cud, Request
         cannot :cud, Decision
-        cannot [ :update, :edit ], User
+        cannot [:update, :edit], User
 
         cannot :show, User do |usr|
           usr != user
         end
 
-        cannot [ :show, :index ], Request do |request|
+        cannot [:show, :index], Request do |request|
           request.user != user
         end
 
