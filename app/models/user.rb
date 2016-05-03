@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates :password, :password_confirmation, presence: true, length: { in: 8..16 }
 
   #TODO galimuy sposob poiska
-  scope :search_user, -> (query) { where('name like ?', "%#{query}%") }
+  scope :search, -> (query) { where('name like ?', "%#{query}%") }
 
   after_create do
     user_tags.create(form_tags(default_tags, :news))

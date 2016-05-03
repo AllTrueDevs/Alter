@@ -1,14 +1,13 @@
 class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :destroy]
+  before_action :set_notifications, only: [:index, :show]
   load_and_authorize_resource except: [:clean]
 
   def index
-    @notifications = current_user.notifications.paginated(params[:page], 15)
   end
 
   def show
     @notification.update(status: 'read')
-    @notifications = current_user.notifications.paginated(params[:page], 15)
     @new_notifications = @new_notifications - 1
     begin
       respond_to :js
@@ -34,6 +33,10 @@ class NotificationsController < ApplicationController
   private
     def set_notification
       @notification = Notification.find(params[:id])
+    end
+
+    def set_notifications
+      @notifications = current_user.notifications.paginated(params[:page], 15)
     end
 
     def notification_params
