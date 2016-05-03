@@ -4,7 +4,13 @@ class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create, :show, :index]
 
   def index
-    @requests = params[:category_id].nil? ? Request.actual.order(created_at: :desc).page(params[:page]).per(10) : Request.where(status: 'actual').joins(:required_items).where(required_items: {category_id: params[:category_id]}).order(created_at: :desc).page(params[:page]).per(10)
+    @requests = if params[:category_id].nil?
+                  Request.actual.order(created_at: :desc).page(params[:page]).per(10)
+                else
+                  Request.where(status: 'actual').joins(:required_items)
+                      .where(required_items: {category_id: params[:category_id]})
+                      .order(created_at: :desc).page(params[:page]).per(10)
+                end
   end
 
   def show
@@ -52,7 +58,9 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.update(status: 'archived')
-    @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id) }
+    @request.decisions do |decision|
+      User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id)
+    end
     @request.decisions.destroy_all
     respond_to do |format|
       format.html{ redirect_to @request }
