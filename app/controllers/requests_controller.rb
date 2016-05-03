@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
+  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked_requests]
   load_and_authorize_resource except: [:create, :show, :index]
 
   def index
@@ -11,6 +11,15 @@ class RequestsController < ApplicationController
                       .where(required_items: {category_id: params[:category_id]})
                       .order(created_at: :desc).page(params[:page]).per(10)
                 end
+  end
+
+  def unchecked_requests
+    @requests = Request.unchecked_requests.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
+  def check
+    @request.update(status: 'actual')
+    redirect_to @request
   end
 
   def show

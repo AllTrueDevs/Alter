@@ -11,7 +11,13 @@ Rails.application.routes.draw do
 
   root to: 'page#home'
 
-  resources :requests
+  resources :requests do
+    member do
+      get :check
+    end
+
+  end
+  get 'unchecked', to: 'requests#unchecked_requests', as: :unchecked_requests
 
   resources :articles, except: [:index, :edit, :new, :show]
   get '/news', to: 'articles#index', as: :news

@@ -25,7 +25,12 @@
                   %span.glyphicon.glyphicon-remove{'aria-hidden': true }
                 = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
             - else
-              %p.label.label-danger= @request.status?(:archived) ? 'Закрито' : ''
+              - if @request.status?(:unchecked) && (can? :check, @request)
+                = link_to check_request_url(@request) do
+                  Затвердити запит
+                  %span.fa.fa-check
+              - if @request.status?(:archived)
+                %p.label.label-danger Закрито
     .panel-body
       = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
       %p.break-word.text-justify.request-description= @request.description

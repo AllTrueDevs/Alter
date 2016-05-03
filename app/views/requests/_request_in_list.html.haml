@@ -17,11 +17,16 @@
                 = 'Опубліковано ' + time_ago_in_words(request.created_at) + ' тому, '
                 = link_to request.user.name, user_url(request.user)
         .col-md-1
-          - if can? :destroy, request
-            = render partial: 'modals/agree_modal', locals: { id: request.id, selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request, ajax: defined?(ajax) ? ajax : nil }
-            .pull-right.delete-request
-              = link_to '#', data: {target: "#deleteModal_#{request.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запит.'} do
-                %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
+          .pull-right
+            - if request.status?(:unchecked) && (can? :check, request)
+              .check-request
+                = link_to check_request_url(request) do
+                  %span.fa.fa-check
+            - if can? :destroy, request
+              = render partial: 'modals/agree_modal', locals: { id: request.id, selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request, ajax: defined?(ajax) ? ajax : nil }
+              .delete-request
+                = link_to '#', data: {target: "#deleteModal_#{request.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запит.'} do
+                  %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
         .col-md-12
           %p.break-word= request.description.truncate(530, separator:' ')
           .row

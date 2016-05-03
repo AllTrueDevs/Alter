@@ -42,7 +42,11 @@ class Ability
       when 'admin'
         can :manage, User
         can :manage, Article
-      when 'moderator'
+        # Fix this ability
+        can [:unchecked_requests, :check], Request
+        when 'moderator'
+        # Fix this ability
+        can [:unchecked_requests, :check], Request
         can [:change_ban_status, :index], User
       when 'newsmaker'
          can :manage, Article
