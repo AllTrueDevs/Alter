@@ -118,3 +118,12 @@ uk:
         many: "%{resource}: не вдалося зберегти через %{count} помилок"
         one: "%{resource}: не вдалося зберегти через %{count} помилку"
         other: "%{resource}: не вдалося зберегти через %{count} помилок"
+    models:
+      user:
+        attributes:
+          password:
+            blank: "Введіть пароль"
+            confirmation: "Паролі не співпадають"
+          current_password:
+            blank: "Введіть минулий пароль"
+            invalid: "Минулий пароль введено невірно"

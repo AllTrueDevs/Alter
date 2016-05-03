@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
       if @user.update(account_update_params)
         format.html { redirect_to @user }
       else
-        format.html { redirect_to edit_user_registration_url}
+        format.html { redirect_to edit_user_registration_url, notice: 'kek' }
       end
     end
   end

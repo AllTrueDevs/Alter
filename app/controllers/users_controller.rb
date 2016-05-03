@@ -14,10 +14,10 @@ class UsersController < ApplicationController
 
   def index
     @users = if params[:search].nil?
-               User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
-             else
-               User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
-             end
+      User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
+    else
+      User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
+    end
   end
 
   def change_ban_status
@@ -70,18 +70,11 @@ class UsersController < ApplicationController
 
   def change_password
     @user = User.find(current_user.id)
-    if @user.valid_password?(params[:user][:current_password])
-      if @user.update_with_password(password_params)
-        sign_in @user, :bypass => true
-        flash[:notice] = 'Пароль успішно змінено'
-      else
-        flash[:warning] = 'Введені паролі не співпадають'
-      end
-    else
-      flash[:warning] = 'Минулий пароль введено невірно'
-    end
+    sign_in @user, :bypass => true if @user.update_with_password(password_params)
+    flash[:warning] = 'kek'
     respond_to do |format|
       format.html { redirect_to edit_user_registration_path }
+      format.json
     end
   end
 
