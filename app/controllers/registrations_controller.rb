@@ -1,12 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
   def update
-    respond_to do |format|
       if @user.update(account_update_params)
-        format.html { redirect_to @user }
+        respond_to do |format|
+          format.html { redirect_to @user, notice: 'Зміни успішно внесено' }
+        end
       else
-        format.html { redirect_to edit_user_registration_url, notice: 'kek' }
+        render 'devise/registrations/edit'
       end
-    end
   end
 
   private

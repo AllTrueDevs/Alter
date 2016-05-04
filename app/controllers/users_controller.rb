@@ -70,12 +70,13 @@ class UsersController < ApplicationController
 
   def change_password
     @user = User.find(current_user.id)
-    sign_in @user, :bypass => true if @user.update_with_password(password_params)
-    flash[:warning] = 'kek'
-    respond_to do |format|
-      format.html { redirect_to edit_user_registration_path }
-      format.json
+    if @user.update_with_password(password_params) && !password_params[:password].blank?
+      sign_in @user, :bypass => true
+      flash[:notice] = 'Пароль успішно змінено'
+    else
+      @user.errors.add(:password, t('activerecord.errors.models.user.attributes.password.blank')) if password_params[:password].blank?
     end
+    render 'devise/registrations/edit'
   end
 
   def detach_social_link
