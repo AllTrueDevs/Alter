@@ -1,14 +1,4 @@
 uk:
-  activerecord:
-    attributes:
-      user:
-        current_password: "Поточний пароль"
-        email: Email
-        password: "Пароль"
-        password_confirmation: "Підтвердження пароля"
-        remember_me: "Запам'ятати мене"
-    models:
-      user: "Користувач"
   devise:
     confirmations:
       confirmed: "Ваш обліковий запис підтверджено. Ви увійшли в систему."

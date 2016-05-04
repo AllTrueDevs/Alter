@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
+
   #TODO galimuy sposob poiska
   scope :search, -> (query) { where('name like ?', "%#{query}%") }
 

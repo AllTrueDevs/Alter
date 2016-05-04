@@ -14,10 +14,10 @@ class UsersController < ApplicationController
 
   def index
     @users = if params[:search].nil?
-               User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
-             else
-               User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
-             end
+      User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
+    else
+      User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
+    end
   end
 
   def change_ban_status
@@ -68,6 +68,17 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def change_password
+    @user = User.find(current_user.id)
+    if @user.update_with_password(password_params) && !password_params[:password].blank?
+      sign_in @user, :bypass => true
+      flash[:notice] = 'Пароль успішно змінено'
+    else
+      @user.errors.add(:password, t('activerecord.errors.models.user.attributes.password.blank')) if password_params[:password].blank?
+    end
+    render 'devise/registrations/edit'
+  end
+
   def detach_social_link
     @user.send("#{params[:social]}=", nil)
     @user.send("#{params[:social]}_name=", nil)
@@ -103,6 +114,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def password_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
 end
