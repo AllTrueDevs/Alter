@@ -57,6 +57,7 @@ uk:
         last_sign_in_ip: 'Остання IP-адреса'
         password: ''
         password_confirmation: ''
+        current_password: ''
         remember_me: "Запам'ятати мене"
         info: 'Особиста інформація'
         phone: 'Телефон'

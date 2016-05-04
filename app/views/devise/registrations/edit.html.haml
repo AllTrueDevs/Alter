@@ -10,8 +10,8 @@
   .panel-body
     = form_for(@user, url: registration_path(@user), html: { method: :put, multipart: true, role: 'form' }) do |f|
       - if @user.errors.full_messages.any?
-        - @user.errors.map{ |error| @user.errors.get(error).join }.each do |error_message|
-          = error_message if @user.errors.map{ |error| @user.errors.get(error).join }.first == error_message
+        - @user.errors.full_messages.each do |error_message|
+          = error_message if @user.errors.full_messages.first == error_message
           %br
       .form-group
         %label Поштова скринька
