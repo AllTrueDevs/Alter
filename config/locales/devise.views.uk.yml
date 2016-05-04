@@ -1,23 +1,4 @@
 uk:
-  activerecord:
-    attributes:
-      user:
-        email: Email
-        password: "Пароль"
-        password_confirmation: "Підтвердження пароля"
-        remember_me: "Запам'ятати мене"
-    errors:
-       models:
-          user: "Користувач"
-          user:
-            attributes:
-              password:
-                blank: "Введіть пароль"
-              password_confirmation:
-                confirmation: "Паролі не співпадають"
-              current_password:
-                blank: "Введіть минулий пароль"
-                invalid: "Поточний пароль введено невірно"
   devise:
     confirmations:
       confirmed: "Ваш обліковий запис підтверджено. Ви увійшли в систему."
