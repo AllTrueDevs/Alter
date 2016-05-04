@@ -21,9 +21,9 @@
                 = link_to edit_request_url(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
                   %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
               - if can? :destroy, @request
-                %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
-                  %span.glyphicon.glyphicon-remove{'aria-hidden': true }
-                = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
+                = link_to '#', data: {target: "#deleteModal_#{@request.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запит.'} do
+                  %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
+                = render partial: 'modals/agree_modal', locals: { id: @request.id, selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
             - else
               %p.label.label-danger= @request.status?(:archived) ? 'Закрито' : ''
     .panel-body

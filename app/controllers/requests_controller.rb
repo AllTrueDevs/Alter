@@ -62,7 +62,10 @@ class RequestsController < ApplicationController
       User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id)
     end
     @request.decisions.destroy_all
-    respond_to :js
+    respond_to do |format|
+      format.html{ redirect_to @request }
+      format.js
+    end
   end
 
   private
