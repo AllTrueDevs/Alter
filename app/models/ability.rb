@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     alias_action [:destroy, :create, :update], to: :cud
 
-    can [:actual_requests, :archived_requests], User
+    can [:some_requests], User
     can :read, Request
     can :read, Article
 
@@ -42,7 +42,11 @@ class Ability
       when 'admin'
         can :manage, User
         can :manage, Article
-      when 'moderator'
+        # Fix this ability
+        can [:unchecked_requests, :check, :decline], Request
+        when 'moderator'
+        # Fix this ability
+        can [:unchecked_requests, :check, :decline], Request
         can [:change_ban_status, :index], User
       when 'newsmaker'
          can :manage, Article

@@ -9,23 +9,7 @@
           %h4.request-title.break-word= @request.name
         .col-md-3
           .pull-right.request-actions
-            - if @request.status?(:actual)
-              - if @request.user != current_user && can?(:create, Decision)
-                - if @request.decisions.where(helper_id: current_user.id).empty?
-                  %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
-                    Допомогти
-                  = render 'modals/request_help'
-                - else
-                  %small Очікується відповідь
-              - if can? :edit, @request
-                = link_to edit_request_url(@request), 'data-placement': :bottom, title: 'Редагувати запит.' do
-                  %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
-              - if can? :destroy, @request
-                = link_to '#', data: {target: "#deleteModal_#{@request.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запит.'} do
-                  %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
-                = render partial: 'modals/agree_modal', locals: { id: @request.id, selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: @request }
-            - else
-              %p.label.label-danger= @request.status?(:archived) ? 'Закрито' : ''
+            = render partial: 'request_actions', locals: { request: @request }
     .panel-body
       = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
       %p.break-word.text-justify.request-description= @request.description

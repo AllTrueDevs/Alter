@@ -7,9 +7,11 @@ class Request < ActiveRecord::Base
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { maximum: 150 }
   validates :user_id, presence: true, numericality: { only_integer: true }
-  validates :status, presence: true, inclusion: { in: %w(actual archived) }
+  validates :status, presence: true, inclusion: { in: %w(actual archived unchecked declined) }
+  scope :unchecked, -> { where(status: 'unchecked') }
   scope :actual, -> { where(status: 'actual') }
   scope :archived, -> { where(status: 'archived') }
+  scope :declined, -> { where(status: 'declined') }
 
   def status?(request_status)
     status.include?(request_status.to_s)

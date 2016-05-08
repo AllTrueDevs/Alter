@@ -11,7 +11,14 @@ Rails.application.routes.draw do
 
   root to: 'page#home'
 
-  resources :requests
+  resources :requests do
+    member do
+      get :check
+      get :decline
+    end
+
+  end
+  get 'unchecked', to: 'requests#unchecked_requests', as: :unchecked_requests
 
   resources :articles, except: [:index, :edit, :new, :show]
   get '/news', to: 'articles#index', as: :news
@@ -47,8 +54,7 @@ Rails.application.routes.draw do
       get :change_ban_status, as: :ban
       get :change_moder_status, as: :moder
       get :admin_login
-      get :actual_requests
-      get :archived_requests
+      get :some_requests
       get :statistic
       get :detach_social_link
     end

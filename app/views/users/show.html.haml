@@ -57,8 +57,12 @@
             = link_to @user.facebook, @user.facebook
     .user-requests
       %ul.nav.nav-tabs
-        %li.active= link_to 'Активні запити', actual_requests_user_url, remote: true
-        %li= link_to 'Завершені запити', archived_requests_user_url, remote: true
+        %li.active
+          = link_to 'Активні запити', some_requests_user_url(requests_type: :actual, sort_field: :created_at), remote: true
+        %li
+          = link_to 'Завершені запити', some_requests_user_url(requests_type: :archived, sort_field: :updated_at), remote: true
+        %li
+          = link_to 'Відхилені запити', some_requests_user_url(requests_type: :declined, sort_field: :updated_at), remote: true
         - if !@user.helped_items.empty? && can?(:statistic, @user)
           %li= link_to 'Cтатистика', statistic_user_url, remote: true
       .tab-content
