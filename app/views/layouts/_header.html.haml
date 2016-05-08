@@ -38,7 +38,7 @@
                   %li
                     = link_to unchecked_requests_url do
                       Незатверджені запити
-                      %span.number= Request.unchecked_requests.size unless Request.unchecked_requests.size.zero?
+                      %span#unchecked-requests-count.number= Request.unchecked.size unless Request.unchecked.size.zero?
                 %li
                   = link_to notifications_url do
                     Cповіщення

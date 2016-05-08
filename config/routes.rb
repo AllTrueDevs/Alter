@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :requests do
     member do
       get :check
+      get :decline
     end
 
   end
@@ -53,8 +54,7 @@ Rails.application.routes.draw do
       get :change_ban_status, as: :ban
       get :change_moder_status, as: :moder
       get :admin_login
-      get :actual_requests
-      get :archived_requests
+      get :some_requests
       get :statistic
       get :detach_social_link
     end

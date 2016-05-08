@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :actual_requests, :archived_requests, :detach_social_link]
-  before_action :authenticate_user!, except: [:actual_requests, :archived_requests]
-  load_and_authorize_resource except: [:actual_requests, :archived_requests]
+  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :detach_social_link, :some_requests]
+  before_action :authenticate_user!, except: [:some_requests]
+  load_and_authorize_resource except: [:some_requests]
 
   def show
     if @user.confirmed_at.nil?
@@ -77,13 +77,9 @@ class UsersController < ApplicationController
 
   #TODO refoctor next two methods
 
-  def actual_requests
-    @actual_requests = @user.requests.actual.order(:created_at => :desc).page(params[:page]).per(10)
-    respond_to :js
-  end
-
-  def archived_requests
-    @archived_requests = @user.requests.archived.order(:updated_at => :desc).page(params[:page]).per(10)
+  def some_requests
+    sort_field = params[:sort_field].nil? ? :created_at : params[:sort_field]
+    @requests = @user.requests.send(params[:requests_type]).order(sort_field => :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

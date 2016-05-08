@@ -10,9 +10,9 @@
         %h4#myModalLabel.modal-title Підтвердження допомоги
       = form_for Decision.new do
         .modal-body
-          = hidden_field_tag :request_id, @request.id
+          = hidden_field_tag :request_id, request.id
           %p= text_area_tag :description, nil, class: 'form-control', rows: '7'
-          %p= select_tag :required_items, options_from_collection_for_select(@required_items, 'id', lambda { |required_item| required_item.category.name }),
+          %p= select_tag :required_items, options_from_collection_for_select(request.required_items, 'id', lambda { |required_item| required_item.category.name }),
                   multiple: true, class: 'selector'
         .modal-footer
           = submit_tag 'Надіслати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }

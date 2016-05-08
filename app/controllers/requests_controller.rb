@@ -14,12 +14,17 @@ class RequestsController < ApplicationController
   end
 
   def unchecked_requests
-    @requests = Request.unchecked_requests.order(created_at: :desc).page(params[:page]).per(10)
+    @requests = Request.unchecked.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def check
     @request.update(status: 'actual')
-    redirect_to @request
+    respond_to :js
+  end
+
+  def decline
+    @request.update(status: 'declined')
+    redirect_to unchecked_requests_url
   end
 
   def show

@@ -1,0 +1,53 @@
+- case request.status
+- when 'actual'
+  - if request.user != current_user && can?(:create, Decision)
+    - if request.decisions.where(helper_id: current_user.id).empty?
+      %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
+        Допомогти
+      = render partial: 'modals/request_help', locals: { request: request }
+    - else
+      %small Очікується відповідь
+  - if can? :edit, request
+    = link_to edit_request_url(request), 'data-placement': :bottom, title: 'Редагувати запит.' do
+      %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
+  - if can? :destroy, request
+    %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
+      %span.glyphicon.glyphicon-remove{'aria-hidden': true }
+    = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request }
+- when 'archived'
+  %p.label.label-danger Закрито
+- when 'unchecked'
+  - if can? :check, request
+    = link_to check_request_url(request), remote: true do
+      -#Затвердити запит
+      %span.fa.fa-check
+  - if can? :decline, request
+    = link_to decline_request_url(request) do
+      -#Відхилити запит
+      %span.fa.fa-times
+- when 'declined'
+  %p.label.label-danger Відхилено
+
+-#- if request.status?(:actual)
+-#  - if request.user != current_user && can?(:create, Decision)
+-#    - if request.decisions.where(helper_id: current_user.id).empty?
+-#      %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
+-#        Допомогти
+-#      = render partial: 'modals/request_help', locals: { request: request }
+-#    - else
+-#      %small Очікується відповідь
+-#  - if can? :edit, request
+-#    = link_to edit_request_url(request), 'data-placement': :bottom, title: 'Редагувати запит.' do
+-#      %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
+-#  - if can? :destroy, request
+-#    %a{ 'data-target': '#deleteModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити запит.' }
+-#      %span.glyphicon.glyphicon-remove{'aria-hidden': true }
+-#    = render partial: 'modals/agree_modal', locals: { selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request }
+-#- elsif request.status?(:unchecked)
+-#  - if can? :check, request
+-#    = link_to check_request_url(request), remote: true do
+-#      Затвердити запит
+-#      %span.fa.fa-check
+-#
+-#- elsif request.status?(:archived)
+-#  %p.label.label-danger Закрито
