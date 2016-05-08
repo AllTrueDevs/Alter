@@ -58,7 +58,7 @@
     .user-requests
       %ul.nav.nav-tabs
         %li.active
-          = link_to 'Активні запити', some_requests_user_url(requests_type: :actual), remote: true
+          = link_to 'Активні запити', some_requests_user_url(requests_type: :actual, sort_field: :created_at), remote: true
         %li
           = link_to 'Завершені запити', some_requests_user_url(requests_type: :archived, sort_field: :updated_at), remote: true
         %li

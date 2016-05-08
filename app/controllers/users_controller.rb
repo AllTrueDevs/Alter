@@ -78,8 +78,7 @@ class UsersController < ApplicationController
   #TODO refoctor next two methods
 
   def some_requests
-    sort_field = params[:sort_field].nil? ? :created_at : params[:sort_field]
-    @requests = @user.requests.send(params[:requests_type]).order(sort_field => :desc).page(params[:page]).per(10)
+    @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc).page(params[:page]).per(10)
     respond_to :js
   end
 
