@@ -17,6 +17,7 @@
 - when 'archived'
   %p.label.label-danger Закрито
 - when 'unchecked'
+  %p.label.label-primary Незатверджено
   - if can? :check, request
     = link_to check_request_url(request), remote: true do
       -#Затвердити запит
