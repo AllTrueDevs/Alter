@@ -1,6 +1,8 @@
 = content_for :title, @user.name
 = content_for :javascript do
   = javascript_include_tag 'user-tabs'
+= content_for :styles do
+  = stylesheet_link_tag 'requests'
 .panel.panel-default.width-100
   .panel-body
     .row.user-profile
@@ -58,7 +60,7 @@
     .user-requests
       %ul.nav.nav-tabs
         %li.active
-          = link_to 'Активні запити', some_requests_user_url(requests_type: :actual, sort_field: :created_at), remote: true
+          = link_to 'Активні запити', some_requests_user_url(requests_type: :user_actual, sort_field: :created_at), remote: true
         %li
           = link_to 'Завершені запити', some_requests_user_url(requests_type: :archived, sort_field: :updated_at), remote: true
         %li

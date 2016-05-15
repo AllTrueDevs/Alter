@@ -8,10 +8,10 @@ class Request < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 150 }
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :status, presence: true, inclusion: { in: %w(actual archived unchecked declined) }
-  scope :unchecked, -> { where(status: 'unchecked') }
-  scope :actual, -> { where(status: 'actual') }
-  scope :archived, -> { where(status: 'archived') }
-  scope :declined, -> { where(status: 'declined') }
+  [:unchecked, :actual, :archived, :declined].each do |status|
+    scope status, -> { where(status: status) }
+  end
+  scope :user_actual, -> { where(status: %w(actual unchecked)) }
 
   def status?(request_status)
     status.include?(request_status.to_s)
