@@ -4,7 +4,7 @@
 
 .group-form
   = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f|
-    = f.email_field :email, autofocus: true, placeholder: 'Email'
+    = f.email_field :email, autofocus: true, placeholder: 'Поштова скринька'
     = f.password_field :password, autocomplete: 'off', placeholder: 'Пароль'
     - if devise_mapping.rememberable?
       .custom-checkbox

@@ -86,8 +86,6 @@ class UsersController < ApplicationController
     redirect_to edit_user_registration_path
   end
 
-  #TODO refactor next two methods
-
   def some_requests
     @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc).page(params[:page]).per(10)
     respond_to :js
