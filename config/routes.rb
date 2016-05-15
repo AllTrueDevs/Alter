@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'tag/destroy'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   namespace :users do
     get 'omniauth_callbacks/vkontakte'
   end
@@ -16,9 +17,18 @@ Rails.application.routes.draw do
       get :check
       get :decline
     end
-
   end
   get 'unchecked', to: 'requests#unchecked_requests', as: :unchecked_requests
+
+  resources :messages do
+    collection do
+      get :select
+      get :dialog
+    end
+    member do
+      post :new
+    end
+  end
 
   resources :articles, except: [:index, :edit, :new, :show]
   get '/news', to: 'articles#index', as: :news
@@ -54,7 +64,7 @@ Rails.application.routes.draw do
       get :change_ban_status, as: :ban
       get :change_moder_status, as: :moder
       get :admin_login
-      get :some_requests
+      get :select_requests
       get :statistic
       get :detach_social_link
     end

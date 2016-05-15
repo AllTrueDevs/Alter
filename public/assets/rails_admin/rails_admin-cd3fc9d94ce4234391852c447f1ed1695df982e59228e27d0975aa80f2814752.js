@@ -30992,7 +30992,7 @@ return $.ui.autocomplete;
  * Depends:
  *   jquery.ui.core.js
  *   jquery.ui.widget.js
- *   jquery.ui.dialog.js
+ *   jquery.ui.create.js
  */
 
 (function($) {

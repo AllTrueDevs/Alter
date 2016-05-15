@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :decisions, foreign_key: 'helper_id'
   has_many :user_tags, :dependent => :destroy
   has_many :articles
+  has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
   has_attached_file :avatar, default_url: 'missing-avatar.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { in: 4..40 }
@@ -56,6 +58,13 @@ class User < ActiveRecord::Base
   def create_unique_tags(tags, tag_type)
     result = tags.split(',').inject([]){|array, tag| array << { value: tag, tag_type: tag_type } if user_tags.where(tag_type: tag_type).where.not(value: tag) }
     user_tags.create(result)
+  end
+
+  def dialog(user)
+    sql = Message.connection.unprepared_statement {
+      "((#{received_messages.private_messages.sent_by(user).to_sql}) UNION (#{sent_messages.private_messages.received_by(user).to_sql})) AS messages"
+    }
+    Message.from(sql).order(:created_at)
   end
 
 

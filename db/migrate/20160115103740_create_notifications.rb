@@ -3,10 +3,11 @@ class CreateNotifications < ActiveRecord::Migration
     create_table :notifications do |t|
       t.text :body
       t.string :status
-      t.references :user
+      t.references :user, index: true
 
       t.timestamps null: false
     end
+
     add_foreign_key :notifications, :users
   end
 end

@@ -39,6 +39,8 @@
             %h5
               %small.text-danger Заблокований
         %br
+          = link_to 'Написати повідомлення', dialog_messages_url(user: @user), class: 'btn btn-default btn-info'
+        %br
         - if @user.info.to_s.length > 0
           %p.info= @user.info
         - if @user.phone.to_s.length > 0
@@ -60,11 +62,11 @@
     .user-requests
       %ul.nav.nav-tabs
         %li.active
-          = link_to 'Активні запити', some_requests_user_url(requests_type: :user_actual, sort_field: :created_at), remote: true
+          = link_to 'Активні запити', select_requests_user_url(requests_type: :user_actual, sort_field: :created_at), remote: true
         %li
-          = link_to 'Завершені запити', some_requests_user_url(requests_type: :archived, sort_field: :updated_at), remote: true
+          = link_to 'Завершені запити', select_requests_user_url(requests_type: :archived, sort_field: :updated_at), remote: true
         %li
-          = link_to 'Відхилені запити', some_requests_user_url(requests_type: :declined, sort_field: :updated_at), remote: true
+          = link_to 'Відхилені запити', select_requests_user_url(requests_type: :declined, sort_field: :updated_at), remote: true
         - if !@user.helped_items.empty? && can?(:statistic, @user)
           %li= link_to 'Cтатистика', statistic_user_url, remote: true
       .tab-content

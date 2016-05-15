@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :detach_social_link, :some_requests]
-  before_action :authenticate_user!, except: [:some_requests]
-  load_and_authorize_resource except: [:some_requests]
+  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :detach_social_link, :select_requests]
+  before_action :authenticate_user!, except: [:select_requests]
+  load_and_authorize_resource except: [:select_requests]
 
   def show
     if @user.confirmed_at.nil?
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
 
   #TODO refactor next two methods
 
-  def some_requests
+  def select_requests
     @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc).page(params[:page]).per(10)
     respond_to :js
   end

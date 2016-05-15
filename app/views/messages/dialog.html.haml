@@ -1,0 +1,13 @@
+= content_for :title, 'Відправити повідомлення'
+= content_for :styles do
+  = stylesheet_link_tag 'messages'
+.container.dialog
+  %ul.messages
+    = render partial: 'messages', locals: { messages: @messages, companion: @companion }
+
+  = form_for @message, url: new_message_url(@message, user: @companion), html: { class: 'message-form' }, remote: true do |f|
+    = f.text_area :body, class: 'form-control', rows: '5'
+    = f.hidden_field :message_type, value: :private_message
+    = f.hidden_field :sender_id, value: @user.id
+    = f.hidden_field :receiver_id, value: @companion.id
+    = f.submit 'Надіслати', class: 'btn btn-default btn-info'

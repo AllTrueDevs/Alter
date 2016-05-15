@@ -1,0 +1,1 @@
+$(".tab-pane.active").html("<%= escape_javascript(render 'messages/messages_list', messages: @messages) %>");

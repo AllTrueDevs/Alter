@@ -1,0 +1,30 @@
+%div{ class: 'request-in-list' }
+  .row
+    - if !message.sent_by?(current_user)
+      .col-md-2
+        = link_to dialog_messages_url(user: message.sender) do
+          = image_tag message.sender.avatar.url, class: 'img-rounded img-responsive'
+      .col-md-10
+        .row
+          .col-md-12
+            = link_to dialog_messages_url(user: message.sender) do
+              %h4= message.sender.name
+            - if message.status?(:new)
+              %p.label.label-primary Нове
+          .col-md-12
+            %p.break-word= message.body.truncate(530, separator:' ')
+    - else
+      .col-md-2
+        = link_to dialog_messages_url(user: message.receiver) do
+          = image_tag message.receiver.avatar.url, class: 'img-rounded img-responsive'
+      .col-md-10
+        .row
+          .col-md-12
+            = link_to dialog_messages_url(user: message.receiver) do
+              %h4= message.receiver.name
+            - if message.status?(:new)
+              %p.label.label-primary Непрочитане
+          .col-md-12
+            %p.break-word= message.body.truncate(530, separator:' ')
+  - if message != Message.last
+    %hr

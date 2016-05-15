@@ -12,6 +12,7 @@ Rails.application.config.assets.precompile += %w(
   about.sass
   users.sass
   requests.sass
+  messages.sass
 )
 
 ######################### JS

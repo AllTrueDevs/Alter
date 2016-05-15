@@ -1,0 +1,7 @@
+- if messages.size.zero?
+  %h5.text-center У вас немає переписки з цим користувачем
+- else
+  - messages.each do |message|
+    %li.message{class: message.received_by?(companion) ? 'blue' : ''}
+      .body
+        = message.body

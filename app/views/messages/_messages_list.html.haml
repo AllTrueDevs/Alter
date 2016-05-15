@@ -1,0 +1,7 @@
+%div{ class: 'messages'}
+  - if messages.size.zero?
+    %h5.text-center Немає повідомлень
+  - else
+    - messages.each do |message|
+      = render partial: 'message_in_list', locals: { message: message, messages: messages }
+    = paginate messages

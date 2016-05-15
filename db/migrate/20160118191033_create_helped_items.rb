@@ -7,6 +7,7 @@ class CreateHelpedItems < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
     add_foreign_key :helped_items, :users
     add_foreign_key :helped_items, :categories
   end

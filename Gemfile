@@ -50,6 +50,7 @@ gem 'awesome_print'
 gem 'rails_admin', github: 'sferik/rails_admin'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'devise-i18n'
+gem 'private_pub'
 
 group :development, :test do
   gem 'byebug'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503202132) do
+ActiveRecord::Schema.define(version: 20160512111913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20160503202132) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "accepted_items", ["decision_id"], name: "index_accepted_items_on_decision_id", using: :btree
+  add_index "accepted_items", ["required_item_id"], name: "index_accepted_items_on_required_item_id", using: :btree
 
   create_table "articles", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +40,19 @@ ActiveRecord::Schema.define(version: 20160503202132) do
   end
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "attachment_type"
+    t.integer  "message_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "content_file_name"
+    t.string   "content_content_type"
+    t.integer  "content_file_size"
+    t.datetime "content_updated_at"
+  end
+
+  add_index "attachments", ["message_id"], name: "index_attachments_on_message_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -68,6 +84,19 @@ ActiveRecord::Schema.define(version: 20160503202132) do
   add_index "helped_items", ["category_id"], name: "index_helped_items_on_category_id", using: :btree
   add_index "helped_items", ["user_id"], name: "index_helped_items_on_user_id", using: :btree
 
+  create_table "messages", force: :cascade do |t|
+    t.string   "message_type"
+    t.text     "body"
+    t.string   "status",       default: "new"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
+
   create_table "notifications", force: :cascade do |t|
     t.string   "status",         default: "new"
     t.integer  "user_id"
@@ -80,6 +109,7 @@ ActiveRecord::Schema.define(version: 20160503202132) do
 
   add_index "notifications", ["reason_user_id"], name: "index_notifications_on_reason_user_id", using: :btree
   add_index "notifications", ["request_id"], name: "index_notifications_on_request_id", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.string   "name"
@@ -94,12 +124,17 @@ ActiveRecord::Schema.define(version: 20160503202132) do
     t.string   "status",             default: "unchecked"
   end
 
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
+
   create_table "required_items", force: :cascade do |t|
     t.integer  "request_id"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "required_items", ["category_id"], name: "index_required_items_on_category_id", using: :btree
+  add_index "required_items", ["request_id"], name: "index_required_items_on_request_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -170,10 +205,13 @@ ActiveRecord::Schema.define(version: 20160503202132) do
   add_foreign_key "accepted_items", "decisions"
   add_foreign_key "accepted_items", "required_items"
   add_foreign_key "articles", "users"
+  add_foreign_key "attachments", "messages"
   add_foreign_key "decisions", "requests"
   add_foreign_key "decisions", "users", column: "helper_id"
   add_foreign_key "helped_items", "categories"
   add_foreign_key "helped_items", "users"
+  add_foreign_key "messages", "users", column: "receiver_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "notifications", "requests"
   add_foreign_key "notifications", "users"
   add_foreign_key "notifications", "users", column: "reason_user_id"

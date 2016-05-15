@@ -4,12 +4,13 @@ class Ability
   def initialize(user)
     alias_action [:destroy, :create, :update], to: :cud
 
-    can [:some_requests], User
+    can [:select_requests], User
     can :read, Request
     can :read, Article
 
     if user
       can [:show, :statistic], User
+      can :manage, Message
       can [:detach_social_link, :change_password], User do |usr|
         user == usr
       end

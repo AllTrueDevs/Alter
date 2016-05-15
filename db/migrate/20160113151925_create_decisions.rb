@@ -8,6 +8,7 @@ class CreateDecisions < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
     add_foreign_key :decisions, :users, column: :helper_id
     add_foreign_key :decisions, :requests
   end

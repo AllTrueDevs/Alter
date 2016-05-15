@@ -7,6 +7,7 @@ class CreateUserTags < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
     add_foreign_key :user_tags, :users
   end
 end
