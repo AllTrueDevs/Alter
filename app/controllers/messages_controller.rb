@@ -5,24 +5,24 @@ class MessagesController < ApplicationController
   load_and_authorize_resource except: [:new, :select]
 
   def index
-    @messages = @user.received_messages.private_messages.page(params[:page]).per(10)
+    @messages = @user.received_messages.private_messages
   end
 
   def dialog
     @message = Message.new
-    @messages = @user.dialog(@companion).page(params[:page]).per(10)
+    @messages = @user.dialog(@companion)
   end
 
   def new
     @message = Message.new(message_params)
     if @message.save
-      @messages = @user.dialog(@companion).page(params[:page]).per(10)
+      @messages = @user.dialog(@companion)
     end
     respond_to :js
   end
 
   def select
-    @messages = @user.send(params[:messages_type]).private_messages.page(params[:page]).per(10)
+    @messages = @user.send(params[:messages_type]).private_messages
     respond_to :js
   end
 
