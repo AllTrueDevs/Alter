@@ -1,6 +1,6 @@
 /* line 1, /home/devpc/Projects/alter_beta/app/assets/stylesheets/layouts.scss */
 .home-page-bg {
-  background: url("HomeBG.png") no-repeat;
+  background: url("home_background.png") no-repeat;
   background-size: cover;
 }
 
