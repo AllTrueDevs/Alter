@@ -9,7 +9,7 @@ RailsAdmin.config do |config|
   config.current_user_method(&:current_user)
   config.authorize_with :cancan, AdminAbility
 
-  config.excluded_models = ['AcceptedItem', 'HelpedItem', 'RequiredItem']
+  config.excluded_models = ['AcceptedItem', 'HelpedItem', 'RequiredItem', 'Article', 'UserTag']
 
   config.actions do
     dashboard                     # mandatory
@@ -103,8 +103,10 @@ RailsAdmin.config do |config|
       field :status do
         formatted_value do
           case value
+            when 'unchecked' then 'Неперевірений'
             when 'actual' then 'Активний'
             when 'archived' then 'Заархівований'
+            when 'declined' then 'Відхилений'
           end
         end
       end
@@ -121,8 +123,10 @@ RailsAdmin.config do |config|
       field :status do
         formatted_value do
           case value
+            when 'unchecked' then 'Неперевірений'
             when 'actual' then 'Активний'
             when 'archived' then 'Заархівований'
+            when 'declined' then 'Відхилений'
           end
         end
       end
@@ -137,7 +141,7 @@ RailsAdmin.config do |config|
       end
       field :status, :enum do
         enum do
-          Hash[ ['Активний', 'Заархівований'].zip(['actual', 'archived']) ]
+          Hash[ ['Неперевірений', 'Активний', 'Заархівований', 'Відхилений'].zip(['unchecked', 'actual', 'archived', 'declined']) ]
         end
       end
       field :description
