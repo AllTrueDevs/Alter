@@ -1,11 +1,10 @@
-.panel.panel-default
-  .panel-heading
-    %h4= t('.forgot_your_password', :default => 'Забули свій пароль?')
-  .panel-body
-    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, role: 'form' }) do |f|
-      = devise_error_messages!
-      .form-group
-        = f.label :email
-        = f.email_field :email, autofocus: true, class: 'form-control'
-      = f.submit t('.send_me_reset_password_instructions', :default => 'Надіслати інтсрукції зміни пароля'), class: 'btn btn-success', data: {disable_with: 'Обробка...'}
+= content_for :title, 'Скидання пароля'
+= content_for :styles do
+  = stylesheet_link_tag 'login_signup'
+
+.group-form
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, role: 'form' }) do |f|
+    = devise_error_messages!
+    = f.email_field :email, autofocus: true, placeholder: 'Поштова скринька'
+    = f.submit 'Надіслати інтсрукції зміни пароля', class: 'btn btn-success', data: {disable_with: 'Обробка...'}
     = render 'devise/shared/links'

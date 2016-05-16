@@ -2,7 +2,8 @@
 %html
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
-    %title= "Alter | #{yield(:title)}"
+    %title= "Alter | #{yield :title}"
+    %link{:href => "http://fonts.googleapis.com/css?family=Tangerine", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
     = yield :styles
     = csrf_meta_tags

@@ -1,12 +1,15 @@
-%p#notice= notice
-
-%h1= @article.name
-= image_tag @article.photo.url, class: 'request-photo img-responsive img-center'
-%h3= @article.body
-- @article.tags.each do |tag|
-  %ul
-    %li= tag
-
-= link_to 'Edit', edit_article_url(@article, url: @article.article_url)
-\|
-= link_to 'Back', news_url
+= content_for :title, @article.name
+.container
+  .panel.panel-default.width-100
+    .panel-heading
+      .row
+        .col-md-9
+          %h4.request-title.break-word= @article.name
+        .col-md-3
+          .pull-right.request-actions
+            = render partial: 'article_actions', locals: { article: @article }
+    .panel-body
+      = image_tag @article.photo.url, class: 'request-photo img-responsive img-center'
+      %p.break-word.text-justify.request-description= @article.body
+      - @article.tags.map(&:name).each do |tag|
+        %span{ class: "label label-#{Random.rand(1..8)}" }= tag
