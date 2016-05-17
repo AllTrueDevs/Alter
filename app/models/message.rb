@@ -5,9 +5,10 @@ class Message < ActiveRecord::Base
 
   validates :body, :sender_id, :receiver_id, presence: true
   validates :message_type, inclusion: { in: %w(private_message post) }
+  validates :status, presence: true, inclusion: { in: %w(new read) }
 
   [:private_message, :post].each do |type|
-    scope "#{type}s".to_sym, -> { where(message_type: type).order(:created_at) }
+    scope "#{type}s".to_sym, -> { where(message_type: type) }
   end
 
   scope :sent_by, ->(user){ where(sender: user) }

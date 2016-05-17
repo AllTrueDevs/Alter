@@ -22,12 +22,18 @@
               %a.dropdown-toggle{ title: "#{current_user.name}", data: { toggle: 'dropdown' }, href: '#' }
                 %i.fa.fa-angle-down
                 %span.name= current_user.name
-                -#%span#new-info.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
+                -#- info = @new_messages_count + @new_notifications_count + @new_decisions_count
+                -#- info = can?(:unchecked_requests, Request) ? info + Request.unchecked.size : info
+                -#- unless info.zero?
+                -#  %span#new-info.badge= info
               %ul.dropdown-menu
                 %li
                   = link_to 'Мій профіль', user_url(current_user)
                 %li
-                  = link_to 'Повідомлення', messages_url
+                  = link_to messages_url do
+                    Повідомлення
+                    - unless @new_messages_count.zero?
+                      %span#new-messages.number= @new_messages_count.to_s
                 - if can? :create, Request
                   %li
                     = link_to 'Створити запит', new_request_url
@@ -44,14 +50,14 @@
                         %span#unchecked-requests-count.number= Request.unchecked.size
                 %li
                   = link_to notifications_url do
-                    Cповіщення
-                    - unless @new_notifications.zero?
-                      %span#new-notifications.number= @new_notifications.to_s
+                    Сповіщення
+                    - unless @new_notifications_count.zero?
+                      %span#new-notifications.number= @new_notifications_count.to_s
                 %li
                   = link_to decisions_url do
                     Відгуки
-                    - unless @new_decisions.zero?
-                      %span.number= @new_decisions.to_s
+                    - unless @new_decisions_count.zero?
+                      %span.number= @new_decisions_count.to_s
                 - if can? :change_ban_status, User
                   %li
                     = link_to 'Користувачі', users_url

@@ -4,6 +4,7 @@
 = content_for :web_socket do
   - ids = (@companion.id < @user.id) ? [ @companion.id, @user.id ]  : [ @user.id, @companion.id ]
   = subscribe_to "/messages/private/#{ids[0]}_#{ids[1]}"
+
 .container.dialog
   %ul.messages
     = render partial: 'messages', locals: { messages: @messages, companion: @companion }

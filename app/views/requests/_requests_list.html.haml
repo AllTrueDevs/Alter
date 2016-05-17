@@ -4,4 +4,3 @@
   - else
     - requests.each do |request|
       = render partial: 'requests/request_in_list', locals: { request: request, requests: requests, ajax: defined?(ajax) ? ajax : nil }
-    = paginate requests

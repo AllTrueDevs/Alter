@@ -13,3 +13,10 @@
       %p.break-word.text-justify.request-description= @article.body
       - @article.tags.map(&:name).each do |tag|
         %span{ class: "label label-#{Random.rand(1..8)}" }= tag
+      .row
+        .col-md-9
+          Опубліковано
+          = " #{time_ago_in_words(@article.created_at)} "
+          тому
+        .col-md-3.text-right.no-wrap
+          = link_to @article.src, "http://#{@article.src}"

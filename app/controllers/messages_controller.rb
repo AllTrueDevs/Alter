@@ -5,12 +5,16 @@ class MessagesController < ApplicationController
   load_and_authorize_resource except: [:new, :select]
 
   def index
-    @messages = @user.received_messages.private_messages
+    @messages = @user.received_messages.private_messages.order(created_at: :desc)
   end
 
   def dialog
     @message = Message.new
     @messages = @user.dialog(@companion)
+    new_messages = @user.received_messages.sent_by(@companion).where(status: 'new')
+    new_messages_count = new_messages.size
+    new_messages.update_all(status: 'read')
+    @new_messages_count = @new_messages_count - new_messages_count
   end
 
   def new
@@ -22,7 +26,7 @@ class MessagesController < ApplicationController
   end
 
   def select
-    @messages = @user.send(params[:messages_type]).private_messages
+    @messages = @user.send(params[:messages_type]).private_messages.order(created_at: :desc)
     respond_to :js
   end
 
