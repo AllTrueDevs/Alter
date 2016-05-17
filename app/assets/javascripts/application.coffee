@@ -8,3 +8,4 @@
 #= require bootstrap-filestyle
 #= require plugins/flashes
 #= require selectize
+#= require private_pub

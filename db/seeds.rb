@@ -499,3 +499,5 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
   end
 
 ################
+
+User.first.received_messages.create(message_type: :private_message, body: 'What is that, my friend?', sender: User.fourth)
