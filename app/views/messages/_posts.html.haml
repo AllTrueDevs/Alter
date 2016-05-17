@@ -1,0 +1,7 @@
+- if posts.size.zero?
+  %h5.text-center На стіні немає записів
+- else
+  - posts.each do |post|
+    %li.message
+      .body
+        = post.body

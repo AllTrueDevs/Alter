@@ -29,6 +29,8 @@ class RequestsController < ApplicationController
 
   def show
     @required_items = @request.required_items
+    @posts = @request.wall_posts
+    @post = Message.new
   end
 
   def new

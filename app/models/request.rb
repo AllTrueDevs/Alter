@@ -16,4 +16,8 @@ class Request < ActiveRecord::Base
   def status?(request_status)
     status.include?(request_status.to_s)
   end
+
+  def wall_posts
+    Message.posted_on(self)
+  end
 end

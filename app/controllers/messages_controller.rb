@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
-  before_action :set_user, only: [:new, :index, :select, :dialog]
-  before_action :set_companion, only: [:new, :dialog]
-  before_action :authenticate_user!, except: [:new, :select]
-  load_and_authorize_resource except: [:new, :select]
+  before_action :set_user, only: [:new_private, :new_post, :index, :select, :dialog]
+  before_action :set_companion, only: [:new_private, :dialog]
+  before_action :authenticate_user!, except: [:new_private, :new_post, :select]
+  load_and_authorize_resource except: [:new_private, :new_post, :select]
 
   def index
     @messages = @user.received_messages.private_messages.order(created_at: :desc)
@@ -17,10 +17,18 @@ class MessagesController < ApplicationController
     @new_messages_count = @new_messages_count - new_messages_count
   end
 
-  def new
+  def new_private
     @message = Message.new(message_params)
     if @message.save
       @messages = @user.dialog(@companion)
+    end
+    respond_to :js
+  end
+
+  def new_post
+    @message = Message.new(message_params)
+    if @message.save
+      @posts = Request.find(message_params[:request_id]).wall_posts
     end
     respond_to :js
   end
@@ -43,7 +51,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:body, :message_type, :sender_id, :receiver_id)
+    params.require(:message).permit(:body, :message_type, :sender_id, :receiver_id, :request_id)
   end
 
 end

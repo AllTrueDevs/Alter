@@ -24,9 +24,8 @@ Rails.application.routes.draw do
     collection do
       get :select
       get :dialog
-    end
-    member do
-      post :new
+      post :new_private
+      post :new_post
     end
   end
 

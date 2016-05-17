@@ -9,7 +9,7 @@
   %ul.messages
     = render partial: 'messages', locals: { messages: @messages, companion: @companion }
   .clearfix
-  = form_for @message, url: new_message_url(@message, user: @companion), html: { class: 'message-form' }, remote: true do |f|
+  = form_for @message, url: new_private_messages_url(@message, user: @companion), html: { class: 'message-form' }, remote: true do |f|
     = f.text_area :body, class: 'form-control', rows: '5'
     = f.hidden_field :message_type, value: :private_message
     = f.hidden_field :sender_id, value: @user.id
