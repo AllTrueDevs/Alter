@@ -19,11 +19,13 @@ class RequestsController < ApplicationController
 
   def check
     @request.update(status: 'actual')
+    @request.user.notifications.create(message_type: 10, request_id: @request.id)
     respond_to :js
   end
 
   def decline
     @request.update(status: 'declined')
+    @request.user.notifications.create(message_type: 11, request_id: @request.id)
     redirect_to unchecked_requests_url
   end
 

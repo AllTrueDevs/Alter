@@ -23,9 +23,6 @@ ActiveRecord::Schema.define(version: 20160512111913) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "accepted_items", ["decision_id"], name: "index_accepted_items_on_decision_id", using: :btree
-  add_index "accepted_items", ["required_item_id"], name: "index_accepted_items_on_required_item_id", using: :btree
-
   create_table "articles", force: :cascade do |t|
     t.string   "name"
     t.text     "body"
@@ -109,7 +106,6 @@ ActiveRecord::Schema.define(version: 20160512111913) do
 
   add_index "notifications", ["reason_user_id"], name: "index_notifications_on_reason_user_id", using: :btree
   add_index "notifications", ["request_id"], name: "index_notifications_on_request_id", using: :btree
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.string   "name"
@@ -124,17 +120,12 @@ ActiveRecord::Schema.define(version: 20160512111913) do
     t.string   "status",             default: "unchecked"
   end
 
-  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
-
   create_table "required_items", force: :cascade do |t|
     t.integer  "request_id"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "required_items", ["category_id"], name: "index_required_items_on_category_id", using: :btree
-  add_index "required_items", ["request_id"], name: "index_required_items_on_request_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
