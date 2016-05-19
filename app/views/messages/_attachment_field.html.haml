@@ -1,0 +1,6 @@
+.file-field-container.row
+  .col-md-3
+    = f.file_field :content, accept: Attachment.all_types.join(',')
+  .col-md-9
+    = f.link_to_remove do
+      %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }

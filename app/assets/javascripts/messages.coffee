@@ -1,3 +1,33 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $(document).on 'click', '.submit', ->
+    $(this).removeClass('.active');
+    $(this).closest('form').submit()
+
+  $(document).on 'change', 'input[type=checkbox]', ->
+    if $('input[type=checkbox]:checked').length == 0
+      $('.submit-container').addClass('disabled')
+      $('.submit-container a').removeClass('submit')
+    else
+      $('.submit-container').removeClass('disabled')
+      $('.submit-container a').addClass('submit')
+
+  $(document).on 'nested:fieldRemoved', ->
+    $('.message-form .fields:hidden').each ->
+      $(this).remove()
+    if $('.message-form .fields').length == 4
+     $('.message-form .add_nested_fields').prop('disabled', false)
+
+  $(document).on 'nested:fieldAdded', ->
+    if $('.message-form .fields').length == 5
+      $('.message-form .add_nested_fields').prop('disabled', true)
+
+    $(":file").filestyle({
+      buttonText: 'Прикріпити',
+      buttonBefore: true
+    })
+
+    $('.bootstrap-filestyle input').prop(placeholder: 'Файл не обрано')
+
+    $('.bootstrap-filestyle input').on 'change', (e) ->
+      if this.val().length == 0
+        this.prop(placeholder: 'Файл не обрано')

@@ -24,9 +24,15 @@ Rails.application.routes.draw do
     collection do
       get :select
       get :dialog
+      post :new_private
+      post :new_post
+      post :remove_selected
+      get :clear
     end
+  end
+  resources :attachments do
     member do
-      post :new
+      get :download
     end
   end
 

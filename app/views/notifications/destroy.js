@@ -1,5 +1,4 @@
 $('.delete-notification').bind('ajax:success', function () {
-    debugger;
     if (hasClass($(this).parent().parent().parent().parent().parent(), 'notification-new')) {
         if ($('#new-notifications-count').length > 0) {
             $('#new-notifications-count').text(parseInt($('#new-notifications-count').text()) - 1);

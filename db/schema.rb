@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20160512111913) do
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "attachments", force: :cascade do |t|
-    t.string   "attachment_type"
     t.integer  "message_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
@@ -90,11 +89,13 @@ ActiveRecord::Schema.define(version: 20160512111913) do
     t.string   "status",       default: "new"
     t.integer  "sender_id"
     t.integer  "receiver_id"
+    t.integer  "request_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
 
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
+  add_index "messages", ["request_id"], name: "index_messages_on_request_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
@@ -210,6 +211,7 @@ ActiveRecord::Schema.define(version: 20160512111913) do
   add_foreign_key "decisions", "users", column: "helper_id"
   add_foreign_key "helped_items", "categories"
   add_foreign_key "helped_items", "users"
+  add_foreign_key "messages", "requests"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "notifications", "requests"

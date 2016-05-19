@@ -32,6 +32,8 @@ class RequestsController < ApplicationController
 
   def show
     @required_items = @request.required_items
+    @posts = @request.wall_posts
+    @post = @request.messages.new
   end
 
   def new
@@ -86,11 +88,13 @@ class RequestsController < ApplicationController
   end
 
   private
-    def set_request
-      @request = Request.find(params[:id])
-    end
 
-    def request_params
-      params.require(:request).permit(:name, :description, :user_id, :photo)
-    end
+
+  def set_request
+    @request = Request.find(params[:id])
+  end
+
+  def request_params
+    params.require(:request).permit(:name, :description, :user_id, :photo)
+  end
 end

@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       else
         @user.update(role: 'banned')
         @user.notifications.create(message_type: 4)
-        @user.requests.update_all(status: 'archived')
+        @user.requests.update_all(status: 'declined')
 
         @user.requests.each do |request|
           request.decisions.each do |decision|
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
   #TODO refactor next two methods
 
   def select_requests
-    @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc).page(params[:page]).per(10)
+    @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc)
     respond_to :js
   end
 

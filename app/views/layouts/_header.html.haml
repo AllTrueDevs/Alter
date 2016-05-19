@@ -22,11 +22,15 @@
               %a.dropdown-toggle{ title: "#{current_user.name}", data: { toggle: 'dropdown' }, href: '#' }
                 %i.fa.fa-angle-down
                 %span.name= current_user.name
+                -#%span#new-info.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
               %ul.dropdown-menu
                 %li
                   = link_to 'Мій профіль', user_url(current_user)
                 %li
-                  = link_to 'Повідомлення', messages_url
+                  = link_to messages_url do
+                    Повідомлення
+                    - unless current_user.counters(:messages).zero?
+                      %span#new-notifications-count.number= current_user.counters(:messages)
                 - if can? :create, Request
                   %li
                     = link_to 'Створити запит', new_request_url
@@ -37,8 +41,8 @@
                   %li
                     = link_to unchecked_requests_url do
                       Незатверджені запити
-                      - unless Request.unchecked.size.zero?
-                        %span#unchecked-requests-count.number= Request.unchecked.size
+                      - unless current_user.counters(:unchecked).zero?
+                        %span#unchecked-requests-count.number= current_user.counters(:unchecked)
                 %li
                   = link_to notifications_url do
                     Cповіщення
