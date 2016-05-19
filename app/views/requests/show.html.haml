@@ -5,50 +5,50 @@
 = content_for :styles do
   = stylesheet_link_tag 'requests'
   = stylesheet_link_tag 'messages'
-.col-md-9
-  .panel.panel-default.width-100
-    .panel-heading
-      .row
-        .col-md-9
-          %h4.request-title.break-word= @request.name
-        .col-md-3
-          .pull-right.request-actions
-            = render partial: 'request_actions', locals: { request: @request }
-    .panel-body
-      = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
-      %p.break-word.text-justify.request-description= @request.description
-      - @request.required_items.each do |required_item|
-        = link_to requests_url(category_id: required_item.category.id) do
-          %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
-.col-md-3
-  = render partial: 'user_block'
-.col-md-12.wall
-  .panel.panel-default.width-100
-    .panel-heading
-      .row
-        .col-md-3
-          %h4.request-title.break-word Стіна
-        .col-md-9
-          %h4#wall-counter.text-right
-            - if !@posts.empty?
-              = @posts.size
-              записів
-            - else
-              Записів немає
-    .panel-body
-      - unless cannot?(:new_post, @post)
-        = nested_form_for @post, url: new_post_messages_url(@post), html: { class: 'message-form', multipart: true },
-            remote: true, authenticity_token: true, format: :js do |f|
-          = f.text_area :body, class: 'form-control', rows: '5'
-          = f.hidden_field :message_type, value: :post
-          = f.hidden_field :sender_id, value: current_user.id
-          = f.hidden_field :request_id, value: @request.id
-          = f.fields_for :attachments do |builder|
-            = render 'messages/attachment_field', f: builder
-          .actions
-            = f.link_to_add :attachments do
-              %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
-            = f.submit 'Надіслати', class: 'btn btn-default btn-info'
-        .clearfix
-      %ul.posts
-        = render partial: 'messages/posts', locals: { posts: @posts }
+
+.container
+  .request-show
+    .request-photo
+      = image_tag @request.photo.url
+    = render partial: 'request_categories', locals: { request: @request }
+    = render partial: 'request_info', locals: { request: @request, slice: false, link: false }
+  .col-md-12.wall
+    .panel.panel-default.width-100
+      .panel-heading
+        .row
+          .col-md-3
+            %h4.request-title.break-word Стіна
+          .col-md-9
+            %h4#wall-counter.text-right
+              - if !@posts.empty?
+                = @posts.size
+                записів
+              - else
+                Записів немає
+      .panel-body
+        - unless cannot?(:new_post, @post)
+          = nested_form_for @post, url: new_post_messages_url(@post), html: { class: 'message-form', multipart: true },
+              remote: true, authenticity_token: true, format: :js do |f|
+            = f.text_area :body, class: 'form-control', rows: '5'
+            = f.hidden_field :message_type, value: :post
+            = f.hidden_field :sender_id, value: current_user.id
+            = f.hidden_field :request_id, value: @request.id
+            = f.fields_for :attachments do |builder|
+              = render 'messages/attachment_field', f: builder
+            .actions
+              = f.link_to_add :attachments do
+                %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
+              = f.submit 'Надіслати', class: 'btn btn-default btn-info'
+          .clearfix
+        %ul.posts
+          = render partial: 'messages/posts', locals: { posts: @posts }
+
+-#%a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
+-#  Поділитись
+-#  .vk-logo.pull-left
+-#%a.share-button.share-twitter.pull-right{onclick: 'Share.twitter()'}
+-#  Tweet
+-#  .twitter-logo.pull-left
+
+-#= render partial: 'request_actions', locals: { request: @request }
+

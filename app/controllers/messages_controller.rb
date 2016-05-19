@@ -11,10 +11,7 @@ class MessagesController < ApplicationController
   def dialog
     @message = Message.new
     @messages = @user.dialog(@companion)
-    new_messages = @user.received_messages.sent_by(@companion).where(status: 'new')
-    new_messages_count = new_messages.size
-    new_messages.update_all(status: 'read')
-    @new_messages_count = @new_messages_count - new_messages_count
+    @user.received_messages.sent_by(@companion).where(status: 'new').update_all(status: 'read')
   end
 
   def new_private

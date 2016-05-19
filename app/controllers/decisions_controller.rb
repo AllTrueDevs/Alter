@@ -11,7 +11,6 @@ class DecisionsController < ApplicationController
     @accepted_items = @decision.accepted_items
     if @decision.status == 'new'
       @decision.update(:status => 'unaccepted')
-      @new_decisions_count = @new_decisions_count - 1
     end
   end
 

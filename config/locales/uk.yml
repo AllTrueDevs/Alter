@@ -147,9 +147,9 @@ uk:
     - п'ятниця
     - субота
     formats:
-      default: "%d.%m.%Y"
-      long: "%d %B %Y"
-      short: "%d %b"
+      default: "%d %B, %Y"
+      long: "%m-%d-%Y"
+      short: "%b %d"
     month_names:
     -
     - Січня

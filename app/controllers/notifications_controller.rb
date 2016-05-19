@@ -8,7 +8,6 @@ class NotificationsController < ApplicationController
 
   def show
     @notification.update(status: 'read')
-    @new_notifications_count = @new_notifications_count - 1
     begin
       respond_to :js
     rescue
@@ -17,7 +16,6 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
-    @new_notifications_count = @new_notifications_count - 1 if @notification.status == 'new'
     @notification.destroy
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Notification was successfully destroyed.' }

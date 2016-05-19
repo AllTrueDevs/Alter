@@ -22,42 +22,37 @@
               %a.dropdown-toggle{ title: "#{current_user.name}", data: { toggle: 'dropdown' }, href: '#' }
                 %i.fa.fa-angle-down
                 %span.name= current_user.name
-                -#- info = @new_messages_count + @new_notifications_count + @new_decisions_count
-                -#- info = can?(:unchecked_requests, Request) ? info + Request.unchecked.size : info
-                -#- unless info.zero?
-                -#  %span#new-info.badge= info
+                -#%span#new-info.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
               %ul.dropdown-menu
                 %li
                   = link_to 'Мій профіль', user_url(current_user)
                 %li
                   = link_to messages_url do
                     Повідомлення
-                    - unless @new_messages_count.zero?
-                      %span#new-messages.number= @new_messages_count.to_s
+                    - unless current_user.counters(:messages).zero?
+                      %span#new-notifications-count.number= current_user.counters(:messages)
                 - if can? :create, Request
                   %li
                     = link_to 'Створити запит', new_request_url
                 - if current_user.role?(:admin)
                   %li
                     = link_to 'Панель адміністрування', rails_admin_url
-                %li
-                  = link_to 'Запити', requests_url
                 - if can? :unchecked_requests, Request
                   %li
                     = link_to unchecked_requests_url do
                       Незатверджені запити
-                      - unless Request.unchecked.size.zero?
-                        %span#unchecked-requests-count.number= Request.unchecked.size
+                      - unless current_user.counters(:unchecked).zero?
+                        %span#unchecked-requests-count.number= current_user.counters(:unchecked)
                 %li
                   = link_to notifications_url do
-                    Сповіщення
-                    - unless @new_notifications_count.zero?
-                      %span#new-notifications.number= @new_notifications_count.to_s
+                    Cповіщення
+                    - unless current_user.counters(:notifications).zero?
+                      %span#new-notifications-count.number= current_user.counters(:notifications)
                 %li
                   = link_to decisions_url do
                     Відгуки
-                    - unless @new_decisions_count.zero?
-                      %span.number= @new_decisions_count.to_s
+                    - unless current_user.counters(:decisions).zero?
+                      %span.number= current_user.counters(:decisions)
                 - if can? :change_ban_status, User
                   %li
                     = link_to 'Користувачі', users_url
