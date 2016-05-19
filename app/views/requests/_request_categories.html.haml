@@ -1,0 +1,4 @@
+.categories
+  - request.required_items.each do |required_item|
+    = link_to requests_url(category_id: required_item.category.id) do
+      %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name

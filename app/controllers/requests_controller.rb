@@ -15,6 +15,7 @@ class RequestsController < ApplicationController
 
   def unchecked_requests
     @requests = Request.unchecked.order(created_at: :desc).page(params[:page]).per(10)
+    render template: 'requests/index'
   end
 
   def check

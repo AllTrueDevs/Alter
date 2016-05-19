@@ -4,23 +4,11 @@
 = content_for :styles do
   = stylesheet_link_tag 'requests'
 .container
-  .request
-    .row
-      .col-md-5
-        = image_tag @request.photo.url, class: 'img-responsive img-center request-photo'
-      .col-md-7
-        .categories
-          - @request.required_items.each do |required_item|
-            = link_to requests_url(category_id: required_item.category.id) do
-              %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
-        %h1.request-title= @request.name
-        .request-info
-          %p.author= link_to @request.user.name, @request.user
-          %p.date= l(@request.created_at, format: '%d %B, %Y')
-          -#%span.views.fa.fa-eye 465(count of views here)
-        %br
-        %p.request-description= @request.description
-
+  .request-show
+    .request-photo
+      = image_tag @request.photo.url
+    = render partial: 'request_categories', locals: { request: @request }
+    = render partial: 'request_info', locals: { request: @request, slice: false, link: false }
 -#%a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
 -#  Поділитись
 -#  .vk-logo.pull-left
