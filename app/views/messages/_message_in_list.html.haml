@@ -1,32 +1,23 @@
 %div{ class: 'message-in-list' }
   .row
-    - if !message.sent_by?(current_user)
-      .col-md-1
-        = link_to dialog_messages_url(user: message.sender) do
-          = image_tag message.sender.avatar.url, class: 'img-rounded image'
-      .col-md-11
+    .col-md-1
+      = check_box_tag "id_#{message.id}"
+    .col-md-11
+      .col-md-2
+        = link_to message.sent_by?(current_user) ? message.receiver : message.sender do
+          = image_tag message.sent_by?(current_user) ? message.receiver.avatar.url : message.sender.avatar.url, class: 'img-rounded icon'
+      .col-md-10
         .row
-          .col-md-12
-            = link_to dialog_messages_url(user: message.sender) do
-              %h4= message.sender.name
+          .col-md-12.message-info
+            = link_to dialog_messages_url(user: message.sent_by?(current_user) ? message.receiver : message.sender) do
+              %h4= message.sent_by?(current_user) ? message.receiver.name : message.sender.name
             - if message.status?(:new)
-              %p.label.label-primary Нове
-          .col-md-12
-            %p.break-word= message.body.truncate(530, separator:' ')
-    - else
-      .col-md-1
-        = link_to dialog_messages_url(user: message.receiver) do
-          = image_tag message.receiver.avatar.url, class: 'img-rounded icon'
-      .col-md-11
-        .row
-          .col-md-12
-            = link_to dialog_messages_url(user: message.receiver) do
-              %h4= message.receiver.name
-            - if message.status?(:new)
-              %p.label.label-primary Непрочитане
+              %p.label.label-primary
+                = message.sent_by?(current_user) ? 'Непрочитане' : 'Нове'
           .col-md-12
             %p.break-word= message.body.truncate(530, separator:' ')
             - unless message.attachments.empty?
-              %small <Прикріплення>
-  - if message != Message.last
-    %hr
+              = link_to '#', data: { target: "#attachments_#{message.id}", toggle: :modal, placement: :bottom }, title: 'Показати прикріплення' do
+                %small <Прикріплення>
+              = render partial: 'modals/attachments', locals: { id: message.id, attachments: message.attachments }
+  %hr

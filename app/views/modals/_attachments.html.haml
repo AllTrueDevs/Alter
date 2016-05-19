@@ -1,0 +1,20 @@
+.modal.fade{ id: "attachments_#{id}", 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
+  .modal-dialog.modal-kek
+    .modal-content
+      .modal-body
+        %h4 Список прикріплень
+      .modal-footer
+        .attachments
+          .image-attachments
+            - attachments.image_attachments.each do |attachment|
+              .attachment
+                = link_to attachment.content.url do
+                  = image_tag attachment.content.url, class: 'img-rounded img-responsive'
+                  %small= attachment.form_name
+          .other-attachments
+            - (attachments - attachments.image_attachments).each do |attachment|
+              .attachment
+                %span{class: "glyphicon glyphicon-#{attachment.select_icon}"}
+                = link_to attachment.form_name, download_attachment_path(attachment), title: attachment.content_file_name
+
+

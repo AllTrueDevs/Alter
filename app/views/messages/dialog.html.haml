@@ -10,16 +10,20 @@
 .container.dialog
   %ul.messages
     = render partial: 'messages', locals: { messages: @messages, companion: @companion }
+  - banned = cannot?(:new_private, Message)
   .clearfix
   = nested_form_for @message, url: new_private_messages_url(@message, user: @companion),
       html: { class: 'message-form', multipart: true }, remote: true, authenticity_token: true, format: :js do |f|
-    = f.text_area :body, class: 'form-control', rows: '5'
+    = f.text_area :body, class: 'form-control', rows: '5', disabled: banned, value: !(banned)? '' : 'Ваш аккаунт заблоковано'
     = f.hidden_field :message_type, value: :private_message
     = f.hidden_field :sender_id, value: @user.id
     = f.hidden_field :receiver_id, value: @companion.id
     = f.fields_for :attachments do |builder|
       = render 'attachment_field', f: builder
     .actions
-      = f.link_to_add :attachments do
-        %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
-      = f.submit 'Надіслати', class: 'btn btn-default btn-info'
+      - if !banned
+        = f.link_to_add :attachments do
+          %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
+      - else
+        %span.glyphicon.glyphicon-paperclip.blocked{ 'aria-hidden': true }
+      = f.submit 'Надіслати', class: 'btn btn-default btn-info', disabled: banned

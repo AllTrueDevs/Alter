@@ -1,4 +1,16 @@
 $ ->
+  $(document).on 'click', '.submit', ->
+    $(this).removeClass('.active');
+    $(this).closest('form').submit()
+
+  $(document).on 'change', 'input[type=checkbox]', ->
+    if $('input[type=checkbox]:checked').length == 0
+      $('.submit-container').addClass('disabled')
+      $('.submit-container a').removeClass('submit')
+    else
+      $('.submit-container').removeClass('disabled')
+      $('.submit-container a').addClass('submit')
+
   $(document).on 'nested:fieldRemoved', ->
     $('.message-form .fields:hidden').each ->
       $(this).remove()

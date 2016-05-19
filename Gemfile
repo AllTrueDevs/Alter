@@ -35,7 +35,6 @@ gem 'chartkick'
 gem 'bootstrap-filestyle-rails'
 gem 'font-awesome-rails'
 gem 'selectize-rails'
-gem 'smart_listing'
 
 #############################
 ### Backend

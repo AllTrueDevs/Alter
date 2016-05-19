@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :set_user, only: [:new_private, :new_post, :index, :select, :dialog]
+  before_action :set_user, except: [:destroy, :remove_selected]
   before_action :set_companion, only: [:new_private, :dialog]
   before_action :authenticate_user!, except: [:new_private, :new_post, :select]
   load_and_authorize_resource except: [:new_private, :new_post, :select]
@@ -43,6 +43,18 @@ class MessagesController < ApplicationController
     respond_to :js
   end
 
+  def remove_selected
+    ids = params.select{ |key| key.include?('id') }.map{ |key, value| key.split('_')[1].to_i }
+    Message.private_messages.where(id: ids).destroy_all
+    redirect_to messages_url
+  end
+
+  def clear
+    @user.received_messages.private_messages.destroy_all
+    @user.sent_messages.private_messages.destroy_all
+    redirect_to messages_url
+  end
+
 
   private
 
@@ -59,5 +71,4 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:body, :message_type, :sender_id, :receiver_id, :request_id,
                                       attachments_attributes: [:id, :content, :_destroy] )
   end
-
 end

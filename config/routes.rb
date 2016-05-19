@@ -26,6 +26,8 @@ Rails.application.routes.draw do
       get :dialog
       post :new_private
       post :new_post
+      post :remove_selected
+      get :clear
     end
   end
   resources :attachments do

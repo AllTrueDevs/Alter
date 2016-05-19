@@ -3,14 +3,20 @@
   = stylesheet_link_tag 'messages'
 = content_for :javascript do
   = javascript_include_tag 'user-tabs'
+  = javascript_include_tag 'messages'
 .container
-  %ul.nav.nav-tabs
-    %li.active
-      = link_to 'Отримані', select_messages_url(messages_type: :received_messages), remote: true
-    %li
-      = link_to 'Надіслані', select_messages_url(messages_type: :sent_messages), remote: true
-    %li
-      = link_to 'Видалити обрані'
-  .tab-content
-    .tab-pane.active
-      = render partial: 'messages_list', locals: { messages: @messages }
+  = form_tag remove_selected_messages_url do
+    %ul.nav.nav-tabs
+      %li.active
+        = link_to 'Отримані', select_messages_url(messages_type: :received_messages), remote: true
+      %li
+        = link_to 'Надіслані', select_messages_url(messages_type: :sent_messages), remote: true
+      %li.submit-container.disabled
+        = link_to 'Видалити обрані', '#'
+      %li{class: !(@messages.empty?)? '' : 'disabled'}
+        %a{ 'data-target': !(@messages.empty?)? '#clearMessages' : '#', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити всі повідомлення' }
+          Видалити всі
+    = render partial: 'modals/agree_modal', locals: { selector: 'clearMessages', title: 'Ви дійсно хочете видалити всі повідомлення?', link: clear_messages_url }
+    .tab-content
+      .tab-pane.active
+        = render partial: 'messages_list', locals: { messages: @messages }
