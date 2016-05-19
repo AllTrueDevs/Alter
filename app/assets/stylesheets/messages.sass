@@ -1,7 +1,35 @@
+.image
+  width: 100px
+  max-width: 100px
+  height: 100px
+  max-height: 100px
+.message-form
+  textarea
+    resize: none
+    font-size: 16px
+    box-sizing: border-box
+    &::-webkit-scrollbar
+      width: 20px
+    &::-webkit-scrollbar-thumb
+      border-radius: 15px
+      background-color: #b5d3dc
+    &::-webkit-scrollbar-track
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+      border-radius: 15px
+  .actions
+    float: right
+    margin-top: 10px
+    text-align: right
+    a
+      text-decoration: none
+  input[type=submit]
+    outline: none
+
 .dialog
   li, input, textarea
     border-radius: 15px !important
   .messages
+    margin-top: 20px
     .sent
       background-color: #a1d7db !important
       text-align: right
@@ -12,21 +40,46 @@
       margin: 5px 0
       width: 60%
       padding: 15px 15px
+      .attachments
+        .image-attachments
+          margin-top: 25px
+          .attachment
+            display: inline-block
+            small
+              font-size: 10px
+              display: block
+              text-align: center
+        .other-attachments
+          margin-top: 25px
   .message-form
-    margin-top: 5px
-    textarea
-      resize: none
-      font-size: 16px
-      box-sizing: border-box
-      &::-webkit-scrollbar
-        width: 20px
-      &::-webkit-scrollbar-thumb
-        border-radius: 15px
-        background-color: #b5d3dc
-      &::-webkit-scrollbar-track
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
-        border-radius: 15px
-    input[type=submit]
-      float: right
-      outline: none
-      margin-top: 10px
+    margin-top: 20px
+    .bootstrap-filestyle
+      input
+        border: none
+        background: none
+        box-shadow: none
+        width: auto
+
+.wall
+  .posts
+    h5
+      margin: 75px 0
+    .post-in-list
+      margin: 25px 0
+      padding: 25px
+      border-bottom: 1px solid #eeeeee
+      border-top: 1px solid #eeeeee
+      .inline
+        vertical-align: top
+        small
+          font-size: 10px
+          color: #333
+          font-weight: bold
+          display: block
+        .thumb
+          width: 50px
+          max-width: 50px
+          height: 50px
+          max-height: 50px
+      .body
+        margin-top: 10px

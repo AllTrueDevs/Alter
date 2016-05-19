@@ -29,4 +29,5 @@ Rails.application.config.assets.precompile += %w(
   selection_color.coffee
   home.coffee
   articles.coffee
+  messages.coffee
 )

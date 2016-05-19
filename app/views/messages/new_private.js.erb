@@ -3,5 +3,8 @@
     $('.messages').html("<%= escape_javascript(render 'messages', messages: @messages, companion: @user) %>");
 <% end %>
 $('.messages').html("<%= escape_javascript(render 'messages', messages: @messages, companion: @companion) %>");
-$('#message_body').val('');
-$('#message_body').focus();
+$('#message_body').val('').focus();
+$('.message-form .fields').each(function() {
+    return $(this).remove();
+});
+$('.message-form .add_nested_fields').prop('disabled', false);

@@ -7,6 +7,7 @@ Bundler.require(*Rails.groups)
 module Alter
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
+    config.action_view.embed_authenticity_token_in_remote_forms = true
 
     config.i18n.enforce_available_locales = false
     config.i18n.available_locales = [:en, :uk]

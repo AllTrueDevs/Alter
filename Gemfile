@@ -53,6 +53,8 @@ gem 'devise-i18n'
 gem 'faye'
 gem 'thin'
 gem 'private_pub'
+gem 'nested_form'
+gem 'remotipart', '~> 1.2'
 
 group :development, :test do
   gem 'byebug'

@@ -1,3 +1,4 @@
-$('.messages').html("<%= escape_javascript(render 'posts', posts: @posts) %>");
-$('#message_body').val('');
-$('#message_body').focus();
+$('.posts').html("<%= escape_javascript(render 'posts', posts: @posts) %>");
+$('#message_body').val('').focus();
+$posts_count = "<%= @posts.size %>";
+$('#wall-counter').text($posts_count + ' записів');

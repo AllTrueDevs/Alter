@@ -9,3 +9,5 @@
 #= require plugins/flashes
 #= require selectize
 #= require private_pub
+#= require jquery_nested_form
+#= require jquery.remotipart

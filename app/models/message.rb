@@ -1,10 +1,13 @@
 class Message < ActiveRecord::Base
-  has_many :attachments
+  has_many :attachments, dependent: :destroy
   belongs_to :receiver,  class_name: 'User', foreign_key: 'receiver_id'
   belongs_to :sender,  class_name: 'User', foreign_key: 'sender_id'
   belongs_to :request
+  accepts_nested_attributes_for :attachments, allow_destroy: true,
+                                :reject_if => proc { |attributes| !attributes[:content].present? }
 
-  validates :body, :sender_id, presence: true
+  validates :sender_id, presence: true
+  validates :body, presence: true, if: proc { |m| m.attachments.empty? }
   validates :message_type, inclusion: { in: %w(private_message post) }
   validates :status, presence: true, inclusion: { in: %w(new read) }
 
@@ -26,5 +29,23 @@ class Message < ActiveRecord::Base
 
   def received_by?(user)
     self.receiver == user
+  end
+
+  def parsed_body
+    result = self.body
+    domains.each{ |domain| result = result.split.map{ |word| word.gsub(/.+#{domain}/) { |matched| form_link(matched) } }.join(' ') }
+    result.html_safe
+  end
+
+
+  private
+
+
+  def domains
+    %w(.com .org .ru)
+  end
+
+  def form_link(expression)
+    " <a href=\"http://#{expression}\">#{expression}</a>"
   end
 end

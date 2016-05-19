@@ -1,0 +1,22 @@
+%div{ class: 'post-in-list', id: "post-#{post.id}" }
+  .row
+    .col-md-11
+      .inline
+        = link_to post.sender do
+          = image_tag post.sender.avatar, class: 'img-rounded img-responsive thumb'
+      .inline
+        = link_to post.sender.name, post.sender, class: 'break-word'
+        %small
+          - if post.updated_at == post.created_at
+            = 'Опубліковано ' + time_ago_in_words(post.created_at) + ' тому'
+          - else
+            = 'Змінено ' + time_ago_in_words(post.updated_at) + ' тому'
+    .col-md-1
+      .pull-right
+        - if can?(:destroy, post)
+          = render partial: 'modals/agree_modal', locals: { id: post.id, selector: 'deleteModal', title: 'Видалити запис?', link: post, ajax: true }
+          .delete-post
+            = link_to '#', data: { target: "#deleteModal_#{post.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запис' } do
+              %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
+    .col-md-12.body
+      %p.break-word= post.body

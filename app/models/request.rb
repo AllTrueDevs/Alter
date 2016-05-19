@@ -18,6 +18,6 @@ class Request < ActiveRecord::Base
   end
 
   def wall_posts
-    Message.posted_on(self)
+    Message.posted_on(self).order(updated_at: :desc)
   end
 end

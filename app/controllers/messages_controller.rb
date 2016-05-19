@@ -19,22 +19,27 @@ class MessagesController < ApplicationController
 
   def new_private
     @message = Message.new(message_params)
-    if @message.save
-      @messages = @user.dialog(@companion)
-    end
+    @message.save
+    @messages = @user.dialog(@companion)
     respond_to :js
   end
 
   def new_post
     @message = Message.new(message_params)
-    if @message.save
-      @posts = Request.find(message_params[:request_id]).wall_posts
-    end
+    @message.save
+    @posts = Request.find(message_params[:request_id]).wall_posts
     respond_to :js
   end
 
   def select
     @messages = @user.send(params[:messages_type]).private_messages.order(created_at: :desc)
+    respond_to :js
+  end
+
+  def destroy
+    @post = Message.find(params[:id])
+    @posts = @post.request.wall_posts
+    @post.destroy
     respond_to :js
   end
 
@@ -51,7 +56,8 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:body, :message_type, :sender_id, :receiver_id, :request_id)
+    params.require(:message).permit(:body, :message_type, :sender_id, :receiver_id, :request_id,
+                                      attachments_attributes: [:id, :content, :_destroy] )
   end
 
 end

@@ -1,6 +1,8 @@
-= content_for :title, 'Відправити повідомлення'
+= content_for :title, @companion.name
 = content_for :styles do
   = stylesheet_link_tag 'messages'
+= content_for :plugins do
+  = javascript_include_tag 'messages'
 = content_for :web_socket do
   - ids = (@companion.id < @user.id) ? [ @companion.id, @user.id ]  : [ @user.id, @companion.id ]
   = subscribe_to "/messages/private/#{ids[0]}_#{ids[1]}"
@@ -9,9 +11,15 @@
   %ul.messages
     = render partial: 'messages', locals: { messages: @messages, companion: @companion }
   .clearfix
-  = form_for @message, url: new_private_messages_url(@message, user: @companion), html: { class: 'message-form' }, remote: true do |f|
+  = nested_form_for @message, url: new_private_messages_url(@message, user: @companion),
+      html: { class: 'message-form', multipart: true }, remote: true, authenticity_token: true, format: :js do |f|
     = f.text_area :body, class: 'form-control', rows: '5'
     = f.hidden_field :message_type, value: :private_message
     = f.hidden_field :sender_id, value: @user.id
     = f.hidden_field :receiver_id, value: @companion.id
-    = f.submit 'Надіслати', class: 'btn btn-default btn-info'
+    = f.fields_for :attachments do |builder|
+      = render 'attachment_field', f: builder
+    .actions
+      = f.link_to_add :attachments do
+        %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
+      = f.submit 'Надіслати', class: 'btn btn-default btn-info'

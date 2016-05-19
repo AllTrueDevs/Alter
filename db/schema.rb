@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20160512111913) do
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "attachments", force: :cascade do |t|
-    t.string   "attachment_type"
     t.integer  "message_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
