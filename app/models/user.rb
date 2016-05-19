@@ -67,6 +67,14 @@ class User < ActiveRecord::Base
     Message.from(sql).order(:created_at)
   end
 
+  def counters(type)
+    case(type)
+    when :decisions then Decision.where(status: 'new', request: self.requests).size
+    when :notifications then self.notifications.where(status: 'new').size
+    else nil
+    end
+  end
+
 
   private
 

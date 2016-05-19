@@ -1,6 +1,6 @@
-- row = "notification-in-list notification-#{notification.id}"
+- row = "notification-#{notification.id}"
 - row = row + " notification-new" if notification.status == 'new'
-%div{ class: 'not'}
+%div{ class: 'notification-in-list'}
   %div{ class: row}
     .row
       .col-md-1

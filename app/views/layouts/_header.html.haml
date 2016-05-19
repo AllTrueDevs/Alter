@@ -22,7 +22,6 @@
               %a.dropdown-toggle{ title: "#{current_user.name}", data: { toggle: 'dropdown' }, href: '#' }
                 %i.fa.fa-angle-down
                 %span.name= current_user.name
-                -#%span#new-info.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
               %ul.dropdown-menu
                 %li
                   = link_to 'Мій профіль', user_url(current_user)
@@ -45,13 +44,13 @@
                 %li
                   = link_to notifications_url do
                     Cповіщення
-                    - unless @new_notifications.zero?
-                      %span#new-notifications.number= @new_notifications.to_s
+                    - unless current_user.counters(:notifications).zero?
+                      %span#new-notifications-count.number= current_user.counters(:notifications)
                 %li
                   = link_to decisions_url do
                     Відгуки
-                    - unless @new_decisions.zero?
-                      %span.number= @new_decisions.to_s
+                    - unless current_user.counters(:decisions).zero?
+                      %span.number= current_user.counters(:decisions)
                 - if can? :change_ban_status, User
                   %li
                     = link_to 'Користувачі', users_url
