@@ -1,4 +1,6 @@
 = content_for :title, 'Повідомлення'
+= content_for :styles do
+  = stylesheet_link_tag 'messages'
 = content_for :javascript do
   = javascript_include_tag 'user-tabs'
 .container
@@ -7,6 +9,8 @@
       = link_to 'Отримані', select_messages_url(messages_type: :received_messages), remote: true
     %li
       = link_to 'Надіслані', select_messages_url(messages_type: :sent_messages), remote: true
+    %li
+      = link_to 'Видалити обрані'
   .tab-content
     .tab-pane.active
       = render partial: 'messages_list', locals: { messages: @messages }

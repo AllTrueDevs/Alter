@@ -1,10 +1,10 @@
-%div{ class: 'request-in-list' }
+%div{ class: 'message-in-list' }
   .row
     - if !message.sent_by?(current_user)
-      .col-md-2
+      .col-md-1
         = link_to dialog_messages_url(user: message.sender) do
-          = image_tag message.sender.avatar.url, class: 'img-rounded img-responsive'
-      .col-md-10
+          = image_tag message.sender.avatar.url, class: 'img-rounded image'
+      .col-md-11
         .row
           .col-md-12
             = link_to dialog_messages_url(user: message.sender) do
@@ -14,10 +14,10 @@
           .col-md-12
             %p.break-word= message.body.truncate(530, separator:' ')
     - else
-      .col-md-2
+      .col-md-1
         = link_to dialog_messages_url(user: message.receiver) do
-          = image_tag message.receiver.avatar.url, class: 'img-rounded img-responsive'
-      .col-md-10
+          = image_tag message.receiver.avatar.url, class: 'img-rounded icon'
+      .col-md-11
         .row
           .col-md-12
             = link_to dialog_messages_url(user: message.receiver) do
@@ -26,5 +26,7 @@
               %p.label.label-primary Непрочитане
           .col-md-12
             %p.break-word= message.body.truncate(530, separator:' ')
+            - unless message.attachments.empty?
+              %small <Прикріплення>
   - if message != Message.last
     %hr

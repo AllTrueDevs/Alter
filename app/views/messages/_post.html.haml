@@ -18,5 +18,17 @@
           .delete-post
             = link_to '#', data: { target: "#deleteModal_#{post.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запис' } do
               %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
-    .col-md-12.body
+    .body
       %p.break-word= post.body
+    - unless post.attachments.empty?
+      .attachments
+        .image-attachments
+          - post.attachments.image_attachments.each do |attachment|
+            .attachment
+              = link_to attachment.content.url do
+                = image_tag attachment.content.url, class: 'img-rounded image'
+        .other-attachments
+          - (post.attachments - post.attachments.image_attachments).each do |attachment|
+            .attachment
+              %span{class: "glyphicon glyphicon-#{attachment.select_icon}"}
+              = link_to attachment.form_name, download_attachment_path(attachment), title: attachment.content_file_name

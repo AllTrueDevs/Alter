@@ -5,7 +5,7 @@ class Attachment < ActiveRecord::Base
       image: %w(image/jpg image/jpeg image/png image/gif),
       audio: %w(audio/mp3 audio/mpeg),
       doc: %w(application/pdf text/plain),
-      video: %w(video/mp4 video/avi video/mpeg)
+      video: %w(video/mp4 video/avi video/mpeg video/wmv)
   }.each do |key, value|
     define_singleton_method("#{key}_types"){ value }
     define_singleton_method("#{key}?"){ |type| value.include?(type) }
@@ -17,8 +17,7 @@ class Attachment < ActiveRecord::Base
 
   has_attached_file :content
   validates_attachment_content_type :content, :content_type => Attachment.all_types,
-                                    :size => { :in => 0..100.megabytes }
-
+    :size => { :in => 0..100.megabytes }
 
   scope :image_attachments, -> { where(content_content_type: Attachment.image_types) }
 

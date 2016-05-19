@@ -17,4 +17,4 @@
             - (message.attachments - message.attachments.image_attachments).each do |attachment|
               .attachment
                 %span{class: "glyphicon glyphicon-#{attachment.select_icon}"}
-                = link_to attachment.form_name, attachment.content.url, title: attachment.content_file_name
+                = link_to attachment.form_name, download_attachment_path(attachment), title: attachment.content_file_name

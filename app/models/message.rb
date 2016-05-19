@@ -46,6 +46,6 @@ class Message < ActiveRecord::Base
   end
 
   def form_link(expression)
-    " <a href=\"http://#{expression}\">#{expression}</a>"
+    "<a href=\"http://#{expression}\">#{expression}</a>"
   end
 end

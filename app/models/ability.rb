@@ -15,6 +15,11 @@ class Ability
         user == usr
       end
 
+      can :download, Attachment do |attachment|
+        ((attachment.message.sender == user || attachment.message.receiver == user) && attachment.message.message_type.to_sym == :private_message) ||
+            attachment.message.message_type.to_sym == :post
+      end
+
       cannot :read, Category
       can :create, Request
 

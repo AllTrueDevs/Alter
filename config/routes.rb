@@ -28,6 +28,11 @@ Rails.application.routes.draw do
       post :new_post
     end
   end
+  resources :attachments do
+    member do
+      get :download
+    end
+  end
 
   resources :articles, except: [:index, :edit, :new, :show]
   get '/news', to: 'articles#index', as: :news
