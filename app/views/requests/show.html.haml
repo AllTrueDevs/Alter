@@ -1,22 +1,32 @@
-= content_for :plugins do
-  = javascript_include_tag 'plugins/share_buttons'
+-#= content_for :plugins do
+-#  = javascript_include_tag 'plugins/share_buttons'
 = content_for :title, @request.name
 = content_for :styles do
   = stylesheet_link_tag 'requests'
-.col-md-9
-  .panel.panel-default.width-100
-    .panel-heading
-      .row
-        .col-md-9
-          %h4.request-title.break-word= @request.name
-        .col-md-3
-          .pull-right.request-actions
-            = render partial: 'request_actions', locals: { request: @request }
-    .panel-body
-      = image_tag @request.photo.url, class: 'request-photo img-responsive img-center'
-      %p.break-word.text-justify.request-description= @request.description
-      - @request.required_items.each do |required_item|
-        = link_to requests_url(category_id: required_item.category.id) do
-          %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
-.col-md-3
-  = render partial: 'user_block'
+.container
+  .request
+    .row
+      .col-md-5
+        = image_tag @request.photo.url, class: 'img-responsive img-center request-photo'
+      .col-md-7
+        .categories
+          - @request.required_items.each do |required_item|
+            = link_to requests_url(category_id: required_item.category.id) do
+              %span{ class: "label label-#{required_item.category.color}" }= Category.find(required_item.category_id).name
+        %h1.request-title= @request.name
+        .request-info
+          %p.author= link_to @request.user.name, @request.user
+          %p.date= l(@request.created_at, format: '%d %B, %Y')
+          -#%span.views.fa.fa-eye 465(count of views here)
+        %br
+        %p.request-description= @request.description
+
+-#%a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
+-#  Поділитись
+-#  .vk-logo.pull-left
+-#%a.share-button.share-twitter.pull-right{onclick: 'Share.twitter()'}
+-#  Tweet
+-#  .twitter-logo.pull-left
+
+-#= render partial: 'request_actions', locals: { request: @request }
+
