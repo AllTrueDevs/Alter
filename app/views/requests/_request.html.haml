@@ -4,8 +4,8 @@
       .request-photo
         = image_tag request.photo.url
     .col-md-8
-      = render partial: 'request_info', locals: { request: request, slice: true, link: true }
-      = render partial: 'request_categories', locals: { request: request }
+      = render partial: 'requests/request_info', locals: { request: request, slice: true, link: true }
+      = render partial: 'requests/request_categories', locals: { request: request }
 
 
 

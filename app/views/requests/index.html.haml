@@ -3,12 +3,7 @@
   = stylesheet_link_tag 'requests'
 .container
   .request-index
-    - if @requests.size.zero?
-      %h5.text-center Запитів не знайдено
-    - else
-      - @requests.each do |request|
-        = render partial: 'requests/request', locals: { request: request, ajax: defined?(ajax) ? ajax : nil }
-      = paginate @requests
+    = render partial: 'requests/requests_list', locals: { requests: @requests }
 
 -#.panel.panel-default.width-100
 -#  .panel-heading

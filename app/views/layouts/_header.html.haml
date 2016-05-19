@@ -33,8 +33,6 @@
                 - if current_user.role?(:admin)
                   %li
                     = link_to 'Панель адміністрування', rails_admin_url
-                %li
-                  = link_to 'Запити', requests_url
                 - if can? :unchecked_requests, Request
                   %li
                     = link_to unchecked_requests_url do

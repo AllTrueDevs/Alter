@@ -11,7 +11,6 @@ class Request < ActiveRecord::Base
   [:unchecked, :actual, :archived, :declined].each do |status|
     scope status, -> { where(status: status) }
   end
-  scope :user_actual, -> { where(status: %w(actual unchecked)) }
 
   def status?(request_status)
     status.include?(request_status.to_s)

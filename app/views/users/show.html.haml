@@ -62,15 +62,17 @@
     .user-requests
       %ul.nav.nav-tabs
         %li.active
-          = link_to 'Активні запити', select_requests_user_url(requests_type: :user_actual, sort_field: :created_at), remote: true
+          = link_to 'Активні запити', select_requests_user_url(requests_type: :actual, sort_field: :created_at), remote: true
         %li
           = link_to 'Завершені запити', select_requests_user_url(requests_type: :archived, sort_field: :updated_at), remote: true
+        %li
+          = link_to 'Неперевірені запити', select_requests_user_url(requests_type: :unchecked, sort_field: :created_at), remote: true
         %li
           = link_to 'Відхилені запити', select_requests_user_url(requests_type: :declined, sort_field: :updated_at), remote: true
         - if !@user.helped_items.empty? && can?(:statistic, @user)
           %li= link_to 'Cтатистика', statistic_user_url, remote: true
       .tab-content
-        .tab-pane.active
+        .tab-pane.active.request-index
           = render partial: 'requests/requests_list', locals: { requests: @actual_requests, ajax: true }
 
 
