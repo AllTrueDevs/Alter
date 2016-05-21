@@ -1,6 +1,6 @@
 class DecisionsController < ApplicationController
-  before_action :set_decision, only: [:show, :accept, :deny]
   load_and_authorize_resource except: [:create]
+  before_action :set_decision, only: [:show, :accept, :deny]
 
   def index
     @decisions = Decision.where(request: current_user.requests)
@@ -11,7 +11,6 @@ class DecisionsController < ApplicationController
     @accepted_items = @decision.accepted_items
     if @decision.status == 'new'
       @decision.update(:status => 'unaccepted')
-      @new_decisions = @new_decisions - 1
     end
   end
 

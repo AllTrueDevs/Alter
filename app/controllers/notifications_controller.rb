@@ -1,14 +1,13 @@
 class NotificationsController < ApplicationController
+  load_and_authorize_resource except: [:clean]
   before_action :set_notification, only: [:show, :destroy]
   before_action :set_notifications, only: [:index, :show]
-  load_and_authorize_resource except: [:clean]
 
   def index
   end
 
   def show
     @notification.update(status: 'read')
-    @new_notifications = @new_notifications - 1
     begin
       respond_to :js
     rescue
@@ -17,7 +16,6 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
-    @new_notifications = @new_notifications - 1 if @notification.status == 'new'
     @notification.destroy
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Notification was successfully destroyed.' }

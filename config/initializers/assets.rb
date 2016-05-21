@@ -11,6 +11,9 @@ Rails.application.config.assets.precompile += %w(
   home.sass
   about.sass
   users.sass
+  index_show.sass
+  messages.sass
+  login_signup.sass
 )
 
 ######################### JS
@@ -26,4 +29,5 @@ Rails.application.config.assets.precompile += %w(
   selection_color.coffee
   home.coffee
   articles.coffee
+  messages.coffee
 )

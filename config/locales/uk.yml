@@ -10,6 +10,16 @@ uk:
 
   activerecord:
     errors:
+      models:
+         user:
+           attributes:
+             password:
+               blank: "Введіть пароль"
+             password_confirmation:
+               confirmation: "Паролі не співпадають"
+             current_password:
+               blank: "Введіть минулий пароль"
+               invalid: "Поточний пароль введено невірно"
       messages:
         record_invalid: 'Виникли помилки: %{errors}'
     models:
@@ -45,7 +55,10 @@ uk:
         name: "Ім'я"
         sign_in_count: 'Кількість авторизацій'
         last_sign_in_ip: 'Остання IP-адреса'
-        password: 'Пароль'
+        password: ''
+        password_confirmation: ''
+        current_password: ''
+        remember_me: "Запам'ятати мене"
         info: 'Особиста інформація'
         phone: 'Телефон'
         skype: 'Skype'
@@ -134,9 +147,9 @@ uk:
     - п'ятниця
     - субота
     formats:
-      default: "%d.%m.%Y"
-      long: "%d %B %Y"
-      short: "%d %b"
+      default: "%d %B, %Y"
+      long: "%m-%d-%Y"
+      short: "%b %d"
     month_names:
     -
     - Січня

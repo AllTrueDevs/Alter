@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :actual_requests, :archived_requests, :detach_social_link]
-  before_action :authenticate_user!, except: [:actual_requests, :archived_requests]
-  load_and_authorize_resource except: [:actual_requests, :archived_requests]
+  load_and_authorize_resource except: [:select_requests]
+  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :detach_social_link, :select_requests]
+  before_action :authenticate_user!, except: [:select_requests]
 
   def show
     if @user.confirmed_at.nil?
@@ -14,10 +14,10 @@ class UsersController < ApplicationController
 
   def index
     @users = if params[:search].nil?
-               User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
-             else
-               User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
-             end
+      User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
+    else
+      User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
+    end
   end
 
   def change_ban_status
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       else
         @user.update(role: 'banned')
         @user.notifications.create(message_type: 4)
-        @user.requests.update_all(status: 'archived')
+        @user.requests.update_all(status: 'declined')
 
         @user.requests.each do |request|
           request.decisions.each do |decision|
@@ -68,6 +68,17 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def change_password
+    @user = User.find(current_user.id)
+    if @user.update_with_password(password_params) && !password_params[:password].blank?
+      sign_in @user, :bypass => true
+      flash[:notice] = 'Пароль успішно змінено'
+    else
+      @user.errors.add(:password, t('activerecord.errors.models.user.attributes.password.blank')) if password_params[:password].blank?
+    end
+    render 'devise/registrations/edit'
+  end
+
   def detach_social_link
     @user.send("#{params[:social]}=", nil)
     @user.send("#{params[:social]}_name=", nil)
@@ -75,15 +86,10 @@ class UsersController < ApplicationController
     redirect_to edit_user_registration_path
   end
 
-  #TODO refoctor next two methods
+  #TODO refactor next two methods
 
-  def actual_requests
-    @actual_requests = @user.requests.actual.order(:created_at => :desc).page(params[:page]).per(10)
-    respond_to :js
-  end
-
-  def archived_requests
-    @archived_requests = @user.requests.archived.order(:updated_at => :desc).page(params[:page]).per(10)
+  def select_requests
+    @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc)
     respond_to :js
   end
 
@@ -103,6 +109,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def password_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
 end

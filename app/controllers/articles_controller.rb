@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
+  load_and_authorize_resource except: [:create, :show, :index]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
-  load_and_authorize_resource except: [:create, :show, :index]
   before_action :fill_tags, only: [:new, :edit]
 
   def index

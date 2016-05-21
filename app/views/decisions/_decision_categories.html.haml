@@ -1,0 +1,4 @@
+.categories
+  - decision.accepted_items.each do |accepted_item|
+    %span{ class: "label label-#{accepted_item.required_item.category.color}" }= accepted_item.required_item.category.name
+

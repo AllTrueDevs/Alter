@@ -1,0 +1,9 @@
+%h1.title= link ? link_to(article.name, show_article_url(article, url: article.article_url)) : article.name
+.info
+  %p.date= l(article.created_at, format: '%d %B, %Y')
+  -#%span.request-views.fa.fa-eye 465(count of views here)
+%br
+- if slice
+  %p.description= article.body.truncate(530, separator:' ')
+-else
+  = simple_format(article.body, class: 'description')

@@ -1,0 +1,7 @@
+- if can? :manage, article
+  = link_to edit_article_url(article, url: article.article_url), 'data-placement': :bottom, title: 'Редагувати новину' do
+    %span.glyphicon.glyphicon-pencil{ 'aria-hidden': true }
+  %a{ 'data-target': "#deleteModal_#{article.id}", 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Видалити новину' }
+    %span.glyphicon.glyphicon-remove{'aria-hidden': true }
+  = render partial: 'modals/agree_modal', locals: { id: article.id, selector: 'deleteModal', title: 'Ви дійсно хочете видалити новину?', link: article }
+

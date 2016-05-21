@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
   load_and_authorize_resource except: [:create, :show, :index]
+  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked_requests]
 
   def index
     @requests = if params[:category_id].nil?
@@ -13,8 +13,27 @@ class RequestsController < ApplicationController
                 end
   end
 
+  def unchecked_requests
+    @requests = Request.unchecked.order(created_at: :desc).page(params[:page]).per(10)
+    render template: 'requests/index'
+  end
+
+  def check
+    @request.update(status: 'actual')
+    @request.user.notifications.create(message_type: 10, request_id: @request.id)
+    respond_to :js
+  end
+
+  def decline
+    @request.update(status: 'declined')
+    @request.user.notifications.create(message_type: 11, request_id: @request.id)
+    redirect_to unchecked_requests_url
+  end
+
   def show
     @required_items = @request.required_items
+    @posts = @request.wall_posts
+    @post = @request.messages.new
   end
 
   def new
@@ -44,6 +63,7 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
+        @request.update(status: 'unchecked')
         @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.create(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id) }
         @request.decisions.destroy_all
         @request.required_items.destroy_all
@@ -62,15 +82,20 @@ class RequestsController < ApplicationController
       User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id)
     end
     @request.decisions.destroy_all
-    respond_to :js
+    respond_to do |format|
+      format.html{ redirect_to @request }
+      format.js
+    end
   end
 
   private
-    def set_request
-      @request = Request.find(params[:id])
-    end
 
-    def request_params
-      params.require(:request).permit(:name, :description, :user_id, :photo)
-    end
+
+  def set_request
+    @request = Request.find(params[:id])
+  end
+
+  def request_params
+    params.require(:request).permit(:name, :description, :user_id, :photo)
+  end
 end

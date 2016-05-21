@@ -1,41 +1,51 @@
 = content_for :title, @decision.request.name
+= content_for :styles do
+  = stylesheet_link_tag 'index_show'
 
-.col-md-9
-  .panel.panel-default.width-100
-    .panel-heading
-      .row
-        .col-md-10
-          %h4.break-word= @decision.request.name
-        .col-md-2
-          .pull-right.request-actions
-            .dropdown
-              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{ 'data-toggle': :dropdown, type: :button }
-                Підтвердження
-                %span.caret
-              %ul.dropdown-menu
-                %li
-                  %a{ 'data-target': '#closeDecisionModal', 'data-toggle': :modal, 'href': '#' } Частково допоміг
-                %li= link_to 'Допоміг', accept_decision_url
-                %li= link_to 'Не допоміг', deny_decision_url
-          = render 'modals/decision_close'
-    .panel-body
-      %p.break-word.text-justify.request-description= @decision.description
-      - @decision.accepted_items.each do |accepted_item|
-        = link_to requests_url(category_id: accepted_item.required_item.category.id) do
-          %span{ class: "label label-#{accepted_item.required_item.category.color}" }= Category.find(accepted_item.required_item.category_id).name
-.col-md-3
-  .panel.panel-default.width-100
-    .panel-heading
-      %h4 Автор
-    .panel-body
-      .text-center
-        = link_to @decision.helper.name, @decision.helper, class: 'break-word'
-        = image_tag @decision.helper.avatar.url, class: 'img-responsive img-center img-thumbnail'
-      -if @decision.helper.phone.to_s.length > 0
-        %p
-          %strong Телефон:
-          = @decision.helper.phone
-      -if @decision.helper.skype.to_s.length > 0
-        %p
-          %strong Skype:
-          = @decision.helper.skype
+.container
+  .decision-show
+    .photo
+      = image_tag @decision.helper.avatar.url
+    = render partial: 'decisions/decision_categories', locals: { decision: @decision }
+    = render partial: 'decisions/decision_info', locals: { decision: @decision, slice: false }
+
+
+-#.col-md-9
+-#  .panel.panel-default.width-100
+-#    .panel-heading
+-#      .row
+-#        .col-md-10
+-#          %h4.break-word= @decision.request.name
+-#        .col-md-2
+-#          .pull-right.request-actions
+-#            .dropdown
+-#              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{ 'data-toggle': :dropdown, type: :button }
+-#                Підтвердження
+-#                %span.caret
+-#              %ul.dropdown-menu
+-#                %li
+-#                  %a{ 'data-target': '#closeDecisionModal', 'data-toggle': :modal, 'href': '#' } Частково допоміг
+-#                %li= link_to 'Допоміг', accept_decision_url
+-#                %li= link_to 'Не допоміг', deny_decision_url
+-#          = render 'modals/decision_close'
+-#    .panel-body
+-#      %p.break-word.text-justify.request-description= @decision.description
+-#      - @decision.accepted_items.each do |accepted_item|
+-#        = link_to requests_url(category_id: accepted_item.required_item.category.id) do
+-#          %span{ class: "label label-#{accepted_item.required_item.category.color}" }= Category.find(accepted_item.required_item.category_id).name
+-#.col-md-3
+-#  .panel.panel-default.width-100
+-#    .panel-heading
+-#      %h4 Автор
+-#    .panel-body
+-#      .text-center
+-#        = link_to @decision.helper.name, @decision.helper, class: 'break-word'
+-#        = image_tag @decision.helper.avatar.url, class: 'img-responsive img-center img-thumbnail'
+-#      -if @decision.helper.phone.to_s.length > 0
+-#        %p
+-#          %strong Телефон:
+-#          = @decision.helper.phone
+-#      -if @decision.helper.skype.to_s.length > 0
+-#        %p
+-#          %strong Skype:
+-#          = @decision.helper.skype

@@ -1,12 +1,18 @@
 = content_for :title, 'Запити на допомогу'
-.panel.panel-default.width-100
-  .panel-heading
-    .row
-      .col-md-10
-        %h4 Запити
-      .col-md-2
-        .pull-right
-          = link_to requests_url, 'data-placement': :bottom, title: 'Показати усі запити.' do
-            %span.glyphicon.glyphicon-filter{ 'aria-hidden': true }
-  .panel-body
+= content_for :styles do
+  = stylesheet_link_tag 'index_show'
+.container
+  .request-index
     = render partial: 'requests/requests_list', locals: { requests: @requests }
+
+-#.panel.panel-default.width-100
+-#  .panel-heading
+-#    .row
+-#      .col-md-10
+-#        %h4 Запити
+-#      .col-md-2
+-#        .pull-right
+-#          = link_to requests_url, 'data-placement': :bottom, title: 'Показати усі запити.' do
+-#            %span.glyphicon.glyphicon-filter{ 'aria-hidden': true }
+-#  .panel-body
+-#    = render partial: 'requests/requests_list', locals: { requests: @requests }

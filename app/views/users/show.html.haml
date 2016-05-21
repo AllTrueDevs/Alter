@@ -1,6 +1,8 @@
 = content_for :title, @user.name
 = content_for :javascript do
   = javascript_include_tag 'user-tabs'
+= content_for :styles do
+  = stylesheet_link_tag 'index_show'
 .panel.panel-default.width-100
   .panel-body
     .row.user-profile
@@ -9,24 +11,24 @@
         %h3.inline= @user.name
         - if can?(:change_ban_status, @user) && (current_user != @user)
           - if @user.role?(:banned)
-            %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Розблокувати користувача.' }
+            %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Розблокувати користувача' }
               %span.glyphicon.glyphicon-check{ 'aria-hidden': true }
             = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_user_url }
           - else
-            %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Заблокувати користувача.' }
+            %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Заблокувати користувача' }
               %span.glyphicon.glyphicon-ban-circle{ 'aria-hidden': true }
             = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_user_url }
         - if can?(:change_moder_status, @user) && (current_user != @user)
           - if @user.role?(:moderator)
-            %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Забрати права модератора.' }
+            %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Забрати права модератора' }
               %span.glyphicon.glyphicon-user{ 'aria-hidden': true }
             = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_user_url }
           - else
-            %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Надати права модератора.' }
+            %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Надати права модератора' }
               %span.glyphicon.glyphicon-briefcase{ 'aria-hidden': true }
             = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_user_url }
         - if can?(:admin_login, @user) && (current_user != @user)
-          %a{ 'data-target': '#userModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Вхід на користувача.' }
+          %a{ 'data-target': '#userModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Вхід на користувача' }
             %span.glyphicon.glyphicon-search{ 'aria-hidden': true }
           = render partial: 'modals/agree_modal', locals: { selector: 'userModal', title: 'Зайти на аккаунт даного користувача?', link: admin_login_user_url }
         - case @user.role
@@ -36,6 +38,9 @@
           - when 'banned'
             %h5
               %small.text-danger Заблокований
+        - if can?(:new_private, Message)
+          %br
+            = link_to 'Написати повідомлення', dialog_messages_url(user: @user), class: 'btn btn-default btn-info'
         %br
         - if @user.info.to_s.length > 0
           %p.info= @user.info
@@ -57,12 +62,18 @@
             = link_to @user.facebook, @user.facebook
     .user-requests
       %ul.nav.nav-tabs
-        %li.active= link_to 'Активні запити', actual_requests_user_url, remote: true
-        %li= link_to 'Завершені запити', archived_requests_user_url, remote: true
+        %li.active
+          = link_to 'Активні запити', select_requests_user_url(requests_type: :actual, sort_field: :created_at), remote: true
+        %li
+          = link_to 'Завершені запити', select_requests_user_url(requests_type: :archived, sort_field: :updated_at), remote: true
+        %li
+          = link_to 'Неперевірені запити', select_requests_user_url(requests_type: :unchecked, sort_field: :created_at), remote: true
+        %li
+          = link_to 'Відхилені запити', select_requests_user_url(requests_type: :declined, sort_field: :updated_at), remote: true
         - if !@user.helped_items.empty? && can?(:statistic, @user)
           %li= link_to 'Cтатистика', statistic_user_url, remote: true
       .tab-content
-        .tab-pane.active
+        .tab-pane.active.request-index
           = render partial: 'requests/requests_list', locals: { requests: @actual_requests, ajax: true }
 
 

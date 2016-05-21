@@ -2,7 +2,8 @@
 %html
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
-    %title= "Alter | #{yield(:title)}"
+    %title= "Alter | #{yield :title}"
+    %link{:href => "http://fonts.googleapis.com/css?family=Tangerine", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
     = yield :styles
     = csrf_meta_tags
@@ -10,14 +11,10 @@
   %body{ class: home_page? ? 'home-page-bg' : ''}
     = render partial: 'layouts/header'
     .content
-      -flash.each do |name, msg|
-        .alert.alert-info.alert-dismissible
-          %button.close{ 'data-dismiss': :alert, type: :button }
-            %span{ 'aria-hidden': true } ×
-            %span.sr-only Close
-          = msg
+      = render partial: 'layouts/flashes'
       = yield
       = javascript_include_tag 'application'
       = yield :plugins
       = yield :javascript
+      = yield :web_socket
     = render partial: 'layouts/footer'

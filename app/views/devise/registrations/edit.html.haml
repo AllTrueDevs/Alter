@@ -8,7 +8,11 @@
   .panel-heading
     %h4 Налаштування профілю
   .panel-body
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, role: 'form' }) do |f|
+    = form_for(@user, url: registration_path(@user), html: { method: :put, multipart: true, role: 'form' }) do |f|
+      - if @user.errors.full_messages.any?
+        - @user.errors.full_messages.each do |error_message|
+          = error_message if @user.errors.full_messages.first == error_message
+          %br
       .form-group
         %label Поштова скринька
         = text_field_tag :email, current_user.email, class: 'form-control', disabled: true
@@ -25,11 +29,25 @@
         %label Skype
         = f.text_field :skype, class: 'form-control'
       .form-group.social.vk
-        = render partial: 'edit_url', locals: { social: :vkontakte, user: resource }
+        = render partial: 'devise/registrations/edit_url', locals: { social: :vkontakte, user: @user }
       .form-group.social.facebook
-        = render partial: 'edit_url', locals: { social: :facebook, user: resource }
+        = render partial: 'devise/registrations/edit_url', locals: { social: :facebook, user: @user }
       .form-group
         = f.label :Фото
         .file-field-container
           = f.file_field :avatar, accept: 'image/png, image/jpeg'
       = f.submit 'Зберегти', class: 'btn btn-success', data: {disable_with: 'Обробка...'}
+
+    %br
+
+    = form_for(@user, url: change_password_users_url  ) do |f|
+      .form-group
+        %label Поточний пароль
+        = f.password_field :current_password, class: 'form-control'
+      .form-group
+        %label Пароль
+        = f.password_field :password, :autocomplete => 'off', class: 'form-control'
+      .form-group
+        %label Підтвердження паролю
+        = f.password_field :password_confirmation, class: 'form-control'
+      = f.submit 'Змінити пароль', remote: true, class: 'btn btn-info', data: {disable_with: 'Обробка...'}

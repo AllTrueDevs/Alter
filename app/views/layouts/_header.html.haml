@@ -26,22 +26,33 @@
               %ul.dropdown-menu
                 %li
                   = link_to 'Мій профіль', user_url(current_user)
+                %li
+                  = link_to messages_url do
+                    Повідомлення
+                    - unless current_user.counters(:messages).zero?
+                      %span#new-notifications-count.number= current_user.counters(:messages)
                 - if can? :create, Request
                   %li
-                    = link_to 'Створити запит', new_request_path
+                    = link_to 'Створити запит', new_request_url
                 - if current_user.role?(:admin)
                   %li
                     = link_to 'Панель адміністрування', rails_admin_url
-                %li
-                  = link_to 'Запити', requests_url
+                - if can? :unchecked_requests, Request
+                  %li
+                    = link_to unchecked_requests_url do
+                      Незатверджені запити
+                      - unless current_user.counters(:unchecked).zero?
+                        %span#unchecked-requests-count.number= current_user.counters(:unchecked)
                 %li
                   = link_to notifications_url do
                     Cповіщення
-                    %span#new-notifications.number= @new_notifications.to_s unless @new_notifications.zero?
+                    - unless current_user.counters(:notifications).zero?
+                      %span#new-notifications-count.number= current_user.counters(:notifications)
                 %li
                   = link_to decisions_url do
                     Відгуки
-                    %span.number= @new_decisions.to_s unless @new_decisions.zero?
+                    - unless current_user.counters(:decisions).zero?
+                      %span.number= current_user.counters(:decisions)
                 - if can? :change_ban_status, User
                   %li
                     = link_to 'Користувачі', users_url
