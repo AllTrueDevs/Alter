@@ -1,6 +1,12 @@
-%div{ class: 'articles'}
-  - if articles.size.zero?
-    %h5.text-center Новин немає
-  - else
-    - articles.each do |article|
-      = render partial: 'articles/article_in_list', locals: { article: article, articles: articles }
+- if articles.size.zero?
+  %h5.text-center Новин не знайдено
+- else
+  - articles.each do |article|
+    = render partial: 'articles/article', locals: { article: article }
+
+-#%div{ class: 'articles'}
+-#  - if articles.size.zero?
+-#    %h5.text-center Новин немає
+-#  - else
+-#    - articles.each do |article|
+-#      = render partial: 'articles/article_in_list', locals: { article: article, articles: articles }

@@ -1,11 +1,11 @@
-.request{class: "request#{request.id}"}
+.article{class: "article#{article.id}"}
   .row
     .col-md-4
       .photo
-        = image_tag request.photo.url
+        = image_tag article.photo.url
     .col-md-8
-      = render partial: 'requests/request_info', locals: { request: request, slice: true, link: true }
-      = render partial: 'requests/request_categories', locals: { request: request }
+      = render partial: 'articles/article_info', locals: { article: article, slice: true, link: true }
+      = render partial: 'articles/article_tags', locals: { article: article }
 
 
 

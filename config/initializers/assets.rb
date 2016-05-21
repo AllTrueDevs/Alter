@@ -11,7 +11,7 @@ Rails.application.config.assets.precompile += %w(
   home.sass
   about.sass
   users.sass
-  requests.sass
+  index_show.sass
   messages.sass
   login_signup.sass
 )

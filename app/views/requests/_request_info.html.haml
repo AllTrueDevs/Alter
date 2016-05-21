@@ -1,7 +1,10 @@
-%h1.request-title= link ? link_to(request.name, request) : request.name
-.request-info
-  %p.request-author= link_to request.user.name, request.user
-  %p.request-date= l(request.created_at, format: '%d %B, %Y')
-  -#%span.request-views.fa.fa-eye 465(count of views here)
+%h1.title= link ? link_to(request.name, request) : request.name
+.info
+  %p.author= link_to request.user.name, request.user
+  %p.date= l(request.created_at, format: '%d %B, %Y')
+  -#%span.views.fa.fa-eye 465(count of views here)
 %br
-%p.request-description= slice ? request.description.truncate(530, separator:' ') : request.description
+- if slice
+  %p.description= request.description.truncate(530, separator:' ')
+-else
+  = simple_format(request.description, class: 'description')
