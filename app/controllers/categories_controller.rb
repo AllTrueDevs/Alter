@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:destroy]
   load_and_authorize_resource except: [:create]
+  before_action :set_category, only: [:destroy]
 
   def index
     @categories = Category.all.order(created_at: :desc).page(params[:page]).per(10)

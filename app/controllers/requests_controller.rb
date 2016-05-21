@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
+  load_and_authorize_resource except: [:create, :show, :index]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked_requests]
-  load_and_authorize_resource except: [:create, :show, :index]
 
   def index
     @requests = if params[:category_id].nil?
@@ -63,6 +63,7 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
+        @request.update(status: 'unchecked')
         @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.create(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id) }
         @request.decisions.destroy_all
         @request.required_items.destroy_all

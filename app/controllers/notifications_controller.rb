@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
+  load_and_authorize_resource except: [:clean]
   before_action :set_notification, only: [:show, :destroy]
   before_action :set_notifications, only: [:index, :show]
-  load_and_authorize_resource except: [:clean]
 
   def index
   end

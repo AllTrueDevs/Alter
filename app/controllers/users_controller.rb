@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource except: [:select_requests]
   before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :detach_social_link, :select_requests]
   before_action :authenticate_user!, except: [:select_requests]
-  load_and_authorize_resource except: [:select_requests]
 
   def show
     if @user.confirmed_at.nil?

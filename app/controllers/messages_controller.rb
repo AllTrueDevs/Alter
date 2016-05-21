@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
+  load_and_authorize_resource except: [:new_private, :new_post, :select]
   before_action :set_user, except: [:destroy, :remove_selected]
   before_action :set_companion, only: [:new_private, :dialog]
   before_action :authenticate_user!, except: [:new_private, :new_post, :select]
-  load_and_authorize_resource except: [:new_private, :new_post, :select]
 
   def index
     @messages = @user.received_messages.private_messages.order(created_at: :desc)
