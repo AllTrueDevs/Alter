@@ -9,7 +9,7 @@ RailsAdmin.config do |config|
   config.current_user_method(&:current_user)
   config.authorize_with :cancan, AdminAbility
 
-  config.excluded_models = ['AcceptedItem', 'HelpedItem', 'RequiredItem', 'Article', 'UserTag']
+  config.included_models = ['User', 'Request', 'Decision', 'Category']
 
   config.actions do
     dashboard                     # mandatory
@@ -202,52 +202,21 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :name
-      field :color do
-        formatted_value do
-          case value
-            when 1 then 'Салатовий'
-            when 2 then 'Зелений'
-            when 3 then 'Голубий'
-            when 4 then 'Фіолетовий'
-            when 5 then 'Жовтий'
-            when 6 then 'Помаранчевий'
-            when 7 then 'Червоний'
-            when 8 then 'Синій'
-          end
-        end
-      end
+      field :color, :color
       field :updated_at
       field :created_at
     end
 
     show do
       field :name
-      field :color do
-        formatted_value do
-          case value
-            when 1 then 'Салатовий'
-            when 2 then 'Зелений'
-            when 3 then 'Голубий'
-            when 4 then 'Фіолетовий'
-            when 5 then 'Жовтий'
-            when 6 then 'Помаранчевий'
-            when 7 then 'Червоний'
-            when 8 then 'Синій'
-          end
-        end
-      end
+      field :color, :color
     end
     #
     edit do
       field :name do
         required true
       end
-      field :color, :enum do
-        enum do
-          Hash[ ['Салатовий', 'Зелений', 'Голубий', 'Фіолетовий', 'Жовтий', 'Помаранчевий', 'Червоний', 'Синій']
-                .zip([1, 2, 3, 4, 5, 6, 7, 8]) ]
-        end
-      end
+      field :color, :color
     end
   end
 

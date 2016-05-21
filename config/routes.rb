@@ -49,8 +49,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :categories, only: [:index, :destroy, :create, :update]
-
   resources :decisions, only: [:index, :show, :create] do
     member do
       get :accept

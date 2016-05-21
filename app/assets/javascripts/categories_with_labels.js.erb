@@ -26,7 +26,7 @@ $(document).ready(function() {
       onChange: function(element, checked) {
           if (checked === true){
             var result = search(parseInt(element.prop('value')), my_data);
-            $(".categories-labels").append("<span class='label label-" + result.color + " category-label category-" + result.id + "'>" + result.name + "</span>");
+            $(".categories-labels").append("<span class='label category-label category-" + result.id + "' style='background: #"+result.color +";'>" + result.name + "</span>");
           }
 
           else
@@ -38,7 +38,7 @@ $(document).ready(function() {
           $(".categories .label").remove();
           for ( i = 1; i < $('label input').length; i++){
             var result = search(parseInt($('label input').eq(i).val()), my_data);
-            $(".categories-labels").append("<span class='label label-" + result.color + " category-label category-" + result.id + "'>" + result.name + "</span>");
+            $(".categories-labels").append("<span class='label category-label category-" + result.id + "' style='background: #"+result.color +";'>" + result.name + "</span>");
           }
       }
       else
