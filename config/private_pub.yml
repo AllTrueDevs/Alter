@@ -1,3 +1,9 @@
+development:
+  server: "http://localhost:9292/faye"
+  secret_token: "secret"
+test:
+  server: "http://localhost:9292/faye"
+  secret_token: "secret"
 production:
   server: "http://alter.herokuapp.com/faye"
   secret_token: "31a23150b617e434d5b86b332b5b5b67bfaf0007c4b56fe89aa1803dd6688eae"
