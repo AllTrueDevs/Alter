@@ -34,7 +34,7 @@
                 - if can? :create, Request
                   %li
                     = link_to 'Створити запит', new_request_url
-                - if current_user.role?(:admin)
+                - if current_user.with_privileges?
                   %li
                     = link_to 'Панель адміністрування', rails_admin_url
                 - if can? :unchecked_requests, Request
@@ -56,9 +56,6 @@
                 - if can? :change_ban_status, User
                   %li
                     = link_to 'Користувачі', users_url
-                - if can? :manage, Category
-                  %li
-                    = link_to 'Категорії', categories_url
                 %li
                   = link_to 'Налаштування', edit_user_registration_path
                 %li

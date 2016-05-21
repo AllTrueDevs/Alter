@@ -45,18 +45,14 @@ class Ability
 
       if user.with_privileges?
         can :manage, Category
-        can :destroy, Request
+        can [:unchecked_requests, :check, :decline, :destroy], Request
       end
 
       case user.role
       when 'admin'
         can :manage, User
         can :manage, Article
-        # Fix this ability
-        can [:unchecked_requests, :check, :decline], Request
-        when 'moderator'
-        # Fix this ability
-        can [:unchecked_requests, :check, :decline], Request
+      when 'moderator'
         can [:change_ban_status, :index], User
       when 'newsmaker'
          can :manage, Article
