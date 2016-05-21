@@ -1,8 +1,8 @@
-.request{class: "request#{request.id}"}
+.request{id: "request-#{request.id}"}
   .row
     .col-md-4
       .photo
-        = image_tag request.photo.url
+        = link_to image_tag(request.photo.url), request
     .col-md-8
       = render partial: 'requests/request_info', locals: { request: request, slice: true, link: true }
       = render partial: 'requests/request_categories', locals: { request: request }

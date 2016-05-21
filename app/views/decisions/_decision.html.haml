@@ -1,11 +1,11 @@
-.article{id: "article-#{article.id}"}
+.decision{id: "decision-#{decision.id}"}
   .row
     .col-md-4
       .photo
-        = link_to image_tag(article.photo.url), show_article_url(article, url: article.article_url)
+        = link_to image_tag(decision.helper.avatar.url), decision_url(decision)
     .col-md-8
-      = render partial: 'articles/article_info', locals: { article: article, slice: true, link: true }
-      = render partial: 'articles/article_tags', locals: { article: article }
+      = render partial: 'decisions/decision_info', locals: { decision: decision, slice: true }
+      = render partial: 'decisions/decision_categories', locals: { decision: decision }
 
 
 

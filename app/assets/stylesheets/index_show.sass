@@ -22,12 +22,17 @@
   color: #666666
   font-size: 0.9em
   line-height: 25px
+.title
+  a
+    color: #35353f
+    &:hover, &:focus
+      text-decoration: underline
 h1, h2
   font-family: 'Roboto'
   font-weight: bold
 
 
-.request-show, .article-show
+.request-show, .article-show, .decision-show
   margin: 20px
   .photo
     width: 40%
@@ -43,18 +48,14 @@ h1, h2
     margin-top: 25px
 
 
-.request-index, .article-index
+.request-index, .article-index, .decision-index
   margin: 5px 20px
   .photo
     width: 100%
-  .request, .article
+  .request, .article, .decision
     padding: 15px 0
   .title
     font-size: 1em
-    a
-      color: #35353f
-      &:hover, &:focus
-        text-decoration: underline
   .info
     margin-top: 15px
     font-size: 0.9em
