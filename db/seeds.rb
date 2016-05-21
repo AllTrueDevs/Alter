@@ -2,13 +2,13 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 
 ############Create Categories
 
-  Category.create([{name: 'Одяг', color: 1}, {name: 'Провізія', color: 2},
-                   {name: 'Грошова допомога', color: 3}, {name: 'Медикаменти', color: 4},
-                   {name: 'Іграшки', color: 5}, {name: 'Зброя', color: 6},
-                   {name: 'Екіпірування', color: 7}, {name: 'Апаратура', color: 8},
-                   {name: 'Освіта', color: 1}, {name: 'Транспорт', color: 2},
-                   {name: 'Беспосередня участь', color: 3}, {name: 'Донорство', color: 4},
-                   {name: 'Побут', color: 5}
+  Category.create([{name: 'Одяг', color: '1abc9c'}, {name: 'Провізія', color: '2ecc71'},
+                   {name: 'Грошова допомога', color: '3498db'}, {name: 'Медикаменти', color: '9b59b6'},
+                   {name: 'Іграшки', color: '34495e'}, {name: 'Зброя', color: 'f1c40f'},
+                   {name: 'Екіпірування', color: 'e67e22'}, {name: 'Апаратура', color: 'e74c3c'},
+                   {name: 'Освіта', color: '7D1424'}, {name: 'Транспорт', color: '5B4B27'},
+                   {name: 'Беспосередня участь', color: 'E6567A'}, {name: 'Донорство', color: '48AD01'},
+                   {name: 'Побут', color: 'FF6861'}
                   ])
 #############
 
