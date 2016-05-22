@@ -6,11 +6,3 @@
     .col-md-8
       = render partial: 'requests/request_info', locals: { request: request, slice: true, link: true }
       = render partial: 'requests/request_categories', locals: { request: request }
-
--#        .col-md-1
--#          .pull-right
--#            - if !request.status?(:unchecked) && (can? :destroy, request)
--#              = render partial: 'modals/agree_modal', locals: { id: request.id, selector: 'deleteModal', title: 'Ви дійсно хочете заархівувати запит?', link: request, ajax: defined?(ajax) ? ajax : nil }
--#              .delete-request
--#                = link_to '#', data: {target: "#deleteModal_#{request.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запит.'} do
--#                  %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
