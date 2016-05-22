@@ -4,13 +4,13 @@ class DecisionsController < ApplicationController
 
   def index
     @decisions = Decision.where(request: current_user.requests)
-                     .order(:status, :created_at => :desc).page(params[:page]).per(8)
+                     .order(:status, created_at: :desc).page(params[:page]).per(8)
   end
 
   def show
     @accepted_items = @decision.accepted_items
     if @decision.status == 'new'
-      @decision.update(:status => 'unaccepted')
+      @decision.update(status: 'unaccepted')
     end
   end
 

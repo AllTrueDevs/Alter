@@ -22,7 +22,6 @@
               %a.dropdown-toggle{ title: "#{current_user.name}", data: { toggle: 'dropdown' }, href: '#' }
                 %i.fa.fa-angle-down
                 %span.name= current_user.name
-                -#%span#new-info.badge= (@new_notifications + @new_decisions).to_s unless (@new_notifications + @new_decisions).zero?
               %ul.dropdown-menu
                 %li
                   = link_to 'Мій профіль', user_url(current_user)
@@ -30,7 +29,7 @@
                   = link_to messages_url do
                     Повідомлення
                     - unless current_user.counters(:messages).zero?
-                      %span#new-notifications-count.number= current_user.counters(:messages)
+                      %span#new-messages-count.number= current_user.counters(:messages)
                 - if can? :create, Request
                   %li
                     = link_to 'Створити запит', new_request_url

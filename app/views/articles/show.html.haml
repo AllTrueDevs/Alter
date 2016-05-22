@@ -8,26 +8,3 @@
       = image_tag @article.photo.url
     = render partial: 'articles/article_tags', locals: { article: @article }
     = render partial: 'articles/article_info', locals: { article: @article, slice: false, link: false }
-
-
--#.container
--#  .panel.panel-default.width-100
--#    .panel-heading
--#      .row
--#        .col-md-9
--#          %h4.request-title.break-word= @article.name
--#        .col-md-3
--#          .pull-right.request-actions
--#            = render partial: 'article_actions', locals: { article: @article }
--#    .panel-body
--#      = image_tag @article.photo.url, class: 'request-photo img-responsive img-center'
--#      %p.break-word.text-justify.request-description= @article.body
--#      - @article.tags.map(&:name).each do |tag|
--#        %span{ class: "label label-#{Random.rand(1..8)}" }= tag
--#      .row
--#        .col-md-9
--#          Опубліковано
--#          = " #{time_ago_in_words(@article.created_at)} "
--#          тому
--#        .col-md-3.text-right.no-wrap
--#          = link_to @article.src, "http://#{@article.src}"
