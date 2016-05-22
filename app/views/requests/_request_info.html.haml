@@ -3,6 +3,7 @@
   %p.author= link_to request.user.name, request.user
   %p.date= l(request.created_at, format: '%d %B, %Y')
   -#%span.views.fa.fa-eye 465(count of views here)
+  = link_to 'Delate', request, method: :delete, data: {confirm: 'Are you sure?'}
 %br
 - if slice
   %p.description= request.description.truncate(530, separator:' ')
