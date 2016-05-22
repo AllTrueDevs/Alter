@@ -1,9 +1,9 @@
-%h1.title= link_to decision.request.name, decision_url(decision)
+%h1.title= defined?(in_list) ? link_to(decision.request.name, decision_url(decision)) : link_to(decision.request.name, request_url(decision.request))
 .info
   %p.author= link_to decision.helper.name, user_url(decision.helper)
   %p.date= l(decision.created_at, format: '%d %B, %Y')
 %br
-- if slice
+- if defined?(in_list)
   %p.description= decision.description.truncate(530, separator:' ')
 -else
   = simple_format(decision.description, class: 'description')

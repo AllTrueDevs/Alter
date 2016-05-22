@@ -4,5 +4,5 @@
       .photo
         = link_to image_tag(article.photo.url), show_article_url(article, url: article.article_url)
     .col-md-8
-      = render partial: 'articles/article_info', locals: { article: article, slice: true, link: true }
+      = render partial: 'articles/article_info', locals: { article: article, in_list: true }
       = render partial: 'articles/article_tags', locals: { article: article }

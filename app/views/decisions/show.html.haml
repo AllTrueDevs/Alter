@@ -7,7 +7,7 @@
     .photo
       = image_tag @decision.helper.avatar.url
     = render partial: 'decisions/decision_categories', locals: { decision: @decision }
-    = render partial: 'decisions/decision_info', locals: { decision: @decision, slice: false }
+    = render partial: 'decisions/decision_info', locals: { decision: @decision }
 
 -#          .pull-right.request-actions
 -#            .dropdown

@@ -4,5 +4,5 @@
       .photo
         = link_to image_tag(request.photo.url), request
     .col-md-8
-      = render partial: 'requests/request_info', locals: { request: request, slice: true, link: true }
+      = render partial: 'requests/request_info', locals: { request: request, in_list: true }
       = render partial: 'requests/request_categories', locals: { request: request }

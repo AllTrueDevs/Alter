@@ -7,4 +7,4 @@
     .photo
       = image_tag @article.photo.url
     = render partial: 'articles/article_tags', locals: { article: @article }
-    = render partial: 'articles/article_info', locals: { article: @article, slice: false, link: false }
+    = render partial: 'articles/article_info', locals: { article: @article }

@@ -4,5 +4,5 @@
       .photo
         = link_to image_tag(decision.helper.avatar.url), decision_url(decision)
     .col-md-8
-      = render partial: 'decisions/decision_info', locals: { decision: decision, slice: true }
+      = render partial: 'decisions/decision_info', locals: { decision: decision, in_list: true }
       = render partial: 'decisions/decision_categories', locals: { decision: decision }
