@@ -2,7 +2,7 @@
 = content_for :plugins do
   = javascript_include_tag 'plugins/file-field'
 = content_for :javascript do
-  = javascript_include_tag 'categories_with_labels'
+  = javascript_include_tag 'requests/categories'
 
 .panel.panel-default
   .panel-heading
@@ -19,8 +19,7 @@
         .categories-labels
         = f.label :Категорії
         %br
-        = select_tag 'categories', options_from_collection_for_select(Category.all.order(:name), 'id', 'name', selected: @collection),
-              multiple: true, class: 'selector', data: {cater: Category.all.order(:name)}
+        = select_tag :categories, options_from_collection_for_select(Category.all, :id_with_color, :name, selected: @collection), multiple: true
       .form-group
         = f.label :Фото
         .file-field-container
