@@ -1,3 +1,8 @@
+$ ->
+  if  $('#categories option:selected').length > 0
+    $('#categories > option:selected').each ->
+      $('.categories-labels').append(form_string(@value, @text))
+
 $('#categories').multiselect
   enableFiltering: true
   filterPlaceholder: 'Пошук'

@@ -9,7 +9,8 @@
     .categories-labels
     = f.label :Категорії
     %br
-    = select_tag :categories, options_from_collection_for_select(Category.all, :id_with_color, :name, selected: request.required_items.collect(&:category_id)), multiple: true
+    = select_tag :categories, options_from_collection_for_select(Category.all, :id_with_color, :name,
+                  selected: request.required_items.collect{ |r| r.category.id_with_color }), multiple: true
   .form-group
     = f.label :Фото
     .file-field-container
