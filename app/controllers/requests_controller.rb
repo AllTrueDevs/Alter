@@ -42,7 +42,6 @@ class RequestsController < ApplicationController
 
   def edit
     redirect_to root_url, notice: 'Цей запит закрито.' if @request.status?(:archived)
-    @collection = @request.required_items.collect(&:category_id)
   end
 
   def create
@@ -52,7 +51,7 @@ class RequestsController < ApplicationController
       if @request.valid? && !params[:categories].nil?
         @request.save
         @categories = params[:categories]
-        @categories.each{ |category| @request.required_items.create(category_id: category) }
+        @categories.each{ |category| @request.required_items.create(category_id: category.split('::')[0]) }
         format.html { redirect_to @request}
       else
         format.html { redirect_to :back, notice: 'Помилка введення даних' }

@@ -8,20 +8,4 @@
   .panel-heading
     %h4 Новий запит про допомогу
   .panel-body
-    = form_for @request, url: requests_url, html: { multipart: true, role: :form } do |f|
-      .form-group
-        = f.label :Назва
-        = f.text_field :name, class: 'form-control'
-      .form-group
-        = f.label :Опис
-        = f.text_area :description, autofocus: true, class: 'form-control', rows: '5'
-      .categories
-        .categories-labels
-        = f.label :Категорії
-        %br
-        = select_tag :categories, options_from_collection_for_select(Category.all, :id_with_color, :name, selected: @collection), multiple: true
-      .form-group
-        = f.label :Фото
-        .file-field-container
-          = f.file_field :photo, accept: 'image/png, image/jpeg'
-      = f.submit 'Опублікувати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
+    = render partial: 'requests/form', locals: { request: @request }
