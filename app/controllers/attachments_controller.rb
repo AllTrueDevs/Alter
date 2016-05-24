@@ -5,6 +5,6 @@ class AttachmentsController < ApplicationController
   def download
     @attachment = Attachment.find(params[:id])
     data = open(@attachment.content.url)
-    send_data data.read, filename: @attachment.content_file_name, type: @attachment.content_content_type, disposition: 'inline', stream: 'true', buffer_size: '4096'
+    send_data data.read, filename: @attachment.content_file_name, type: @attachment.content_content_type, disposition: 'attachment', stream: 'true', buffer_size: '4096'
   end
 end
