@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   before_action :fill_tags, only: [:new, :edit]
 
   def index
-    @articles = Article.all.order(:name)
+    @articles = Article.all.order(:name).page(params[:page]).per(8)
   end
 
   def show

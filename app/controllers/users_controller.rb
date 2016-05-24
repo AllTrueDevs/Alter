@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if @user.confirmed_at.nil?
       redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію'
     else
-      @actual_requests = @user.requests.actual.order(:created_at => :desc).page(params[:page]).per(10)
+      @actual_requests = @user.requests.actual.order(created_at: :desc).page(params[:page]).per(10)
       @helped_items = @user.helped_items.sort{ |item_1, item_2| [ item_2.count, item_1.category.name ] <=> [ item_1.count, item_2.category.name ] }
     end
   end
@@ -21,12 +21,12 @@ class UsersController < ApplicationController
   end
 
   def change_ban_status
-    if @user.role == 'banned'
+    if @user.role?(:banned)
       @user.update(role: 'author')
       @user.notifications.create(message_type: 5)
       redirect_to @user
     else
-      if cannot? :manage, User and (@user.role == 'admin' or @user.role == 'moderator') #check if need and
+      if cannot? :manage, User && (@user.role?(:admin) || @user.role?(:moderator)) #TODO check if need and
         flash[:error] = 'Немає доступу'
         redirect_to @user
       else
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def change_moder_status
-    if @user.role == 'moderator'
+    if @user.role?(:moderator)
       @user.update(role: 'author')
       @user.notifications.create(message_type: 7)
     else
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   def change_password
     @user = User.find(current_user.id)
     if @user.update_with_password(password_params) && !password_params[:password].blank?
-      sign_in @user, :bypass => true
+      sign_in @user, bypass: true
       flash[:notice] = 'Пароль успішно змінено'
     else
       @user.errors.add(:password, t('activerecord.errors.models.user.attributes.password.blank')) if password_params[:password].blank?
@@ -85,8 +85,6 @@ class UsersController < ApplicationController
     @user.save
     redirect_to edit_user_registration_path
   end
-
-  #TODO refactor next two methods
 
   def select_requests
     @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc)
@@ -112,7 +110,7 @@ class UsersController < ApplicationController
   end
 
   def password_params
-    # NOTE: Using `strong_parameters` gem
+    #TODO Using `strong_parameters` gem
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 

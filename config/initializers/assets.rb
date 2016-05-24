@@ -25,9 +25,9 @@ Rails.application.config.assets.precompile += %w(
   plugins/share_buttons.js
   plugins/tags-field.coffee
   user-tabs.coffee
-  categories_with_labels.js
   selection_color.coffee
   home.coffee
   articles.coffee
   messages.coffee
+  requests/categories.coffee
 )

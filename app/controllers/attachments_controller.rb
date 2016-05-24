@@ -4,6 +4,6 @@ class AttachmentsController < ApplicationController
 
   def download
     @attachment = Attachment.find(params[:id])
-    send_file @attachment.content.path, :type => @attachment.content_content_type
+    send_file @attachment.content.path, type: @attachment.content_content_type
   end
 end

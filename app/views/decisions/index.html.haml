@@ -4,15 +4,3 @@
 .container
   .decision-index
     = render partial: 'decisions/decisions_list', locals: { decisions: @decisions }
-
-
--#.panel.panel-default.width-100
--#  .panel-heading
--#    %h4 Відгуки
--#  .panel-body
--#    - if @decisions.empty?
--#      %h5.text-center Відгуків не знайдено
--#    - else
--#      - @decisions.each do |decision|
--#        = render partial: 'decisions/decision_in_list', locals: { decision: decision, decisions: @decisions }
--#    = paginate @decisions

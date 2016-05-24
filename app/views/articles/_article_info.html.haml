@@ -1,9 +1,14 @@
-%h1.title= link ? link_to(article.name, show_article_url(article, url: article.article_url)) : article.name
+%h1.title= defined?(in_list) ? link_to(article.name, show_article_url(article, url: article.article_url)) : article.name
 .info
   %p.date= l(article.created_at, format: '%d %B, %Y')
   -#%span.request-views.fa.fa-eye 465(count of views here)
+  - if can? :manage, article
+    = link_to edit_article_url(article, url: article.article_url), title: 'Редагувати' do
+      %span.fa.fa-pencil
+    = link_to article, method: :delete, title: 'Видалити', data: { confirm: 'Ви дійсно хочете видaлити цю новину?' } do
+      %span.fa.fa-times
 %br
-- if slice
+- if defined?(in_list)
   %p.description= article.body.truncate(530, separator:' ')
 -else
   = simple_format(article.body, class: 'description')

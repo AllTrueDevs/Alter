@@ -3,10 +3,4 @@
 - else
   - decisions.each do |decision|
     = render partial: 'decisions/decision', locals: { decision: decision }
-
--#%div{ class: 'articles'}
--#  - if articles.size.zero?
--#    %h5.text-center Новин немає
--#  - else
--#    - articles.each do |article|
--#      = render partial: 'articles/article_in_list', locals: { article: article, articles: articles }
+= paginate decisions
