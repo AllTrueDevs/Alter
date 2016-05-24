@@ -3,7 +3,7 @@
   %p.author= link_to request.user.name, request.user
   %p.date= l(request.created_at, format: '%d %B, %Y')
   -#%span.views.fa.fa-eye 465(count of views here)
-  -#= render partial: 'requests/request_actions', locals: { request: request }
+  = render partial: 'requests/request_actions', locals: { request: request }
 %br
 - if defined?(in_list)
   %p.description= request.description.truncate(530, separator:' ')

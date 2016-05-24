@@ -11,7 +11,7 @@
     = link_to edit_request_url(request), title: 'Редагувати' do
       %span.fa.fa-pencil
   - if can? :destroy, request
-    = link_to request, method: :delete, title: 'Заархівувати', data: { confirm: 'Ви дійсно хочете заархівувати запит?' } do
+    = link_to request, method: :delete, title: 'Заархівувати', data: { confirm: 'Ви дійсно хочете заархівувати запит?' }, remote: true do
       %span.fa.fa-times
 - when 'unchecked'
   - if can? :check, request
@@ -19,4 +19,4 @@
       %span.fa.fa-check
   - if can? :decline, request
     = link_to decline_request_url(request), title: 'Відхилити' do
-      %span.fa.fa-bug
+      %span.fa.fa-ban
