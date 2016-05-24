@@ -14,10 +14,9 @@
     .col-md-1
       .pull-right
         - if can?(:destroy, post)
-          = render partial: 'modals/agree_modal', locals: { id: post.id, selector: 'deleteModal', title: 'Видалити запис?', link: post, ajax: true }
           .delete-post
-            = link_to '#', data: { target: "#deleteModal_#{post.id}", toggle: 'modal', placement: 'bottom', title: 'Видалити запис' } do
-              %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
+            = link_to post, method: :delete, data: { confirm: 'Видалити запис?' }, title: 'Видалити', remote: true  do
+              %span.fa.fa-times
     .body
       %p.break-word= post.body
     - unless post.attachments.empty?
