@@ -1,0 +1,7 @@
+$("<%= escape_javascript(render 'messages/posts', posts: @posts) %>").appendTo($(".posts"));
+
+<% if @posts.last_page? %>
+    $('.pagination-info').html("");
+<% else %>
+    $('.pagination-info').html("<%=j link_to_next_page(@posts, '', :remote => true) %>");
+<% end %>

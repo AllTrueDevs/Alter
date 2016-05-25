@@ -33,6 +33,9 @@
                 - if can? :create, Request
                   %li
                     = link_to 'Створити запит', new_request_url
+                - if can? :create, Article
+                  %li
+                    = link_to 'Додати новину', new_article_url
                 - if current_user.with_privileges?
                   %li
                     = link_to 'Панель адміністрування', rails_admin_url

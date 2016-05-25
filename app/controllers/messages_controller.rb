@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, except: [:new_private, :new_post, :select]
 
   def index
-    @messages = @user.received_messages.private_messages.order(created_at: :desc)
+    @messages = @user.received_messages.private_messages.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def dialog
@@ -24,12 +24,12 @@ class MessagesController < ApplicationController
   def new_post
     @message = Message.new(message_params)
     @message.save
-    @posts = Request.find(message_params[:request_id]).wall_posts
+    @posts = Request.find(message_params[:request_id]).wall_posts.page(params[:page])
     respond_to :js
   end
 
   def select
-    @messages = @user.send(params[:messages_type]).private_messages.order(created_at: :desc)
+    @messages = @user.send(params[:messages_type]).private_messages.order(created_at: :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if @user.confirmed_at.nil?
       redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію'
     else
-      @actual_requests = @user.requests.actual.order(created_at: :desc).page(params[:page]).per(10)
+      @requests = @user.requests.actual.order(created_at: :desc).page(params[:page]).per(10)
       @helped_items = @user.helped_items.sort{ |item_1, item_2| [ item_2.count, item_1.category.name ] <=> [ item_1.count, item_2.category.name ] }
     end
   end
@@ -87,7 +87,7 @@ class UsersController < ApplicationController
   end
 
   def select_requests
-    @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc)
+    @requests = @user.requests.send(params[:requests_type]).order(params[:sort_field] => :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

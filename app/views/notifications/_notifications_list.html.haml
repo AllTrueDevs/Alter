@@ -1,3 +1,5 @@
 - notifications.each do |notification|
   = render partial: 'notifications/notification_in_list', locals: { notification: notification, notifications: notifications }
 = paginate notifications
+.pagination-info
+  = page_entries_info notifications

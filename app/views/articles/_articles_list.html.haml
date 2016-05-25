@@ -3,4 +3,6 @@
 - else
   - articles.each do |article|
     = render partial: 'articles/article', locals: { article: article }
-= paginate articles
+  = paginate articles
+  .pagination-info
+    = page_entries_info articles

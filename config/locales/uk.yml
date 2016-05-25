@@ -276,6 +276,13 @@ uk:
         one: "%{model} не збережено через %{count} помилку"
         other: "%{model} не збережено через %{count} помилки"
   helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          one: "Відображено <b>1 - %{count}</b> з <b>%{count} елементів</b>"
+          many: "Відображено <b>1 - %{count}</b> з <b>%{count} елементів</b>"
+      more_pages:
+        display_entries: "Відображено <b>%{first} - %{last}</b> з <b>%{total}</b> елементів"
     select:
       prompt: 'Оберіть: '
     submit:

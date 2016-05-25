@@ -31,3 +31,11 @@ $ ->
     $('.bootstrap-filestyle input').on 'change', (e) ->
       if this.val().length == 0
         this.prop(placeholder: 'Файл не обрано')
+
+  $('.infinite').infinitePages
+    loading: ->
+      $('.loader').addClass('hidden')
+    success: ->
+      $('.loader').removeClass('hidden')
+    error: ->
+      $(this).html('Виникла помилка. Перезавантажте будь ласка сторінку')

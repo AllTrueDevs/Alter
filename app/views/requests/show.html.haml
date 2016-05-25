@@ -40,9 +40,12 @@
                 %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
               = f.submit 'Надіслати', class: 'btn btn-default btn-info'
           .clearfix
-        %ul.posts
-          = render partial: 'messages/posts', locals: { posts: @posts }
-
+        .infinite
+          %ul.posts
+            = render partial: 'messages/posts', locals: { posts: @posts }
+          = image_tag 'loader.gif', class: 'loader icon img-center'
+          .pagination-info
+            = link_to_next_page(@posts, '', :remote => true)
 -#%a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
 -#  Поділитись
 -#  .vk-logo.pull-left

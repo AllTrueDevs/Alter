@@ -11,26 +11,21 @@
         %h3.inline= @user.name
         - if can?(:change_ban_status, @user) && (current_user != @user)
           - if @user.role?(:banned)
-            %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Розблокувати користувача' }
+            = link_to ban_user_url, method: :get, title: 'Розблокувати користувача', data: { confirm: 'Ви дійсно хочете розблокувати користувача?'} do
               %span.glyphicon.glyphicon-check{ 'aria-hidden': true }
-            = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете розблокувати користувача?', link: ban_user_url }
           - else
-            %a{ 'data-target': '#banModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Заблокувати користувача' }
+            = link_to ban_user_url, method: :get, title: 'Заблокувати користувача', data: { confirm: 'Ви дійсно хочете заблокувати користувача?'} do
               %span.glyphicon.glyphicon-ban-circle{ 'aria-hidden': true }
-            = render partial: 'modals/agree_modal', locals: { selector: 'banModal', title: 'Ви дійсно хочете заблокувати користувача?', link: ban_user_url }
         - if can?(:change_moder_status, @user) && (current_user != @user)
           - if @user.role?(:moderator)
-            %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Забрати права модератора' }
+            = link_to moder_user_url, method: :get, title: 'Забрати права модератора', data: { confirm: 'Ви дійсно хочете забрати права модератора?'} do
               %span.glyphicon.glyphicon-user{ 'aria-hidden': true }
-            = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете забрати права модератора?', link: moder_user_url }
           - else
-            %a{ 'data-target': '#modModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Надати права модератора' }
+            = link_to moder_user_url, method: :get, title: 'Надати права модератора', data: { confirm: 'Ви дійсно хочете надати права модератора?'} do
               %span.glyphicon.glyphicon-briefcase{ 'aria-hidden': true }
-            = render partial: 'modals/agree_modal', locals: { selector: 'modModal', title: 'Ви дійсно хочете надати права модератора?', link: moder_user_url }
         - if can?(:admin_login, @user) && (current_user != @user)
-          %a{ 'data-target': '#userModal', 'data-toggle': :modal, href: '#', 'data-placement': :bottom, title: 'Вхід на користувача' }
+          = link_to admin_login_user_url, method: :get, title: 'Вхід на аккаунт користувача', data: { confirm: 'Зайти на аккаунт даного користувача?'} do
             %span.glyphicon.glyphicon-search{ 'aria-hidden': true }
-          = render partial: 'modals/agree_modal', locals: { selector: 'userModal', title: 'Зайти на аккаунт даного користувача?', link: admin_login_user_url }
         - case @user.role
           - when 'moderator'
             %h5
@@ -74,6 +69,6 @@
           %li= link_to 'Cтатистика', statistic_user_url, remote: true
       .tab-content
         .tab-pane.active.request-index
-          = render partial: 'requests/requests_list', locals: { requests: @actual_requests, ajax: true }
+          = render partial: 'requests/requests_list', locals: { requests: @requests, ajax: true }
 
 
