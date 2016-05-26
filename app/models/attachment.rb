@@ -37,8 +37,10 @@ class Attachment < ActiveRecord::Base
     else
       content_file_name
     end
+  end
 
-
+  before_destroy do
+    AWS::S3::S3Object.delete(content.path, 'alter-assets')
   end
 
 end
