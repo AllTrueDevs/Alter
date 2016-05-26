@@ -15,7 +15,7 @@ class Message < ActiveRecord::Base
     s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.buckets['alter-assets']
     attachments.each do |attachment|
-      object = bucket.object[attachment.content.path[1..-1]]
+      object = bucket.objects[attachment.content.path[1..-1]]
       object.delete
     end
   end

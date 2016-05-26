@@ -43,17 +43,23 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
-    bucket = s3.buckets['alter-assets']
-    obj = bucket.object[@article.photo.path[1..-1]]
-    obj.delete
-
+    clear_s3_object(@article.photo)
     @article.destroy
     respond_to do |format|
       format.html { redirect_to news_url }
     end
   end
 
+
+  private
+
+
+  def clear_s3_object(object)
+    s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
+    bucket = s3.buckets['alter-assets']
+    obj = bucket.objects[object.path[1..-1]]
+    obj.delete
+  end
 
   def fill_tags
     gon.default_tags_collection = current_user.news_tags.pluck(:value)
