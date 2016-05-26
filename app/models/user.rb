@@ -61,10 +61,11 @@ class User < ActiveRecord::Base
   end
 
   def dialog(user)
-    sql = Message.connection.unprepared_statement {
-      "((#{received_messages.private_messages.sent_by(user).to_sql}) UNION (#{sent_messages.private_messages.received_by(user).to_sql})) AS messages"
-    }
-    Message.from(sql).order(:created_at)
+    received_messages.private_messages.sent_by(user).union(sent_messages.private_messages.received_by(user)).order(created_at: :desc)
+  end
+
+  def mailbox_empty?
+    received_messages.private_messages.empty? && sent_messages.private_messages.empty?
   end
 
   def counters(type)

@@ -1,13 +1,20 @@
+= include_gon
 = content_for :title, @companion.name
 = content_for :styles do
   = stylesheet_link_tag 'messages'
 = content_for :plugins do
+  = javascript_include_tag 'plugins/infinite-loader'
+= content_for :javascript do
   = javascript_include_tag 'messages'
 = content_for :web_socket do
   - ids = (@companion.id < @user.id) ? [ @companion.id, @user.id ]  : [ @user.id, @companion.id ]
   = subscribe_to "/messages/private/#{ids[0]}_#{ids[1]}"
 
-.container.dialog
+.container.dialog.infinite
+  - if @user.dialog(@companion).try(:size).try('>', 15)
+    .pagination-info
+      = link_to_next_page(@messages, '', params: { user: @companion.id }, :remote => true)
+    = image_tag 'loader.gif', class: 'loader icon img-center'
   %ul.messages
     = render partial: 'messages', locals: { messages: @messages, companion: @companion }
   - banned = cannot?(:new_private, Message)

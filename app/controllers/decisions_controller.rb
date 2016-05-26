@@ -4,7 +4,7 @@ class DecisionsController < ApplicationController
 
   def index
     @decisions = Decision.where(request: current_user.requests)
-                     .order(:status, created_at: :desc).page(params[:page]).per(8)
+                     .order(:status, created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

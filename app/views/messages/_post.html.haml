@@ -1,33 +1,35 @@
-%div{ class: 'post-in-list', id: "post-#{post.id}" }
-  .row
-    .col-md-11
-      .inline
-        = link_to post.sender do
-          = image_tag post.sender.avatar, class: 'img-rounded img-responsive thumb'
-      .inline
-        = link_to post.sender.name, post.sender, class: 'break-word'
-        %small
-          - if post.updated_at == post.created_at
-            = 'Опубліковано ' + time_ago_in_words(post.created_at) + ' тому'
-          - else
-            = 'Змінено ' + time_ago_in_words(post.updated_at) + ' тому'
-    .col-md-1
-      .pull-right
-        - if can?(:destroy, post)
-          .delete-post
-            = link_to post, method: :delete, data: { confirm: 'Видалити запис?' }, title: 'Видалити', remote: true  do
-              %span.fa.fa-times
-    .body
-      %p.break-word= post.body
-    - unless post.attachments.empty?
-      .attachments
-        .image-attachments
-          - post.attachments.image_attachments.each do |attachment|
-            .attachment
-              = link_to attachment.content.url do
-                = image_tag attachment.content.url, class: 'img-rounded image'
-        .other-attachments
-          - (post.attachments - post.attachments.image_attachments).each do |attachment|
-            .attachment
-              %span{class: "glyphicon glyphicon-#{attachment.select_icon}"}
-              = link_to attachment.form_name, download_attachment_path(attachment), title: attachment.content_file_name
+%li.post
+  %div{ class: 'post-in-list', id: "post-#{post.id}" }
+    .row
+      .col-md-11
+        .inline
+          = link_to post.sender do
+            = image_tag post.sender.avatar, class: 'img-rounded img-responsive thumb'
+        .inline
+          = link_to post.sender.name, post.sender, class: 'break-word'
+          %small
+            - if post.updated_at == post.created_at
+              = 'Опубліковано ' + time_ago_in_words(post.created_at) + ' тому'
+            - else
+              = 'Змінено ' + time_ago_in_words(post.updated_at) + ' тому'
+      .col-md-1
+        .pull-right
+          - if can?(:destroy, post)
+            .delete-post
+              = link_to post, method: :delete, title: 'Видалити запис', data: { confirm: 'Видалити запис?'}, remote: true do
+                %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
+
+      .body
+        %p.break-word= post.body
+      - unless post.attachments.empty?
+        .attachments
+          .image-attachments
+            - post.attachments.image_attachments.each do |attachment|
+              .attachment
+                = link_to attachment.content.url do
+                  = image_tag attachment.content.url, class: 'img-rounded image'
+          .other-attachments
+            - (post.attachments - post.attachments.image_attachments).each do |attachment|
+              .attachment
+                %span{class: "glyphicon glyphicon-#{attachment.select_icon}"}
+                = link_to attachment.form_name, download_attachment_path(attachment), title: attachment.content_file_name

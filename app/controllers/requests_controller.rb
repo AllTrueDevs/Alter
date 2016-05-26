@@ -32,8 +32,7 @@ class RequestsController < ApplicationController
 
   def show
     @required_items = @request.required_items
-    @posts = @request.wall_posts
-    @post = @request.messages.new
+    @posts = @request.posts.order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def new

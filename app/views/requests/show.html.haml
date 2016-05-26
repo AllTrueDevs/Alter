@@ -1,6 +1,8 @@
 = content_for :title, @request.name
 = content_for :plugins do
+  = javascript_include_tag 'plugins/infinite-loader'
   -#= javascript_include_tag 'plugins/share_buttons'
+= content_for :javascript do
   = javascript_include_tag 'messages'
 = content_for :styles do
   = stylesheet_link_tag 'index_show'
@@ -20,14 +22,15 @@
             %h4.request-title.break-word Стіна
           .col-md-9
             %h4#wall-counter.text-right
-              - if !@posts.empty?
-                = @posts.size
+              - if !(@request.posts.empty?)
+                = @request.posts.size
                 записів
               - else
                 Записів немає
       .panel-body
-        - unless cannot?(:new_post, @post)
-          = nested_form_for @post, url: new_post_messages_url(@post), html: { class: 'message-form', multipart: true },
+        - post = @request.posts.new
+        - unless cannot?(:new_post, post)
+          = nested_form_for post, url: new_post_messages_url(post), html: { class: 'message-form', multipart: true },
               remote: true, authenticity_token: true, format: :js do |f|
             = f.text_area :body, class: 'form-control', rows: '5'
             = f.hidden_field :message_type, value: :post
@@ -40,9 +43,12 @@
                 %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
               = f.submit 'Надіслати', class: 'btn btn-default btn-info'
           .clearfix
-        %ul.posts
-          = render partial: 'messages/posts', locals: { posts: @posts }
-
+        .infinite
+          %ul.posts
+            = render partial: 'messages/posts', locals: { posts: @posts }
+          = image_tag 'loader.gif', class: "loader icon img-center#{(@request.posts.size > 10)? '' : ' hidden'}"
+          .pagination-info
+            = link_to_next_page(@posts, '', :remote => true)
 -#%a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
 -#  Поділитись
 -#  .vk-logo.pull-left

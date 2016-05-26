@@ -1,1 +1,1 @@
-$(".tab-pane.active").html("<%= escape_javascript(render 'requests/requests_list', requests: @requests) %>");
+$(".tab-pane.active").html("<%= escape_javascript(render 'requests/requests_list', requests: @requests, ajax: true) %>");

@@ -24,6 +24,7 @@ Rails.application.config.assets.precompile += %w(
   plugins/preloader.coffee
   plugins/share_buttons.js
   plugins/tags-field.coffee
+  plugins/infinite-loader.coffee
   user-tabs.coffee
   selection_color.coffee
   home.coffee

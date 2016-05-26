@@ -1,22 +1,23 @@
-- case request.status
-- when 'actual'
-  -#- if request.user != current_user && can?(:create, Decision)
-  -#  - if request.decisions.where(helper_id: current_user.id).empty?
-  -#    %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
-  -#      Допомогти
-  -#    = render partial: 'modals/request_help', locals: { request: request }
-  -#  - else
-  -#    %small Очікується відповідь
-  - if can? :edit, request
-    = link_to edit_request_url(request), title: 'Редагувати' do
-      %span.fa.fa-pencil
-  - if can? :destroy, request
-    = link_to request, method: :delete, title: 'Заархівувати', data: { confirm: 'Ви дійсно хочете заархівувати запит?' }, remote: true do
-      %span.fa.fa-times
-- when 'unchecked'
-  - if can? :check, request
-    = link_to check_request_url(request), title: 'Перевірити', remote: true do
-      %span.fa.fa-check
-  - if can? :decline, request
-    = link_to decline_request_url(request), title: 'Відхилити' do
-      %span.fa.fa-ban
+.request-actions
+  - case request.status
+  - when 'actual'
+    -#- if request.user != current_user && can?(:create, Decision)
+    -#  - if request.decisions.where(helper_id: current_user.id).empty?
+    -#    %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
+    -#      Допомогти
+    -#    = render partial: 'modals/request_help', locals: { request: request }
+    -#  - else
+    -#    %small Очікується відповідь
+    - if can? :edit, request
+      = link_to edit_request_url(request), title: 'Редагувати' do
+        %span.fa.fa-pencil
+    - if can? :destroy, request
+      = link_to request, method: :delete, title: 'Заархівувати', data: { confirm: 'Ви дійсно хочете заархівувати запит?' }, remote: true do
+        %span.fa.fa-times
+  - when 'unchecked'
+    - if can? :check, request
+      = link_to check_request_url(request), title: 'Схвалити', remote: true do
+        %span.fa.fa-check
+    - if can? :decline, request
+      = link_to decline_request_url(request), title: 'Відхилити' do
+        %span.fa.fa-ban

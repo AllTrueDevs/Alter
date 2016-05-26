@@ -12,3 +12,4 @@
 #= require jquery_nested_form
 #= require jquery.remotipart
 #= require confirmation
+#= require jquery.infinite-pages

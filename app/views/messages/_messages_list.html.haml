@@ -4,3 +4,6 @@
   - else
     - messages.each do |message|
       = render partial: 'message_in_list', locals: { message: message, messages: messages }
+    = paginate messages
+    .pagination-info
+      = page_entries_info messages

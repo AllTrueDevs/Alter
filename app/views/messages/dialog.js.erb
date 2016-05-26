@@ -1,0 +1,7 @@
+$("<%= escape_javascript(render 'messages', messages: @messages, companion: @companion) %>").prependTo($(".messages"));
+
+<% if @messages.last_page? %>
+    $('.pagination-info').remove();
+<% else %>
+    $('.pagination-info').html("<%=j link_to_next_page(@messages, '', params: { user: @companion.id }, :remote => true) %>");
+<% end %>

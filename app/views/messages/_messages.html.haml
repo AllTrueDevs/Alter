@@ -1,20 +1,5 @@
 - if messages.size.zero?
   %h5.text-center У вас немає переписки з цим користувачем
 - else
-  - messages.each do |message|
-    %li.message{class: message.received_by?(companion) ? 'sent' : ''}
-      .body
-        = message.parsed_body
-      - unless message.attachments.empty?
-        .attachments
-          .image-attachments
-            - message.attachments.image_attachments.each do |attachment|
-              .attachment
-                = link_to attachment.content.url do
-                  = image_tag attachment.content.url, class: 'img-rounded image'
-                  %small= attachment.form_name
-          .other-attachments
-            - (message.attachments - message.attachments.image_attachments).each do |attachment|
-              .attachment
-                %span{class: "glyphicon glyphicon-#{attachment.select_icon}"}
-                = link_to attachment.form_name, download_attachment_path(attachment), title: attachment.content_file_name
+  - messages.reverse_each do |message|
+    = render partial: 'message', locals: { message: message, companion: companion }

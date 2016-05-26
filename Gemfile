@@ -25,7 +25,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-# gem 'turbolinks'
 gem 'hamlit'
 gem 'hamlit-rails'
 gem 'jbuilder', '~> 2.0'
@@ -36,6 +35,7 @@ gem 'chartkick'
 gem 'bootstrap-filestyle-rails'
 gem 'font-awesome-rails'
 gem 'selectize-rails'
+gem 'jquery-infinite-pages'
 
 #############################
 ### Backend
@@ -56,6 +56,7 @@ gem 'thin'
 gem 'private_pub'
 gem 'nested_form'
 gem 'remotipart', '~> 1.2'
+gem 'active_record_union'
 
 group :development, :test do
   gem 'byebug'

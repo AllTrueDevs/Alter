@@ -3,4 +3,6 @@
 - else
   - decisions.each do |decision|
     = render partial: 'decisions/decision', locals: { decision: decision }
-= paginate decisions
+  = paginate decisions
+  .pagination-info
+    = page_entries_info decisions

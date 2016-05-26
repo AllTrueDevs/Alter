@@ -2,5 +2,4 @@
   %h5.text-center На стіні немає записів
 - else
   - posts.each do |post|
-    %li.post
-      = render partial: 'messages/post', locals: { post: post }
+    = render partial: 'messages/post', locals: { post: post }

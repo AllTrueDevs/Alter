@@ -1,4 +1,7 @@
 $ ->
+  if $('.dialog').length != 0
+    setTopInfiniteLoader()
+
   $(document).on 'click', '.submit', ->
     $(this).removeClass('.active');
     $(this).closest('form').submit()
