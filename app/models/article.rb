@@ -1,5 +1,4 @@
 class Article < ActiveRecord::Base
-  include AmazonModule
   acts_as_ordered_taggable
   belongs_to :user
   validates :name, presence: true, length: { maximum: 150 }
@@ -9,9 +8,5 @@ class Article < ActiveRecord::Base
 
   def article_url
     Translit.convert(name.split('.')[0], :english).html_safe
-  end
-
-  before_destroy do
-    clear_s3_object(self.photo)
   end
 end

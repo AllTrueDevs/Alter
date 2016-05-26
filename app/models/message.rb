@@ -11,6 +11,15 @@ class Message < ActiveRecord::Base
   validates :message_type, inclusion: { in: %w(private_message post) }
   validates :status, presence: true, inclusion: { in: %w(new read) }
 
+  before_destroy do
+    s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
+    bucket = s3.buckets['alter-assets']
+    attachments.each do |attachment|
+      object = bucket.object[attachment.content.path[1..-1]]
+      object.delete
+    end
+  end
+
   [:private_message, :post].each do |type|
     scope "#{type}s".to_sym, -> { where(message_type: type) }
   end
