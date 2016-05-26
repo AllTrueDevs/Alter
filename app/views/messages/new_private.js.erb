@@ -1,8 +1,10 @@
 <% ids = (@companion.id < @user.id) ? [ @companion.id, @user.id ]  : [ @user.id, @companion.id ] %>
 <% publish_to "/messages/private/#{ids[0]}_#{ids[1]}" do %>
-    $('.messages').html("<%= escape_javascript(render 'messages', messages: @messages, companion: @user) %>");
+    $("<%= escape_javascript(render partial: 'message', locals: { message: @message, companion: @user }) %>").appendTo('.messages');
+    $('.messages h5').remove();
 <% end %>
-$('.messages').html("<%= escape_javascript(render 'messages', messages: @messages, companion: @companion) %>");
+$('.message').last().remove();
+$("<%= escape_javascript(render partial: 'message', locals: { message: @message, companion: @companion }) %>").appendTo('.messages');
 $('#message_body').val('').focus();
 $('.message-form .fields').each(function() {
     return $(this).remove();

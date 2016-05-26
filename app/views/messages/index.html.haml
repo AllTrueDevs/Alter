@@ -13,8 +13,8 @@
         = link_to 'Надіслані', select_messages_url(messages_type: :sent_messages), remote: true
       %li.submit-container.disabled
         = link_to 'Видалити обрані', '#'
-      %li{class: !(@messages.empty?)? '' : 'disabled'}
-        = link_to 'Видалити всі повідомлення', !(@messages.empty?)? clear_messages_url : '#', method: :get, data: { confirm: 'Ви дійсно хочете видалити всі повідомлення?' }
+      %li{class: !(@user.mailbox_empty?)? '' : 'disabled'}
+        = link_to 'Видалити всі повідомлення', !(@user.mailbox_empty?)? clear_messages_url : '#', method: :get, data: !(@user.mailbox_empty?)? { confirm: 'Ви дійсно хочете видалити всі повідомлення?' } : ''
     .tab-content
       .tab-pane.active
         = render partial: 'messages_list', locals: { messages: @messages }

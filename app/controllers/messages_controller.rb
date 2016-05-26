@@ -10,21 +10,21 @@ class MessagesController < ApplicationController
 
   def dialog
     @message = Message.new
-    @messages = @user.dialog(@companion)
+    @messages = @user.dialog(@companion).page(params[:page]).per(15)
     @user.received_messages.sent_by(@companion).where(status: 'new').update_all(status: 'read')
   end
 
   def new_private
     @message = Message.new(message_params)
     @message.save
-    @messages = @user.dialog(@companion)
+    @messages = @user.dialog(@companion).page(params[:page]).per(15)
     respond_to :js
   end
 
   def new_post
-    @message = Message.new(message_params)
-    @message.save
-    @posts = Request.find(message_params[:request_id]).wall_posts.page(params[:page])
+    @post = Message.new(message_params)
+    @post.save
+    @posts = Request.find(message_params[:request_id]).posts.order(updated_at: :desc).page(params[:page]).per(10)
     respond_to :js
   end
 
@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @post = Message.find(params[:id])
-    @posts = @post.request.wall_posts
+    @posts = @post.request.posts.order(updated_at: :desc)
     @post.destroy
     respond_to :js
   end

@@ -280,6 +280,7 @@ uk:
       one_page:
         display_entries:
           one: "Відображено <b>1 - %{count}</b> з <b>%{count} елементів</b>"
+          few: "Відображено <b>1 - %{count}</b> з <b>%{count} елементів</b>"
           many: "Відображено <b>1 - %{count}</b> з <b>%{count} елементів</b>"
       more_pages:
         display_entries: "Відображено <b>%{first} - %{last}</b> з <b>%{total}</b> елементів"

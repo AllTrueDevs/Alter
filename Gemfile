@@ -55,6 +55,7 @@ gem 'thin'
 gem 'private_pub'
 gem 'nested_form'
 gem 'remotipart', '~> 1.2'
+gem 'active_record_union'
 
 group :development, :test do
   gem 'byebug'

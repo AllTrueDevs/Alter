@@ -1,7 +1,8 @@
 $('#message_body').val('').focus();
-$posts_count = "<%= @posts.size %>";
+$posts_count = "<%= @post.request.posts.size %>";
 $('#wall-counter').text($posts_count + ' записів');
-$('.posts').html("<%= escape_javascript(render 'posts', posts: @posts) %>");
+$("<%= escape_javascript(render partial: 'messages/post', locals: { post: @post }) %>").prependTo('.posts');
+$('.posts h5').remove();
 $('.message-form .fields').each(function() {
     return $(this).remove();
 });
