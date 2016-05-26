@@ -1,4 +1,5 @@
 class Attachment < ActiveRecord::Base
+  include AmazonModule
   belongs_to :message
 
   {
@@ -40,7 +41,7 @@ class Attachment < ActiveRecord::Base
   end
 
   before_destroy do
-    AWS::S3::S3Object.delete(content.path, 'alter-assets')
+    clear_s3_object(self.content)
   end
 
 end
