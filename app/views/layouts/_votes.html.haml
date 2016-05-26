@@ -1,0 +1,9 @@
+= link_to send("upvote_#{source.class.name.downcase}_url", source), remote: true do
+  %span{ class: "fa fa-thumbs#{ current_user.voted_as_when_voted_for(source) ? '' : '-o'}-up"}
+    = source.get_upvotes.size
+= link_to send("downvote_#{source.class.name.downcase}_url", source), remote: true do
+  %span{ class: "fa fa-thumbs#{ current_user.voted_as_when_voted_for(source) == false ? '' : '-o' }-down"}
+    = source.get_downvotes.size
+
+
+

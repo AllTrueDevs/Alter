@@ -5,6 +5,6 @@ module NotificationsHelper
 
 
   def form_request_link(request)
-    "<a href=\"/requests/#{request.id}\">\"#{request.name}\"</a>"
+    "href=\"/requests/#{request.id}\""
   end
 end

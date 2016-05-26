@@ -103,6 +103,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def upvote
+    @user.upvote_from(current_user)
+    respond_to :js
+  end
+
+  def downvote
+    @user.downvote_from(current_user)
+    respond_to :js
+  end
+
   private
 
   def set_user
@@ -110,7 +120,6 @@ class UsersController < ApplicationController
   end
 
   def password_params
-    #TODO Using `strong_parameters` gem
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 

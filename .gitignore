@@ -11,11 +11,13 @@
 /log/*
 !/log/.keep
 /tmp
-public/system
+/public/system/attachments
 
 .idea
 
 .byebug_history
 
+/Gemfile.lock
 /config/database.yml
+/config/secrets.yml
 /config/application.yml

@@ -1,4 +1,7 @@
 .request-actions
+  - if can? :vote, request
+    %div{ class: "votes votes-#{request.id}" }
+      = render partial: 'layouts/votes', locals: { source: request }
   - case request.status
   - when 'actual'
     -#- if request.user != current_user && can?(:create, Decision)
