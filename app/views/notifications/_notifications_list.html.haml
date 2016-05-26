@@ -3,7 +3,7 @@
 - else
   - notifications.each do |notification|
     = render partial: 'notifications/notification', locals: { notification: notification }
-  = paginate notifications, remote: defined?(ajax) ? ajax : false
+  = paginate notifications
   .pagination-info
     = page_entries_info notifications
 
