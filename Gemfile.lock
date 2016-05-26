@@ -59,6 +59,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (3.5.0)
       activerecord (>= 3.2, < 5)
+    acts_as_votable (0.10.0)
     addressable (2.4.0)
     arel (6.0.3)
     autoprefixer-rails (6.3.6)
@@ -336,6 +337,7 @@ PLATFORMS
 DEPENDENCIES
   active_record_union
   acts-as-taggable-on
+  acts_as_votable (~> 0.10.0)
   awesome_print
   aws-sdk-v1
   better_errors
