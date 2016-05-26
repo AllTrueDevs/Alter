@@ -110,7 +110,6 @@ class UsersController < ApplicationController
   end
 
   def password_params
-    #TODO Using `strong_parameters` gem
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
