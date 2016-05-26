@@ -45,7 +45,7 @@ class Ability
 
       if user.with_privileges?
         can :manage, Category
-        can [:unchecked_requests, :check, :decline, :destroy], Request
+        can [:unchecked_requests, :check, :decline, :destroy, :upvote, :downvote], Request
       end
 
       case user.role

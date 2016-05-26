@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     member do
       get :check
       get :decline
+      get :upvote
+      get :downvote
     end
   end
   get 'unchecked', to: 'requests#unchecked_requests', as: :unchecked_requests

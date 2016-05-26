@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:vkontakte, :facebook]
+  acts_as_voter
+  acts_as_votable
   has_many :requests, :dependent => :destroy
   has_many :notifications, :dependent => :destroy
   has_many :helped_items, :dependent => :destroy

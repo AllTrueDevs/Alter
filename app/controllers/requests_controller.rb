@@ -86,6 +86,16 @@ class RequestsController < ApplicationController
     end
   end
 
+  def upvote
+    @request.upvote_from(current_user)
+    respond_to :js
+  end
+
+  def downvote
+    @request.downvote_from(current_user)
+    respond_to :js
+  end
+
   private
 
 
