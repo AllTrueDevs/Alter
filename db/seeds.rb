@@ -501,4 +501,4 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 
 ################
 
-User.first.received_messages.create(body: 'What is that, my friend?', sender: User.fourth, access: 'both')
+User.first.received_messages.create(message_type: :private_message, body: 'What is that, my friend?', sender: User.fourth, access: 'both')User.first.received_messages.create(body: 'What is that, my friend?', sender: User.fourth, access: 'both')

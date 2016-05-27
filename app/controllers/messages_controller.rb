@@ -6,6 +6,10 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @user.received_messages.order(created_at: :desc).page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def dialog
