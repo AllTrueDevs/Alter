@@ -2,5 +2,7 @@
 <% publish_to "/messages/private/#{ids[0]}_#{ids[1]}" do %>
     $('.sent.new').not('.m').removeClass('new', 1000);
 <% end %>
+counter = <%= @user.counters(:messages) %>
+$('#new-messages-count').text((counter != 0)? counter : '');
 $('.sent.new').removeClass('m');
 $('.received.new').removeClass('new', 1000);

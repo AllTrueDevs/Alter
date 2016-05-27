@@ -2,8 +2,12 @@
 <% publish_to "/messages/private/#{ids[0]}_#{ids[1]}" do %>
     $("<%= escape_javascript(render partial: 'message', locals: { message: @message, companion: @user }) %>").appendTo('.messages');
     $('.messages h5').remove();
+    counter = <%= @companion.counters(:messages) %>
+    $('#new-messages-count').text((counter != 0)? counter : '');
 <% end %>
 $('.message').last().remove();
+counter = <%= @user.counters(:messages) %>
+$('#new-messages-count').text((counter != 0)? counter : '');
 $("<%= escape_javascript(render partial: 'message', locals: { message: @message, companion: @companion, at_moment: true }) %>").appendTo('.messages');
 $('.message-form .fields').each(function() {
     return $(this).remove();
