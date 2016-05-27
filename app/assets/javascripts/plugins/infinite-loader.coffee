@@ -1,10 +1,10 @@
 $ ->
   window.infiniteToTop = ->
-    if ($(window).scrollTop() < 50)
+    if ($(window).scrollTop() < 20)
       if $('.loader').hasClass('hidden')
         $('.pagination-info').remove()
       else
-        $(window).scrollTop($(window).scrollTop() + 10)
+        $(window).scrollTop($(window).scrollTop() + 100)
       $('.infinite').infinitePages('next') unless $('.pagination-info').length == 0
 
   window.setTopInfiniteLoader = ->

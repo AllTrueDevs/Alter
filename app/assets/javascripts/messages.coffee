@@ -1,5 +1,5 @@
 $ ->
-  if $('.dialog').length != 0
+  if $('.dialog').length != 0 && $('.pagination-info').length != 0
     setTopInfiniteLoader()
 
   $('.dialog #message_body').on 'keydown', (event) ->
