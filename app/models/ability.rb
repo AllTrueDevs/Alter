@@ -8,6 +8,7 @@ class Ability
     can [:select_requests], User
     can :read, Request
     can :read, Article
+    can(:download, Attachment){ |attachment| attachment.message.message_type.to_sym == :post }
 
     if user
       can [:show, :statistic], User
@@ -26,8 +27,7 @@ class Ability
         (message.request.user.id == user.id && !message.request.status?(:declined)) || user.with_privileges?
       end
       can :download, Attachment do |attachment|
-        ((attachment.message.sender == user || attachment.message.receiver == user) && attachment.message.message_type.to_sym == :private_message) ||
-            attachment.message.message_type.to_sym == :post
+        ((attachment.message.sender == user || attachment.message.receiver == user) && attachment.message.message_type.to_sym == :private_message)
       end
 
       cannot :read, Category

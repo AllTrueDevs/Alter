@@ -13,8 +13,10 @@ class User < ActiveRecord::Base
   has_many :decisions, foreign_key: 'helper_id'
   has_many :user_tags, :dependent => :destroy
   has_many :articles
-  has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
-  has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
+  has_many :received_messages, -> { where(access: %w(both receiver), message_type: 'private_message') },
+              class_name: 'Message', foreign_key: 'receiver_id'
+  has_many :sent_messages, -> { where(access: %w(both sender), message_type: 'private_message') },
+              class_name: 'Message', foreign_key: 'sender_id'
   has_attached_file :avatar, default_url: 'missing-avatar.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { in: 4..40 }
@@ -30,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def role?(user_role)
-    role.include?(user_role.to_s)
+    role == user_role.to_s
   end
 
   def with_privileges?
@@ -63,7 +65,11 @@ class User < ActiveRecord::Base
   end
 
   def dialog(user)
-    received_messages.private_messages.sent_by(user).union(sent_messages.private_messages.received_by(user)).order(created_at: :desc)
+    received_messages.sent_by(user).union(sent_messages.received_by(user)).order(created_at: :desc)
+  end
+
+  def messages
+    received_messages.union(sent_messages)
   end
 
   def mailbox_empty?

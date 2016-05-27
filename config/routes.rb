@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       post :new_private
       post :new_post
       post :remove_selected
+      get :mark_as_read
       get :clear
     end
   end

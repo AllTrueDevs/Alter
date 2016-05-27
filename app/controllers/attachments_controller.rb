@@ -1,7 +1,6 @@
 class AttachmentsController < ApplicationController
   require 'open-uri'
   load_and_authorize_resource
-  before_action :authenticate_user!
 
   def download
     @attachment = Attachment.find(params[:id])

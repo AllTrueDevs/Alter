@@ -15,7 +15,7 @@ class Request < ActiveRecord::Base
   end
 
   def status?(request_status)
-    status.include?(request_status.to_s)
+    status == request_status.to_s
   end
 
 end

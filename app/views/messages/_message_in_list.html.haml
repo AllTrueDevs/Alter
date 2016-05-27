@@ -14,6 +14,7 @@
             - if message.status?(:new)
               %p.label.label-primary
                 = message.sent_by?(current_user) ? 'Непрочитане' : 'Нове'
+            .date= "#{time_ago_in_words(message.created_at)} тому"
           .col-md-12
             %p.break-word= message.body.truncate(530, separator:' ')
             - unless message.attachments.empty?

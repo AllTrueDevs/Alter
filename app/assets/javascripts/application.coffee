@@ -3,6 +3,7 @@
 #= require jquery
 #= require bootstrap-sprockets
 #= require jquery_ujs
+#= require jquery-ui
 #= require bootstrap-multiselect
 #= require bootstrap/bootstrap
 #= require bootstrap-filestyle
