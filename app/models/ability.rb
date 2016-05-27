@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     alias_action [:destroy, :create, :update], to: :cud
+    alias_action [:upvote, :downvote], to: :vote
 
     can [:select_requests], User
     can :read, Request
@@ -13,6 +14,11 @@ class Ability
       can [:show, :statistic], User
       can [:detach_social_link, :change_password], User do |usr|
         user == usr
+      end
+
+      can :vote, Request
+      can :vote, User do |usr|
+        user != usr
       end
 
       can [:index, :dialog, :clear, :remove_selected], Message
@@ -61,6 +67,8 @@ class Ability
         cannot :cud, Decision
         cannot [:new_post, :new_private, :destroy], Message
         cannot [:update, :edit], User
+        cannot :vote, Request
+        cannot :vote, User
 
         cannot :show, User do |usr|
           usr != user

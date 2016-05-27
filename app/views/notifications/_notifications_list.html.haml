@@ -1,5 +1,15 @@
-- notifications.each do |notification|
-  = render partial: 'notifications/notification_in_list', locals: { notification: notification, notifications: notifications }
-= paginate notifications
-.pagination-info
-  = page_entries_info notifications
+- if notifications.size.zero?
+  %h5.text-center Сповіщень не знайдено
+- else
+  - notifications.each do |notification|
+    = render partial: 'notifications/notification', locals: { notification: notification }
+  = paginate notifications
+  .pagination-info
+    = page_entries_info notifications
+
+
+-#- notifications.each do |notification|
+-#  = render partial: 'notifications/notification_in_list', locals: { notification: notification, notifications: notifications }
+-#= paginate notifications
+-#.pagination-info
+-#  = page_entries_info notifications

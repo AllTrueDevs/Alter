@@ -8,24 +8,20 @@ class NotificationsController < ApplicationController
 
   def show
     @notification.update(status: 'read')
-    begin
-      respond_to :js
-    rescue
-      redirect_to notifications_url
-    end
+    respond_to :js
   end
 
   def destroy
     @notification.destroy
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Notification was successfully destroyed.' }
+      format.html { redirect_to requests_url }
       format.js { render layout: false }
     end
   end
 
   def clean
     current_user.notifications.destroy_all
-    redirect_to notifications_url, notice: 'Всі сповіщення видалено'
+    redirect_to notifications_url
   end
 
   private
@@ -34,7 +30,7 @@ class NotificationsController < ApplicationController
     end
 
     def set_notifications
-      @notifications = current_user.notifications.paginated(params[:page], 15)
+      @notifications = current_user.notifications.order('status ASC, created_at DESC').paginated(params[:page], 15)
     end
 
     def notification_params

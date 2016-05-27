@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     member do
       get :check
       get :decline
+      get :upvote
+      get :downvote
     end
   end
   get 'unchecked', to: 'requests#unchecked_requests', as: :unchecked_requests
@@ -72,6 +74,8 @@ Rails.application.routes.draw do
       get :select_requests
       get :statistic
       get :detach_social_link
+      get :upvote
+      get :downvote
     end
     collection do
       patch :change_password

@@ -1,0 +1,17 @@
+.notification{id: "notification-#{notification.id}"}
+  .row
+    .col-md-1
+      - if notification.status?(:new)
+        = link_to notification, remote: true do
+          .photo.new
+            %span.fa.fa-volume-up
+      - else
+        .photo
+          %span.fa.fa-volume-off
+    .col-md-11
+      .body
+        %h1.title= notification.message.html_safe
+        = link_to notification, method: :delete, remote: true do
+          %span.fa.fa-times.delete
+        .info
+          %p.date= time_ago_in_words(notification.created_at) + ' тому.'

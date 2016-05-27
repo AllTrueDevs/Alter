@@ -26,6 +26,9 @@
         - if can?(:admin_login, @user) && (current_user != @user)
           = link_to admin_login_user_url, method: :get, title: 'Вхід на аккаунт користувача', data: { confirm: 'Зайти на аккаунт даного користувача?'} do
             %span.glyphicon.glyphicon-search{ 'aria-hidden': true }
+        - if can? :vote, @user
+          %div{ class: "votes votes-#{@user.id}" }
+            = render partial: 'layouts/votes', locals: { source: @user }
         - case @user.role
           - when 'moderator'
             %h5

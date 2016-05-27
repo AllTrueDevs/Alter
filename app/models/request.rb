@@ -1,4 +1,5 @@
 class Request < ActiveRecord::Base
+  acts_as_votable
   belongs_to :user
   has_many :required_items, dependent: :destroy
   has_many :decisions, dependent: :destroy
