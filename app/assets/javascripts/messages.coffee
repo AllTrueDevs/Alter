@@ -2,8 +2,29 @@ $ ->
   if $('.dialog').length != 0
     setTopInfiniteLoader()
 
+  $('.dialog #message_body').on 'keydown', (event) ->
+     if event.keyCode == 13 && !(event.shiftKey)
+       event.preventDefault()
+       $(this).closest('form').submit()
+       $(this).val('').focus()
+
+  $('.dialog .message-form').on 'click', (event) ->
+    url = $(this).find('#message_body').data('url')
+    $('.sent.new').addClass('m')
+    $.ajax
+      url: url
+      type: 'GET'
+      dataType: 'script'
+      error: ->
+        $('.m').removeClass('m')
+
+  $('.message-form input[type=submit]').on 'click', (event) ->
+    event.preventDefault()
+    $(this).closest('form').submit()
+    $('#message_body').val('').focus()
+
   $(document).on 'click', '.submit', ->
-    $(this).removeClass('.active');
+    $(this).removeClass('.active')
     $(this).closest('form').submit()
 
   $(document).on 'change', 'input[type=checkbox]', ->

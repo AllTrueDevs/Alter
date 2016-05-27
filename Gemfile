@@ -35,6 +35,7 @@ gem 'bootstrap-filestyle-rails'
 gem 'font-awesome-rails'
 gem 'selectize-rails'
 gem 'jquery-infinite-pages'
+gem 'jquery-ui-rails'
 
 #############################
 ### Backend

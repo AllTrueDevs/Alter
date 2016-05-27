@@ -24,6 +24,9 @@
   margin-top: 25px
   .message-info
     margin-bottom: 10px
+    .date
+      font-size: 0.7em
+      color: #777
 .message-form
   .blocked
     cursor: no-drop
@@ -49,31 +52,42 @@
     outline: none
 
 .dialog
-  li, input, textarea
+  .message, .message-container, input, textarea
     border-radius: 15px !important
   .messages
     margin-top: 20px
-    .sent
+    .sent .message-container
       background-color: #a1d7db !important
       text-align: right
       float: right
+    .new
+      background-color: #ddecf2
+      .message-container
+        background-color: #ddecf2 !important
+    .sent.new
+      background-color: #c6ccff
+      .message-container
+        background-color: #c6ccff !important
     .message
-      background-color: #e9efeb
       display: inline-block
       margin: 5px 0
-      width: 60%
-      padding: 15px 15px
-      .attachments
-        .image-attachments
-          margin-top: 25px
-          .attachment
-            display: inline-block
-            small
-              font-size: 10px
-              display: block
-              text-align: center
-        .other-attachments
-          margin-top: 25px
+      width: 100%
+      .message-container
+        width: 60%
+        background-color: #e9efeb
+        display: inline-block
+        padding: 15px 15px
+        .attachments
+          .image-attachments
+            margin-top: 25px
+            .attachment
+              display: inline-block
+              small
+                font-size: 10px
+                display: block
+                text-align: center
+          .other-attachments
+            margin-top: 25px
   .message-form
     margin-top: 20px
     .bootstrap-filestyle

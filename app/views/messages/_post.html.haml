@@ -20,7 +20,7 @@
                 %span.glyphicon.glyphicon-remove{ 'aria-hidden': true }
 
       .body
-        %p.break-word= post.body
+        %p.break-word= simple_format(post.parsed_body)
       - unless post.attachments.empty?
         .attachments
           .image-attachments

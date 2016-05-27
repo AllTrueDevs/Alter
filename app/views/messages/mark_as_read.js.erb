@@ -1,0 +1,6 @@
+<% ids = (@companion.id < @user.id) ? [ @companion.id, @user.id ]  : [ @user.id, @companion.id ] %>
+<% publish_to "/messages/private/#{ids[0]}_#{ids[1]}" do %>
+    $('.sent.new').not('.m').removeClass('new', 1000);
+<% end %>
+$('.sent.new').removeClass('m');
+$('.received.new').removeClass('new', 1000);

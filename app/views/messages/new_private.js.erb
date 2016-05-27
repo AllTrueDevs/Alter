@@ -4,8 +4,7 @@
     $('.messages h5').remove();
 <% end %>
 $('.message').last().remove();
-$("<%= escape_javascript(render partial: 'message', locals: { message: @message, companion: @companion }) %>").appendTo('.messages');
-$('#message_body').val('').focus();
+$("<%= escape_javascript(render partial: 'message', locals: { message: @message, companion: @companion, at_moment: true }) %>").appendTo('.messages');
 $('.message-form .fields').each(function() {
     return $(this).remove();
 });

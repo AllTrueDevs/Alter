@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521121552) do
+ActiveRecord::Schema.define(version: 20160527110950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,14 +84,15 @@ ActiveRecord::Schema.define(version: 20160521121552) do
   add_index "helped_items", ["user_id"], name: "index_helped_items_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
-    t.string   "message_type"
+    t.string   "message_type", default: "private_message"
     t.text     "body"
     t.string   "status",       default: "new"
     t.integer  "sender_id"
     t.integer  "receiver_id"
     t.integer  "request_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "access",       default: "both"
   end
 
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree

@@ -1,4 +1,3 @@
-$('#message_body').val('').focus();
 $posts_count = "<%= @post.request.posts.size %>";
 $('#wall-counter').text($posts_count + ' записів');
 $("<%= escape_javascript(render partial: 'messages/post', locals: { post: @post }) %>").prependTo('.posts');
