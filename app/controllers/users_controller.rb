@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       @user.notifications.create(message_type: 5)
       redirect_to @user
     else
-      if cannot? :manage, User && (@user.role?(:admin) || @user.role?(:moderator)) #TODO check if need and
+      if cannot?(:manage, User) && @user.with_privileges?
         flash[:error] = 'Немає доступу'
         redirect_to @user
       else
