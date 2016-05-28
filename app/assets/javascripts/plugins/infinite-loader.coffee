@@ -4,7 +4,7 @@ $ ->
       if $('.loader').hasClass('hidden')
         $('.pagination-info').remove()
       else
-        $(window).scrollTop($(window).scrollTop() + 100)
+        $(window).scrollTop($(window).scrollTop() + 200)
       $('.infinite').infinitePages('next') unless $('.pagination-info').length == 0
 
   window.setTopInfiniteLoader = ->

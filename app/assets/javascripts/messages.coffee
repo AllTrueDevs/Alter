@@ -5,6 +5,14 @@ $ ->
   $('.dialog #message_body').on 'keydown', (event) ->
      if event.keyCode == 13 && !(event.shiftKey)
        event.preventDefault()
+       url = $(this).data('url')
+       $('.sent.new').addClass('m')
+       $.ajax
+         url: url
+         type: 'GET'
+         dataType: 'script'
+         error: ->
+           $('.m').removeClass('m')
        $(this).closest('form').submit()
        $(this).val('').focus()
 
