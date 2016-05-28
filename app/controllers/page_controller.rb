@@ -1,7 +1,6 @@
 class PageController < ApplicationController
   def home
-    @requests = Array.new
-    Request.actual.limit(5).order(created_at: :desc).each{ |request| @requests << request }
+    @requests = Request.all.sort_by(&:unique_impression_count).reverse.take(5)
   end
 
   def about
