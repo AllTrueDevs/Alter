@@ -5,6 +5,7 @@ class Request < ActiveRecord::Base
   has_many :decisions, dependent: :destroy
   has_many :notifications
   has_many :posts, class_name: 'Message', dependent: :destroy
+  has_many :impressions, as: :impressionable
   has_attached_file :photo, default_url: 'missing-photo.jpg'
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { maximum: 150 }
@@ -16,6 +17,14 @@ class Request < ActiveRecord::Base
 
   def status?(request_status)
     status == request_status.to_s
+  end
+
+  def impression_count
+    impressions.size
+  end
+
+  def unique_impression_count
+    impressions.group_by(&:ip_address).size
   end
 
 end

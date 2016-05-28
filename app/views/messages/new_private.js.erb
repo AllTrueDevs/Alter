@@ -4,6 +4,10 @@
     $('.messages h5').remove();
     counter = <%= @companion.counters(:messages) %>
     $('#new-messages-count').text((counter != 0)? counter : '');
+    if ((document.body.scrollTop + $(window).height()) < document.body.scrollHeight - 100)
+        $('body').animate({scrollTop : document.body.scrollHeight}, 500);
+    else
+        $(window).scrollTop(document.body.scrollHeight);
 <% end %>
 $('.message').last().remove();
 counter = <%= @user.counters(:messages) %>

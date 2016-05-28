@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527110950) do
+ActiveRecord::Schema.define(version: 20160528092201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 20160527110950) do
 
   add_index "helped_items", ["category_id"], name: "index_helped_items_on_category_id", using: :btree
   add_index "helped_items", ["user_id"], name: "index_helped_items_on_user_id", using: :btree
+
+  create_table "impressions", force: :cascade do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.string   "message_type", default: "private_message"
