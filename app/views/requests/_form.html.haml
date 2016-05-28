@@ -1,16 +1,17 @@
-= form_for request, html: { multipart: true, role: :form } do |f|
+= nested_form_for request, html: { multipart: true, role: :form } do |f|
   .form-group
     = f.label :Назва
     = f.text_field :name, class: 'form-control'
   .form-group
     = f.label :Опис
     = f.text_area :description, autofocus: true, class: 'form-control', rows: '5'
-  .categories
-    .categories-labels
+  .required-items
     = f.label :Категорії
-    %br
-    = select_tag :categories, options_from_collection_for_select(Category.all, :id_with_color, :name,
-                  selected: request.required_items.collect{ |r| r.category.id_with_color }), multiple: true
+    = f.fields_for :required_items do |builder|
+      = render 'required_item', f: builder
+    .clear-fix
+    = f.link_to_add :required_items do
+      %span.fa.fa-plus-square{ 'aria-hidden': true }
   .form-group
     = f.label :Фото
     .file-field-container

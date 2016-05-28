@@ -44,8 +44,7 @@ $ ->
       $('.submit-container a').addClass('submit')
 
   $(document).on 'nested:fieldRemoved', ->
-    $('.message-form .fields:hidden').each ->
-      $(this).remove()
+    $('.message-form .fields:hidden').remove()
     if $('.message-form .fields').length == 4
      $('.message-form .add_nested_fields').prop('disabled', false)
 

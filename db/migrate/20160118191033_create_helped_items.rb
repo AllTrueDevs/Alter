@@ -1,7 +1,7 @@
 class CreateHelpedItems < ActiveRecord::Migration
   def change
     create_table :helped_items do |t|
-      t.integer :count, default: 1
+      t.integer :count
       t.references :user, index: true
       t.references :category, index: true
 

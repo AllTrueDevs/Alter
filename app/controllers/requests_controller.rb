@@ -8,8 +8,8 @@ class RequestsController < ApplicationController
                   Request.actual.order(created_at: :desc).page(params[:page]).per(10)
                 else
                   Request.where(status: 'actual').joins(:required_items)
-                      .where(required_items: {category_id: params[:category_id]})
-                      .order(created_at: :desc).page(params[:page]).per(10)
+                         .where(required_items: {category_id: params[:category_id]})
+                         .order(created_at: :desc).page(params[:page]).per(10)
                 end
   end
 
@@ -37,6 +37,7 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
+    @request.required_items.build
   end
 
   def edit
@@ -44,13 +45,9 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.new(request_params)
-    @request.user = current_user
+    @request = current_user.requests.new(request_params)
     respond_to do |format|
-      if @request.valid? && !params[:categories].nil?
-        @request.save
-        @categories = params[:categories]
-        @categories.each{ |category| @request.required_items.create(category_id: category.split('::')[0]) }
+      if @request.save
         format.html { redirect_to @request}
       else
         format.html { redirect_to :back, notice: 'Помилка введення даних' }
@@ -104,6 +101,7 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:name, :description, :user_id, :photo)
+    params.require(:request).permit(:name, :description, :user_id, :photo,
+                                    required_items_attributes: [:id, :count, :category_id, :_destroy])
   end
 end
