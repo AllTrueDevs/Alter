@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create, :show, :index]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked_requests]
+  before_filter :log_impression, only: [:show]
 
   def index
     @requests = if params[:category_id].nil?
@@ -94,6 +95,10 @@ class RequestsController < ApplicationController
   def downvote
     @request.downvote_from(current_user)
     respond_to :js
+  end
+
+  def log_impression
+    @request.impressions.create(ip_address: request.remote_ip, user_id: current_user.nil? ? nil : current_user.id)
   end
 
   private
