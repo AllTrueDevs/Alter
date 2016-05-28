@@ -132,9 +132,10 @@ ActiveRecord::Schema.define(version: 20160528093955) do
   create_table "required_items", force: :cascade do |t|
     t.integer  "request_id"
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "count"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "goal_count"
+    t.integer  "current_count", default: 0
   end
 
   add_index "required_items", ["category_id"], name: "index_required_items_on_category_id", using: :btree

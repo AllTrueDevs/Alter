@@ -102,6 +102,6 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:name, :description, :user_id, :photo,
-                                    required_items_attributes: [:id, :count, :category_id, :_destroy])
+                                    required_items_attributes: [:id, :goal_count, :category_id, :_destroy])
   end
 end
