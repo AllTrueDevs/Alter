@@ -19,6 +19,6 @@ class RequiredItem < ActiveRecord::Base
 
   def font_color
     return '#35353f' if self.progress == 0
-    "##{( self.category.color.hex > '777777'.hex ) ? '35353f' : 'fff'}"
+    "##{( self.category.color.hex > '888888'.hex ) ? '35353f' : 'fff'}"
   end
 end

@@ -15,6 +15,7 @@
       = image_tag @request.photo.url
     = render partial: 'request_categories', locals: { request: @request }
     = render partial: 'request_info', locals: { request: @request }
+    = render partial: 'request_progress', locals: { request: @request }
   .col-md-12.wall
     .panel.panel-default.width-100
       .panel-heading
