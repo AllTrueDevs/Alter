@@ -1,7 +1,8 @@
 class RequiredItem < ActiveRecord::Base
   belongs_to :category
   belongs_to :request
-  has_many :accepted_items
+  has_many :accepted_items, dependent: :destroy
+  belongs_to :decision, dependent: :destroy
   validates :category_id, presence: true
   validates_numericality_of :goal_count, greater_than: 0
 
@@ -14,11 +15,13 @@ class RequiredItem < ActiveRecord::Base
   end
 
   def progress
-    (current_count.to_f / goal_count * 100).to_i
+    value = (current_count.to_f / goal_count * 100).to_i
+    (value <= 100)? value : 100
   end
 
   def font_color
     return '#35353f' if self.progress == 0
-    "##{( self.category.color.hex > '888888'.hex ) ? '35353f' : 'fff'}"
+    rgb = self.category.color.chars.sum{ |symb| symb.hex - 7 }
+    "##{( rgb > 0 ) ? '35353f' : 'fff'}"
   end
 end

@@ -2,6 +2,10 @@
 = content_for :plugins do
   = javascript_include_tag 'requests/categories'
   = javascript_include_tag 'plugins/file-field'
+= content_for :javascript do
+  = javascript_include_tag 'requests'
+= content_for :styles do
+  = stylesheet_link_tag 'requests'
 .panel.panel-default
   .panel-heading
     %h4 Редагування запиту

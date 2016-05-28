@@ -110,11 +110,16 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
     )
     User.find(i).requests.each do |request|
       temp = Random.rand(9)
-      request.required_items.create((1..Random.rand(1..5)).map{ |x| {category_id:  temp + x } })
+      request.required_items.create(
+        (1..Random.rand(1..5)).map do |x|
+          rand = Random.rand(1..15)
+          { current_count: rand, goal_count: rand + Random.rand(15), category_id:  temp + x }
+        end
+      )
     end
   end
 
-  User.first.requests.create([
+  User.first.requests.create!([
       {
           :name => 'Потрібна допомога: У харківський госпіталь привезли 40 поранених бійців, медики та волонтери не встигають',
           :description => "Зранку, 12 січня, стало відомо про те, що у військовий госпіталь Харкова надійшло 40 тяжко поранених українських військових. Про це йдеться у повідомленні волонтерів з групи «Сестри милосердя АТО/Харків», передають Патріоти України.
@@ -133,15 +138,15 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
   ])
 
   User.first.requests.first.required_items.create([
-                                                      {category_id: 4},
-                                                      {category_id: 8},
-                                                      {category_id: 11}
+                                                      {category_id: 4, current_count: 0, goal_count: 5},
+                                                      {category_id: 8, current_count: 2, goal_count: 2},
+                                                      {category_id: 11, current_count: 5, goal_count: 15}
   ])
   User.first.requests.second.required_items.create([
-                                                      {category_id: 1},
-                                                      {category_id: 3},
-                                                      {category_id: 6},
-                                                      {category_id: 7}
+                                                      {category_id: 1, current_count: 5, goal_count: 8},
+                                                      {category_id: 3, current_count: 2, goal_count: 4},
+                                                      {category_id: 6, current_count: 15, goal_count: 21},
+                                                      {category_id: 7, current_count: 1, goal_count: 7}
                                                   ])
 
   User.second.requests.create(:name => 'Луцьк: волонтеру терміново потрібна допомога',
@@ -155,9 +160,9 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
   )
 
   User.second.requests.first.required_items.create([
-      {category_id: 3},
-      {category_id: 4},
-      {category_id: 12}
+      {category_id: 3, current_count: 2, goal_count: 15},
+      {category_id: 4, current_count: 9, goal_count: 10},
+      {category_id: 12, current_count: 4, goal_count: 10}
   ])
 
   User.third.requests.create([
@@ -210,19 +215,19 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
   ])
 
   User.third.requests.first.required_items.create([
-                                                      {category_id: 1},
-                                                      {category_id: 2},
-                                                      {category_id: 7}
+                                                      {category_id: 1, current_count: 0, goal_count: 2},
+                                                      {category_id: 2, current_count: 2, goal_count: 2},
+                                                      {category_id: 7, current_count: 3, goal_count: 6}
                                                   ])
-  User.third.requests.second.required_items.create(category_id: 7)
-  User.third.requests.third.required_items.create(category_id: 10)
+  User.third.requests.second.required_items.create(category_id: 7, current_count: 1, goal_count: 10)
+  User.third.requests.third.required_items.create(category_id: 10, current_count: 8, goal_count: 10)
   User.third.requests.fourth.required_items.create([
-                                                       {category_id: 1},
-                                                       {category_id: 7}
+                                                       {category_id: 1, current_count: 2, goal_count: 2},
+                                                       {category_id: 7, current_count: 5, goal_count: 7}
                                                    ])
   User.third.requests.fifth.required_items.create([
-                                                      {category_id: 4},
-                                                      {category_id: 3}
+                                                      {category_id: 4, current_count: 2, goal_count: 10},
+                                                      {category_id: 3, current_count: 1000, goal_count: 25000}
                                                   ])
 
   User.fourth.requests.create([
@@ -307,36 +312,36 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       }
    ])
   User.fourth.requests.first.required_items.create([
-                                                      {category_id: 4},
-                                                      {category_id: 8},
-                                                      {category_id: 11}
+                                                      {category_id: 4, current_count: 10, goal_count: 10},
+                                                      {category_id: 8, current_count: 5, goal_count: 20},
+                                                      {category_id: 11, current_count: 3, goal_count: 9}
                                                   ])
   User.fourth.requests.second.required_items.create([
-                                                       {category_id: 1},
-                                                       {category_id: 3},
-                                                       {category_id: 6},
-                                                       {category_id: 7}
+                                                       {category_id: 1, current_count: 0, goal_count: 2},
+                                                       {category_id: 3, current_count: 14560, goal_count: 20000},
+                                                       {category_id: 6, current_count: 0, goal_count: 8},
+                                                       {category_id: 7, current_count: 10, goal_count: 15}
                                                    ])
   User.fourth.requests.third.required_items.create([
-                                                       {category_id: 3},
-                                                       {category_id: 4},
-                                                       {category_id: 12}
+                                                       {category_id: 3, current_count: 2500, goal_count: 7500},
+                                                       {category_id: 4, current_count: 2, goal_count: 5},
+                                                       {category_id: 12, current_count: 3, goal_count: 4}
                                                    ])
 
   User.fourth.requests.fourth.required_items.create([
-                                                      {category_id: 1},
-                                                      {category_id: 2},
-                                                      {category_id: 7}
+                                                      {category_id: 1, current_count: 1, goal_count: 2},
+                                                      {category_id: 2, current_count: 2, goal_count: 3},
+                                                      {category_id: 7, current_count: 3, goal_count: 4}
                                                   ])
-  Request.find(User.fourth.requests.fourth.id + 1).required_items.create(category_id: 7)
-  Request.find(User.fourth.requests.fourth.id + 2).required_items.create(category_id: 10)
+  Request.find(User.fourth.requests.fourth.id + 1).required_items.create(category_id: 7, current_count: 11, goal_count: 33)
+  Request.find(User.fourth.requests.fourth.id + 2).required_items.create(category_id: 10, current_count: 35, goal_count: 50)
   Request.find(User.fourth.requests.fourth.id + 3).required_items.create([
-                                                       {category_id: 1},
-                                                       {category_id: 7}
+                                                       {category_id: 1, current_count: 11, goal_count: 15},
+                                                       {category_id: 7, current_count: 2, goal_count: 4}
                                                    ])
   Request.find(User.fourth.requests.fourth.id + 4).required_items.create([
-                                                      {category_id: 4},
-                                                      {category_id: 3}
+                                                      {category_id: 4, current_count: 1, goal_count: 5},
+                                                      {category_id: 3, current_count: 7000, goal_count: 14500}
                                                   ])
   User.fifth.requests.create([
       {
@@ -390,27 +395,27 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       }
   ])
   User.fifth.requests.first.required_items.create([
-      {category_id: 1},
-      {category_id: 3},
-      {category_id: 4},
-      {category_id: 7},
-      {category_id: 8}
+      {category_id: 1, current_count: 1, goal_count: 2},
+      {category_id: 3, current_count: 13000, goal_count: 35000},
+      {category_id: 4, current_count: 3, goal_count: 4},
+      {category_id: 7, current_count: 5, goal_count: 6},
+      {category_id: 8, current_count: 7, goal_count: 8}
   ])
   User.fifth.requests.second.required_items.create([
-      {category_id: 3},
-      {category_id: 13}
+      {category_id: 3, current_count: 1050, goal_count: 2400},
+      {category_id: 13, current_count: 2, goal_count: 50}
   ])
   User.fifth.requests.third.required_items.create([
-      {category_id: 11}
+      {category_id: 11, current_count: 7, goal_count: 10}
   ])
 
   User.fifth.requests.fourth.required_items.create([
-      {category_id: 1},
-      {category_id: 2},
-      {category_id: 3},
-      {category_id: 7},
-      {category_id: 11},
-      {category_id: 13}
+      {category_id: 1, current_count: 5, goal_count: 15},
+      {category_id: 2, current_count: 3, goal_count: 19},
+      {category_id: 3, current_count: 220, goal_count: 875},
+      {category_id: 7, current_count: 3, goal_count: 6},
+      {category_id: 11, current_count: 1, goal_count: 2},
+      {category_id: 13, current_count: 20, goal_count: 25}
   ])
 
 ####################

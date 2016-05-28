@@ -12,7 +12,7 @@ class Request < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 150 }
   validates :user_id, presence: true
   validates :status, presence: true, inclusion: { in: %w(actual archived unchecked declined) }
-  validate :without_required_items?, on: :create, :if => proc { |r| r.required_items.empty? }
+  validate :without_required_items?, on: :create, :if => proc { |r| r.required_items.empty? } # comment for db:seed
   [:unchecked, :actual, :archived, :declined].each do |status|
     scope status, -> { where(status: status) }
   end

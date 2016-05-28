@@ -57,16 +57,10 @@ class RequestsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @request.update(request_params)
-        @request.update(status: 'unchecked')
-        @request.decisions.each{ |decision| User.find(decision.helper_id).notifications.create(message_type: 8, reason_user_id: current_user.id, request_id: decision.request_id) }
-        @request.decisions.destroy_all
-        @request.required_items.destroy_all
-        @categories = params[:categories]
-        @categories.each{ |category| @request.required_items.create(category_id: category) }
-        format.html { redirect_to @request, notice: 'Запит успішно оновлено' }
+      if @request.update(request_params.merge(status: 'unchecked'))
+        format.html { redirect_to @request }
       else
-        format.html { render :edit }
+        format.html { redirect_to :back, notice: 'Помилка введення даних' }
       end
     end
   end
