@@ -32,7 +32,6 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @required_items = @request.required_items
     @posts = @request.posts.order(updated_at: :desc).page(params[:page]).per(10)
   end
 
@@ -52,6 +51,8 @@ class RequestsController < ApplicationController
         @request.save
         @categories = params[:categories]
         @categories.each{ |category| @request.required_items.create(category_id: category.split('::')[0]) }
+
+        @request.create_activity key: 'request.create'
         format.html { redirect_to @request}
       else
         format.html { redirect_to :back, notice: 'Помилка введення даних' }
@@ -68,6 +69,8 @@ class RequestsController < ApplicationController
         @request.required_items.destroy_all
         @categories = params[:categories]
         @categories.each{ |category| @request.required_items.create(category_id: category) }
+
+        @request.create_activity key: 'request.update'
         format.html { redirect_to @request, notice: 'Запит успішно оновлено' }
       else
         format.html { render :edit }
@@ -81,6 +84,8 @@ class RequestsController < ApplicationController
       User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id)
     end
     @request.decisions.destroy_all
+
+    @request.create_activity key: 'request.archive'
     respond_to do |format|
       format.html{ redirect_to @request }
       format.js

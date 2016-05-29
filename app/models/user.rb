@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     received_messages.private_messages.empty? && sent_messages.private_messages.empty?
   end
 
+  def activity
+    PublicActivity::Activity.all.where(owner_id: id, owner_type: 'User')
+  end
+
   def counters(type)
     case(type)
     when :decisions then Decision.where(status: 'new', request: self.requests).size

@@ -11,7 +11,7 @@ class Ability
     can(:download, Attachment){ |attachment| attachment.message.message_type.to_sym == :post }
 
     if user
-      can [:show, :statistic], User
+      can [:show, :statistic, :activity], User
       can [:detach_social_link, :change_password], User do |usr|
         user == usr
       end

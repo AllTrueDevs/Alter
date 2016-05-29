@@ -59,6 +59,7 @@ gem 'nested_form'
 gem 'remotipart', '~> 1.2'
 gem 'active_record_union'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'public_activity'
 
 group :development, :test do
   gem 'byebug'

@@ -23,6 +23,8 @@ class DecisionsController < ApplicationController
         @required_items.each do |x|
           @decision.accepted_items.create(required_item_id: x)
         end
+
+        @decision.create_activity recipient: @decision.request, key: 'decision.create'
         format.html { redirect_to :back, notice: 'Вашу пропозицію допомоги відправлено' }
       else
         format.html { redirect_to :back, notice: 'Усі поля повині бути заповнені' }
@@ -34,8 +36,10 @@ class DecisionsController < ApplicationController
     User.find(@decision.helper_id).notifications.create(message_type: 1, reason_user_id: current_user.id, request_id: @decision.request_id)
     @decision.accepted_items.each{ |item| Decision.update_helped_items!(item) }
     @decision.accepted_items.destroy_all
+    @decision.create_activity recipient: @decision.request, key: 'decision.accept'
     @decision.destroy
-    redirect_to decision_url
+
+    redirect_to decisions_url
   end
 
   def partly
@@ -45,7 +49,9 @@ class DecisionsController < ApplicationController
         User.find(@decision.helper_id).notifications.create(message_type: 2, reason_user_id: current_user.id, request_id: @decision.request_id)
         @accepted_items.each{ |id| item = AcceptedItem.find(id); Decision.update_helped_items!(item) }
         @decision.accepted_items.destroy_all
+        @decision.create_activity recipient: @decision.request, key: 'decision.partly'
         @decision.destroy
+
         format.html { redirect_to decisions_url }
       else
         format.html { redirect_to :back, notice: 'Оберіть категорії' }
@@ -56,7 +62,9 @@ class DecisionsController < ApplicationController
   def deny
     User.find(@decision.helper_id).notifications.create(message_type: 3, reason_user_id: current_user.id, request_id: @decision.request_id)
     @decision.accepted_items.destroy_all
+    @decision.create_activity recipient: @decision.request, key: 'decision.deny'
     @decision.destroy!
+
     redirect_to decisions_url
   end
 

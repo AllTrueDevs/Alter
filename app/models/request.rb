@@ -1,4 +1,7 @@
 class Request < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
+
   acts_as_votable
   belongs_to :user
   has_many :required_items, dependent: :destroy
