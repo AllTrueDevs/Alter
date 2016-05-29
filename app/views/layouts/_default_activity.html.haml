@@ -5,6 +5,6 @@
         %span.fa.fa-volume-off
     .col-md-11
       .body
-        %h1.title= "Відгук за #{link_to('запитом', request_url(a.recipient))} було частково прийнято."
+        %h1.title= activity_message_type(a).html_safe
         .info
           %p.date= time_ago_in_words(a.created_at) + ' тому.'
