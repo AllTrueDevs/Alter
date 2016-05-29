@@ -68,6 +68,8 @@
           = link_to 'Неперевірені запити', select_requests_user_url(requests_type: :unchecked, sort_field: :created_at), remote: true
         %li
           = link_to 'Відхилені запити', select_requests_user_url(requests_type: :declined, sort_field: :updated_at), remote: true
+        %li
+          = link_to 'Активність', activity_user_url, remote: true
         - if !@user.helped_items.empty? && can?(:statistic, @user)
           %li= link_to 'Cтатистика', statistic_user_url, remote: true
       .tab-content

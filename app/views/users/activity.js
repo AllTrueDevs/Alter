@@ -1,0 +1,1 @@
+$(".tab-pane.active").html("<%= escape_javascript(render 'layouts/activity', activities: @activities) %>");

@@ -1,0 +1,10 @@
+.notification
+  .row
+    .col-md-1
+      .photo
+        %span.fa.fa-volume-off
+    .col-md-11
+      .body
+        %h1.title= "#{link_to('Запит', request_url(a.trackable))} було заархівовано."
+        .info
+          %p.date= time_ago_in_words(a.created_at) + ' тому.'
