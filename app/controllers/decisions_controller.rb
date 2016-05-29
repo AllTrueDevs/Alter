@@ -26,18 +26,21 @@ class DecisionsController < ApplicationController
 
   def accept
     @decision.helper.notifications.create(message_type: 1, reason_user: current_user, request: @decision.request)
-    @decision.accepted_items.each{ |item| @decision.helper.update_helped_items!(item.required_item.category, item.count) }
+    @decision.accepted_items.each{ |item| @decision.helper.update_helped_item!(item.required_item.category, item.count) }
     @decision.destroy
     redirect_to decisions_url
   end
 
   def partly
-    params = decision_params['accepted_items_attributes'].map{ |key, value| { value['id'].to_i => value['count'].to_i } }
-    ids = params.map{ |key, value| key }
+    data = Hash[decision_params['accepted_items_attributes'].map{ |key, value| [value['id'].to_i, value['count'].to_i] }]
+    ids = data.map{ |key, value| key }
     accepted_items = @decision.accepted_items.where(id: ids)
     respond_to do |format|
       @decision.helper.notifications.create(message_type: 2, reason_user: current_user, request: @decision.request)
-      accepted_items.each{ |item| @decision.helper.update_helped_items!(item.required_item.category, params[item.id]) }
+      accepted_items.each do |item|
+        @decision.helper.update_helped_item!(item.required_item.category, data[item.id])
+        @decision.request.update_goal!(item.required_item, data[item.id])
+      end
       @decision.destroy
       format.html { redirect_to decisions_url }
     end

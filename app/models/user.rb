@@ -86,9 +86,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def update_helped_items!(category, count)
+  def update_helped_item!(category, count)
     found_item = self.helped_items.find_or_initialize_by(category: category)
-    found_item.count = fount_item.count.to_i + count
+    found_item.count = found_item.count.to_i + count
     found_item.save
   end
 

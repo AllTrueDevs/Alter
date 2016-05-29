@@ -14,6 +14,10 @@ class RequiredItem < ActiveRecord::Base
     end
   end
 
+  after_save do
+    self.request.update(status: 'archived') if self.request.required_items.any?{ |item| !item.completed? }
+  end
+
   def self.completed
     where('goal_count <= current_count')
   end
@@ -22,8 +26,8 @@ class RequiredItem < ActiveRecord::Base
     where('goal_count > current_count')
   end
 
-  def complete?
-    self.goal_count >= self.current_count
+  def completed?
+    self.current_count >= self.goal_count
   end
 
   def progress

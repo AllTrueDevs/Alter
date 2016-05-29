@@ -17,10 +17,9 @@ module Errorable
   def has_duplicates?(type)
     if type == :required_items
       copy = self.request.required_items.find_by_category_id(self.category_id)
-      copy.present?
     else
       copy = self.decision.accepted_items.find_by_required_item_id(self.required_item_id)
-      copy.present?
     end
+    copy.present? && copy != self
   end
 end

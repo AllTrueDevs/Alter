@@ -8,7 +8,6 @@ class UsersController < ApplicationController
       redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію'
     else
       @requests = @user.requests.actual.order(created_at: :desc).page(params[:page]).per(10)
-      @helped_items = @user.helped_items.sort{ |item_1, item_2| [ item_2.count, item_1.category.name ] <=> [ item_1.count, item_2.category.name ] }
     end
   end
 
@@ -93,10 +92,18 @@ class UsersController < ApplicationController
 
   def statistic
     @items = @user.helped_items
-    unless @items.size.zero?
-      max_vals = [4, 12, 20, 30, 40, 60, 100, 150, 200, 250, 500, 1000]
-      maximum_items = max_vals.detect{|value| value >= @items.pluck(:count).max }
-      @max = maximum_items ? maximum_items : @items.pluck(:count).max
+    money = @items.where(category_id: 1)
+    @items = { money: money, other: @items.where.not(category_id: 1) }
+    @max = Hash.new
+    unless @items[:other].empty?
+      max_vals = [4, 12, 20, 30, 40, 60, 100, 150, 200, 250, 500, 1000, 2500, 5000]
+      maximum_item = max_vals.detect{|value| value >= @items[:other].pluck(:count).max }
+      @max[:other] = maximum_item.present? ? maximum_item : @items[:other].pluck(:count).max
+    end
+    unless @items[:money].empty?
+      max_vals = [200, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000]
+      maximum_item = max_vals.detect{|value| value >= @items[:money].first.count }
+      @max[:money] = maximum_item.present? ? maximum_item : @items[:money].first.count
     end
     respond_to do |format|
       format.js

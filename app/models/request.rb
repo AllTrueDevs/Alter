@@ -34,6 +34,11 @@ class Request < ActiveRecord::Base
                       end
   end
 
+  def update_goal!(required_item, count)
+    required_item.current_count = required_item.current_count + count
+    required_item.save
+  end
+
 
   private
 
