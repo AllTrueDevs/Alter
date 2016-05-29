@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
-  load_and_authorize_resource except: [:create, :show, :index]
+  load_and_authorize_resource except: [:create, :show, :index, :refresh_counters]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked_requests]
+  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked_requests, :refresh_counters]
 
   def index
     @requests = if params[:category_id].nil?
@@ -31,8 +31,11 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @required_items = @request.required_items
     @posts = @request.posts.order(updated_at: :desc).page(params[:page]).per(10)
+    if @request.status?(:actual) && can?(:create, Decision) && @request.user != current_user
+      @decision = Decision.new
+      @decision.accepted_items.build
+    end
   end
 
   def new
@@ -50,7 +53,9 @@ class RequestsController < ApplicationController
       if @request.save
         format.html { redirect_to @request}
       else
-        format.html { redirect_to :back, notice: 'Помилка введення даних' }
+        errors = @request.form_errors(:request)
+        flash[:error] = errors
+        format.html { redirect_to :back }
       end
     end
   end
@@ -60,7 +65,9 @@ class RequestsController < ApplicationController
       if @request.update(request_params.merge(status: 'unchecked'))
         format.html { redirect_to @request }
       else
-        format.html { redirect_to :back, notice: 'Помилка введення даних' }
+        errors = @request.form_errors(:request)
+        flash[:error] = errors
+        format.html { redirect_to :back }
       end
     end
   end
@@ -84,6 +91,17 @@ class RequestsController < ApplicationController
 
   def downvote
     @request.downvote_from(current_user)
+    respond_to :js
+  end
+
+  def refresh_counters
+    @id = params['id'].to_i
+    if params['type'] == 'required_items'
+      @max = Category.find(@id).max
+    else
+      request = Request.find(params['request'].to_i)
+      @max = request.required_items.find(@id).remaining_count
+    end
     respond_to :js
   end
 

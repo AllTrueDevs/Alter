@@ -7,3 +7,10 @@
       .progress-bar.active{data: {value: required_item.progress}, style: "background: ##{required_item.category.color}" }
         .percents.hidden
           %p{style: "color: #{required_item.font_color}"}= "#{required_item.progress}%"
+  - unless @decision.blank?
+    - if @request.decisions.where(helper: current_user).empty?
+      %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
+        Допомогти
+      = render partial: 'modals/request_help', locals: { request: @request }
+    - else
+      %small Очікується відповідь

@@ -5,9 +5,11 @@
   -#= javascript_include_tag 'plugins/share_buttons'
 = content_for :javascript do
   = javascript_include_tag 'messages'
+  = javascript_include_tag 'items'
 = content_for :styles do
   = stylesheet_link_tag 'index_show'
   = stylesheet_link_tag 'messages'
+  = stylesheet_link_tag 'items'
 
 .container
   .request-show
@@ -15,7 +17,7 @@
       = image_tag @request.photo.url
     = render partial: 'request_categories', locals: { request: @request }
     = render partial: 'request_info', locals: { request: @request }
-    = render partial: 'request_progress', locals: { request: @request }
+    = render partial: 'request_progress', locals: { request: @request, decision: @decision }
   .col-md-12.wall
     .panel.panel-default.width-100
       .panel-heading

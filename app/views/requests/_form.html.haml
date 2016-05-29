@@ -1,4 +1,4 @@
-= nested_form_for request, html: { multipart: true, role: :form } do |f|
+= nested_form_for request, html: { multipart: true, role: :form, class: 'item-form', data: { url: refresh_counters_url(type: :required_items) } } do |f|
   .form-group
     = f.label :Назва
     = f.text_field :name, class: 'form-control'
@@ -8,7 +8,7 @@
   .required-items
     = f.label :Категорії
     = f.fields_for :required_items do |builder|
-      = render 'required_item', f: builder
+      = render 'item', f: builder, type: :required_item
     .clear-fix
     = f.link_to_add :required_items do
       %span.fa.fa-plus-square{ 'aria-hidden': true }

@@ -14,7 +14,7 @@ Rails.application.config.assets.precompile += %w(
   index_show.sass
   messages.sass
   login_signup.sass
-  requests.sass
+  items.sass
 )
 
 ######################### JS
@@ -33,5 +33,5 @@ Rails.application.config.assets.precompile += %w(
   articles.coffee
   messages.coffee
   requests/categories.coffee
-  requests.coffee
+  items.coffee
 )

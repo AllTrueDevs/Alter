@@ -4,13 +4,6 @@
       = render partial: 'layouts/votes', locals: { source: request }
   - case request.status
   - when 'actual'
-    -#- if request.user != current_user && can?(:create, Decision)
-    -#  - if request.decisions.where(helper_id: current_user.id).empty?
-    -#    %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
-    -#      Допомогти
-    -#    = render partial: 'modals/request_help', locals: { request: request }
-    -#  - else
-    -#    %small Очікується відповідь
     - if can? :edit, request
       = link_to edit_request_url(request), title: 'Редагувати' do
         %span.fa.fa-pencil

@@ -1,17 +1,29 @@
 class RequiredItem < ActiveRecord::Base
+  include Errorable
+
   belongs_to :category
   belongs_to :request
   has_many :accepted_items, dependent: :destroy
-  belongs_to :decision, dependent: :destroy
   validates :category_id, presence: true
   validates_numericality_of :goal_count, greater_than: 0
 
-  after_create do
-    copy = self.request.required_items.find_by_category_id(self.category_id)
-    unless copy == self
-      copy.update(goal_count: self.goal_count + copy.goal_count)
-      self.destroy
+  before_save do
+    if has_duplicates?(:required_items)
+      errors.add(:base, 'Обрано однакові категорії допомоги')
+      false
     end
+  end
+
+  def self.completed
+    where('goal_count <= current_count')
+  end
+
+  def self.remaining
+    where('goal_count > current_count')
+  end
+
+  def complete?
+    self.goal_count >= self.current_count
   end
 
   def progress
@@ -23,5 +35,9 @@ class RequiredItem < ActiveRecord::Base
     return '#35353f' if self.progress == 0
     rgb = self.category.color.chars.sum{ |symb| symb.hex - 7 }
     "##{( rgb > 0 ) ? '35353f' : 'fff'}"
+  end
+
+  def remaining_count
+    self.goal_count - self.current_count
   end
 end

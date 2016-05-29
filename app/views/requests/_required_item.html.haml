@@ -1,8 +1,0 @@
-.required-item
-  = f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, selected: f.object.category_id),
-             { include_blank: true }, { class: 'category inline', placeholder: 'Оберіть категорію' }
-  .right-side.inline
-    .count-container.inline
-      = f.text_field :goal_count, class: 'count'
-    = f.link_to_remove do
-      %span.fa.fa-times{ 'aria-hidden': true }

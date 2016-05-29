@@ -1,6 +1,3 @@
-= content_for :plugins do
-  = javascript_include_tag 'plugins/multiselect'
-
 #helpRequestModal.modal.fade{ 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
   .modal-dialog
     .modal-content
@@ -8,11 +5,17 @@
         %button.close{ 'data-dismiss': :modal, type: :button }
           %span{ 'aria-hidden': true } ×
         %h4#myModalLabel.modal-title Підтвердження допомоги
-      = form_for Decision.new do
+      = nested_form_for @decision, html: { class: 'item-form', data: { url: refresh_counters_url(type: :accepted_items, request: request.id) }} do |f|
         .modal-body
-          = hidden_field_tag :request_id, request.id
-          %p= text_area_tag :description, nil, class: 'form-control', rows: '7'
-          %p= select_tag :required_items, options_from_collection_for_select(request.required_items, 'id', lambda { |required_item| required_item.category.name }),
-                  multiple: true, class: 'selector'
+          = f.hidden_field :helper_id, value: current_user.id
+          = f.hidden_field :request_id, value: request.id
+          = f.text_area :description, class: 'form-control', rows: '7'
+          .accepted-items
+            = f.label :Категорії
+            = f.fields_for :accepted_items do |builder|
+              = render 'requests/item', f: builder, type: :accepted_item, request: request
+            .clear-fix
+            = f.link_to_add :accepted_items do
+              %span.fa.fa-plus-square{ 'aria-hidden': true }
         .modal-footer
           = submit_tag 'Надіслати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }

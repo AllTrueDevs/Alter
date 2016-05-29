@@ -20,6 +20,10 @@ uk:
              current_password:
                blank: "Введіть минулий пароль"
                invalid: "Поточний пароль введено невірно"
+         request:
+           attributes:
+              name:
+                blank: "не може бути порожньою"
       messages:
         record_invalid: 'Виникли помилки: %{errors}'
     models:

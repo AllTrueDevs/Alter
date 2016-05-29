@@ -15,48 +15,38 @@ class DecisionsController < ApplicationController
   end
 
   def create
-    @required_items = params[:required_items]
-    @decision = Decision.new(description: params[:description], helper_id: current_user.id, request_id: params[:request_id])
-    respond_to do |format|
-      if @decision.valid? and @required_items != nil
-        @decision.save
-        @required_items.each do |x|
-          @decision.accepted_items.create(required_item_id: x)
-        end
-        format.html { redirect_to :back, notice: 'Вашу пропозицію допомоги відправлено' }
-      else
-        format.html { redirect_to :back, notice: 'Усі поля повині бути заповнені' }
-      end
+    @decision = Decision.new(decision_params)
+    if @decision.save
+      flash[:success] = 'Вашу пропозицію допомоги відправлено'
+    else
+      flash[:error] = @decision.form_errors(:decision)
     end
+    redirect_to :back
   end
 
   def accept
-    User.find(@decision.helper_id).notifications.create(message_type: 1, reason_user_id: current_user.id, request_id: @decision.request_id)
-    @decision.accepted_items.each{ |item| Decision.update_helped_items!(item) }
-    @decision.accepted_items.destroy_all
+    @decision.helper.notifications.create(message_type: 1, reason_user: current_user, request: @decision.request)
+    @decision.accepted_items.each{ |item| @decision.helper.update_helped_items!(item.required_item.category, item.count) }
     @decision.destroy
-    redirect_to decision_url
+    redirect_to decisions_url
   end
 
   def partly
-    @accepted_items = params[:accepted_items]
+    params = decision_params['accepted_items_attributes'].map{ |key, value| { value['id'].to_i => value['count'].to_i } }
+    ids = params.map{ |key, value| key }
+    accepted_items = @decision.accepted_items.where(id: ids)
     respond_to do |format|
-      if @accepted_items != nil
-        User.find(@decision.helper_id).notifications.create(message_type: 2, reason_user_id: current_user.id, request_id: @decision.request_id)
-        @accepted_items.each{ |id| item = AcceptedItem.find(id); Decision.update_helped_items!(item) }
-        @decision.accepted_items.destroy_all
-        @decision.destroy
-        format.html { redirect_to decisions_url }
-      else
-        format.html { redirect_to :back, notice: 'Оберіть категорії' }
-      end
+      @decision.helper.notifications.create(message_type: 2, reason_user: current_user, request: @decision.request)
+      accepted_items.each{ |item| @decision.helper.update_helped_items!(item.required_item.category, params[item.id]) }
+      @decision.destroy
+      format.html { redirect_to decisions_url }
     end
   end
 
   def deny
-    User.find(@decision.helper_id).notifications.create(message_type: 3, reason_user_id: current_user.id, request_id: @decision.request_id)
+    @decision.helper.notifications.create(message_type: 3, reason_user: current_user, request: @decision.request)
     @decision.accepted_items.destroy_all
-    @decision.destroy!
+    @decision.destroy
     redirect_to decisions_url
   end
 
@@ -66,6 +56,7 @@ class DecisionsController < ApplicationController
     end
 
     def decision_params
-      params.require(:decision).permit(:helper_id, :request_id, status)
+      params.require(:decision).permit(:description, :helper_id, :request_id,
+                                       accepted_items_attributes: [:id, :count, :required_item_id, :_destroy])
     end
 end
