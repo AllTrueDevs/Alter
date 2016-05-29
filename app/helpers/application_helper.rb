@@ -19,6 +19,8 @@ module ApplicationHelper
       when 'archive' then "#{link_to('Запит', request_url(activity.trackable))} було заархівовано."
       when 'create' then "#{link_to('Запит', request_url(activity.trackable))} було створено."
       when 'update' then "#{link_to('Запит', request_url(activity.trackable))} було змінено."
+      when 'check' then "#{link_to('Запит', request_url(activity.trackable))} було перевірено адміністрацією."
+      when 'decline' then "#{link_to('Запит', request_url(activity.trackable))} було відхилено адміністрацією."
       end
     elsif model == 'decision'
       case(action)
