@@ -53,11 +53,7 @@ class RequestsController < ApplicationController
   def create
     @request = current_user.requests.new(request_params)
     respond_to do |format|
-      if @request.valid? && !params[:categories].nil?
-        @request.save
-        @categories = params[:categories]
-        @categories.each{ |category| @request.required_items.create(category_id: category.split('::')[0]) }
-        @request.create_activity key: 'request.create'
+      if @request.save
         format.html { redirect_to @request}
       else
         errors = @request.form_errors(:request)
