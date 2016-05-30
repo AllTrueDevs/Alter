@@ -10,7 +10,8 @@
   %body{ class: home_page? ? 'home-page-bg' : ''}
     = render partial: 'layouts/header'
     .content
-      = render partial: 'layouts/flashes'
+      - unless notice.blank? && alert.blank?
+        = render partial: 'layouts/flashes'
       = yield
       = javascript_include_tag 'application'
       = yield :plugins

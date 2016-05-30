@@ -1,6 +1,14 @@
 .links
+  - if devise_mapping.registerable? && controller_name != 'registrations'
+    .social-networks
+      = link_to user_omniauth_authorize_path(:vkontakte, login: true) do
+        %i.fa.fa-vk
+      = link_to user_omniauth_authorize_path(:facebook, login: true) do
+        %i.fa.fa-facebook
+      = link_to user_omniauth_authorize_path(:twitter, login: true) do
+        %i.fa.fa-twitter
   - if controller_name != 'sessions'
-    = link_to 'Вхід', new_session_path(resource_name)
+    = link_to 'Авторизація', new_session_path(resource_name)
     %br/
   - if devise_mapping.registerable? && controller_name != 'registrations'
     = link_to 'Реєстрація', new_registration_path(resource_name)

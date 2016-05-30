@@ -7,6 +7,12 @@ uk:
   edit_facebook_change: "Змінити аккаунт Facebook"
   edit_vkontakte_new: "Прив'язати до ВКонтакте"
   edit_vkontakte_change: "Змінити аккаунт ВКонтакте"
+  edit_twitter_new: "Прив'язати до Twitter"
+  edit_twitter_change: "Змінити аккаунт Twitter"
+  label_vkontakte: "Аккаунт ВКонтакте"
+  label_facebook: "Аккаунт Facebook"
+  label_twitter: "Аккаунт Twitter"
+
 
   activerecord:
     errors:

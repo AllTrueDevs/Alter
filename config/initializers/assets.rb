@@ -32,6 +32,6 @@ Rails.application.config.assets.precompile += %w(
   home.coffee
   articles.coffee
   messages.coffee
-  requests/categories.coffee
   items.coffee
+  login-error.coffee
 )

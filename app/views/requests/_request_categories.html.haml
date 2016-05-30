@@ -1,4 +1,4 @@
 .categories
   - request.required_items.each do |required_item|
-    = link_to requests_url(category_id: required_item.category.id) do
+    = link_to search_requests_url(category_id: required_item.category.id), remote: true do
       %span{ class: 'label', style: "background: ##{required_item.category.color}" }= required_item.category.name

@@ -1,11 +1,13 @@
 = content_for :title, 'Вхід'
+= content_for :javascript do
+  = javascript_include_tag 'login-error'
 = content_for :styles do
   = stylesheet_link_tag 'login_signup'
 
 .group-form
   = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f|
-    = f.email_field :email, autofocus: true, placeholder: 'Поштова скринька'
-    = f.password_field :password, autocomplete: 'off', placeholder: 'Пароль'
+    = f.email_field :email, autofocus: true, placeholder: 'Поштова скринька', class: (alert.nil?) ? '' : 'error'
+    = f.password_field :password, autocomplete: 'off', placeholder: 'Пароль', class: (alert.nil?) ? '' : 'error'
     - if devise_mapping.rememberable?
       .custom-checkbox
         = f.check_box :remember_me

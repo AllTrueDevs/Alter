@@ -1,20 +1,24 @@
 .group-form
   .field_with_errors
+    input
+      border-color: rgba(231, 10, 10, 0.2) !important
     ::-webkit-input-placeholder
-      color: rgba(231, 10, 10, 0.64)
+      color: rgba(231, 10, 10, 0.5)
   font-family: 'Roboto', regular
   font-size: 0.9em
   margin: 0 auto
   padding: 40px
   width: 35%
   input[type=submit]
-    margin: 40px 0 40px 0
-    width: 100%
+    margin: 40px auto
+    display: block
+    width: 70%
     color: #fff
     border: none
     border-radius: 30px
     padding: 20px 0 20px 0
     background: #35353f
+    text-align: center
     text-transform: uppercase
     font-weight: bold
     box-shadow: 6px 8px 22px -5px #2B2B39
@@ -24,6 +28,10 @@
     width: 100%
     padding: 20px 10px
     margin-bottom: 10px
+  .error
+    border-color: rgba(231, 10, 10, 0.2) !important
+    &::-webkit-input-placeholder
+      color: rgba(231, 10, 10, 0.5) !important
   .custom-checkbox
     text-align: center
     color: #cbcbcb
@@ -53,3 +61,7 @@
       text-decoration: none
       &:hover, &:focus
         color: #35353f
+    .social-networks
+      text-align: center
+      a
+        font-size: 2em

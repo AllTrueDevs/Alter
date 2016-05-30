@@ -13,9 +13,14 @@
         - @user.errors.full_messages.each do |error_message|
           = error_message if @user.errors.full_messages.first == error_message
           %br
-      .form-group
-        %label Поштова скринька
-        = text_field_tag :email, current_user.email, class: 'form-control', disabled: true
+      - if @user.social_sign_up_type.blank?
+        .form-group
+          %label Поштова скринька
+          = f.text_field :email, value: @user.email, class: 'form-control', disabled: true
+      - else
+        .form-group
+          %label= t("label_#{@user.social_sign_up_type}")
+          = f.text_field :social_sign_up_url, value: @user.social_sign_up_url, class: 'form-control', disabled: true
       .form-group
         %label Ім'я
         = f.text_field :name, class: 'form-control'
@@ -28,10 +33,10 @@
       .form-group
         %label Skype
         = f.text_field :skype, class: 'form-control'
-      .form-group.social.vk
-        = render partial: 'devise/registrations/edit_url', locals: { social: :vkontakte, user: @user }
-      .form-group.social.facebook
-        = render partial: 'devise/registrations/edit_url', locals: { social: :facebook, user: @user }
+      - social_networks.each do |network|
+        - unless @user.social_sign_up_type == network
+          .form-group.social{class: network}
+            = render partial: 'devise/registrations/edit_url', locals: { social: network, user: @user }
       .form-group
         = f.label :Фото
         .file-field-container
