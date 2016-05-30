@@ -11,7 +11,7 @@ gem 'pg'
 #############################
 ### Authentication
 #############################
-gem 'devise'
+gem 'devise', '~> 4.1.1'
 gem 'omniauth'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook'
