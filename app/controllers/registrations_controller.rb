@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   include AmazonModule
 
   def update
-      clear_s3_object(@user.avatar) unless @user.avatar.size.nil? || account_update_params['avatar'].size.nil?
+      clear_s3_object(@user.avatar) unless @user.avatar.size.nil? || account_update_params['avatar'].nil?
       if @user.update(account_update_params)
         redirect_to @user
       else
