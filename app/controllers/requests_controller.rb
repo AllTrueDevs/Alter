@@ -67,10 +67,9 @@ class RequestsController < ApplicationController
   end
 
   def update
-    previous_photo = [@request.photo.size, @request.photo.path]
+    clear_s3_object(@request.photo) unless @request.photo.size.nil? && account_update_params['photo'].size.nil?
     respond_to do |format|
       if @request.update(request_params.merge(status: 'unchecked'))
-        clear_s3_object(previous_photo[1]) unless previous_photo[0].nil? && account_update_params['photo'].size.nil?
         @request.create_activity key: 'request.update'
         format.html { redirect_to @request }
       else

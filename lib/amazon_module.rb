@@ -6,7 +6,7 @@ module AmazonModule
 
   def clear_s3_object(object)
     bucket = s3_bucket
-    object = object.is_a?(String)? bucket.objects[object[1..-1]] : bucket.objects[object.path[1..-1]]
+    object = bucket.objects[object.path[1..-1]]
     object.delete
   end
 end
