@@ -67,7 +67,7 @@ class RequestsController < ApplicationController
   end
 
   def update
-    previous_photo = @request.photo
+    previous_photo = @request.photo.clone
     respond_to do |format|
       if @request.update(request_params.merge(status: 'unchecked'))
         clear_s3_object(previous_photo) unless previous_photo.size.nil? && account_update_params['photo'].size.nil?

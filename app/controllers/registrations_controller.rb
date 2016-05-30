@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   include AmazonModule
 
   def update
-      previous_photo = @user.avatar
+      previous_photo = @user.avatar.clone
       if @user.update(account_update_params)
         clear_s3_object(previous_photo) unless previous_photo.size.nil? && account_update_params['avatar'].size.nil?
         redirect_to @user
