@@ -1,0 +1,238 @@
+@charset "UTF-8";
+/* line 1, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.photo {
+  text-align: center;
+  float: left;
+  padding: 0 20px 15px 0;
+}
+/* line 5, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.photo img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* line 8, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.categories, .tags {
+  height: 20px;
+}
+
+/* line 11, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .author, .info .date {
+  color: #666666;
+  font-weight: bold;
+}
+/* line 14, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info p {
+  margin-right: 20px;
+  float: left;
+}
+/* line 18, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .author a {
+  color: #35353f;
+}
+/* line 20, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .author a:hover, .info .author a:focus {
+  text-decoration: underline;
+}
+/* line 22, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .views .fa {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+/* line 25, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.description {
+  color: #666666;
+  font-size: 0.9em;
+  line-height: 25px;
+}
+
+/* line 30, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.title a {
+  color: #35353f;
+}
+/* line 32, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.title a:hover, .title a:focus {
+  text-decoration: underline;
+}
+
+/* line 34, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+h1, h2 {
+  font-family: "Roboto";
+  font-weight: bold;
+}
+
+/* line 39, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show, .article-show, .decision-show {
+  margin: 20px;
+}
+/* line 41, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .photo, .article-show .photo, .decision-show .photo {
+  width: 40%;
+}
+/* line 43, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .title, .article-show .title, .decision-show .title {
+  text-align: justify;
+  margin-top: 25px;
+  font-size: 1.9em;
+}
+/* line 47, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .info, .article-show .info, .decision-show .info {
+  margin-top: 25px;
+  font-size: 1em;
+}
+/* line 50, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .description, .article-show .description, .decision-show .description {
+  text-align: justify;
+  margin-top: 25px;
+}
+/* line 53, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals, .article-show .goals, .decision-show .goals {
+  clear: both;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 50px 0;
+}
+/* line 58, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals button, .article-show .goals button, .decision-show .goals button {
+  float: right;
+}
+/* line 60, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress-title, .article-show .goals .progress-title, .decision-show .goals .progress-title {
+  width: 25%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+  margin-right: 5%;
+}
+/* line 66, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress-title small, .article-show .goals .progress-title small, .decision-show .goals .progress-title small {
+  font-size: 0.6em;
+  color: #555;
+}
+/* line 69, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress, .article-show .goals .progress, .decision-show .goals .progress {
+  height: 30px;
+  width: 65%;
+  display: inline-block;
+}
+/* line 73, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress:last-child, .article-show .goals .progress:last-child, .decision-show .goals .progress:last-child {
+  margin-bottom: 0;
+}
+/* line 75, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress .progress-bar, .article-show .goals .progress .progress-bar, .decision-show .goals .progress .progress-bar {
+  height: 30px;
+  position: relative;
+}
+/* line 78, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress .progress-bar .percents, .article-show .goals .progress .progress-bar .percents, .decision-show .goals .progress .progress-bar .percents {
+  position: absolute;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+/* line 83, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress .progress-bar .percents p, .article-show .goals .progress .progress-bar .percents p, .decision-show .goals .progress .progress-bar .percents p {
+  font-size: 1.2em;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 90, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index, .article-index, .decision-index {
+  margin: 5px 20px;
+}
+/* line 92, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .photo, .article-index .photo, .decision-index .photo {
+  width: 100%;
+}
+/* line 94, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .request, .request-index .article, .request-index .decision, .article-index .request, .article-index .article, .article-index .decision, .decision-index .request, .decision-index .article, .decision-index .decision {
+  padding: 15px 0;
+}
+/* line 96, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .title, .article-index .title, .decision-index .title {
+  font-size: 1em;
+}
+/* line 98, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .info, .article-index .info, .decision-index .info {
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+/* line 101, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .description, .article-index .description, .decision-index .description {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+/* line 105, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index {
+  margin: 5px 20px;
+}
+/* line 107, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .col-md-11 {
+  display: table;
+  height: 50px;
+}
+/* line 110, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .body {
+  display: table-cell;
+  height: inherit;
+  vertical-align: middle;
+}
+/* line 114, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .notification {
+  padding: 15px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+/* line 117, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .notification a {
+  color: #d52845;
+}
+/* line 119, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .photo {
+  line-height: 50px;
+  width: 50px;
+  color: #fff;
+  font-size: 2em;
+  background: #35353f;
+  padding: 0;
+  border-radius: 25px;
+}
+/* line 127, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .photo .fa {
+  margin-left: -2px;
+}
+/* line 129, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .new {
+  font-size: 1.5em;
+  background: #d52845;
+}
+/* line 132, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .new:hover .fa-volume-up:before {
+  content: "";
+}
+/* line 134, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .title {
+  font-size: 14px;
+}
+/* line 136, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .delete {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  color: #9ea0a7;
+}
+/* line 141, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .delete:hover, .notification-index .delete:focus {
+  color: #35353f;
+}
+/* line 143, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index .info {
+  margin-top: 5px;
+  font-weight: normal;
+  font-size: 12px;
+  color: #777;
+}
