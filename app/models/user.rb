@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
     name = access_token.info.name
     case type
     when :vkontakte
-      avatar = open(access_token.info.image)
+      avatar = open(access_token.extra.raw_info.photo_400_orig)
       email = "#{access_token.extra.raw_info.screen_name}@vk.com"
     when :facebook
       avatar = open("#{access_token.info.image.gsub('http', 'https')}/?type=large")
