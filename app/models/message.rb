@@ -13,8 +13,7 @@ class Message < ActiveRecord::Base
   validates :status, presence: true, inclusion: { in: %w(new read) }
 
   before_destroy do
-    s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
-    bucket = s3.buckets['alter-assets']
+    bucket = s3_bucket
     attachments.each do |attachment|
       object = bucket.objects[attachment.content.path[1..-1]]
       object.delete

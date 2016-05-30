@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include AmazonModule
+
   load_and_authorize_resource except: [:create, :show, :index]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
@@ -53,13 +55,6 @@ class ArticlesController < ApplicationController
 
   private
 
-
-  def clear_s3_object(object)
-    s3 = AWS::S3.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
-    bucket = s3.buckets['alter-assets']
-    obj = bucket.objects[object.path[1..-1]]
-    obj.delete
-  end
 
   def fill_tags
     gon.default_tags_collection = current_user.news_tags.pluck(:value)

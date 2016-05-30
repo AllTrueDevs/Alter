@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+  include AmazonModule
+
   load_and_authorize_resource except: [:create, :show, :index, :refresh_counters, :search]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked, :refresh_counters]
@@ -65,8 +67,10 @@ class RequestsController < ApplicationController
   end
 
   def update
+    previous_photo = @request.photo
     respond_to do |format|
       if @request.update(request_params.merge(status: 'unchecked'))
+        clear_s3_object(previous_photo) unless previous_photo.original_file_size.nil?
         @request.create_activity key: 'request.update'
         format.html { redirect_to @request }
       else

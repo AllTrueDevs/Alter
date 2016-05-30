@@ -1,9 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
+  include AmazonModule
+
   def update
+      previous_photo = @user.avatar
       if @user.update(account_update_params)
-        respond_to do |format|
-          format.html { redirect_to @user }
-        end
+        clear_s3_object(previous_photo) unless previous_photo.original_file_size.nil?
+        redirect_to @user
       else
         render 'devise/registrations/edit'
       end
