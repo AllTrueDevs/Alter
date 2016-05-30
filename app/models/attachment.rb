@@ -37,8 +37,5 @@ class Attachment < ActiveRecord::Base
     else
       content_file_name
     end
-
-
   end
-
 end

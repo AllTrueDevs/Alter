@@ -9,10 +9,12 @@
           %span{ 'aria-hidden': true } ×
           %span.sr-only Закрити
         %h4#myModalLabel.modal-title Підтвердження допомоги
-      = form_tag partly_decision_url, method: :get do
+      = nested_form_for @decision, url: partly_decision_url, method: :post, html: { class: 'item-form' } do |f|
         .modal-body
-          %p Оберіть категорії з якими вам допомогли (ці категорії записуються в історію допомоги користувача)
-          %p= select_tag :accepted_items, options_from_collection_for_select(@accepted_items, 'id', lambda { |accepted_item| accepted_item.required_item.category.name }, selected: @accepted_items.ids),
-                  multiple: true, class: 'selector'
+          .helped-items
+            = f.label 'Оберіть категорії з якими вам допомогли(ці категорії запишуться в історію користувача)'
+            = f.fields_for :accepted_items do |builder|
+              = render 'requests/item', f: builder, type: :helped_item, decision: @decision
+            .clear-fix
         .modal-footer
           = submit_tag 'Надіслати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }

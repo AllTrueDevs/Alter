@@ -38,7 +38,7 @@ class Ability
       end
 
       can :update, Request do |request|
-        request.user == user
+        (request.user == user && !request.status?(:unchecked))
       end
 
       can :manage, Decision do |decision|

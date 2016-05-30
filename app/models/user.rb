@@ -7,16 +7,16 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:vkontakte, :facebook]
   acts_as_voter
   acts_as_votable
-  has_many :requests, :dependent => :destroy
-  has_many :notifications, :dependent => :destroy
-  has_many :helped_items, :dependent => :destroy
-  has_many :decisions, foreign_key: 'helper_id'
+  has_many :requests, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :helped_items, dependent: :destroy
+  has_many :decisions, foreign_key: 'helper_id', dependent: :destroy
   has_many :user_tags, :dependent => :destroy
-  has_many :articles
+  has_many :articles, dependent: :destroy
   has_many :received_messages, -> { where(access: %w(both receiver), message_type: 'private_message') },
-              class_name: 'Message', foreign_key: 'receiver_id'
+              class_name: 'Message', foreign_key: 'receiver_id', dependent: :destroy
   has_many :sent_messages, -> { where(access: %w(both sender), message_type: 'private_message') },
-              class_name: 'Message', foreign_key: 'sender_id'
+              class_name: 'Message', foreign_key: 'sender_id', dependent: :destroy
   has_attached_file :avatar, default_url: 'missing-avatar.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { in: 4..40 }
@@ -88,6 +88,12 @@ class User < ActiveRecord::Base
     when :unchecked then Request.unchecked.size
     else nil
     end
+  end
+
+  def update_helped_item!(category, count)
+    found_item = self.helped_items.find_or_initialize_by(category: category)
+    found_item.count = found_item.count.to_i + count
+    found_item.save
   end
 
 

@@ -1,7 +1,6 @@
-$(".notification-index").html("<%= escape_javascript(render partial: 'notifications/notifications_list', locals: { notifications: @notifications }) %>");
-if ($('#new-notifications-count').length > 0) {
-    $('#new-notifications-count').text(parseInt($('#new-notifications-count').text()) - 1);
-    if (parseInt($('#new-notifications-count').text()) === 0) {
-        $('#new-notifications-count').remove();
-    }
-}
+$('#notification-<%= @notification.id %>').fadeOut(500);
+setTimeout(function(){
+    $(".notification-index").html("<%= escape_javascript(render partial: 'notifications/notifications_list', locals: { notifications: @notifications }) %>");
+}, 800);
+var counter = "<%= current_user.counters(:notifications) %>";
+$('#new-notifications-count').text((counter != 0)? counter : '');
