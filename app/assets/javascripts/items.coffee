@@ -44,7 +44,6 @@ $ ->
       $('.item-form .remove_nested_fields').prop('disabled', true)
 
   $(document).on 'change', '.cute-select', ->
-    debugger
     unless $(this).val() == ''
       url = $(this).closest('.item-form').data('url')
       url = "#{url}&id=#{$(this).val()}"
@@ -52,4 +51,3 @@ $ ->
         url: url
         type: 'GET'
         dataType: 'script'
-

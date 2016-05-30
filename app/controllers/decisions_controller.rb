@@ -27,7 +27,10 @@ class DecisionsController < ApplicationController
 
   def accept
     @decision.helper.notifications.create(message_type: 1, reason_user: current_user, request: @decision.request)
-    @decision.accepted_items.each{ |item| @decision.helper.update_helped_item!(item.required_item.category, item.count) }
+    @decision.accepted_items.each do |item|
+      @decision.helper.update_helped_item!(item.required_item.category, item.count)
+      @decision.request.update_goal!(item.required_item, item.count)
+    end
     @decision.create_activity recipient: @decision.request, key: 'decision.accept'
     @decision.destroy
     redirect_to decisions_url
@@ -51,7 +54,6 @@ class DecisionsController < ApplicationController
 
   def deny
     @decision.helper.notifications.create(message_type: 3, reason_user: current_user, request: @decision.request)
-    @decision.accepted_items.destroy_all
     @decision.create_activity recipient: @decision.request, key: 'decision.deny'
     @decision.destroy
     redirect_to decisions_url

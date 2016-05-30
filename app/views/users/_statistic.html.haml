@@ -1,6 +1,6 @@
 - unless @items[:other].empty?
-  %h4 Загальна статистика
-  = bar_chart @items[:other].joins(:category).group(:name).sum(:count), discrete: true, max: @max[:other]
+  %h4.text-center Загальна статистика
+  = pie_chart @items[:other].joins(:category).group(:name).sum(:count), discrete: true, max: @max[:other]
 - unless @items[:money].empty?
-  %h4 Грошова допомога
+  %h4.text-center Грошова допомога
   = bar_chart @items[:money].joins(:category).group(:name).sum(:count), discrete: true, max: @max[:money]

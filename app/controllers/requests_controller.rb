@@ -1,20 +1,20 @@
 class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create, :show, :index, :refresh_counters]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked_requests, :refresh_counters]
+  before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked, :refresh_counters]
   before_filter :log_impression, only: [:show]
 
   def index
     @requests = if params[:category_id].nil?
                   Request.actual.order(created_at: :desc).page(params[:page]).per(10)
                 else
-                  Request.where(status: 'actual').joins(:required_items)
+                  Request.actual.joins(:required_items)
                          .where(required_items: {category_id: params[:category_id]})
                          .order(created_at: :desc).page(params[:page]).per(10)
                 end
   end
 
-  def unchecked_requests
+  def unchecked
     @requests = Request.unchecked.order(created_at: :desc).page(params[:page]).per(10)
     render template: 'requests/index'
   end
