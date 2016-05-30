@@ -99,11 +99,16 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 #############Create Requests
 
   (6..30).each do |i|
-    Random.rand(6).times.each do 
+    Random.rand(6).times.each do
+      status = case Random.rand(3)
+               when 0 then :archived
+               when 1 then :actual
+               when 2 then :unchecked
+               end
       request = User.find(i).requests.new(
         name: "#{BetterLorem.w(15, true, true)}",
         description: BetterLorem.p(7, true, true ),
-        status: Random.rand(2) == 0 ? 'archived' : 'actual',
+        status: status,
         :photo_file_name => Random.rand(2) == 0 ? 'photo.jpg' : nil
       )
       request.save(validate: false)
@@ -113,8 +118,9 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       temp = Random.rand(9)
       request.required_items.create(
         (1..Random.rand(1..5)).map do |x|
-          rand = Random.rand(1..15)
-          { current_count: rand, goal_count: rand + Random.rand(15), category_id:  temp + x }
+          rand = (temp + x != 1)? Random.rand(1..50) : Random.rand(100..20000)
+          remaining = (temp + x != 1)? Random.rand(1..50) : Random.rand(100..20000)
+          { current_count: rand, goal_count: rand + remaining, category_id:  temp + x }
         end
       )
     end
