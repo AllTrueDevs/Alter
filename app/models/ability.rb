@@ -59,7 +59,7 @@ class Ability
         can :manage, User
         can :manage, Article
       when 'moderator'
-        can [:change_ban_status, :index], User
+        can [:change_ban_status, :index, :search], User
       when 'newsmaker'
          can :manage, Article
       when 'banned'

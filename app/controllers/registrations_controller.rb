@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   def update
       if @user.update(account_update_params)
         respond_to do |format|
-          format.html { redirect_to @user, notice: 'Зміни успішно внесено' }
+          format.html { redirect_to @user }
         end
       else
         render 'devise/registrations/edit'

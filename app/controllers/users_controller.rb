@@ -12,11 +12,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = if params[:search].nil?
-      User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
-    else
-      User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
-    end
+    @users = User.where.not(confirmed_at: nil).order(:name).page(params[:page]).per(12)
+  end
+
+  def search
+    @users = User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
+    respond_to :js
   end
 
   def change_ban_status

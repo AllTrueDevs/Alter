@@ -1,10 +1,8 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   ROLES = %w[admin moderator newsmaker author banned]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: [:vkontakte, :facebook]
+         :omniauthable, omniauth_providers: [:vkontakte, :facebook, :twitter]
   acts_as_voter
   acts_as_votable
   has_many :requests, dependent: :destroy
@@ -19,13 +17,12 @@ class User < ActiveRecord::Base
               class_name: 'Message', foreign_key: 'sender_id', dependent: :destroy
   has_attached_file :avatar, default_url: 'missing-avatar.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  validates :name, presence: true, length: { in: 4..40 }
+  validates :name, presence: true, length: { in: 2..40 }
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :phone, length:  { maximum: 15 }
   validates :skype, length:  { maximum: 32 }
 
-  #TODO galimuy sposob poiska
-  scope :search, -> (query) { where('name like ?', "%#{query}%") }
+  scope :search, -> (query) { where("LOWER(name) LIKE LOWER('%#{query}%')") }
 
   after_create do
     user_tags.create(form_tags(default_tags, :news))
@@ -39,16 +36,42 @@ class User < ActiveRecord::Base
     role?(:admin) || role?(:moderator)
   end
 
-  def vkontakte_oauth!(access_token)
-    url = access_token.info.urls.Vkontakte
-    name = "#{access_token.extra.raw_info.first_name} #{access_token.extra.raw_info.last_name}"
-    update(vkontakte: url, vkontakte_name: name)
+  def social_oauth!(type, access_token)
+    name = access_token.info.name
+    url = case type
+          when :vkontakte then access_token.info.urls.Vkontakte
+          when :facebook then "https://facebook.com/#{access_token.extra.raw_info.id}"
+          when :twitter then access_token.info.urls.Twitter
+          end
+    self.update("#{type}".to_sym => url, "#{type}_name".to_sym => name)
   end
 
-  def facebook_oauth!(access_token)
-    url = access_token.extra.raw_info.id
-    name = access_token.extra.raw_info.name
-    update(facebook: "https://facebook.com/#{url}", facebook_name: name)
+  def self.find_for_social_oauth(type, access_token)
+    require 'open-uri'
+    url = case type
+          when :vkontakte then access_token.info.urls.Vkontakte
+          when :facebook then "https://facebook.com/#{access_token.extra.raw_info.id}"
+          when :twitter then access_token.info.urls.Twitter
+          end
+    user = User.find_by_social_sign_up_url(url)
+    return user if user.present?
+
+    name = access_token.info.name
+    case type
+    when :vkontakte
+      avatar = open(access_token.info.image)
+      email = "#{access_token.extra.raw_info.screen_name}@vk.com"
+    when :facebook
+      avatar = open("#{access_token.info.image.gsub('http', 'https')}/?type=large")
+      email = "#{name.downcase.gsub(' ', '.')}_#{access_token.extra.raw_info.id}@facebook.com"
+    when :twitter
+      avatar = open(access_token.info.image.gsub!('_normal',''))
+      email = "#{access_token.info.nickname.downcase}@twitter.com"
+    end
+    user = User.new(social_sign_up_url: url, "#{type}".to_sym => url, name: name, "#{type}_name".to_sym => name, avatar: avatar, email: email, password: Devise.friendly_token[0,20])
+    user.skip_confirmation!
+    user.save
+    user
   end
 
   def helped_items_count
@@ -94,6 +117,16 @@ class User < ActiveRecord::Base
     found_item = self.helped_items.find_or_initialize_by(category: category)
     found_item.count = found_item.count.to_i + count
     found_item.save
+  end
+
+  def social_sign_up_type
+    return nil if self.social_sign_up_url.nil?
+    case self.social_sign_up_url
+    when self.vkontakte then :vkontakte
+    when self.facebook then :facebook
+    when self.twitter then :twitter
+    else nil
+    end
   end
 
 

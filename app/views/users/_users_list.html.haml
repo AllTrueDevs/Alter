@@ -1,0 +1,9 @@
+- if @users.size.zero?
+  %h5.text-center Користувачів не знайдено
+- else
+  .users-in-list.text-center.inline
+    - @users.each do |user|
+      = render partial: 'user_in_list', locals: {user: user}
+  = paginate @users
+  .pagination-info
+    = page_entries_info @users

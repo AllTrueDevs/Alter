@@ -53,11 +53,11 @@
         - if @user.vkontakte.to_s.length > 0
           %p
             %strong VK:
-            = link_to @user.vkontakte, @user.vkontakte
+            = link_to @user.vkontakte_name, @user.vkontakte
         - if @user.facebook.to_s.length > 0
           %p
             %strong Facebook:
-            = link_to @user.facebook, @user.facebook
+            = link_to @user.facebook_name, @user.facebook
     .user-requests
       %ul.nav.nav-tabs
         %li.active

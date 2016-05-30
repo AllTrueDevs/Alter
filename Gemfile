@@ -14,6 +14,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'cancan'
 
 

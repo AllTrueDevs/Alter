@@ -3,10 +3,6 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  namespace :users do
-    get 'omniauth_callbacks/vkontakte'
-  end
-
   resources :page, only: :home
   get '/about', to: 'page#about', as: :about
 
@@ -21,6 +17,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :unchecked
+      get :search
     end
   end
   get '/refresh_counters', to: 'requests#refresh_counters', as: :refresh_counters
@@ -83,6 +80,7 @@ Rails.application.routes.draw do
     end
     collection do
       patch :change_password
+      get :search
     end
   end
 
