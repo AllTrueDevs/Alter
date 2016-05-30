@@ -79,6 +79,7 @@ Rails.application.routes.draw do
       get :detach_social_link
       get :upvote
       get :downvote
+      get :activity
     end
     collection do
       patch :change_password

@@ -17,6 +17,7 @@ class DecisionsController < ApplicationController
   def create
     @decision = Decision.new(decision_params)
     if @decision.save
+      @decision.create_activity recipient: @decision.request, key: 'decision.create'
       flash[:success] = 'Вашу пропозицію допомоги відправлено'
     else
       flash[:error] = @decision.form_errors(:decision)
@@ -27,6 +28,7 @@ class DecisionsController < ApplicationController
   def accept
     @decision.helper.notifications.create(message_type: 1, reason_user: current_user, request: @decision.request)
     @decision.accepted_items.each{ |item| @decision.helper.update_helped_item!(item.required_item.category, item.count) }
+    @decision.create_activity recipient: @decision.request, key: 'decision.accept'
     @decision.destroy
     redirect_to decisions_url
   end
@@ -41,6 +43,7 @@ class DecisionsController < ApplicationController
         @decision.helper.update_helped_item!(item.required_item.category, data[item.id])
         @decision.request.update_goal!(item.required_item, data[item.id])
       end
+      @decision.create_activity recipient: @decision.request, key: 'decision.partly'
       @decision.destroy
       format.html { redirect_to decisions_url }
     end
@@ -49,6 +52,7 @@ class DecisionsController < ApplicationController
   def deny
     @decision.helper.notifications.create(message_type: 3, reason_user: current_user, request: @decision.request)
     @decision.accepted_items.destroy_all
+    @decision.create_activity recipient: @decision.request, key: 'decision.deny'
     @decision.destroy
     redirect_to decisions_url
   end

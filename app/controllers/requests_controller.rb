@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create, :show, :index, :refresh_counters]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked_requests, :refresh_counters]
+  before_filter :log_impression, only: [:show]
 
   def index
     @requests = if params[:category_id].nil?
@@ -20,12 +21,14 @@ class RequestsController < ApplicationController
 
   def check
     @request.update(status: 'actual')
+    @request.create_activity key: 'request.check', owner: @request.user
     @request.user.notifications.create(message_type: 10, request_id: @request.id)
     respond_to :js
   end
 
   def decline
     @request.update(status: 'declined')
+    @request.create_activity key: 'request.decline', owner: @request.user
     @request.user.notifications.create(message_type: 11, request_id: @request.id)
     redirect_to unchecked_requests_url
   end
@@ -50,7 +53,11 @@ class RequestsController < ApplicationController
   def create
     @request = current_user.requests.new(request_params)
     respond_to do |format|
-      if @request.save
+      if @request.valid? && !params[:categories].nil?
+        @request.save
+        @categories = params[:categories]
+        @categories.each{ |category| @request.required_items.create(category_id: category.split('::')[0]) }
+        @request.create_activity key: 'request.create'
         format.html { redirect_to @request}
       else
         errors = @request.form_errors(:request)
@@ -63,6 +70,7 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params.merge(status: 'unchecked'))
+        @request.create_activity key: 'request.update'
         format.html { redirect_to @request }
       else
         errors = @request.form_errors(:request)
@@ -77,7 +85,9 @@ class RequestsController < ApplicationController
     @request.decisions do |decision|
       User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id)
     end
+    @request.create_activity key: 'request.archive'
     @request.decisions.destroy_all
+    
     respond_to do |format|
       format.html{ redirect_to @request }
       format.js
@@ -92,6 +102,10 @@ class RequestsController < ApplicationController
   def downvote
     @request.downvote_from(current_user)
     respond_to :js
+  end
+
+  def log_impression
+    @request.impressions.create(ip_address: request.remote_ip, user_id: current_user.nil? ? nil : current_user.id)
   end
 
   def refresh_counters

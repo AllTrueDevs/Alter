@@ -120,6 +120,11 @@ class UsersController < ApplicationController
     respond_to :js
   end
 
+  def activity
+    @activities = current_user.activity
+    respond_to :js
+  end
+
   private
 
   def set_user
