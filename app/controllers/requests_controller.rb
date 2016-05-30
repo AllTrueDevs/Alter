@@ -67,7 +67,7 @@ class RequestsController < ApplicationController
   end
 
   def update
-    clear_s3_object(@request.photo) unless @request.photo.size.nil? && request_params['photo'].size.nil?
+    clear_s3_object(@request.photo) unless @request.photo.size.nil? || request_params['photo'].size.nil?
     respond_to do |format|
       if @request.update(request_params.merge(status: 'unchecked'))
         @request.create_activity key: 'request.update'
