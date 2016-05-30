@@ -3,8 +3,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
       previous_photo = @user.avatar
+      byebug
       if @user.update(account_update_params)
-        clear_s3_object(previous_photo) unless previous_photo.original_file_size.nil?
+        clear_s3_object(previous_photo) unless previous_photo.size.nil? && account_update_params['avatar'].size.nil?
         redirect_to @user
       else
         render 'devise/registrations/edit'
