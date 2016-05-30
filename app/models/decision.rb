@@ -1,21 +1,32 @@
 class Decision < ActiveRecord::Base
+  include Errorable
+
   include PublicActivity::Model
   tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
 
   has_many :accepted_items, dependent: :destroy
   belongs_to :request
   belongs_to :helper,  class_name: 'User', foreign_key: 'helper_id'
-  validates :helper_id, :request_id, presence: true, numericality: { only_integer: true }
+  accepts_nested_attributes_for :accepted_items, allow_destroy: true,
+                                :reject_if => :accepted_item_valid?
+  validate :without_accepted_items?, on: :create, :if => proc { |d| d.accepted_items.empty? } # comment for db:seed
+  validates :request_id, :helper_id, presence: true
   validates :status, presence: true, inclusion: { in: %w(new unaccepted) }
   validates :description, presence: true
 
   def self.update_helped_items!(item)
-    if User.find(item.decision.helper_id).helped_items.where(category_id: item.required_item.category_id).empty?
-      HelpedItem.create(category_id: item.required_item.category_id, user_id: item.decision.helper_id)
-    else
-      helped_item = HelpedItem.find_by_category_id(item.required_item.category_id)
-      helped_item.update(count: helped_item.count + 1)
-    end
+    item.decision.helper.helped_items.find_or_initialize_by(category_id: item.required_item.category_id)
   end
 
+
+  private
+
+
+  def accepted_item_valid?(attributes)
+    !attributes[:required_item_id].present?
+  end
+
+  def without_accepted_items?
+    errors.add(:base, 'Не обрано жодної категорії допомоги')
+  end
 end

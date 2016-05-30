@@ -1,6 +1,9 @@
 = content_for :title, @decision.request.name
+= content_for :javascript do
+  = javascript_include_tag 'items'
 = content_for :styles do
   = stylesheet_link_tag 'index_show'
+  = stylesheet_link_tag 'items'
 
 .container
   .decision-show
@@ -9,14 +12,14 @@
     = render partial: 'decisions/decision_categories', locals: { decision: @decision }
     = render partial: 'decisions/decision_info', locals: { decision: @decision }
 
--#          .pull-right.request-actions
--#            .dropdown
--#              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{ 'data-toggle': :dropdown, type: :button }
--#                Підтвердження
--#                %span.caret
--#              %ul.dropdown-menu
--#                %li
--#                  %a{ 'data-target': '#closeDecisionModal', 'data-toggle': :modal, 'href': '#' } Частково допоміг
--#                %li= link_to 'Допоміг', accept_decision_url
--#                %li= link_to 'Не допоміг', deny_decision_url
--#          = render 'modals/decision_close'
+    .pull-right.request-actions
+      .dropdown
+        %button#dropdownMenu1.btn.btn-default.dropdown-toggle{ 'data-toggle': :dropdown, type: :button }
+          Підтвердження
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            %a{ 'data-target': '#closeDecisionModal', 'data-toggle': :modal, 'href': '#' } Частково допоміг
+          %li= link_to 'Допоміг', accept_decision_url, method: :post
+          %li= link_to 'Не допоміг', deny_decision_url, method: :post
+    = render 'modals/decision_close'

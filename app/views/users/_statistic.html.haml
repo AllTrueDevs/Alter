@@ -1,4 +1,6 @@
-- if @items.size.zero?
-  %h5.text-center Запитів не знайдено
-- else
-  = bar_chart @items.joins(:category).group(:name).sum(:count), discrete: true, max: @max
+- unless @items[:other].empty?
+  %h4.text-center Загальна статистика
+  = pie_chart @items[:other].joins(:category).group(:name).sum(:count), discrete: true, max: @max[:other]
+- unless @items[:money].empty?
+  %h4.text-center Грошова допомога
+  = bar_chart @items[:money].joins(:category).group(:name).sum(:count), discrete: true, max: @max[:money]

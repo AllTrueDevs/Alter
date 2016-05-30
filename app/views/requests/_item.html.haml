@@ -1,0 +1,16 @@
+.form-item
+  - case type
+    - when :required_item
+      = f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, selected: f.object.category_id),
+                 { include_blank: true }, { class: 'cute-select inline', placeholder: 'Оберіть категорію' }
+    - when :accepted_item
+      = f.select :required_item_id, options_for_select(request.remaining_items.map{ |item| [item.category.name, item.id] }),
+                 { include_blank: true }, { class: 'cute-select inline', placeholder: 'Оберіть категорію' }
+    - when :helped_item
+      = text_field_tag :accepted_item_id, f.object.required_item.category.name, class: 'cute-input inline form-control'
+  .right-side.inline
+    .count-container.inline
+      - counter_params = Request.counter_params(type, f)
+      = f.text_field counter_params[0], class: 'count', data: { max: counter_params[1] }
+    = f.link_to_remove do
+      %span.fa.fa-times{ 'aria-hidden': true }

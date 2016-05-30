@@ -14,3 +14,4 @@
 #= require jquery.remotipart
 #= require confirmation
 #= require jquery.infinite-pages
+#= require jquery.bootstrap-touchspin

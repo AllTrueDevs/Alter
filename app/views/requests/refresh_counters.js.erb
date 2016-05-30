@@ -1,0 +1,3 @@
+$(".cute-select option[value='<%= @id %>']").parent()
+                                           .siblings('.right-side').find('.count')
+                                           .trigger("touchspin.updatesettings", { max: <%= @max %> });

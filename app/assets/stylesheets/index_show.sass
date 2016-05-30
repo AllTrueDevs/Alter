@@ -8,8 +8,9 @@
 .categories, .tags
   height: 20px
 .info
-  color: #666666
-  font-weight: bold
+  .author, .date
+    color: #666666
+    font-weight: bold
   p
     margin-right: 20px
     float: left
@@ -49,6 +50,41 @@ h1, h2
   .description
     text-align: justify
     margin-top: 25px
+  .goals
+    clear: both
+    border-top: 1px solid #eee
+    border-bottom: 1px solid #eee
+    padding: 50px 0
+    button
+      float: right
+    .progress-title
+      width: 25%
+      display: inline-block
+      vertical-align: top
+      text-align: right
+      margin-right: 5%
+      small
+        font-size: 0.6em
+        color: #555
+    .progress
+      height: 30px
+      width: 65%
+      display: inline-block
+      &:last-child
+        margin-bottom: 0
+      .progress-bar
+        height: 30px
+        position: relative
+        .percents
+          position: absolute
+          display: table
+          width: 100%
+          height: 100%
+          p
+            font-size: 1.2em
+            display: table-cell
+            text-align: center
+            vertical-align: middle
 
 
 .request-index, .article-index, .decision-index

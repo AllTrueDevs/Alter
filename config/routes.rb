@@ -19,8 +19,11 @@ Rails.application.routes.draw do
       get :upvote
       get :downvote
     end
+    collection do
+      get :unchecked
+    end
   end
-  get 'unchecked', to: 'requests#unchecked_requests', as: :unchecked_requests
+  get '/refresh_counters', to: 'requests#refresh_counters', as: :refresh_counters
 
   resources :messages do
     collection do
@@ -54,9 +57,9 @@ Rails.application.routes.draw do
 
   resources :decisions, only: [:index, :show, :create] do
     member do
-      get :accept
-      get :deny
-      get :partly
+      post :accept
+      post :deny
+      post :partly
     end
   end
 

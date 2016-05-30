@@ -38,7 +38,7 @@ class Ability
       end
 
       can :update, Request do |request|
-        request.user == user
+        (request.user == user && !request.status?(:unchecked))
       end
 
       can :manage, Decision do |decision|
@@ -51,7 +51,7 @@ class Ability
 
       if user.with_privileges?
         can :manage, Category
-        can [:unchecked_requests, :check, :decline, :destroy], Request
+        can [:unchecked, :check, :decline, :destroy], Request
       end
 
       case user.role

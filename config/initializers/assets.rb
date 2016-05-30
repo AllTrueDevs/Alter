@@ -14,6 +14,7 @@ Rails.application.config.assets.precompile += %w(
   index_show.sass
   messages.sass
   login_signup.sass
+  items.sass
 )
 
 ######################### JS
@@ -25,10 +26,12 @@ Rails.application.config.assets.precompile += %w(
   plugins/share_buttons.js
   plugins/tags-field.coffee
   plugins/infinite-loader.coffee
+  plugins/progress-bars.coffee
   user-tabs.coffee
   selection_color.coffee
   home.coffee
   articles.coffee
   messages.coffee
   requests/categories.coffee
+  items.coffee
 )
