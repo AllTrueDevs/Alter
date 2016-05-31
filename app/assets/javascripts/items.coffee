@@ -1,6 +1,8 @@
 $ ->
   $('.count').each ->
     max = parseInt($(this).data('max'))
+    state = $(this).closest('.right-side').siblings(".cute-select:disabled").length != 0
+    $(this).parent().siblings('a').prop('disabled', true) if state
     $(this).TouchSpin({
       verticalbuttons: true,
       verticalupclass: 'glyphicon glyphicon-plus',
@@ -22,7 +24,7 @@ $ ->
 
   $('.item-form').on 'nested:fieldAdded', (event) ->
     field = event.field
-    $('.item-form .remove_nested_fields').prop('disabled', false)
+    $('.item-form#new_request .remove_nested_fields').prop('disabled', false)
     field.find('.count').TouchSpin({
       verticalbuttons: true,
       verticalupclass: 'glyphicon glyphicon-plus',

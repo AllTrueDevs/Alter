@@ -2,7 +2,7 @@
   - case type
     - when :required_item
       = f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, selected: f.object.category_id),
-                 { include_blank: true }, { class: 'cute-select inline', placeholder: 'Оберіть категорію' }
+                 { include_blank: true }, { class: 'cute-select inline', placeholder: 'Оберіть категорію', disabled: f.object.category_id.blank? ? false : true }
     - when :accepted_item
       = f.select :required_item_id, options_for_select(request.remaining_items.map{ |item| [item.category.name, item.id] }),
                  { include_blank: true }, { class: 'cute-select inline', placeholder: 'Оберіть категорію' }
