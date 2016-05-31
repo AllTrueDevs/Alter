@@ -14,6 +14,10 @@ class RequiredItem < ActiveRecord::Base
     end
   end
 
+  before_update do
+    self.current_count = 0 if self.category_id_changed?
+  end
+
   after_save do
     self.request.update(status: 'archived') unless self.request.required_items.any?{ |item| !item.completed? }
   end

@@ -1,12 +1,15 @@
 $ ->
   $('.count').each ->
     max = parseInt($(this).data('max'))
+    min = parseInt($(this).data('min'))
+    state = $(this).closest('.right-side').siblings('.cute-select:disabled').length != 0
+    $(this).parent().siblings('a').prop('disabled', true) if state
     $(this).TouchSpin({
       verticalbuttons: true,
       verticalupclass: 'glyphicon glyphicon-plus',
       verticaldownclass: 'glyphicon glyphicon-minus',
       initval: 1,
-      min: 1,
+      min: min,
       max: max,
       mousewheel: true,
       boostat: 5,
@@ -22,7 +25,7 @@ $ ->
 
   $('.item-form').on 'nested:fieldAdded', (event) ->
     field = event.field
-    $('.item-form .remove_nested_fields').prop('disabled', false)
+    $('.item-form#new_request .remove_nested_fields').prop('disabled', false)
     field.find('.count').TouchSpin({
       verticalbuttons: true,
       verticalupclass: 'glyphicon glyphicon-plus',
@@ -51,3 +54,6 @@ $ ->
         url: url
         type: 'GET'
         dataType: 'script'
+
+  $('.item-form').on 'submit', ->
+    $('.cute-select:disabled').prop('disabled', false)

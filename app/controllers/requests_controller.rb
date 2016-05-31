@@ -70,7 +70,12 @@ class RequestsController < ApplicationController
     clear_s3_object(@request.photo) unless @request.photo.size.nil? || request_params['photo'].nil?
     respond_to do |format|
       if @request.update(request_params.merge(status: 'unchecked'))
+        @request.decisions do |decision|
+          decision.helper.notifications.create(message_type: 8, reason_user: current_user, request: decision.request)
+        end
         @request.create_activity key: 'request.update'
+        @request.decisions.destroy_all
+
         format.html { redirect_to @request }
       else
         errors = @request.form_errors(:request)
@@ -83,7 +88,7 @@ class RequestsController < ApplicationController
   def destroy
     @request.update(status: 'archived')
     @request.decisions do |decision|
-      User.find(decision.helper_id).notifications.create(message_type: 9, reason_user_id: current_user.id, request_id: decision.request_id)
+      decision.helper.notifications.create(message_type: 9, reason_user: current_user, request: decision.request)
     end
     @request.create_activity key: 'request.archive'
     @request.decisions.destroy_all
