@@ -1,6 +1,8 @@
 = content_for :title, 'Налаштування профілю'
 = content_for :styles do
   = stylesheet_link_tag 'users'
+= content_for :javascript do
+  = javascript_include_tag 'user-forms'
 = content_for :plugins do
   = javascript_include_tag 'plugins/file-field'
 

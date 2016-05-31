@@ -4,7 +4,6 @@
 #= require bootstrap-sprockets
 #= require jquery_ujs
 #= require jquery-ui
-#= require bootstrap-multiselect
 #= require bootstrap/bootstrap
 #= require bootstrap-filestyle
 #= require plugins/flashes
@@ -15,3 +14,4 @@
 #= require confirmation
 #= require jquery.infinite-pages
 #= require jquery.bootstrap-touchspin
+#= require jquery.mask

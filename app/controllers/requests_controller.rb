@@ -48,37 +48,32 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    redirect_to root_url, notice: 'Цей запит закрито.' if @request.status?(:archived)
   end
 
   def create
     @request = current_user.requests.new(request_params)
-    respond_to do |format|
-      if @request.save
-        format.html { redirect_to @request}
-      else
-        errors = @request.form_errors(:request)
-        flash[:error] = errors
-        format.html { redirect_to :back }
-      end
+    if @request.save
+      redirect_to @request
+    else
+      errors = @request.form_errors(:request)
+      flash[:error] = errors
+      redirect_to :back
     end
   end
 
   def update
-    respond_to do |format|
-      if @request.update(request_params.merge(status: 'unchecked'))
-        @request.decisions do |decision|
-          decision.helper.notifications.create(message_type: 8, reason_user: current_user, request: decision.request)
-        end
-        @request.create_activity key: 'request.update'
-        @request.decisions.destroy_all
-
-        format.html { redirect_to @request }
-      else
-        errors = @request.form_errors(:request)
-        flash[:error] = errors
-        format.html { redirect_to :back }
+    if @request.update(request_params.merge(status: 'unchecked'))
+      @request.decisions do |decision|
+        decision.helper.notifications.create(message_type: 8, reason_user: current_user, request: decision.request)
       end
+      @request.create_activity key: 'request.update'
+      @request.decisions.destroy_all
+
+      redirect_to @request
+    else
+      errors = @request.form_errors(:request)
+      flash[:error] = errors
+      redirect_to :back
     end
   end
 
@@ -97,11 +92,13 @@ class RequestsController < ApplicationController
   end
 
   def upvote
+    @request.user.notifications.create(message_type: 14, reason_user: current_user, request: @request)
     @request.upvote_from(current_user)
     respond_to :js
   end
 
   def downvote
+    @request.user.notifications.create(message_type: 15, reason_user: current_user, request: @request)
     @request.downvote_from(current_user)
     respond_to :js
   end

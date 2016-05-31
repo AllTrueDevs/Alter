@@ -9,9 +9,7 @@ class DecisionsController < ApplicationController
 
   def show
     @accepted_items = @decision.accepted_items
-    if @decision.status == 'new'
-      @decision.update(status: 'unaccepted')
-    end
+    @decision.update(status: 'unaccepted') if @decision.status?(:new)
   end
 
   def create

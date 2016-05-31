@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     collection do
       patch :change_password
       get :search
+      get :update_cities_np_data
     end
   end
 

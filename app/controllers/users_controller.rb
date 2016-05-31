@@ -113,11 +113,13 @@ class UsersController < ApplicationController
 
   def upvote
     @user.upvote_from(current_user)
+    @user.notifications.create(message_type: 12, reason_user: current_user)
     respond_to :js
   end
 
   def downvote
     @user.downvote_from(current_user)
+    @user.notifications.create(message_type: 13, reason_user: current_user)
     respond_to :js
   end
 
@@ -125,6 +127,35 @@ class UsersController < ApplicationController
     @activities = current_user.activity
     respond_to :js
   end
+
+  def update_cities_np_data
+    begin
+      require 'fileutils'
+      require 'json'
+      require 'net/http'
+
+      uri = URI('http://testapi.novaposhta.ua/v2.0/json/AddressGeneral/getSettlements/')
+      uri.query = URI.encode_www_form({})
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request['Content-Type'] = 'application/json'
+      request.body = {
+          modelName: 'AddressGeneral',
+          calledMethod: 'getSettlements'
+      }.to_json
+
+      response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+        http.request(request)
+      end
+
+      File.open('public/ua_cities.json', 'w+') do |file|
+        file.write( JSON.pretty_generate(JSON.parse(response.body)) );
+      end
+    rescue SocketError
+    end
+
+    redirect_to rails_admin_url
+  end
+
 
   private
 
