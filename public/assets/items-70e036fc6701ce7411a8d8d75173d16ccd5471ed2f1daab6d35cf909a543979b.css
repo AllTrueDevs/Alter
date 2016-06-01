@@ -1,0 +1,49 @@
+/* line 2, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items, .item-form .accepted-items, .item-form .helped-items {
+  padding: 20px;
+  margin: 20px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+/* line 7, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item, .item-form .accepted-items .form-item, .item-form .helped-items .form-item {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+/* line 10, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .cute-select, .item-form .required-items .form-item .cute-input, .item-form .accepted-items .form-item .cute-select, .item-form .accepted-items .form-item .cute-input, .item-form .helped-items .form-item .cute-select, .item-form .helped-items .form-item .cute-input {
+  width: 45%;
+}
+/* line 12, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .right-side, .item-form .accepted-items .form-item .right-side, .item-form .helped-items .form-item .right-side {
+  width: 45%;
+  float: right;
+}
+/* line 15, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .right-side .count-container, .item-form .accepted-items .form-item .right-side .count-container, .item-form .helped-items .form-item .right-side .count-container {
+  width: 80%;
+  margin-right: 10%;
+}
+/* line 18, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .right-side .remove_nested_fields span, .item-form .accepted-items .form-item .right-side .remove_nested_fields span, .item-form .helped-items .form-item .right-side .remove_nested_fields span {
+  vertical-align: top;
+}
+/* line 20, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .clearfix, .item-form .accepted-items .clearfix, .item-form .helped-items .clearfix {
+  padding: 5px 0;
+}
+/* line 23, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .add_nested_fields span, .item-form .accepted-items .add_nested_fields span, .item-form .helped-items .add_nested_fields span {
+  text-align: center;
+  font-size: 2em;
+  width: 100%;
+  margin-top: 20px;
+}
+/* line 28, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .accepted-items .form-item, .item-form .helped-items .form-item {
+  margin: 0 5%;
+}
+/* line 30, /home/shpak/Projects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item {
+  margin: 0 20%;
+}
