@@ -8,8 +8,8 @@
 .categories, .tags
   height: 20px
 .info
+  color: #666666
   .author, .date
-    color: #666666
     font-weight: bold
   p
     margin-right: 20px
@@ -88,11 +88,15 @@ h1, h2
 
 
 .request-index, .article-index, .decision-index
-  margin: 5px 20px
+  padding: 20px
   .photo
     width: 100%
   .request, .article, .decision
     padding: 15px 0
+  .request:first-child, .article:first-child, .decision:first-child
+    padding-top: 0
+  .request:last-child, .article:last-child, .decision:last-child
+    padding-bottom: 0
   .title
     font-size: 1em
   .info
@@ -103,7 +107,7 @@ h1, h2
     margin-bottom: 10px
 
 .notification-index, .activity-index
-  margin: 5px 20px
+  padding: 20px
   .col-md-11
     display: table
     height: 50px
@@ -116,6 +120,11 @@ h1, h2
     border-bottom: 1px solid #eeeeee
     a
       color: #d52845
+  .notification:first-child, .activity:first-child
+    padding-top: 0
+  .notification:last-child, .activity:last-child
+    padding-bottom: 0
+    border: none
   .photo
     line-height: 50px
     width: 50px
@@ -148,4 +157,74 @@ h1, h2
   margin-left: -2px
 
 .activity-index .photo
-  font-size: 1.5em
+  font-size: 1em
+
+.user-show
+  margin: 20px
+  .user-block
+    .photo
+      width: 40%
+    .info
+      padding: 20px 0
+      p
+        float: none
+      .name
+        color: #35353f
+        font-weight: bold
+        font-size: 1em
+      .description
+        margin-top: 20px
+        font-size: 0.9em
+      .contact-info
+        font-size: 0.9em
+        margin-top: 20px
+        p
+          font-weight: bold
+          color: #35353f
+          margin-bottom: 10px
+          span
+            color: #b2b2b2
+            font-weight: normal
+          a
+            color: #d52845
+            font-weight: normal
+            &:hover, &:focus
+              text-decoration: underline
+  .user-tabs
+    clear: both
+    .nav-tabs
+      border-radius: 10px 10px 0 0
+      border: 1px solid #eeeeee
+      border-bottom: none
+      li:first-child
+        a
+          border-radius: 8px 0 0 0
+      li:last-child
+        a
+          border-radius: 0 8px 0 0
+      li
+        a
+          background: #efefef
+          color: #b2b2b2
+          font-weight: bold
+          text-transform: uppercase
+          border: none !important
+          border-radius: 0
+          line-height: 30px
+        &.active a
+          background: #35353f
+          color: #fff
+        &:hover
+          a
+            //background: #d2d2d2
+            color: #d52845
+    .tab-content
+      border-radius: 0 0 10px 10px
+      border: 1px solid #eeeeee
+      border-top: none
+
+.statistic
+  padding: 20px
+
+
+

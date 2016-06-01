@@ -1,0 +1,15 @@
+.info
+  %p.name= user.name
+  - unless user.info.blank?
+    %p.description= user.info
+  .contact-info
+    - unless user.phone.blank?
+      %p= "Телефон: <span>#{user.phone}</span>".html_safe
+    - unless user.skype.blank?
+      %p= "Skype: <span>#{user.skype}</span>".html_safe
+    - unless user.vkontakte_name.blank?
+      %p= "VK: #{link_to(user.vkontakte_name, user.vkontakte)}".html_safe
+    - unless user.facebook_name.blank?
+      %p= "Facebook: #{link_to(user.facebook_name, user.facebook)}".html_safe
+    - unless user.twitter_name.blank?
+      %p= "Facebook: #{link_to(user.twitter_name, user.twitter)}".html_safe
