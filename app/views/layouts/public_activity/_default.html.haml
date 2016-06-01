@@ -1,8 +1,8 @@
-.notification
+.activity
   .row
     .col-md-1
       .photo
-        %span.fa.fa-volume-off
+        %span{ class: activity_icon_type(activity) }
     .col-md-11
       .body
         %h1.title= activity_message_type(activity).html_safe

@@ -1,14 +1,11 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: [:select_requests]
-  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :detach_social_link, :select_requests]
+  before_action :set_user, except: [:index, :search]
   before_action :authenticate_user!, except: [:select_requests]
 
   def show
-    if @user.confirmed_at.nil?
-      redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію'
-    else
-      @requests = @user.requests.actual.order(created_at: :desc).page(params[:page]).per(10)
-    end
+    redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію' if @user.confirmed_at.nil?
+    @requests = @user.requests.actual.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def index
@@ -24,31 +21,28 @@ class UsersController < ApplicationController
     if @user.role?(:banned)
       @user.update(role: 'author')
       @user.notifications.create(message_type: 5)
+      @user.create_activity key: 'user.unban'
       redirect_to @user
     else
-      if cannot?(:manage, User) && @user.with_privileges?
-        flash[:error] = 'Немає доступу'
-        redirect_to @user
-      else
-        @user.update(role: 'banned')
-        @user.notifications.create(message_type: 4)
-        @user.requests.update_all(status: 'declined')
+      @user.update(role: 'banned')
+      @user.notifications.create(message_type: 4)
+      @user.create_activity key: 'user.ban'
+      @user.requests.update_all(status: 'declined')
 
-        @user.requests.each do |request|
-          request.decisions.each do |decision|
-            decision.accepted_items.destroy_all
-          end
-          request.decisions.destroy_all
-        end
-
-        decisions = Decision.where(helper_id: @user.id)
-        decisions.each do |decision|
+      @user.requests.each do |request|
+        request.decisions.each do |decision|
           decision.accepted_items.destroy_all
         end
-        decisions.destroy_all
-
-        redirect_to @user
+        request.decisions.destroy_all
       end
+
+      decisions = Decision.where(helper: @user)
+      decisions.each do |decision|
+        decision.accepted_items.destroy_all
+      end
+      decisions.destroy_all
+
+      redirect_to @user
     end
   end
 
@@ -122,7 +116,8 @@ class UsersController < ApplicationController
   end
 
   def activity
-    @activities = current_user.activity
+    @activities = PublicActivity::Activity.where("(owner_id=? and owner_type='User') or (trackable_id=? and trackable_type='User')", @user.id, @user.id)
+                                          .order(created_at: :desc)
     respond_to :js
   end
 
