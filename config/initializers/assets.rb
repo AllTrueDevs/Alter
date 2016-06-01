@@ -27,7 +27,7 @@ Rails.application.config.assets.precompile += %w(
   plugins/tags-field.coffee
   plugins/infinite-loader.coffee
   plugins/progress-bars.coffee
-  user-tabs.coffee
+  tabs.coffee
   selection_color.coffee
   home.coffee
   articles.coffee
