@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
   ROLES = %w[admin moderator newsmaker author banned]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
@@ -97,10 +99,6 @@ class User < ActiveRecord::Base
 
   def mailbox_empty?
     received_messages.private_messages.empty? && sent_messages.private_messages.empty?
-  end
-
-  def activity
-    PublicActivity::Activity.all.where(owner_id: id, owner_type: 'User')
   end
 
   def counters(type)

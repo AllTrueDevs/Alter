@@ -57,6 +57,7 @@ class RequestsController < ApplicationController
     @request = current_user.requests.new(request_params)
     respond_to do |format|
       if @request.save
+        @request.create_activity key: 'request.create', owner: @request.user
         format.html { redirect_to @request}
       else
         errors = @request.form_errors(:request)
@@ -73,7 +74,7 @@ class RequestsController < ApplicationController
         @request.decisions do |decision|
           decision.helper.notifications.create(message_type: 8, reason_user: current_user, request: decision.request)
         end
-        @request.create_activity key: 'request.update'
+        @request.create_activity key: 'request.update', owner: @request.user
         @request.decisions.destroy_all
 
         format.html { redirect_to @request }
@@ -90,7 +91,7 @@ class RequestsController < ApplicationController
     @request.decisions do |decision|
       decision.helper.notifications.create(message_type: 9, reason_user: current_user, request: decision.request)
     end
-    @request.create_activity key: 'request.archive'
+    @request.create_activity key: 'request.archive', owner: @request.user
     @request.decisions.destroy_all
     
     respond_to do |format|
