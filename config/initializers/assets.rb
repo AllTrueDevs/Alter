@@ -10,7 +10,6 @@ Rails.application.config.assets.precompile += %w(
   scaffolds.sass
   home.sass
   about.sass
-  users.sass
   index_show.sass
   messages.sass
   login_signup.sass
