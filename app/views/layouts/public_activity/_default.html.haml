@@ -2,9 +2,9 @@
   .row
     .col-md-1
       .photo
-        %span{ class: activity_icon_type(activity) }
+        %span{ class: activity_icon(activity) }
     .col-md-11
       .body
-        %h1.title= send("#{destination}_activity_message_type", activity).html_safe
+        %h1.title= send("#{destination}_activity_message_text", activity).html_safe
         .info
           %p.date= time_ago_in_words(activity.created_at) + ' тому.'

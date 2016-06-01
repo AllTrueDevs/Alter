@@ -21,23 +21,23 @@ module Wordable
     "\"<a href=\"/requests/#{request.id}\" title=\"#{request.name}\">#{human_truncate(request.name, 35)}</a>\""
   end
 
-  def user_activity_message_type(activity)
+  def user_activity_message_text(activity)
     model, action = activity.key.split('.')
     case model
     when 'request'
       case action
-      when 'archive' then "Запит #{form_request_link(activity.trackable)} було заархівовано."
-      when 'create' then "Запит #{form_request_link(activity.trackable)} було створено."
-      when 'update' then "Запит #{form_request_link(activity.trackable)} було змінено."
+      when 'archive' then "Заархівував запит #{form_request_link(activity.trackable)}."
+      when 'create' then "Створив запит #{form_request_link(activity.trackable)}."
+      when 'update' then "Змінив запит #{form_request_link(activity.trackable)}."
       when 'check' then "Запит #{form_request_link(activity.trackable)} було перевірено адміністрацією."
       when 'decline' then "Запит #{form_request_link(activity.trackable)} було відхилено адміністрацією."
       end
     when 'decision'
       case action
-      when 'accept' then "Відгук за запитом #{form_request_link(activity.recipient)} було прийнято."
-      when 'create' then "Відгук за запитом #{form_request_link(activity.recipient)} було створено."
-      when 'deny' then "Відгук за запитом #{form_request_link(activity.recipient)} було відхилено."
-      when 'partly' then "Відгук за запитом #{form_request_link(activity.recipient)} було частково прийнято."
+      when 'accept' then "Прийняв відгук за запитом #{form_request_link(activity.recipient)}."
+      when 'create' then "Створив відгук за запитом #{form_request_link(activity.recipient)}."
+      when 'deny' then "Відхилив відгук за запитом #{form_request_link(activity.recipient)}."
+      when 'partly' then "Чістково прийняв відгук за запитом #{form_request_link(activity.recipient)}."
       end
     when 'user'
       case action
@@ -47,7 +47,7 @@ module Wordable
     end
   end
 
-  def request_activity_message_type(activity)
+  def request_activity_message_text(activity)
     model, action = activity.key.split('.')
     case model
       when 'request'
@@ -68,7 +68,7 @@ module Wordable
     end
   end
 
-  def activity_icon_type(activity)
+  def activity_icon(activity)
     model, action = activity.key.split('.')
     case action
       when 'create' then 'fa fa-plus'
