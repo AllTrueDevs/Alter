@@ -15,3 +15,4 @@
 #= require jquery.infinite-pages
 #= require jquery.bootstrap-touchspin
 #= require jquery.mask
+#= require twitter/typeahead

@@ -36,6 +36,7 @@ gem 'font-awesome-rails'
 gem 'selectize-rails'
 gem 'jquery-infinite-pages'
 gem 'jquery-ui-rails'
+gem 'twitter-typeahead-rails', :git => "git://github.com/yourabi/twitter-typeahead-rails.git"
 
 #############################
 ### Backend

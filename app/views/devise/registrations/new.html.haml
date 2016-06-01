@@ -1,13 +1,18 @@
 = content_for :title, 'Регістрація'
+= content_for :javascript do
+  = javascript_include_tag 'user-forms'
 = content_for :styles do
   = stylesheet_link_tag 'login_signup'
 
 .group-form
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f|
-    = f.text_field :name, autofocus: true, placeholder: "Ім'я"
-    = f.email_field :email, autofocus: true, placeholder: 'Поштова скринька'
-    = f.password_field :password, placeholder: 'Пароль', class: 'with-error'
-    = f.password_field :password_confirmation, placeholder: 'Підтвердження паролю'
+    = f.text_field :name, autofocus: true, placeholder: "Ім'я*"
+    = f.email_field :email, autofocus: true, placeholder: 'Поштова скринька*'
+    = f.password_field :password, placeholder: 'Пароль*', class: 'with-error'
+    = f.password_field :password_confirmation, placeholder: 'Підтвердження паролю*'
+    = f.text_field :city, class: 'autocomplete', data: { 'autocomplete-url' => search_cities_users_url(limit: 10, query: '_QUERY_'),
+                   'autocomplete-search' => 'city' }, placeholder: 'Оберіть місто'
+    = f.text_field :region, disabled: true, class: 'region'
     = f.submit 'Зареєструватись', data: {disable_with: 'Обробка...'}
   = render 'devise/shared/links'
 

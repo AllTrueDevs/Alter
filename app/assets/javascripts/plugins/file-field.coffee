@@ -1,7 +1,7 @@
 $ ->
   $(":file").filestyle({
     buttonText: 'Файл',
-    iconName: "glyphicon-download-alt"
+    iconName: "fa fa-download"
   })
 
   $('.bootstrap-filestyle input').prop(placeholder: 'Оберіть файл')

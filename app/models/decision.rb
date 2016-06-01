@@ -18,6 +18,10 @@ class Decision < ActiveRecord::Base
     item.decision.helper.helped_items.find_or_initialize_by(category_id: item.required_item.category_id)
   end
 
+  def status?(status)
+    [*status].include? self.status
+  end
+
 
   private
 

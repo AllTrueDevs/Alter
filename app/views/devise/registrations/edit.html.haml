@@ -1,60 +1,38 @@
 = content_for :title, 'Налаштування профілю'
 = content_for :styles do
   = stylesheet_link_tag 'users'
+  = stylesheet_link_tag 'login_signup'
 = content_for :javascript do
   = javascript_include_tag 'user-forms'
 = content_for :plugins do
   = javascript_include_tag 'plugins/file-field'
 
-.panel.panel-default
-  .panel-heading
-    %h4 Налаштування профілю
-  .panel-body
+.edit-profile
+  .group-form
+    %h1.title Налаштування профілю
     = form_for(@user, url: registration_path(@user), html: { method: :put, multipart: true, role: 'form' }) do |f|
-      - if @user.errors.full_messages.any?
-        - @user.errors.full_messages.each do |error_message|
-          = error_message if @user.errors.full_messages.first == error_message
-          %br
       - if @user.social_sign_up_type.blank?
-        .form-group
-          %label Поштова скринька
-          = f.text_field :email, value: @user.email, class: 'form-control', disabled: true
+        = f.text_field :email, value: @user.email, disabled: true, class: 'disabled'
       - else
-        .form-group
-          %label= t("label_#{@user.social_sign_up_type}")
-          = f.text_field :social_sign_up_url, value: @user.social_sign_up_url, class: 'form-control', disabled: true
-      .form-group
-        %label Ім'я
-        = f.text_field :name, class: 'form-control'
-      .form-group
-        %label Особиста інформація
-        = f.text_area :info, class: 'form-control', rows: '5'
-      .form-group
-        %label Телефон
-        = f.text_field :phone, class: 'form-control'
-      .form-group
-        %label Skype
-        = f.text_field :skype, class: 'form-control'
+        = f.text_field :social_sign_up_url, value: @user.social_sign_up_url, disabled: true, class: 'disabled'
+      = f.text_field :name, placeholder: "Введіть ім'я"
+      = f.text_area :info, class: 'form-control', rows: '10', placeholder: 'Особиста інформація'
+      = f.text_field :phone, placeholder: 'Введіть номер телефону'
+      = f.text_field :skype, placeholder: 'Введіть Skype'
+      = f.text_field :city, class: 'autocomplete', data: { 'autocomplete-url' => search_cities_users_url(limit: 10, query: '_QUERY_'),
+                   'autocomplete-search' => 'city' }, placeholder: 'Оберіть місто'
+      = f.text_field :region, disabled: true, class: 'region', placeholder: 'Область'
       - social_networks.each do |network|
         - unless @user.social_sign_up_type == network
-          .form-group.social{class: network}
+          .social{class: "#{network}#{@user.send(network).nil? ? ' empty' : ''}"}
             = render partial: 'devise/registrations/edit_url', locals: { social: network, user: @user }
-      .form-group
-        = f.label :Фото
-        .file-field-container
-          = f.file_field :avatar, accept: 'image/png, image/jpeg'
-      = f.submit 'Зберегти', class: 'btn btn-success', data: {disable_with: 'Обробка...'}
-
-    %br
-
-    = form_for(@user, url: change_password_users_url  ) do |f|
-      .form-group
-        %label Поточний пароль
-        = f.password_field :current_password, class: 'form-control'
-      .form-group
-        %label Пароль
-        = f.password_field :password, :autocomplete => 'off', class: 'form-control'
-      .form-group
-        %label Підтвердження паролю
-        = f.password_field :password_confirmation, class: 'form-control'
-      = f.submit 'Змінити пароль', remote: true, class: 'btn btn-info', data: {disable_with: 'Обробка...'}
+      .file-field-container
+        = f.file_field :avatar, accept: 'image/png, image/jpeg', class: 'file-field', placeholder: 'Змінити фото'
+      = f.submit 'Зберегти', data: {disable_with: 'Обробка...'}
+    .password-form
+      %h1.title Зміна паролю
+      = form_for(@user, url: change_password_users_url  ) do |f|
+        = f.password_field :current_password, placeholder: 'Поточний пароль'
+        = f.password_field :password, :autocomplete => 'off', placeholder: 'Новий пароль'
+        = f.password_field :password_confirmation, placeholder: 'Підтвердження паролю'
+        = f.submit 'Змінити пароль', data: { disable_with: 'Обробка...' }

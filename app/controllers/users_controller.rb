@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource except: [:select_requests]
+  load_and_authorize_resource except: [:select_requests, :search_cities]
   before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :detach_social_link, :select_requests]
-  before_action :authenticate_user!, except: [:select_requests]
+  before_action :authenticate_user!, except: [:select_requests, :search_cities]
 
   def show
     if @user.confirmed_at.nil?
@@ -18,6 +18,37 @@ class UsersController < ApplicationController
   def search
     @users = User.where.not(confirmed_at: nil).search(params[:search]).order(:name).page(params[:page]).per(12)
     respond_to :js
+  end
+
+  def search_cities
+    require 'json'
+    require 'net/http'
+
+    query, limit = autocomplete_params[:query], autocomplete_params[:limit].to_i
+
+    uri = URI('http://testapi.novaposhta.ua/v2.0/json/AddressGeneral/getSettlements/')
+    uri.query = URI.encode_www_form({})
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request['Content-Type'] = 'application/json'
+    request.body = {
+        modelName: 'AddressGeneral',
+        "calledMethod": 'getSettlements',
+        methodProperties: {
+            FindByString: query,
+            MainCitiesOnly: query.blank?
+        }
+    }.to_json
+
+    response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+      http.request(request)
+    end
+
+    json = JSON.parse(response.body, symbolize_names: true)[:data]
+    json = json.nil? ? [] : json.take(limit).map{ |data| { type: data[:SettlementTypeDescription], city: data[:Description], region: data[:AreaDescription], district: data[:RegionsDescription] } }
+    @cities = json
+    respond_to do |format|
+      format.json { render :json => @cities }
+    end
   end
 
   def change_ban_status
@@ -128,34 +159,6 @@ class UsersController < ApplicationController
     respond_to :js
   end
 
-  def update_cities_np_data
-    begin
-      require 'fileutils'
-      require 'json'
-      require 'net/http'
-
-      uri = URI('http://testapi.novaposhta.ua/v2.0/json/AddressGeneral/getSettlements/')
-      uri.query = URI.encode_www_form({})
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request['Content-Type'] = 'application/json'
-      request.body = {
-          modelName: 'AddressGeneral',
-          calledMethod: 'getSettlements'
-      }.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-        http.request(request)
-      end
-
-      File.open('public/ua_cities.json', 'w+') do |file|
-        file.write( JSON.pretty_generate(JSON.parse(response.body)) );
-      end
-    rescue SocketError
-    end
-
-    redirect_to rails_admin_url
-  end
-
 
   private
 
@@ -167,4 +170,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
+  def autocomplete_params
+    params.permit(:limit, :query)
+  end
 end
