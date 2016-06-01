@@ -31,7 +31,7 @@ class DecisionsController < ApplicationController
       @decision.helper.update_helped_item!(item.required_item.category, item.count)
       @decision.request.update_goal!(item.required_item, item.count)
     end
-    @decision.create_activity recipient: @decision.request, key: 'decision.accept'
+    @decision.create_activity recipient: @decision.request, parameters: { helper_id: @decision.helper_id }, key: 'decision.accept'
     @decision.destroy
     redirect_to decisions_url
   end
@@ -46,7 +46,7 @@ class DecisionsController < ApplicationController
         @decision.helper.update_helped_item!(item.required_item.category, data[item.id])
         @decision.request.update_goal!(item.required_item, data[item.id])
       end
-      @decision.create_activity recipient: @decision.request, key: 'decision.partly'
+      @decision.create_activity recipient: @decision.request, parameters: { helper_id: @decision.helper_id }, key: 'decision.partly'
       @decision.destroy
       format.html { redirect_to decisions_url }
     end
@@ -54,7 +54,7 @@ class DecisionsController < ApplicationController
 
   def deny
     @decision.helper.notifications.create(message_type: 3, reason_user: current_user, request: @decision.request)
-    @decision.create_activity recipient: @decision.request, key: 'decision.deny'
+    @decision.create_activity recipient: @decision.request, parameters: { helper_id: @decision.helper_id }, key: 'decision.deny'
     @decision.destroy
     redirect_to decisions_url
   end

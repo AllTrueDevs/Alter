@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       get :decline
       get :upvote
       get :downvote
+      get :activity
+      get :wall
     end
     collection do
       get :unchecked

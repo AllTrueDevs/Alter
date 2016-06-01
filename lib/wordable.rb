@@ -21,7 +21,7 @@ module Wordable
     "\"<a href=\"/requests/#{request.id}\" title=\"#{request.name}\">#{human_truncate(request.name, 35)}</a>\""
   end
 
-  def activity_message_type(activity)
+  def user_activity_message_type(activity)
     model, action = activity.key.split('.')
     case model
     when 'request'
@@ -47,6 +47,27 @@ module Wordable
     end
   end
 
+  def request_activity_message_type(activity)
+    model, action = activity.key.split('.')
+    case model
+      when 'request'
+        case action
+          when 'archive' then "#{form_user_link(activity.trackable.user)} заархівував запит."
+          when 'create' then "#{form_user_link(activity.trackable.user)} створив запит."
+          when 'update' then "#{form_user_link(activity.trackable.user)} змінив запит."
+          when 'check' then 'Запит було перевірено адміністрацією.'
+          when 'decline' then 'Запит було відхилено адміністрацією.'
+        end
+      when 'decision'
+        case action
+          when 'accept' then "#{form_user_link(activity.owner)} прийняв допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
+          when 'create' then "#{form_user_link(activity.owner)} створив відгук."
+          when 'deny' then "#{form_user_link(activity.owner)} відхилив допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
+          when 'partly' then "#{form_user_link(activity.owner)} частково допомогу відук від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
+        end
+    end
+  end
+
   def activity_icon_type(activity)
     model, action = activity.key.split('.')
     case action
@@ -60,6 +81,16 @@ module Wordable
       when 'partly' then 'fa fa-star-half-o'
       when 'ban' then 'fa fa-lock'
       when 'unban' then 'fa fa-unlock'
+    end
+  end
+
+  def user_role(user)
+    case user.role
+    when 'admin' then 'Адміністратор'
+    when 'moderator' then 'Модератор'
+    when 'newsmaker' then 'Редактор'
+    when 'banned' then 'Заблокований'
+    else ''
     end
   end
 

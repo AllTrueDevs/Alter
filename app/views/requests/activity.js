@@ -1,0 +1,1 @@
+$(".tab-pane.active").html("<%= escape_javascript(render partial: 'layouts/public_activity/activity', locals: { activities: @activities, destination: 'request' } ) %>");

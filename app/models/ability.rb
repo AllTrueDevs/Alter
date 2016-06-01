@@ -16,7 +16,7 @@ class Ability
         user == usr
       end
 
-      can :vote, Request
+      can [:vote, :activity, :wall], Request
       can :vote, User do |usr|
         user != usr
       end

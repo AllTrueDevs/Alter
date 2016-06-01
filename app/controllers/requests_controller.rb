@@ -36,6 +36,8 @@ class RequestsController < ApplicationController
 
   def show
     @posts = @request.posts.order(updated_at: :desc).page(params[:page]).per(10)
+    @activities = PublicActivity::Activity.where("(recipient_id=? and recipient_type='Request') or (trackable_id=? and trackable_type='Request')", @request.id, @request.id)
+                      .order(created_at: :desc)
     if @request.status?(:actual) && can?(:create, Decision) && @request.user != current_user
       @decision = Decision.new
       @decision.accepted_items.build
@@ -119,6 +121,17 @@ class RequestsController < ApplicationController
       request = Request.find(params['request'].to_i)
       @max = request.required_items.find(@id).remaining_count
     end
+    respond_to :js
+  end
+
+  def activity
+    @activities = PublicActivity::Activity.where("(recipient_id=? and recipient_type='Request') or (trackable_id=? and trackable_type='Request')", @request.id, @request.id)
+                                          .order(created_at: :desc)
+    respond_to :js
+  end
+
+  def wall
+    @posts = @request.posts.order(updated_at: :desc).page(params[:page]).per(10)
     respond_to :js
   end
 
