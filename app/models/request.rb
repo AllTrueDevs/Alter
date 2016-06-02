@@ -22,8 +22,10 @@ class Request < ActiveRecord::Base
   validates :status, presence: true, inclusion: { in: %w(actual archived unchecked declined) }
   validate :without_required_items?, on: :create, :if => proc { |r| r.required_items.empty? } # comment for db:seed
   [:unchecked, :actual, :archived, :declined].each do |status|
-    scope status, -> { where(status: status) }
+    scope status, -> { where("requests.status = ?", status) }
   end
+
+  scope :near_with, -> (user){ joins(:user).where(users: { region: user.region }) }
 
   def status?(request_status)
     status == request_status.to_s

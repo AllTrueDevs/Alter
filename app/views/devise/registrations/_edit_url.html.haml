@@ -1,10 +1,10 @@
 - if user.send(social).nil?
-  = link_to t("edit_#{social}_new"), user_omniauth_authorize_path(social)
+  = link_to t("edit_#{social}_new"), user_omniauth_authorize_path(social), class: 'empty-url'
 - else
-  %label= "#{social.capitalize}:"
-  = text_field_tag social, user.send(social), class: 'form-control add-url', disabled: true
-  .actions
-    = link_to user_omniauth_authorize_path(social) do
-      %i.fa.fa-pencil
-    = link_to detach_social_link_user_url(user, social: social) do
-      %i.fa.fa-trash
+  .url-field
+    = text_field_tag social, user.send(social), class: 'add-url', disabled: true, placeholder: "#{social.capitalize}:"
+    .actions
+      = link_to user_omniauth_authorize_path(social) do
+        %i.fa.fa-pencil
+      = link_to detach_social_link_user_url(user, social: social) do
+        %i.fa.fa-trash

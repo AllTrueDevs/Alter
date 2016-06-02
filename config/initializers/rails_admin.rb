@@ -203,6 +203,7 @@ RailsAdmin.config do |config|
       field :id
       field :name
       field :color, :color
+      field :max
       field :updated_at
       field :created_at
     end
@@ -210,6 +211,7 @@ RailsAdmin.config do |config|
     show do
       field :name
       field :color, :color
+      field :max
     end
     #
     edit do
@@ -217,6 +219,7 @@ RailsAdmin.config do |config|
         required true
       end
       field :color, :color
+      field :max
     end
   end
 
@@ -270,8 +273,4 @@ RailsAdmin.config do |config|
       field :request
     end
   end
-
-
-
-
 end

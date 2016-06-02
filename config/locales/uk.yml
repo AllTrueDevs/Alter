@@ -109,6 +109,7 @@ uk:
         id: '№'
         name: 'Назва'
         color: 'Колір'
+        max: 'Максимум'
         updated_at: 'Дата оновлення'
         created_at: 'Дата створення'
       notification:

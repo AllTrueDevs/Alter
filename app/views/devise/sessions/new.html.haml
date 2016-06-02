@@ -1,6 +1,6 @@
 = content_for :title, 'Вхід'
 = content_for :javascript do
-  = javascript_include_tag 'login-error'
+  = javascript_include_tag 'user-forms'
 = content_for :styles do
   = stylesheet_link_tag 'login_signup'
 
@@ -12,7 +12,7 @@
       .custom-checkbox
         = f.check_box :remember_me
         = f.label :remember_me
-    = f.submit  'Увійти', data: {disable_with: 'Обробка...'}
+    = f.submit  'Увійти', class: 'button', data: { disable_with: 'Обробка...' }
   = render 'devise/shared/links'
 
 -#.panel.panel-default

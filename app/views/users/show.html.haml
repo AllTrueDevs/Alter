@@ -1,79 +1,13 @@
 = content_for :title, @user.name
 = content_for :javascript do
-  = javascript_include_tag 'user-tabs'
+  = javascript_include_tag 'user-forms'
+  = javascript_include_tag 'tabs'
 = content_for :styles do
   = stylesheet_link_tag 'index_show'
-.panel.panel-default.width-100
-  .panel-body
-    .row.user-profile
-      .col-md-4.col-md-offset-1.text-right.user-avatar= image_tag @user.avatar.url, class: 'img-thumbnail'
-      .col-md-6.user-info
-        %h3.inline= @user.name
-        - if can?(:change_ban_status, @user) && (current_user != @user)
-          - if @user.role?(:banned)
-            = link_to ban_user_url, method: :get, title: 'Розблокувати користувача', data: { confirm: 'Ви дійсно хочете розблокувати користувача?'} do
-              %span.glyphicon.glyphicon-check{ 'aria-hidden': true }
-          - else
-            = link_to ban_user_url, method: :get, title: 'Заблокувати користувача', data: { confirm: 'Ви дійсно хочете заблокувати користувача?'} do
-              %span.glyphicon.glyphicon-ban-circle{ 'aria-hidden': true }
-        - if can?(:change_moder_status, @user) && (current_user != @user)
-          - if @user.role?(:moderator)
-            = link_to moder_user_url, method: :get, title: 'Забрати права модератора', data: { confirm: 'Ви дійсно хочете забрати права модератора?'} do
-              %span.glyphicon.glyphicon-user{ 'aria-hidden': true }
-          - else
-            = link_to moder_user_url, method: :get, title: 'Надати права модератора', data: { confirm: 'Ви дійсно хочете надати права модератора?'} do
-              %span.glyphicon.glyphicon-briefcase{ 'aria-hidden': true }
-        - if can?(:admin_login, @user) && (current_user != @user)
-          = link_to admin_login_user_url, method: :get, title: 'Вхід на аккаунт користувача', data: { confirm: 'Зайти на аккаунт даного користувача?'} do
-            %span.glyphicon.glyphicon-search{ 'aria-hidden': true }
-        - if can? :vote, @user
-          %div{ class: "votes votes-#{@user.id}" }
-            = render partial: 'layouts/votes', locals: { source: @user }
-        - case @user.role
-          - when 'moderator'
-            %h5
-              %small.text-warning Модератор
-          - when 'banned'
-            %h5
-              %small.text-danger Заблокований
-        - if can?(:new_private, Message)
-          %br
-            = link_to 'Написати повідомлення', dialog_messages_url(user: @user), class: 'btn btn-default btn-info'
-        %br
-        - if @user.info.to_s.length > 0
-          %p.info= @user.info
-        - if @user.phone.to_s.length > 0
-          %p
-            %strong Телефон:
-            = @user.phone
-        - if @user.skype.to_s.length > 0
-          %p
-            %strong Skype:
-            = @user.skype
-        - if @user.vkontakte.to_s.length > 0
-          %p
-            %strong VK:
-            = link_to @user.vkontakte_name, @user.vkontakte
-        - if @user.facebook.to_s.length > 0
-          %p
-            %strong Facebook:
-            = link_to @user.facebook_name, @user.facebook
-    .user-requests
-      %ul.nav.nav-tabs
-        %li.active
-          = link_to 'Активні запити', select_requests_user_url(requests_type: :actual, sort_field: :created_at), remote: true
-        %li
-          = link_to 'Завершені запити', select_requests_user_url(requests_type: :archived, sort_field: :updated_at), remote: true
-        %li
-          = link_to 'Неперевірені запити', select_requests_user_url(requests_type: :unchecked, sort_field: :created_at), remote: true
-        %li
-          = link_to 'Відхилені запити', select_requests_user_url(requests_type: :declined, sort_field: :updated_at), remote: true
-        %li
-          = link_to 'Активність', activity_user_url, remote: true
-        - if !@user.helped_items.empty? && can?(:statistic, @user)
-          %li= link_to 'Cтатистика', statistic_user_url, remote: true
-      .tab-content
-        .tab-pane.active.request-index
-          = render partial: 'requests/requests_list', locals: { requests: @requests, ajax: true }
-
-
+.container
+  .user-show
+    .user-block
+      .photo
+        = image_tag @user.avatar.url
+      = render partial: 'users/user_info', locals: { user: @user }
+    = render partial: 'users/user_tabs', locals: { user: @user, requests: @requests }

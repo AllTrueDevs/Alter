@@ -29,7 +29,6 @@ gem 'jquery-rails'
 gem 'hamlit'
 gem 'hamlit-rails'
 gem 'jbuilder', '~> 2.0'
-gem 'bootstrap-multiselect-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'kaminari'
 gem 'chartkick'
@@ -38,6 +37,7 @@ gem 'font-awesome-rails'
 gem 'selectize-rails'
 gem 'jquery-infinite-pages'
 gem 'jquery-ui-rails'
+gem 'twitter-typeahead-rails', :git => "git://github.com/yourabi/twitter-typeahead-rails.git"
 
 #############################
 ### Backend

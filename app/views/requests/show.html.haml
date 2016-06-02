@@ -6,6 +6,7 @@
 = content_for :javascript do
   = javascript_include_tag 'messages'
   = javascript_include_tag 'items'
+  = javascript_include_tag 'tabs'
 = content_for :styles do
   = stylesheet_link_tag 'index_show'
   = stylesheet_link_tag 'messages'
@@ -18,47 +19,24 @@
     = render partial: 'request_categories', locals: { request: @request }
     = render partial: 'request_info', locals: { request: @request }
     = render partial: 'request_progress', locals: { request: @request, decision: @decision }
-  .col-md-12.wall
-    .panel.panel-default.width-100
-      .panel-heading
-        .row
-          .col-md-3
-            %h4.request-title.break-word Стіна
-          .col-md-9
-            %h4#wall-counter.text-right
-              - if !(@request.posts.empty?)
-                = @request.posts.size
-                записів
-              - else
-                Записів немає
-      .panel-body
-        - post = @request.posts.new
-        - unless cannot?(:new_post, post)
-          = nested_form_for post, url: new_post_messages_url(post), html: { class: 'message-form', multipart: true },
-              remote: true, authenticity_token: true, format: :js do |f|
-            = f.text_area :body, class: 'form-control', rows: '5'
-            = f.hidden_field :message_type, value: :post
-            = f.hidden_field :sender_id, value: current_user.id
-            = f.hidden_field :request_id, value: @request.id
-            = f.fields_for :attachments do |builder|
-              = render 'messages/attachment_field', f: builder
-            .actions
-              = f.link_to_add :attachments do
-                %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
-              = f.submit 'Надіслати', class: 'btn btn-default btn-info'
-          .clearfix
-        .infinite
-          %ul.posts
-            = render partial: 'messages/posts', locals: { posts: @posts }
-          = image_tag 'loader.gif', class: "loader icon img-center#{(@request.posts.size > 10)? '' : ' hidden'}"
-          .pagination-info
-            = link_to_next_page(@posts, '', :remote => true)
+  .user-show
+    .user-tabs
+      %ul.nav.nav-tabs.nav-justified
+        %li.active
+          = link_to wall_request_url, remote: true do
+            Стіна
+            %span#wall-counter.text-right
+              - unless @request.posts.blank?
+                = "(#{@request.posts.size})"
+        - if can? :activity, @request
+          %li
+            = link_to 'Активність', activity_request_url, remote: true
+      .tab-content
+        .tab-pane.active
+          = render partial: 'requests/request_wall', locals: { posts: @posts, request: @request}
 -#%a.share-button.share-vk.pull-left{onclick: 'Share.vkontakte()'}
 -#  Поділитись
 -#  .vk-logo.pull-left
 -#%a.share-button.share-twitter.pull-right{onclick: 'Share.twitter()'}
 -#  Tweet
 -#  .twitter-logo.pull-left
-
--#= render partial: 'request_actions', locals: { request: @request }
-

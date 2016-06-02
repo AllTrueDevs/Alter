@@ -1,10 +1,8 @@
-#helpRequestModal.modal.fade{ 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
+#helpRequestModal.modal.custom.fade
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{ 'data-dismiss': :modal, type: :button }
-          %span{ 'aria-hidden': true } ×
-        %h4#myModalLabel.modal-title Підтвердження допомоги
+        %h4.modal-title Створення відгуку про допомогу
       = nested_form_for @decision, html: { class: 'item-form', data: { url: refresh_counters_url(type: :accepted_items, request: request.id) }} do |f|
         .modal-body
           = f.hidden_field :helper_id, value: current_user.id
@@ -14,8 +12,9 @@
             = f.label :Категорії
             = f.fields_for :accepted_items do |builder|
               = render 'requests/item', f: builder, type: :accepted_item, request: request
-            .clear-fix
             = f.link_to_add :accepted_items do
               %span.fa.fa-plus-square{ 'aria-hidden': true }
         .modal-footer
-          = submit_tag 'Надіслати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
+          .actions
+            = submit_tag 'Надіслати', class: ' btn btn-shadow btn-info confirm', data: { disable_with: 'Обробка...' }
+            %input.btn.btn-shadow.btn-default.cancel{ data: { dismiss: 'modal' }, type: 'button', value: 'Відмінити' }

@@ -1,4 +1,6 @@
 class Decision < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
   include Errorable
 
   include PublicActivity::Model
@@ -16,6 +18,10 @@ class Decision < ActiveRecord::Base
 
   def self.update_helped_items!(item)
     item.decision.helper.helped_items.find_or_initialize_by(category_id: item.required_item.category_id)
+  end
+
+  def status?(status)
+    [*status].include? self.status
   end
 
 

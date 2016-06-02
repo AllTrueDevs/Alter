@@ -16,8 +16,8 @@ $ ->
            <div class='modal custom fade' id='ModalConfirmation'>
              <div class='modal-dialog'>
                <div class='modal-content'>
-                 <div class='modal-body'>
-                   <p>#{link.data('confirm')}</p>
+                 <div class='modal-header confirmation-header'>
+                   <h4 class='modal-title'>#{link.data('confirm')}</h4>
                  </div>
                  <div class='modal-footer'>
                    <div class='actions'>

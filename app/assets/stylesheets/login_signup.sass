@@ -9,25 +9,37 @@
   margin: 0 auto
   padding: 40px
   width: 35%
+  textarea
+    resize: none
   input[type=submit]
     margin: 40px auto
-    display: block
     width: 70%
-    color: #fff
-    border: none
-    border-radius: 30px
-    padding: 20px 0 20px 0
-    background: #35353f
-    text-align: center
-    text-transform: uppercase
-    font-weight: bold
-    box-shadow: 6px 8px 22px -5px #2B2B39
+    padding: 20px
+  input[type=email], input[type=password], input[type=text], textarea
+    background-color: transparent !important
+    width: 100%
+    margin-bottom: 10px
   input[type=email], input[type=password], input[type=text]
     border: none
-    border-bottom: 1px solid #cbcbcb
-    width: 100%
     padding: 20px 10px
-    margin-bottom: 10px
+    border-bottom: 1px solid #cbcbcb
+    &:focus
+      border-color: #8e8e9b
+      box-shadow: 0 4px 6px -6px #8e8e9b
+    &:disabled
+      background-color: #fcfcfc !important
+      border-top-left-radius: 4px
+      border-top-right-radius: 4px
+      border-bottom-color: #b9b9b9
+  textarea
+    border: 1px solid #cbcbcb
+    border-radius: 4px
+    padding: 15px 20px
+    text-align: justify
+    &:focus
+      border-color: #8e8e9b
+      box-shadow: 0 0 3px -1px #2B2B39
+
   .error
     border-color: rgba(231, 10, 10, 0.2) !important
     &::-webkit-input-placeholder
@@ -53,6 +65,41 @@
       &:checked + label::before
         background-image: url('checked.png')
         color: #35353f
+  .twitter-typeahead
+    width: 100%
+  .tt-query, .tt-hint
+    width: 100%
+    padding: 8px 12px
+    border: 2px solid #ccc
+    border-radius: 8px
+    outline: none
+  .tt-query
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  .tt-hint
+    color: #999
+  .tt-menu
+    width: 100%
+    max-height: 220px
+    overflow-y: scroll
+    padding: 8px 0
+    background-color: #fff
+    cursor: pointer
+    border: 1px solid #cbcbcb
+    &::-webkit-scrollbar
+      width: 5px
+    &::-webkit-scrollbar-thumb
+      background-color: rgba(53, 53, 63, 0.6)
+      border-radius: 2px
+    &::-webkit-scrollbar-track
+      border-radius: 2px
+  .tt-suggestion
+    padding: 3px 20px
+    font-size: 1em
+    line-height: 24px
+    &:hover
+      background-color: rgba(33, 33, 33, 0.2)
+    p
+      margin: 0
   .links
     text-align: center
     a
@@ -65,3 +112,61 @@
       text-align: center
       a
         font-size: 2em
+
+.edit-profile
+  display: block
+  .group-form
+    width: 60%
+    padding: 40px 60px !important
+    box-shadow: 0 0 17px #2B2B39
+    .title
+      font-size: 2em
+      margin-bottom: 40px
+    &:last-child
+      padding-top: 0
+    input[type=submit]
+      width: 40%
+    .social
+      white-space: nowrap
+      a
+        color: #cbcbcb
+        &:hover
+          color: #35353f
+      label
+        display: block
+      .url-field
+        position: relative
+        width: 100%
+        .actions
+          position: absolute
+          display: inline-block
+          top: 30%
+          float: right
+      &.empty
+        margin: 30px 0
+    .bootstrap-filestyle
+      border: 1px solid #cbcbcb
+      border-radius: 4px
+      .group-span-filestyle
+        border-left: 1px solid #cbcbcb
+        label
+          border: none
+          height: auto
+          background-color: transparent
+          color: #cbcbcb
+          margin: 0
+          &:hover
+            color: #35353f
+      input
+        height: auto
+        box-shadow: none
+        border: none
+        margin-bottom: 0
+        border-radius: 4px
+        padding: 15px 10px
+  .password-form
+    width: 60%
+    display: block
+    margin: 100px auto 0 auto
+    input[type=submit]
+      width: 60%

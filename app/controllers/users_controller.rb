@@ -1,14 +1,11 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource except: [:select_requests]
-  before_action :set_user, only: [:change_ban_status, :change_moder_status, :admin_login, :show, :detach_social_link, :select_requests]
-  before_action :authenticate_user!, except: [:select_requests]
+  load_and_authorize_resource except: [:select_requests, :search_settlements]
+  before_action :set_user, except: [:index, :search, :search_settlements]
+  before_action :authenticate_user!, except: [:select_requests, :search_settlements]
 
   def show
-    if @user.confirmed_at.nil?
-      redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію'
-    else
-      @requests = @user.requests.actual.order(created_at: :desc).page(params[:page]).per(10)
-    end
+    redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію' if @user.confirmed_at.nil?
+    @requests = @user.requests.actual.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def index
@@ -20,35 +17,42 @@ class UsersController < ApplicationController
     respond_to :js
   end
 
+  def search_settlements
+    query, limit = autocomplete_params[:query], autocomplete_params[:limit].to_i
+    json = nova_poshta_data(query)
+    @settlements = json.take(limit).map do |data|
+      {
+         settlement: data[:Description],
+         type: data[:SettlementTypeDescription],
+         region: data[:AreaDescription],
+         district: data[:RegionsDescription]
+      }
+    end
+    respond_to do |format|
+      format.json { render :json => @settlements }
+    end
+  end
+
   def change_ban_status
     if @user.role?(:banned)
       @user.update(role: 'author')
       @user.notifications.create(message_type: 5)
+      @user.create_activity key: 'user.unban'
       redirect_to @user
     else
-      if cannot?(:manage, User) && @user.with_privileges?
-        flash[:error] = 'Немає доступу'
-        redirect_to @user
-      else
-        @user.update(role: 'banned')
-        @user.notifications.create(message_type: 4)
-        @user.requests.update_all(status: 'declined')
+      @user.update(role: 'banned')
+      @user.notifications.create(message_type: 4)
+      @user.create_activity key: 'user.ban'
+      @user.requests.update_all(status: 'declined')
 
-        @user.requests.each do |request|
-          request.decisions.each do |decision|
-            decision.accepted_items.destroy_all
-          end
-          request.decisions.destroy_all
-        end
-
-        decisions = Decision.where(helper_id: @user.id)
-        decisions.each do |decision|
-          decision.accepted_items.destroy_all
-        end
-        decisions.destroy_all
-
-        redirect_to @user
+      @user.requests.each do |request|
+        request.decisions.destroy_all
       end
+
+      decisions = Decision.where(helper: @user)
+      decisions.destroy_all
+
+      redirect_to @user
     end
   end
 
@@ -113,20 +117,49 @@ class UsersController < ApplicationController
 
   def upvote
     @user.upvote_from(current_user)
+    @user.notifications.create(message_type: 12, reason_user: current_user)
     respond_to :js
   end
 
   def downvote
     @user.downvote_from(current_user)
+    @user.notifications.create(message_type: 13, reason_user: current_user)
     respond_to :js
   end
 
   def activity
-    @activities = current_user.activity
+    @activities = PublicActivity::Activity.where("(owner_id=? and owner_type='User') or (trackable_id=? and trackable_type='User')", @user.id, @user.id)
+                                          .order(created_at: :desc)
     respond_to :js
   end
 
+
   private
+
+
+  def nova_poshta_data(query)
+    require 'json'
+    require 'net/http'
+
+    uri = URI('http://testapi.novaposhta.ua/v2.0/json/AddressGeneral/getSettlements/')
+    uri.query = URI.encode_www_form({})
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request['Content-Type'] = 'application/json'
+    request.body = {
+        modelName: 'AddressGeneral',
+        calledMethod: 'getSettlements',
+        methodProperties: {
+            FindByString: query,
+            MainCitiesOnly: query.blank?
+        }
+    }.to_json
+
+    response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+      http.request(request)
+    end
+
+    JSON.parse(response.body, symbolize_names: true)[:data]
+  end
 
   def set_user
     @user = User.find(params[:id])
@@ -136,4 +169,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
+  def autocomplete_params
+    params.permit(:limit, :query)
+  end
 end

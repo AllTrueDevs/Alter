@@ -10,7 +10,6 @@ Rails.application.config.assets.precompile += %w(
   scaffolds.sass
   home.sass
   about.sass
-  users.sass
   index_show.sass
   messages.sass
   login_signup.sass
@@ -27,11 +26,11 @@ Rails.application.config.assets.precompile += %w(
   plugins/tags-field.coffee
   plugins/infinite-loader.coffee
   plugins/progress-bars.coffee
-  user-tabs.coffee
+  tabs.coffee
   selection_color.coffee
   home.coffee
   articles.coffee
   messages.coffee
   items.coffee
-  login-error.coffee
+  user-forms.coffee
 )

@@ -1,3 +1,42 @@
+settlements = [
+                {:settlement=>"Вінниця", :settlement_type=>"місто", :region=>"Вінницька область", :district=>""},
+                {:settlement=>"Абрамівка", :settlement_type=>"село", :region=>"Київська область", :district=>"Вишгородський р-н"},
+                {:settlement=>"Абрамівська Долина", :settlement_type=>"село", :region=>"Вінницька область", :district=>"Чернівецький р-н"},
+                {:settlement=>"Абрамок", :settlement_type=>"село", :region=>"Житомирська область", :district=>"Новоград-Волинський р-н"},
+                {:settlement=>"Дніпропетровськ", :settlement_type=>"місто", :region=>"Дніпропетровська область", :district=>""},
+                {:settlement=>"Блакитне", :settlement_type=>"село", :region=>"Запорізька область", :district=>"Оріхівський р-н"},
+                {:settlement=>"Блешня", :settlement_type=>"село", :region=>"Чернігівська область", :district=>"Семенівський р-н"},
+                {:settlement=>"Блидні", :settlement_type=>"село", :region=>"Хмельницька область", :district=>"Полонський р-н"},
+                {:settlement=>"Донецьк", :settlement_type=>"місто", :region=>"Донецька область", :district=>""},
+                {:settlement=>"Земляне", :settlement_type=>"село", :region=>"Сумська область", :district=>"Краснопільський р-н"},
+                {:settlement=>"Земляний Яр", :settlement_type=>"село", :region=>"Харківська область", :district=>"Вовчанський р-н"},
+                {:settlement=>"Земляничне", :settlement_type=>"село", :region=>"АРК", :district=>"Білогірський р-н"},
+                {:settlement=>"Хмеьницький", :settlement_type=>"місто", :region=>"Хмельницька область", :district=>""},
+                {:settlement=>"Хмельницький", :settlement_type=>"місто", :region=>"Хмельницька область", :district=>""},
+                {:settlement=>"Хмельницький", :settlement_type=>"місто", :region=>"Хмельницька область", :district=>""},
+                {:settlement=>"Хмельницький", :settlement_type=>"місто", :region=>"Хмельницька область", :district=>""},
+                {:settlement=>"Хмельницький", :settlement_type=>"місто", :region=>"Хмельницька область", :district=>""},
+                {:settlement=>"Київ", :settlement_type=>"місто", :region=>"Київська область", :district=>""},
+                {:settlement=>"Новосвітлівка", :settlement_type=>"село", :region=>"Миколаївська область", :district=>"Веселинівський р-н"},
+                {:settlement=>"Новосевастополь", :settlement_type=>"село", :region=>"Миколаївська область", :district=>"Березнегуватський р-н"},
+                {:settlement=>"Луганськ", :settlement_type=>"місто", :region=>"Луганська область", :district=>""},
+                {:settlement=>"Нетечинці", :settlement_type=>"село", :region=>"Хмельницька область", :district=>"Віньковецький р-н"},
+                {:settlement=>"Нетішин", :settlement_type=>"місто", :region=>"Хмельницька область", :district=>"Нетішин"},
+                {:settlement=>"Львів", :settlement_type=>"місто", :region=>"Львівська область", :district=>""},
+                {:settlement=>"Ященків", :settlement_type=>"село", :region=>"Чернігівська область", :district=>"Варвинський р-н"},
+                {:settlement=>"Ящикове", :settlement_type=>"селище міського типу", :region=>"Луганська область", :district=>"Перевальський р-н"},
+                {:settlement=>"Ясногірка", :settlement_type=>"селище міського типу", :region=>"Донецька область", :district=>"Краматорськ"},
+                {:settlement=>"Одеса", :settlement_type=>"місто", :region=>"Одеська область", :district=>""},
+                {:settlement=>"Ясенецьке", :settlement_type=>"селище", :region=>"Вінницька область", :district=>"Липовецький р-н"},
+                {:settlement=>"Полтава", :settlement_type=>"місто", :region=>"Полтавська область", :district=>""},
+                {:settlement=>"Фастів", :settlement_type=>"місто", :region=>"Київська область", :district=>"Фастівський р-н"},
+                {:settlement=>"Усть-Чорна", :settlement_type=>"селище міського типу", :region=>"Закарпатська область", :district=>"Тячівський р-н"},
+                {:settlement=>"Ульяновка", :settlement_type=>"місто", :region=>"Кіровоградська область", :district=>"Ульяновський р-н"},
+                {:settlement=>"Тячів", :settlement_type=>"місто", :region=>"Закарпатська область", :district=>"Тячівський р-н"},
+                {:settlement=>"Сімферополь", :settlement_type=>"місто", :region=>"АРК", :district=>""},
+                {:settlement=>"Харків", :settlement_type=>"місто", :region=>"Харківська область", :district=>""},
+              ]
+
 RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною \"рибою\" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. \"Риба\" не тільки успішно пережила п'ять століть, але й прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам комп'ютерного верстування на кшталт Aldus Pagemaker, які використовували різні версії Lorem Ipsum."
 
 ############Create Categories
@@ -13,7 +52,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 #############
 
 ###############Create Users
-
+  settlement = settlements[Random.rand(settlements.size)]
   user = User.new(
       :name                  => "Адмін",
       :email                 => "first@admin.com",
@@ -23,11 +62,17 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       :avatar_file_name      => "avatar.jpg",
       :info                  => "Помощь бойцам, которые на фронте. Обмундирование, термобелье, аптечки, питание…Поездки на фронт с гум.помощью для: детских домов, госпиталям, бойцам, гражданским…Помощь, консультации семьям бойцов. Пишите на ФБ или e-mail.",
       :password              => "12345678",
-      :password_confirmation => "12345678"
+      :password_confirmation => "12345678",
+      :settlement            => settlement[:settlement],
+      :settlement_type       => settlement[:settlement_type],
+      :region                => settlement[:region],
+      :district              => settlement[:district]
+
   )
   user.skip_confirmation!
   user.save!
 
+  settlement = settlements[Random.rand(settlements.size)]
   user = User.new(
       :name                  => "Модератор",
       :email                 => "second@admin.com",
@@ -36,11 +81,16 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       :avatar_file_name      => "avatar.jpg",
       :info                  => "Харьковский активист и волонтер. Помогает армии и Нацгвардии, старается доставить то, что заказывают бойцы.",
       :password              => "12345678",
-      :password_confirmation => "12345678"
+      :password_confirmation => "12345678",
+      :settlement            => settlement[:settlement],
+      :settlement_type       => settlement[:settlement_type],
+      :region                => settlement[:region],
+      :district              => settlement[:district]
   )
   user.skip_confirmation!
   user.save!
 
+  settlement = settlements[Random.rand(settlements.size)]
   user = User.new(
       :name                  => "Благодійний фонд \"За Україну\"",
       :email                 => "third@admin.com",
@@ -50,11 +100,16 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       :avatar_file_name      => "avatar.jpg",
       :info                  => "Благодійний Фонд “За Україну” створено у 2014 р.. У важкий для країни час фонд долучився до активної допомоги українським військовим, солдатам Збройних сил України, Національної гвардії, які приймають участь у антитерористичній операції на Сході України. Також Фонд надає допомогу у лікуванні та реабілітації поранених солдатів АТО, допомагає родинам, в яких залишились неповнолітні діти, батько яких загинув під час бойових дій. На даний момент ці напрямки стали пріоритетними у роботі Фонду.",
       :password              => "12345678",
-      :password_confirmation => "12345678"
+      :password_confirmation => "12345678",
+      :settlement            => settlement[:settlement],
+      :settlement_type       => settlement[:settlement_type],
+      :region                => settlement[:region],
+      :district              => settlement[:district]
   )
   user.skip_confirmation!
   user.save!
 
+  settlement = settlements[Random.rand(settlements.size)]
   user = User.new(
       :name                  => "Богуш Олександр Станіславович",
       :email                 => "fourth@admin.com",
@@ -63,23 +118,33 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       :info                  => "Група волонтерів, яка розпочала свою діяльність з вироблення бастіонів по типу HESCO.
                                   Після чого розробила та створила дистанційно-керовані модулі “Шабля”, які дозволяють військовому знаходитися у безпечному для життя місці та вести спостереження за територією, та відповідати на вогонь сєпаратистів, без загрози для життя військового.",
       :password              => "12345678",
-      :password_confirmation => "12345678"
+      :password_confirmation => "12345678",
+      :settlement            => settlement[:settlement],
+      :settlement_type       => settlement[:settlement_type],
+      :region                => settlement[:region],
+      :district              => settlement[:district]
   )
   user.skip_confirmation!
   user.save!
 
+  settlement = settlements[Random.rand(settlements.size)]
   user = User.new(
       :name                  => "Немирний Артем Леонідович",
       :email                 => "fifth@admin.com",
       :avatar_file_name      => "avatar.jpg",
       :info                  => "Допомога спорядженням, побутовими речами, грішми, технікою.",
       :password              => "12345678",
-      :password_confirmation => "12345678"
+      :password_confirmation => "12345678",
+      :settlement            => settlement[:settlement],
+      :settlement_type       => settlement[:settlement_type],
+      :region                => settlement[:region],
+      :district              => settlement[:district]
   )
   user.skip_confirmation!
   user.save!
 
   25.times do |x|
+    settlement = settlements[Random.rand(settlements.size)]
     user = User.new(
         :name                  => "Користувач_#{x}",
         :email                 => "#{x}_user@user.com",
@@ -88,7 +153,11 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         :avatar_file_name      => "avatar.jpg",
         :info                  => BetterLorem.p(1, true, true ),
         :password              => "12345678",
-        :password_confirmation => "12345678"
+        :password_confirmation => "12345678",
+        :settlement            => settlement[:settlement],
+        :settlement_type       => settlement[:settlement_type],
+        :region                => settlement[:region],
+        :district              => settlement[:district]
     )
     user.skip_confirmation!
     user.save!

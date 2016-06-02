@@ -1,0 +1,1 @@
+$(".tab-pane.active").html("<%= escape_javascript(render partial: 'requests/request_wall', locals: { posts: @posts, request: @request }) %>");
