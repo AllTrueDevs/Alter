@@ -1,0 +1,102 @@
+/* line 1, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form {
+  font-family: "Roboto", regular;
+  font-size: 0.9em;
+  margin: 0 auto;
+  padding: 40px;
+  width: 35%;
+}
+/* line 3, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .field_with_errors input {
+  border-color: rgba(231, 10, 10, 0.2) !important;
+}
+/* line 5, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .field_with_errors ::-webkit-input-placeholder {
+  color: rgba(231, 10, 10, 0.5);
+}
+/* line 12, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form input[type=submit] {
+  margin: 40px auto;
+  display: block;
+  width: 70%;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 20px 0 20px 0;
+  background: #35353f;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 6px 8px 22px -5px #2B2B39;
+}
+/* line 25, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form input[type=email], .group-form input[type=password], .group-form input[type=text] {
+  border: none;
+  border-bottom: 1px solid #cbcbcb;
+  width: 100%;
+  padding: 20px 10px;
+  margin-bottom: 10px;
+}
+/* line 31, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .error {
+  border-color: rgba(231, 10, 10, 0.2) !important;
+}
+/* line 33, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .error::-webkit-input-placeholder {
+  color: rgba(231, 10, 10, 0.5) !important;
+}
+/* line 35, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .custom-checkbox {
+  text-align: center;
+  color: #cbcbcb;
+  padding-top: 35px;
+}
+/* line 39, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+/* line 41, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .custom-checkbox input[type="checkbox"] + label {
+  cursor: pointer;
+}
+/* line 43, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .custom-checkbox input[type="checkbox"] + label:hover, .group-form .custom-checkbox input[type="checkbox"] + label:focus {
+  color: #35353f;
+}
+/* line 45, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .custom-checkbox input[type="checkbox"] + label::before {
+  content: "";
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  margin: 0 5px 0 0;
+  background-image: url("unchecked.png");
+  background-repeat: no-repeat;
+}
+/* line 53, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .custom-checkbox input[type="checkbox"]:checked + label::before {
+  background-image: url("checked.png");
+  color: #35353f;
+}
+/* line 56, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .links {
+  text-align: center;
+}
+/* line 58, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .links a {
+  line-height: 2em;
+  color: #cbcbcb;
+  text-decoration: none;
+}
+/* line 62, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .links a:hover, .group-form .links a:focus {
+  color: #35353f;
+}
+/* line 64, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .links .social-networks {
+  text-align: center;
+}
+/* line 66, /home/shpak/Projects/alter_beta/app/assets/stylesheets/login_signup.sass */
+.group-form .links .social-networks a {
+  font-size: 2em;
+}
