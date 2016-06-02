@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   validates :phone, length:  { maximum: 20 }
   validates :skype, length:  { maximum: 32 }
 
-  scope :search, -> (query) { where("LOWER(name) LIKE LOWER('%#{query}%')") }
+  scope :search, -> (query) { where("LOWER(name) LIKE LOWER('%#{query}%') OR LOWER(settlement) LIKE LOWER('%#{query}%')") }
 
   after_create do
     user_tags.create(form_tags(default_tags, :news))
