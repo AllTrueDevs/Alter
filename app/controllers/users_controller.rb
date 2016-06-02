@@ -36,13 +36,13 @@ class UsersController < ApplicationController
   def change_ban_status
     if @user.role?(:banned)
       @user.update(role: 'author')
-      @user.notifications.create(message_type: 5)
-      @user.create_activity key: 'user.unban'
+      # @user.notifications.create(message_type: 5)
+      @user.create_activity key: 'user.unban', status: 'new'
       redirect_to @user
     else
       @user.update(role: 'banned')
-      @user.notifications.create(message_type: 4)
-      @user.create_activity key: 'user.ban'
+      # @user.notifications.create(message_type: 4)
+        @user.create_activity key: 'user.ban', status: 'new'
       @user.requests.update_all(status: 'declined')
 
       @user.requests.each do |request|
@@ -58,11 +58,11 @@ class UsersController < ApplicationController
 
   def change_moder_status
     if @user.role?(:moderator)
-      @user.update(role: 'author')
-      @user.notifications.create(message_type: 7)
+      # @user.notifications.create(message_type: 7)
+      @user.create_activity key: 'user.unmoder', status: 'new'
     else
-      @user.update(role: 'moderator')
-      @user.notifications.create(message_type: 6)
+      # @user.notifications.create(message_type: 6)
+      @user.create_activity key: 'user.moder', status: 'new'
     end
     redirect_to @user
   end
@@ -117,19 +117,21 @@ class UsersController < ApplicationController
 
   def upvote
     @user.upvote_from(current_user)
-    @user.notifications.create(message_type: 12, reason_user: current_user)
+    # @user.notifications.create(message_type: 12, reason_user: current_user)
+    # @user.create_activity key: 'user.upvote', status: 'new', recipient: current_user
     respond_to :js
   end
 
   def downvote
     @user.downvote_from(current_user)
-    @user.notifications.create(message_type: 13, reason_user: current_user)
+    # @user.notifications.create(message_type: 13, reason_user: current_user)
+    # @user.create_activity key: 'user.downvote', status: 'new', recipient: current_user
     respond_to :js
   end
 
   def activity
-    @activities = PublicActivity::Activity.where("(owner_id=? and owner_type='User') or (trackable_id=? and trackable_type='User')", @user.id, @user.id)
-                                          .order(created_at: :desc)
+    @activities = PublicActivity::Activity.where("(owner_id = :user_id and owner_type='User') or (trackable_id = :user_id and trackable_type='User')", user_id: @user.id)
+                      .order(created_at: :desc)
     respond_to :js
   end
 

@@ -21,59 +21,61 @@ module Wordable
     "\"<a href=\"/requests/#{request.id}\" title=\"#{request.name}\">#{human_truncate(request.name, 35)}</a>\""
   end
 
+  def notification_message_text(activity)
+    case activity.key
+      when 'decision.accept' then "#{form_user_link(activity.owner)} підтвердив те, що ви допомогли по запиту #{form_request_link(activity.recipient)}."
+      when 'decision.create' then "#{form_user_link(activity.owner)} створив відгук до запиту #{form_request_link(activity.recipient)}."
+      when 'decision.deny' then "#{form_user_link(activity.owner)} відхилив факт допомоги по запиту #{form_request_link(activity.recipient)}."
+      when 'decision.partly' then "#{form_user_link(activity.owner)} підтвердив те, що ви частково допомогли по запиту #{form_request_link(activity.recipient)}."
+      when 'decision.archive_request' then "#{form_user_link(activity.owner)} заархівував запит #{form_request_link(activity.recipient)}."
+      when 'decision.update_request' then
+      when 'request.check' then "Запит #{form_request_link(activity.trackable)} було перевірено адміністрацією."
+      when 'request.decline' then "Запит #{form_request_link(activity.trackable)} було відхилено адміністрацією."
+      when 'user.ban' then 'Ваш аккаунт було заблоковано адміністрацією.'
+      when 'user.unban' then 'Ваш аккаунт було розблоковано адміністрацією.'
+      when 'user.moder' then 'Вашому аккаунту було надано права модератора.'
+      when 'user.unmoder' then 'Вашому аккаунту було надано права звичайного користувача.'
+    end
+  end
+
   def user_activity_message_text(activity)
-    model, action = activity.key.split('.')
-    case model
-    when 'request'
-      case action
-      when 'archive' then "Заархівував запит #{form_request_link(activity.trackable)}."
-      when 'create' then "Створив запит #{form_request_link(activity.trackable)}."
-      when 'update' then "Змінив запит #{form_request_link(activity.trackable)}."
-      when 'check' then "Запит #{form_request_link(activity.trackable)} було перевірено адміністрацією."
-      when 'decline' then "Запит #{form_request_link(activity.trackable)} було відхилено адміністрацією."
-      end
-    when 'decision'
-      case action
-      when 'accept' then "Прийняв відгук за запитом #{form_request_link(activity.recipient)}."
-      when 'create' then "Створив відгук за запитом #{form_request_link(activity.recipient)}."
-      when 'deny' then "Відхилив відгук за запитом #{form_request_link(activity.recipient)}."
-      when 'partly' then "Чістково прийняв відгук за запитом #{form_request_link(activity.recipient)}."
-      end
-    when 'user'
-      case action
-      when 'ban' then 'Аккаунт було заблоковано адміністрацією.'
-      when 'unban' then 'Аккаунт було розблоковано адміністрацією.'
-      end
+    case activity.key
+      when 'decision.accept' then "Прийняв відгук за запитом #{form_request_link(activity.recipient)}."
+      when 'decision.create' then "Створив відгук за запитом #{form_request_link(activity.recipient)}."
+      when 'decision.deny' then "Відхилив відгук за запитом #{form_request_link(activity.recipient)}."
+      when 'decision.partly' then "Частково прийняв відгук за запитом #{form_request_link(activity.recipient)}."
+      when 'request.archive' then "Заархівував запит #{form_request_link(activity.trackable)}."
+      when 'request.create' then "Створив запит #{form_request_link(activity.trackable)}."
+      when 'request.update' then "Змінив запит #{form_request_link(activity.trackable)}."
+      when 'request.check' then "Запит #{form_request_link(activity.trackable)} було перевірено адміністрацією."
+      when 'request.decline' then "Запит #{form_request_link(activity.trackable)} було відхилено адміністрацією."
+      when 'user.ban' then 'Аккаунт було заблоковано адміністрацією.'
+      when 'user.unban' then 'Аккаунт було розблоковано адміністрацією.'
+      when 'user.moder' then 'Аккаунту було надано права адміністратора.'
+      when 'user.unmoder' then 'Аккаунт було надано права звичайного користувача.'
     end
   end
 
   def request_activity_message_text(activity)
-    model, action = activity.key.split('.')
-    case model
-      when 'request'
-        case action
-          when 'archive' then "#{form_user_link(activity.trackable.user)} заархівував запит."
-          when 'create' then "#{form_user_link(activity.trackable.user)} створив запит."
-          when 'update' then "#{form_user_link(activity.trackable.user)} змінив запит."
-          when 'check' then 'Запит було перевірено адміністрацією.'
-          when 'decline' then 'Запит було відхилено адміністрацією.'
-        end
-      when 'decision'
-        case action
-          when 'accept' then "#{form_user_link(activity.owner)} прийняв допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
-          when 'create' then "#{form_user_link(activity.owner)} створив відгук."
-          when 'deny' then "#{form_user_link(activity.owner)} відхилив допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
-          when 'partly' then "#{form_user_link(activity.owner)} частково допомогу відук від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
-        end
+    case activity.key
+      when 'decision.accept' then "#{form_user_link(activity.owner)} прийняв допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
+      when 'decision.create' then "#{form_user_link(activity.owner)} створив відгук."
+      when 'decision.deny' then "#{form_user_link(activity.owner)} відхилив допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
+      when 'decision.partly' then "#{form_user_link(activity.owner)} частково прийняв допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
+      when 'request.archive' then "#{form_user_link(activity.trackable.user)} заархівував запит."
+      when 'request.create' then "#{form_user_link(activity.trackable.user)} створив запит."
+      when 'request.update' then "#{form_user_link(activity.trackable.user)} змінив запит."
+      when 'request.check' then 'Запит було перевірено адміністрацією.'
+      when 'request.decline' then 'Запит було відхилено адміністрацією.'
     end
   end
 
   def activity_icon(activity)
-    model, action = activity.key.split('.')
+    action = activity.key.split('.')[1]
     case action
       when 'create' then 'fa fa-plus'
-      when 'update' then 'fa fa-pencil'
-      when 'archive' then 'fa fa-archive'
+      when 'update', 'update_request' then 'fa fa-pencil'
+      when 'archive', 'archive_request' then 'fa fa-archive'
       when 'check' then 'fa fa-check'
       when 'decline' then 'fa fa-ban'
       when 'accept' then 'fa fa-star'
@@ -81,6 +83,8 @@ module Wordable
       when 'partly' then 'fa fa-star-half-o'
       when 'ban' then 'fa fa-lock'
       when 'unban' then 'fa fa-unlock'
+      when 'moder' then 'fa fa-user-secret'
+      when 'unmoder' then 'fa fa-user'
     end
   end
 

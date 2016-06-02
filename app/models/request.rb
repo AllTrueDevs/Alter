@@ -1,7 +1,6 @@
 class Request < ActiveRecord::Base
   include Errorable
-  include PublicActivity::Model
-  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
+  include PublicActivity::Common
 
   acts_as_votable
   belongs_to :user

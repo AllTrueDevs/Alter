@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
+  include PublicActivity::Common
   ROLES = %w[admin moderator newsmaker author banned]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
@@ -99,6 +98,17 @@ class User < ActiveRecord::Base
 
   def mailbox_empty?
     received_messages.private_messages.empty? && sent_messages.private_messages.empty?
+  end
+
+  def notificationss
+    PublicActivity::Activity.where(
+        PublicActivity::Activity.arel_table[:parameters].matches("%helper_id: #{id}%")
+        .or(PublicActivity::Activity.arel_table[:trackable_id].eq(id).and(PublicActivity::Activity.arel_table[:trackable_type].eq('User')))
+        .or(
+            PublicActivity::Activity.arel_table[:owner_id].eq(id).and(PublicActivity::Activity.arel_table[:owner_type].eq('User'))
+            .and(PublicActivity::Activity.arel_table[:key].eq('request.check')).or(PublicActivity::Activity.arel_table[:key].eq('request.update'))
+           )
+    )
   end
 
   def counters(type)

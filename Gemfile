@@ -36,7 +36,7 @@ gem 'font-awesome-rails'
 gem 'selectize-rails'
 gem 'jquery-infinite-pages'
 gem 'jquery-ui-rails'
-gem 'twitter-typeahead-rails', :git => "git://github.com/yourabi/twitter-typeahead-rails.git"
+gem 'twitter-typeahead-rails', github: 'yourabi/twitter-typeahead-rails'
 
 #############################
 ### Backend
@@ -60,6 +60,7 @@ gem 'remotipart', '~> 1.2'
 gem 'active_record_union'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'public_activity'
+gem 'protected_attributes'
 
 group :development, :test do
   gem 'byebug'
