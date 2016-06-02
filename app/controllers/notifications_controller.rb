@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  load_and_authorize_resource except: [:clean]
+  authorize_resource class: false
   before_action :set_notification, only: [:show, :destroy]
 
   def index
@@ -26,7 +26,7 @@ class NotificationsController < ApplicationController
 
   private
     def set_notification
-      @notification = Notification.find(params[:id])
+      # @notification = Notification.find(params[:id])
     end
 
     def notification_params

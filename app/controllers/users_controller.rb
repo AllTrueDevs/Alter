@@ -58,9 +58,11 @@ class UsersController < ApplicationController
 
   def change_moder_status
     if @user.role?(:moderator)
+      @user.update(role: 'author')
       # @user.notifications.create(message_type: 7)
       @user.create_activity key: 'user.unmoder', status: 'new'
     else
+      @user.update(role: 'moderator')
       # @user.notifications.create(message_type: 6)
       @user.create_activity key: 'user.moder', status: 'new'
     end

@@ -9,7 +9,6 @@ class Request < ActiveRecord::Base
   has_many :remaining_items, -> { remaining }, class_name: 'RequiredItem'
   has_many :categories, through: :required_items
   has_many :decisions, dependent: :destroy
-  has_many :notifications, dependent: :destroy
   has_many :posts, class_name: 'Message', dependent: :destroy
   has_many :impressions, as: :impressionable
   accepts_nested_attributes_for :required_items, allow_destroy: true,

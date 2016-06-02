@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_votable
   has_many :requests, dependent: :destroy
-  has_many :notifications, dependent: :destroy
   has_many :helped_items, dependent: :destroy
   has_many :decisions, foreign_key: 'helper_id', dependent: :destroy
   has_many :user_tags, :dependent => :destroy
@@ -114,7 +113,7 @@ class User < ActiveRecord::Base
   def counters(type)
     case(type)
     when :decisions then Decision.where(status: 'new', request: self.requests).size
-    when :notifications then self.notifications.where(status: 'new').size
+    when :notifications then 0 #self.notifications.where(status: 'new').size
     when :messages then  self.received_messages.where(status: 'new').size
     when :unchecked then Request.unchecked.near_with(self).size
     else nil

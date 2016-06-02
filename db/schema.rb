@@ -128,20 +128,6 @@ ActiveRecord::Schema.define(version: 20160602131149) do
   add_index "messages", ["request_id"], name: "index_messages_on_request_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
-  create_table "notifications", force: :cascade do |t|
-    t.string   "status",         default: "new"
-    t.integer  "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "message_type"
-    t.integer  "request_id"
-    t.integer  "reason_user_id"
-  end
-
-  add_index "notifications", ["reason_user_id"], name: "index_notifications_on_reason_user_id", using: :btree
-  add_index "notifications", ["request_id"], name: "index_notifications_on_request_id", using: :btree
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
-
   create_table "requests", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -268,9 +254,6 @@ ActiveRecord::Schema.define(version: 20160602131149) do
   add_foreign_key "messages", "requests"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
-  add_foreign_key "notifications", "requests"
-  add_foreign_key "notifications", "users"
-  add_foreign_key "notifications", "users", column: "reason_user_id"
   add_foreign_key "requests", "users"
   add_foreign_key "required_items", "categories"
   add_foreign_key "required_items", "requests"
