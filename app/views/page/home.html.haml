@@ -10,6 +10,6 @@
       - break if @requests[i].nil?
       = link_to '', circle_link(@requests[i]),id: "#{I18n.with_locale(:en) { (i + 1).to_words ordinal: true }}-news-circle", class: 'news-circles', data: { title: human_truncate(@requests[i].name, 50, ''), description: human_truncate(@requests[i].description, 100, '.', '.') }
     .news
-      %p.title{ title: @requests[0].name }= human_truncate(@requests[0].name, 15) unless @requests[0].nil?
-      %p.description= human_truncate(@requests[0].description, 25, '.', '.') unless @requests[0].nil?
+      %p.title{ title: @requests[0].name }= human_truncate(@requests[0].name, 50) unless @requests[0].nil?
+      %p.description= human_truncate(@requests[0].description, 100, '.', '.') unless @requests[0].nil?
   %span.phrases.second Весь світ для іншого.
