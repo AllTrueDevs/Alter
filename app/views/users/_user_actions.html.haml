@@ -1,0 +1,24 @@
+.user-actions
+  - if can?(:change_ban_status, user) && (current_user != user)
+    - if user.role?(:banned)
+      = link_to ban_user_url, method: :get, title: 'Розблокувати', data: { confirm: 'Ви дійсно хочете розблокувати користувача?'} do
+        %span.fa.fa-unlock
+    - else
+      = link_to ban_user_url, method: :get, title: 'Заблокувати', data: { confirm: 'Ви дійсно хочете заблокувати користувача?'} do
+        %span.fa.fa-lock
+  - if can?(:change_moder_status, user) && (current_user != user)
+    - if user.role?(:moderator)
+      = link_to moder_user_url, method: :get, title: 'Забрати права модератора', data: { confirm: 'Ви дійсно хочете забрати права модератора?'} do
+        %spanfa.fa.fa-user
+    - else
+      = link_to moder_user_url, method: :get, title: 'Надати права модератора', data: { confirm: 'Ви дійсно хочете надати права модератора?'} do
+        %span.fa.fa-user-secret
+  - if can?(:admin_login, user) && (current_user != user)
+    = link_to admin_login_user_url, method: :get, title: 'Вхід на аккаунт користувача', data: { confirm: 'Зайти на аккаунт даного користувача?'} do
+      %span.fa.fa-sign-in
+  - if can?(:new_private, Message) && user != current_user
+    = link_to dialog_messages_url(user: user), title: 'Написати повідомлення' do
+      %span.fa.fa-envelope
+  - if can? :vote, user
+    %div{ class: "votes votes-#{user.id}" }
+      = render partial: 'layouts/votes', locals: { source: user }

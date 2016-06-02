@@ -1,17 +1,15 @@
-#closeDecisionModal.modal.fade{ 'aria-hidden': true, 'aria-labelledby': :myModalLabel, role: :dialog, tabindex: '-1' }
+#closeDecisionModal.modal.custom.fade
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{ 'data-dismiss': :modal, type: :button }
-          %span{ 'aria-hidden': true } ×
-          %span.sr-only Закрити
-        %h4#myModalLabel.modal-title Підтвердження допомоги
+        %h4.modal-title Підтвердження відгуку про допомогу
       = nested_form_for @decision, url: partly_decision_url, method: :post, html: { class: 'item-form' } do |f|
         .modal-body
           .helped-items
             = f.label 'Оберіть категорії з якими вам допомогли(ці категорії запишуться в історію користувача)'
             = f.fields_for :accepted_items do |builder|
               = render 'requests/item', f: builder, type: :helped_item, decision: @decision
-            .clear-fix
         .modal-footer
-          = submit_tag 'Надіслати', class: 'btn btn-success', data: { disable_with: 'Обробка...' }
+          .actions
+            = submit_tag 'Надіслати', class: ' btn btn-shadow btn-info confirm', data: { disable_with: 'Обробка...' }
+            %input.btn.btn-shadow.btn-default.cancel{ data: { dismiss: 'modal' }, type: 'button', value: 'Відмінити' }

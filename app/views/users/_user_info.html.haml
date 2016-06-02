@@ -1,0 +1,35 @@
+.info
+  = render partial: 'users/user_actions', locals: { user: user }
+  %p.name= user.name
+  - unless user_role(user).blank?
+    %p.role= user_role(user)
+  - unless user.info.blank?
+    %p.description= user.info
+  .contact-info
+    - unless user.settlement.blank?
+      %p
+        Місцезнаходження:
+        %span
+          = user.location
+    - unless user.phone.blank?
+      %p
+        Телефон:
+        %span
+          = user.phone
+    - unless user.skype.blank?
+      %p
+        Skype:
+        %span
+          = user.skype
+    - unless user.vkontakte_name.blank?
+      %p
+        VK:
+        = link_to(user.vkontakte_name, user.vkontakte)
+    - unless user.facebook_name.blank?
+      %p
+        Facebook:
+        = link_to(user.facebook_name, user.facebook)
+    - unless user.twitter_name.blank?
+      %p
+        Facebook:
+        = link_to(user.twitter_name, user.twitter)

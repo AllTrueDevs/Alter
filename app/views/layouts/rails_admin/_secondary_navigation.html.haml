@@ -4,7 +4,5 @@
   - if _current_user
     - if user_link = edit_user_link
       %li.edit_user_root_link= user_link
-    - if can?(:update_cities_np_data, User)
-      %li= link_to 'Підвантажити список міст', '/users/update_cities_np_data'
     - if logout_path.present?
       %li= link_to content_tag('span', t('admin.misc.log_out'), class: 'label label-danger'), logout_path, method: logout_method

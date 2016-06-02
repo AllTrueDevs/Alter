@@ -3,14 +3,15 @@
     .progress-title
       %p= "#{required_item.category.name}: "
       %small= "#{required_item.current_count} з #{required_item.goal_count}"
-    .progress
+    .progress{title: "#{required_item.progress}%"}
       .progress-bar.active{data: {value: required_item.progress}, style: "background: ##{required_item.category.color}" }
         .percents.hidden
           %p{style: "color: #{required_item.font_color}"}= "#{required_item.progress}%"
   - unless @decision.blank?
-    - if @request.decisions.where(helper: current_user).empty?
-      %button.btn.btn-success.btn-sm{ 'data-target': '#helpRequestModal', 'data-toggle': :modal }
+    - if @request.decisions.where(helper: @user).empty?
+      %button.button{ data: { target: '#helpRequestModal', toggle: :modal} }
         Допомогти
       = render partial: 'modals/request_help', locals: { request: @request }
     - else
-      %small Очікується відповідь
+      %button.button{ disabled: true }
+        Очікується підтвердження

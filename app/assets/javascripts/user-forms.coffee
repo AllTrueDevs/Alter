@@ -25,18 +25,29 @@ $ ->
         displayKey: $(this).data('autocomplete-search')
         source: numbers.ttAdapter(),
         templates:
-          suggestion: (cities) ->
-            type = if cities.type != 'місто' then "#{cities.type} " else ''
-            region = if cities.region.length != 0 then "#{cities.region}, " else ''
-            return "<p>#{type}#{cities.city}, #{region}#{cities.district}</p>"
+          suggestion: (settlements) ->
+            type = if settlements.type != 'місто' then "#{settlements.type} " else ''
+            region = if settlements.region.length != 0 then "#{settlements.region}, " else ''
+            return "<p>#{type}#{settlements.settlement}, #{region}#{settlements.district}</p>"
         limit: 10
       }
     )
     .on 'typeahead:select', (event, suggestion) ->
-      region = if suggestion.region.length == 0 then suggestion.district else suggestion.region
-      $(this).closest('form').find('.region').val(region).show()
+      if suggestion.region.length == 0
+        region = suggestion.district
+        district = suggestion.region
+      else
+        region = suggestion.region
+        district = suggestion.district
+      $(this).closest('form').find('.region').val(region).removeClass('hidden')
+      $(this).closest('form').find('.district').val(district).removeClass('hidden')
+      $(this).closest('form').find('.settlement-type').val(suggestion.type)
     .on 'focusout', ->
       if $(this).siblings().find('.tt-suggestion').length == 0 || $(this).val().length == 0
         $(this).typeahead('val','')
-        region = $(this).closest('form').find('.region')
-        region.val('').hide()
+        $(this).closest('form').find('.settlement-type').val('')
+        $(this).closest('form').find('.region').val('').addClass('hidden')
+        $(this).closest('form').find('.district').val('')
+
+  $('.user-form').on 'submit', ->
+    $('.region:disabled').prop('disabled', false)

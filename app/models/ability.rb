@@ -16,7 +16,7 @@ class Ability
         user == usr
       end
 
-      can :vote, Request
+      can [:vote, :activity, :wall], Request
       can :vote, User do |usr|
         user != usr
       end
@@ -51,7 +51,10 @@ class Ability
 
       if user.with_privileges?
         can :manage, Category
-        can [:unchecked, :check, :decline, :destroy], Request
+        can [:unchecked, :destroy], Request
+        can [:check, :decline], Request do |request|
+          user.settlement.blank? || request.user.settlement.blank? || user.region == request.user.region
+        end
       end
 
       case user.role

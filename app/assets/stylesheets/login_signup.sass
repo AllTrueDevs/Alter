@@ -13,29 +13,32 @@
     resize: none
   input[type=submit]
     margin: 40px auto
-    display: block
     width: 70%
-    color: #fff
-    border: none
-    border-radius: 30px
-    padding: 20px 0 20px 0
-    background: #35353f
-    text-align: center
-    text-transform: uppercase
-    font-weight: bold
-    box-shadow: 6px 8px 22px -5px #2B2B39
-  input[type=email], input[type=password], input[type=text]
+    padding: 20px
+  input[type=email], input[type=password], input[type=text], textarea
     background-color: transparent !important
-    border: none
-    border-bottom: 1px solid #cbcbcb
     width: 100%
-    padding: 20px 10px
     margin-bottom: 10px
+  input[type=email], input[type=password], input[type=text]
+    border: none
+    padding: 20px 10px
+    border-bottom: 1px solid #cbcbcb
+    &:focus
+      border-color: #8e8e9b
+      box-shadow: 0 4px 6px -6px #8e8e9b
     &:disabled
       background-color: #fcfcfc !important
       border-top-left-radius: 4px
       border-top-right-radius: 4px
       border-bottom-color: #b9b9b9
+  textarea
+    border: 1px solid #cbcbcb
+    border-radius: 4px
+    padding: 15px 20px
+    text-align: justify
+    &:focus
+      border-color: #8e8e9b
+      box-shadow: 0 0 3px -1px #2B2B39
 
   .error
     border-color: rgba(231, 10, 10, 0.2) !important
@@ -62,8 +65,6 @@
       &:checked + label::before
         background-image: url('checked.png')
         color: #35353f
-  .region
-    display: none
   .twitter-typeahead
     width: 100%
   .tt-query, .tt-hint
@@ -72,13 +73,10 @@
     border: 2px solid #ccc
     border-radius: 8px
     outline: none
-
   .tt-query
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
-
   .tt-hint
     color: #999
-
   .tt-menu
     width: 100%
     max-height: 220px
@@ -94,7 +92,6 @@
       border-radius: 2px
     &::-webkit-scrollbar-track
       border-radius: 2px
-
   .tt-suggestion
     padding: 3px 20px
     font-size: 1em

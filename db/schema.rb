@@ -231,8 +231,10 @@ ActiveRecord::Schema.define(version: 20160531182858) do
     t.string   "social_sign_up_url"
     t.string   "twitter"
     t.string   "twitter_name"
-    t.string   "city"
+    t.string   "settlement"
+    t.string   "settlement_type"
     t.string   "region"
+    t.string   "district"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
   ROLES = %w[admin moderator newsmaker author banned]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
@@ -99,16 +101,12 @@ class User < ActiveRecord::Base
     received_messages.private_messages.empty? && sent_messages.private_messages.empty?
   end
 
-  def activity
-    PublicActivity::Activity.all.where(owner_id: id, owner_type: 'User')
-  end
-
   def counters(type)
     case(type)
     when :decisions then Decision.where(status: 'new', request: self.requests).size
     when :notifications then self.notifications.where(status: 'new').size
     when :messages then  self.received_messages.where(status: 'new').size
-    when :unchecked then Request.unchecked.size
+    when :unchecked then Request.unchecked.near_with(self).size
     else nil
     end
   end
@@ -127,6 +125,12 @@ class User < ActiveRecord::Base
     when self.twitter then :twitter
     else nil
     end
+  end
+
+  def location
+    setl_type = "#{self.settlement_type[0]}."
+    setl_district = self.district.present? ? "#{self.district}, " : ''
+    "#{setl_type} #{self.settlement}, #{setl_district}#{self.region} "
   end
 
 

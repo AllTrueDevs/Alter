@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Wordable
   def home_page?
     controller_name == 'page' && action_name == 'home'
   end

@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create, :show, :index, :refresh_counters, :search]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:unchecked, :create, :update, :destroy, :upvote, :downvote, :log_impression]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked, :refresh_counters]
   before_filter :log_impression, only: [:show]
 
@@ -16,7 +17,7 @@ class RequestsController < ApplicationController
   end
 
   def unchecked
-    @requests = Request.unchecked.order(created_at: :desc).page(params[:page]).per(10)
+    @requests = Request.unchecked.near_with(@user).order(created_at: :desc).page(params[:page]).per(10)
     render template: 'requests/index'
   end
 
@@ -36,7 +37,9 @@ class RequestsController < ApplicationController
 
   def show
     @posts = @request.posts.order(updated_at: :desc).page(params[:page]).per(10)
-    if @request.status?(:actual) && can?(:create, Decision) && @request.user != current_user
+    @activities = PublicActivity::Activity.where("(recipient_id=? and recipient_type='Request') or (trackable_id=? and trackable_type='Request')", @request.id, @request.id)
+                      .order(created_at: :desc)
+    if @request.status?(:actual) && can?(:create, Decision) && @request.user != @user
       @decision = Decision.new
       @decision.accepted_items.build
     end
@@ -51,8 +54,9 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_user.requests.new(request_params)
+    @request = @user.requests.new(request_params)
     if @request.save
+      @request.create_activity key: 'request.create', owner: @request.user
       redirect_to @request
     else
       errors = @request.form_errors(:request)
@@ -64,11 +68,11 @@ class RequestsController < ApplicationController
   def update
     if @request.update(request_params.merge(status: 'unchecked'))
       @request.decisions do |decision|
-        decision.helper.notifications.create(message_type: 8, reason_user: current_user, request: decision.request)
+        decision.helper.notifications.create(message_type: 8, reason_user: @user, request: decision.request)
       end
-      @request.create_activity key: 'request.update'
+      @request.create_activity key: 'request.update', owner: @request.user
       @request.decisions.destroy_all
-
+  
       redirect_to @request
     else
       errors = @request.form_errors(:request)
@@ -80,9 +84,9 @@ class RequestsController < ApplicationController
   def destroy
     @request.update(status: 'archived')
     @request.decisions do |decision|
-      decision.helper.notifications.create(message_type: 9, reason_user: current_user, request: decision.request)
+      decision.helper.notifications.create(message_type: 9, reason_user: @user, request: decision.request)
     end
-    @request.create_activity key: 'request.archive'
+    @request.create_activity key: 'request.archive', owner: @request.user
     @request.decisions.destroy_all
     
     respond_to do |format|
@@ -92,19 +96,19 @@ class RequestsController < ApplicationController
   end
 
   def upvote
-    @request.user.notifications.create(message_type: 14, reason_user: current_user, request: @request)
-    @request.upvote_from(current_user)
+    @request.user.notifications.create(message_type: 14, reason_user: @user, request: @request)
+    @request.upvote_from(@user)
     respond_to :js
   end
 
   def downvote
-    @request.user.notifications.create(message_type: 15, reason_user: current_user, request: @request)
-    @request.downvote_from(current_user)
+    @request.user.notifications.create(message_type: 15, reason_user: @user, request: @request)
+    @request.downvote_from(@user)
     respond_to :js
   end
 
   def log_impression
-    @request.impressions.create(ip_address: request.remote_ip, user_id: current_user.nil? ? nil : current_user.id)
+    @request.impressions.create(ip_address: request.remote_ip, user_id: @user.nil? ? nil : @user.id)
   end
 
   def refresh_counters
@@ -118,8 +122,23 @@ class RequestsController < ApplicationController
     respond_to :js
   end
 
+  def activity
+    @activities = PublicActivity::Activity.where("(recipient_id=? and recipient_type='Request') or (trackable_id=? and trackable_type='Request')", @request.id, @request.id)
+                                          .order(created_at: :desc)
+    respond_to :js
+  end
+
+  def wall
+    @posts = @request.posts.order(updated_at: :desc).page(params[:page]).per(10)
+    respond_to :js
+  end
+
   private
 
+
+  def set_user
+    @user = current_user
+  end
 
   def set_request
     @request = Request.find(params[:id])

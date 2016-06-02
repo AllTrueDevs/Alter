@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       get :decline
       get :upvote
       get :downvote
+      get :activity
+      get :wall
     end
     collection do
       get :unchecked
@@ -81,7 +83,7 @@ Rails.application.routes.draw do
     collection do
       patch :change_password
       get :search
-      get :search_cities
+      get :search_settlements
     end
   end
 
