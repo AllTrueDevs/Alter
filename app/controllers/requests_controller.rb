@@ -125,8 +125,14 @@ class RequestsController < ApplicationController
   end
 
   def activity
-    @activities = PublicActivity::Activity.where("(recipient_id = :request_id and recipient_type = 'Request') or (trackable_id = :request_id and trackable_type='Request')", request_id: @request.id)
-                      .order(created_at: :desc)
+    @activities = PublicActivity::Activity.where(
+        PublicActivity::Activity.arel_table[:recipient_id].eq(@request.id)
+            .and(PublicActivity::Activity.arel_table[:recipient_type].eq('Request'))
+            .or(
+                PublicActivity::Activity.arel_table[:trackable_id].eq(@request.id)
+                    .and(PublicActivity::Activity.arel_table[:trackable_type].eq('Request'))
+            )
+    ).order(created_at: :desc)
     respond_to :js
   end
 

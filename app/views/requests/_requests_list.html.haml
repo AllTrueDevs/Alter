@@ -1,9 +1,8 @@
-.request-index
-  - if requests.blank?
-    %h5.text-center Запитів не знайдено
-  - else
-    - requests.each do |request|
-      = render partial: 'requests/request', locals: { request: request }
-    = paginate requests, remote: defined?(ajax) ? ajax : false
-    .pagination-info
-      = page_entries_info requests
+- if requests.blank?
+  %h5.text-center Запитів не знайдено
+- else
+  - requests.each do |request|
+    = render partial: 'requests/request', locals: { request: request }
+  = paginate requests, remote: defined?(ajax) ? ajax : false
+  .pagination-info
+    = page_entries_info requests

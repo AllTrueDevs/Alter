@@ -21,7 +21,7 @@ module Wordable
     "\"<a href=\"/requests/#{request.id}\" title=\"#{request.name}\">#{human_truncate(request.name, 35)}</a>\""
   end
 
-  def notification_message_text(activity)
+  def notification_activity_message_text(activity)
     case activity.key
       when 'decision.accept' then "#{form_user_link(activity.owner)} підтвердив те, що ви допомогли по запиту #{form_request_link(activity.recipient)}."
       when 'decision.create' then "#{form_user_link(activity.owner)} створив відгук до запиту #{form_request_link(activity.recipient)}."

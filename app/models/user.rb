@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
     received_messages.private_messages.empty? && sent_messages.private_messages.empty?
   end
 
-  def notificationss
+  def notifications
     PublicActivity::Activity.where(
         PublicActivity::Activity.arel_table[:parameters].matches("%helper_id: #{id}%")
         .or(PublicActivity::Activity.arel_table[:trackable_id].eq(id).and(PublicActivity::Activity.arel_table[:trackable_type].eq('User')))
@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   def counters(type)
     case(type)
     when :decisions then Decision.where(status: 'new', request: self.requests).size
-    when :notifications then 0 #self.notifications.where(status: 'new').size
+    when :notifications then notifications.where(status: 'new').size
     when :messages then  self.received_messages.where(status: 'new').size
     when :unchecked then Request.unchecked.near_with(self).size
     else nil

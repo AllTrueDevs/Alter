@@ -132,8 +132,14 @@ class UsersController < ApplicationController
   end
 
   def activity
-    @activities = PublicActivity::Activity.where("(owner_id = :user_id and owner_type='User') or (trackable_id = :user_id and trackable_type='User')", user_id: @user.id)
-                      .order(created_at: :desc)
+    @activities = PublicActivity::Activity.where(
+        PublicActivity::Activity.arel_table[:owner_id].eq(@user.id)
+        .and(PublicActivity::Activity.arel_table[:owner_type].eq('User'))
+        .or(
+            PublicActivity::Activity.arel_table[:trackable_id].eq(@user.id)
+            .and(PublicActivity::Activity.arel_table[:trackable_type].eq('User'))
+        )
+    ).where.not(key: ['user.moder', 'user.unmoder']).order(created_at: :desc)
     respond_to :js
   end
 
