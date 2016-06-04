@@ -1,0 +1,250 @@
+/* line 1, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.home-page-bg {
+  background: url("home_background.png") no-repeat;
+  background-size: cover;
+}
+
+/* line 4, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.img-center {
+  margin: 0 auto;
+  padding: 5px;
+  display: block;
+}
+
+/* line 8, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.label-1 {
+  background-color: #1abc9c;
+}
+
+/* line 10, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.label-2 {
+  background-color: #2ecc71;
+}
+
+/* line 12, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.label-3 {
+  background-color: #3498db;
+}
+
+/* line 14, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.label-4 {
+  background-color: #a366bc;
+}
+
+/* line 16, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.label-5 {
+  background-color: #f1c40f;
+}
+
+/* line 18, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.label-6 {
+  background-color: #e67e22;
+}
+
+/* line 20, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.label-7 {
+  background-color: #e74c3c;
+}
+
+/* line 22, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.label-8 {
+  background-color: #34495e;
+}
+
+/* line 24, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 28, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.inline {
+  display: inline-block;
+}
+
+/* line 30, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.pagination-info {
+  text-align: center;
+  font-size: 0.6em;
+  color: #777;
+}
+
+/* line 36, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .navbar {
+  margin-bottom: 0;
+}
+/* line 38, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header {
+  border-radius: 0;
+  border: none;
+}
+/* line 41, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-brand, header .custom-header .navbar-nav li a {
+  line-height: 80px;
+  height: 80px;
+  padding-top: 0;
+}
+/* line 45, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+/* line 49, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav li a {
+  text-transform: uppercase;
+}
+/* line 51, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav .dropdown-menu {
+  border: none;
+  padding: 0;
+}
+/* line 54, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav .dropdown-menu li a {
+  text-transform: none;
+  line-height: 35px;
+  height: 35px;
+}
+/* line 58, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav .dropdown-menu li:last-child a {
+  line-height: 50px;
+  height: 50px;
+}
+/* line 61, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav .dropdown-menu .number {
+  font-weight: bold;
+  padding-left: 8px;
+}
+/* line 64, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-collapse {
+  text-align: center;
+}
+/* line 66, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-right {
+  font-family: "Roboto";
+  text-align: center;
+}
+/* line 69, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .dropdown a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 73, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .dropdown a span {
+  font-family: "Roboto";
+  font-weight: bold;
+}
+/* line 76, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-right li, header .custom-header .dropdown-menu, header .custom-header .navbar-brand {
+  width: 240px;
+}
+
+/* line 80, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+footer {
+  color: #fff;
+}
+/* line 82, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+footer .contacts li {
+  display: inline-block;
+}
+/* line 84, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+footer .contacts li a {
+  color: #fff;
+}
+/* line 86, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+footer .contacts li a:hover, footer .contacts li a:focus {
+  color: #d3d3d3;
+}
+
+/* line 91, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header {
+  box-shadow: 0 3px 17px #2B2B39;
+  background: rgba(19, 18, 41, 0.4);
+}
+/* line 94, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header .navbar-brand, .dark-theme .custom-header .navbar-nav li a {
+  color: #fff;
+}
+/* line 97, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header .navbar-nav a:hover, .dark-theme .custom-header .navbar-nav a:focus {
+  color: #fff;
+  background: rgba(19, 18, 41, 0.3);
+}
+/* line 100, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header .navbar-nav .open > a, .dark-theme .custom-header .navbar-nav .open > a:hover, .dark-theme .custom-header .navbar-nav .open > a:focus {
+  background: rgba(19, 18, 41, 0.3);
+}
+/* line 102, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header .navbar-nav .dropdown-menu {
+  background: rgba(19, 18, 41, 0.6);
+}
+/* line 104, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-footer {
+  text-align: center;
+}
+/* line 106, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-footer .contacts li {
+  line-height: 100px;
+  height: 100px;
+  font-size: 1.7em;
+  margin: 0 10px;
+}
+
+/* line 114, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header {
+  background: #35353f;
+}
+/* line 116, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header .navbar-brand, .light-theme .custom-header .navbar-nav li a {
+  color: #fff;
+}
+/* line 119, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header .navbar-nav a:hover, .light-theme .custom-header .navbar-nav a:focus {
+  color: #35353f;
+  background: #fff;
+}
+/* line 122, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header .navbar-nav .open > a, .light-theme .custom-header .navbar-nav .open > a:hover, .light-theme .custom-header .navbar-nav .open > a:focus {
+  background: #fff;
+  color: #35353f;
+}
+/* line 125, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header .navbar-nav .dropdown-menu {
+  background: #35353f;
+}
+/* line 140, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .contacts li {
+  font-size: 1.3em;
+  margin: 0 5px;
+}
+/* line 143, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .top {
+  line-height: 133px;
+  height: 133px;
+  background: #35353f;
+}
+/* line 147, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .top .brand {
+  font-size: 2.5em;
+  color: #fff;
+  text-decoration: none;
+}
+/* line 151, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .top .contact-information {
+  text-align: right;
+  transform: translateY(43px);
+}
+/* line 154, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .top .contact-information li {
+  line-height: 30px;
+}
+/* line 156, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .bottom {
+  text-transform: uppercase;
+  color: #35353f;
+  line-height: 70px;
+  height: 70px;
+  text-align: center;
+}

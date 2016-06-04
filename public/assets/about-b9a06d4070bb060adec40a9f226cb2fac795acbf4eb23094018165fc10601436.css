@@ -1,0 +1,35 @@
+/* line 1, /home/devpc/Projects/alter_beta/app/assets/stylesheets/about.sass */
+.photo {
+  height: 400px;
+  background: url("about_background.png") center;
+  background-size: cover;
+}
+
+/* line 6, /home/devpc/Projects/alter_beta/app/assets/stylesheets/about.sass */
+.about-system {
+  margin: 50px 0 50px 0;
+  color: #35353f;
+}
+/* line 9, /home/devpc/Projects/alter_beta/app/assets/stylesheets/about.sass */
+.about-system h1, .about-system h2 {
+  font-family: "GothaProBol";
+  font-weight: bold;
+}
+/* line 12, /home/devpc/Projects/alter_beta/app/assets/stylesheets/about.sass */
+.about-system h1 {
+  padding: 20px 0 10px 0;
+  font-size: 1.7em;
+  text-transform: uppercase;
+}
+/* line 16, /home/devpc/Projects/alter_beta/app/assets/stylesheets/about.sass */
+.about-system h2 {
+  text-align: right;
+  padding: 30px 0 50px 0;
+  font-size: 1.5em;
+}
+/* line 20, /home/devpc/Projects/alter_beta/app/assets/stylesheets/about.sass */
+.about-system p {
+  margin-top: 30px;
+  text-align: justify;
+  line-height: 25px;
+}

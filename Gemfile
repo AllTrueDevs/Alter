@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
+ruby '2.2.3'
 
 #############################
 ##  Database gems
@@ -74,6 +75,6 @@ group :development do
 end
 
 group :production do
-  gem 'rails_12factor', '0.0.2'
+  gem 'rails_12factor'
   gem 'aws-sdk-v1'
 end

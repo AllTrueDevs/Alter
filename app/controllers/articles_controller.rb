@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include AmazonModule
+
   load_and_authorize_resource except: [:create, :show, :index]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update]
@@ -43,9 +45,10 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    clear_s3_object(@article.photo)
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to news_url, notice: 'Новину успішно видалено.' }
+      format.html { redirect_to news_url }
     end
   end
 

@@ -1,0 +1,109 @@
+/* line 1, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.photo {
+  text-align: center;
+  float: left;
+  padding: 0 20px 15px 0;
+}
+/* line 5, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.photo img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* line 8, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.categories, .tags {
+  height: 20px;
+}
+
+/* line 10, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info {
+  color: #666666;
+  font-weight: bold;
+}
+/* line 13, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info p {
+  margin-right: 20px;
+  float: left;
+}
+/* line 17, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .author a {
+  color: #35353f;
+}
+/* line 19, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .author a:hover, .info .author a:focus {
+  text-decoration: underline;
+}
+
+/* line 21, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.description {
+  color: #666666;
+  font-size: 0.9em;
+  line-height: 25px;
+}
+
+/* line 26, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.title a {
+  color: #35353f;
+}
+/* line 28, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.title a:hover, .title a:focus {
+  text-decoration: underline;
+}
+
+/* line 30, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+h1, h2 {
+  font-family: "Roboto";
+  font-weight: bold;
+}
+
+/* line 35, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show, .article-show, .decision-show {
+  margin: 20px;
+}
+/* line 37, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .photo, .article-show .photo, .decision-show .photo {
+  width: 40%;
+}
+/* line 39, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .title, .article-show .title, .decision-show .title {
+  text-align: justify;
+  margin-top: 25px;
+  font-size: 1.9em;
+}
+/* line 43, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .info, .article-show .info, .decision-show .info {
+  margin-top: 25px;
+  font-size: 1em;
+}
+/* line 46, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .description, .article-show .description, .decision-show .description {
+  text-align: justify;
+  margin-top: 25px;
+}
+
+/* line 51, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index, .article-index, .decision-index {
+  margin: 5px 20px;
+}
+/* line 53, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .photo, .article-index .photo, .decision-index .photo {
+  width: 100%;
+}
+/* line 55, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .request, .request-index .article, .request-index .decision, .article-index .request, .article-index .article, .article-index .decision, .decision-index .request, .decision-index .article, .decision-index .decision {
+  padding: 15px 0;
+}
+/* line 57, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .title, .article-index .title, .decision-index .title {
+  font-size: 1em;
+}
+/* line 59, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .info, .article-index .info, .decision-index .info {
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+/* line 62, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index .description, .article-index .description, .decision-index .description {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}

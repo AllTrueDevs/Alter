@@ -12,6 +12,14 @@ class Message < ActiveRecord::Base
   validates :access, inclusion: { in: %w(both receiver sender) }
   validates :status, presence: true, inclusion: { in: %w(new read) }
 
+  before_destroy do
+    bucket = s3_bucket
+    attachments.each do |attachment|
+      object = bucket.objects[attachment.content.path[1..-1]]
+      object.delete
+    end
+  end
+
   [:private_message, :post].each do |type|
     scope "#{type}s".to_sym, -> { where(message_type: type) }
   end

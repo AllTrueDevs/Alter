@@ -1,0 +1,17 @@
+/* line 1, /home/devpc/Projects/alter_beta/app/assets/stylesheets/users.sass */
+.social {
+  white-space: nowrap;
+}
+/* line 3, /home/devpc/Projects/alter_beta/app/assets/stylesheets/users.sass */
+.social label {
+  display: block;
+}
+/* line 5, /home/devpc/Projects/alter_beta/app/assets/stylesheets/users.sass */
+.social .add-url {
+  width: 97.5%;
+  display: inline-block;
+}
+/* line 8, /home/devpc/Projects/alter_beta/app/assets/stylesheets/users.sass */
+.social .actions {
+  display: inline-block;
+}

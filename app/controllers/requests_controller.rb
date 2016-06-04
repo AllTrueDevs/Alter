@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+  include AmazonModule
+
   load_and_authorize_resource except: [:create, :show, :index, :refresh_counters, :search]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :unchecked, :create, :update, :destroy, :upvote, :downvote, :log_impression]
@@ -66,6 +68,7 @@ class RequestsController < ApplicationController
   end
 
   def update
+    clear_s3_object(@request.photo) unless @request.photo.size.nil? || request_params['photo'].nil?
     if @request.update(request_params.merge(status: 'unchecked'))
       @request.decisions do |decision|
         decision.helper.notifications.create(message_type: 8, reason_user: @user, request: decision.request)
