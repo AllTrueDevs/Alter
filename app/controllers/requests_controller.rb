@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   load_and_authorize_resource except: [:create, :show, :index, :refresh_counters, :search]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:unchecked, :create, :update, :destroy, :upvote, :downvote, :log_impression]
+  before_action :set_user, only: [:show, :unchecked, :create, :update, :destroy, :upvote, :downvote, :log_impression]
   before_action :authenticate_user!, only: [:edit, :create, :destroy, :new, :update, :unchecked, :refresh_counters]
   before_filter :log_impression, only: [:show]
 

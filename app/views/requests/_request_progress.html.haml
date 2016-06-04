@@ -7,11 +7,11 @@
       .progress-bar.active{data: {value: required_item.progress}, style: "background: ##{required_item.category.color}" }
         .percents.hidden
           %p{style: "color: #{required_item.font_color}"}= "#{required_item.progress}%"
-  - unless @decision.blank?
-    - if @request.decisions.where(helper: @user).empty?
+  - unless decision.blank?
+    - if request.decisions.where(helper: user).empty?
       %button.button{ data: { target: '#helpRequestModal', toggle: :modal} }
         Допомогти
-      = render partial: 'modals/request_help', locals: { request: @request }
+      = render partial: 'modals/request_help', locals: { request: request }
     - else
       %button.button{ disabled: true }
         Очікується підтвердження
