@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
+  include PublicActivity::Common
   ROLES = %w[admin moderator newsmaker author banned]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
@@ -8,7 +7,6 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_votable
   has_many :requests, dependent: :destroy
-  has_many :notifications, dependent: :destroy
   has_many :helped_items, dependent: :destroy
   has_many :decisions, foreign_key: 'helper_id', dependent: :destroy
   has_many :user_tags, :dependent => :destroy
@@ -101,10 +99,21 @@ class User < ActiveRecord::Base
     received_messages.private_messages.empty? && sent_messages.private_messages.empty?
   end
 
+  def notifications
+    PublicActivity::Activity.where(
+        PublicActivity::Activity.arel_table[:parameters].matches("%helper_id: #{id}%")
+        .or(PublicActivity::Activity.arel_table[:trackable_id].eq(id).and(PublicActivity::Activity.arel_table[:trackable_type].eq('User')))
+        .or(
+            PublicActivity::Activity.arel_table[:owner_id].eq(id).and(PublicActivity::Activity.arel_table[:owner_type].eq('User'))
+            .and(PublicActivity::Activity.arel_table[:key].in(['request.check', 'request.decline', 'request.upvote', 'request.downvote']))
+           )
+    ).where.not(key: 'decision.create')
+  end
+
   def counters(type)
     case(type)
     when :decisions then Decision.where(status: 'new', request: self.requests).size
-    when :notifications then self.notifications.where(status: 'new').size
+    when :notifications then notifications.where(status: 'new').size
     when :messages then  self.received_messages.where(status: 'new').size
     when :unchecked then Request.unchecked.near_with(self).size
     else nil

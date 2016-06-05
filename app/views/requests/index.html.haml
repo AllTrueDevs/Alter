@@ -2,4 +2,5 @@
 = content_for :styles do
   = stylesheet_link_tag 'index_show'
 .container
-  = render partial: 'requests/requests_list', locals: { requests: @requests }
+  .request-index
+    = render partial: 'requests/requests_list', locals: { requests: @requests }

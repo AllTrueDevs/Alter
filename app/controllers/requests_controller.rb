@@ -23,22 +23,18 @@ class RequestsController < ApplicationController
 
   def check
     @request.update(status: 'actual')
-    @request.create_activity key: 'request.check', owner: @request.user
-    @request.user.notifications.create(message_type: 10, request_id: @request.id)
+    @request.create_activity key: 'request.check', status: 'new', owner: @request.user
     respond_to :js
   end
 
   def decline
     @request.update(status: 'declined')
-    @request.create_activity key: 'request.decline', owner: @request.user
-    @request.user.notifications.create(message_type: 11, request_id: @request.id)
+    @request.create_activity key: 'request.decline', status: 'new', owner: @request.user
     redirect_to unchecked_requests_url
   end
 
   def show
     @posts = @request.posts.order(updated_at: :desc).page(params[:page]).per(10)
-    @activities = PublicActivity::Activity.where("(recipient_id=? and recipient_type='Request') or (trackable_id=? and trackable_type='Request')", @request.id, @request.id)
-                      .order(created_at: :desc)
     if @request.status?(:actual) && can?(:create, Decision) && @request.user != @user
       @decision = Decision.new
       @decision.accepted_items.build
@@ -68,7 +64,7 @@ class RequestsController < ApplicationController
   def update
     if @request.update(request_params.merge(status: 'unchecked'))
       @request.decisions do |decision|
-        decision.helper.notifications.create(message_type: 8, reason_user: @user, request: decision.request)
+        decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.update_request', owner: current_user
       end
       @request.create_activity key: 'request.update', owner: @request.user
       @request.decisions.destroy_all
@@ -84,7 +80,7 @@ class RequestsController < ApplicationController
   def destroy
     @request.update(status: 'archived')
     @request.decisions do |decision|
-      decision.helper.notifications.create(message_type: 9, reason_user: @user, request: decision.request)
+      decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.archive_request'
     end
     @request.create_activity key: 'request.archive', owner: @request.user
     @request.decisions.destroy_all
@@ -96,13 +92,13 @@ class RequestsController < ApplicationController
   end
 
   def upvote
-    @request.user.notifications.create(message_type: 14, reason_user: @user, request: @request)
+    @request.create_activity key: 'request.upvote', owner: @request.user, recipient: current_user, status: 'new'
     @request.upvote_from(@user)
     respond_to :js
   end
 
   def downvote
-    @request.user.notifications.create(message_type: 15, reason_user: @user, request: @request)
+    @request.create_activity key: 'request.downvote', owner: @request.user, recipient: current_user, status: 'new'
     @request.downvote_from(@user)
     respond_to :js
   end
@@ -123,8 +119,14 @@ class RequestsController < ApplicationController
   end
 
   def activity
-    @activities = PublicActivity::Activity.where("(recipient_id=? and recipient_type='Request') or (trackable_id=? and trackable_type='Request')", @request.id, @request.id)
-                                          .order(created_at: :desc)
+    @activities = PublicActivity::Activity.where(
+        PublicActivity::Activity.arel_table[:recipient_id].eq(@request.id)
+            .and(PublicActivity::Activity.arel_table[:recipient_type].eq('Request'))
+            .or(
+                PublicActivity::Activity.arel_table[:trackable_id].eq(@request.id)
+                    .and(PublicActivity::Activity.arel_table[:trackable_type].eq('Request'))
+            )
+    ).order(created_at: :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

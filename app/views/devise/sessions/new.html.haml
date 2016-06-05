@@ -14,20 +14,3 @@
         = f.label :remember_me
     = f.submit  'Увійти', class: 'button', data: { disable_with: 'Обробка...' }
   = render 'devise/shared/links'
-
--#.panel.panel-default
--#  .panel-heading
--#    %h4= t('.sign_in', :default => 'Вхід')
--#  .panel-body
--#    = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f|
--#      = f.label :Email
--#      = f.email_field :email, autofocus: true
--#      = f.label :Пароль
--#      = f.password_field :password, autocomplete: 'off', class: 'form-control'
--#      - if devise_mapping.rememberable?
--#        .checkbox
--#          %label
--#            = f.check_box :remember_me
--#            = f.label :"Запам'ятати"
--#    = render 'devise/shared/links'
--#    = render 'devise/shared/links'

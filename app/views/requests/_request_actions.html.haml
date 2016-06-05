@@ -8,7 +8,7 @@
       = link_to edit_request_url(request), title: 'Редагувати' do
         %span.fa.fa-pencil
     - if can? :destroy, request
-      = link_to request, method: :delete, title: 'Заархівувати', data: { confirm: 'Ви дійсно хочете заархівувати запит?' }, remote: true do
+      = link_to request, method: :delete, title: 'Заархівувати', data: { confirm: 'Ви дійсно хочете заархівувати запит?' } do
         %span.fa.fa-times
   - when 'unchecked'
     - if can? :check, request

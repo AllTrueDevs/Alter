@@ -593,31 +593,31 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 
 ############Create Notifications
 
-  User.all.each do |usr|
-    usr.notifications.create(Random.rand(1..10).times.map do
-                               message_type = Random.rand(1..8)
-                               reason_user_id = nil
-                               request_id = nil
-                               temp = nil
-                               if [1, 2, 3, 8, 9].include? message_type
-                                 catch (:found) do
-                                   loop do
-                                     reason_user_id = Random.rand(1..30)
-                                     temp = User.find(reason_user_id).requests
-                                     throw :found unless usr.id == reason_user_id || temp.empty?
-                                   end
-                                 end
-                                 request_id = temp.offset(Random.rand(temp.size)).first.id
-                               end
-                               {
-                                  message_type: message_type,
-                                  status: Random.rand(2) == 0 ? 'read' : 'new',
-                                  reason_user_id: reason_user_id,
-                                  request_id: request_id
-                               }
-                            end
-    )
-  end
+  # User.all.each do |usr|
+  #   usr.notifications.create(Random.rand(1..10).times.map do
+  #                              message_type = Random.rand(1..8)
+  #                              reason_user_id = nil
+  #                              request_id = nil
+  #                              temp = nil
+  #                              if [1, 2, 3, 8, 9].include? message_type
+  #                                catch (:found) do
+  #                                  loop do
+  #                                    reason_user_id = Random.rand(1..30)
+  #                                    temp = User.find(reason_user_id).requests
+  #                                    throw :found unless usr.id == reason_user_id || temp.empty?
+  #                                  end
+  #                                end
+  #                                request_id = temp.offset(Random.rand(temp.size)).first.id
+  #                              end
+  #                              {
+  #                                 message_type: message_type,
+  #                                 status: Random.rand(2) == 0 ? 'read' : 'new',
+  #                                 reason_user_id: reason_user_id,
+  #                                 request_id: request_id
+  #                              }
+  #                           end
+  #   )
+  # end
 
 ################
 

@@ -1,6 +1,0 @@
-.activity-index
-  - if activities.size.zero?
-    %h5.text-center Користувач не проявляв ніякої активності
-  - else
-    - activities.each do |activity|
-      = render partial: 'layouts/public_activity/default', locals: { activity: activity, destination: destination }
