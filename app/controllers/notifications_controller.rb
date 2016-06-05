@@ -17,6 +17,6 @@ class NotificationsController < ApplicationController
     end
 
     def set_notifications
-      @notifications = current_user.notifications.order(status: :asc, created_at: :desc).page(params[:page]).per(10)
+      @notifications = current_user.notifications.order(status: :asc, created_at: :desc).page(params[:page]).per(20)
     end
 end

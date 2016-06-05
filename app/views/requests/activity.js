@@ -1,1 +1,1 @@
-$(".tab-pane.active").html("<%= escape_javascript(render partial: 'notifications/notifications_list', locals: { notifications: @activities, destination: 'request' } ) %>");
+$(".tab-pane.active").html("<%= escape_javascript(render partial: 'notifications/notifications_list', locals: { notifications: @activities, destination: 'request', ajax: true } ) %>");
