@@ -4,9 +4,9 @@ class CreateMessages < ActiveRecord::Migration
       t.string :message_type
       t.text :body
       t.string :status, default: 'new'
-      t.references :sender, index: true, references: :users, default: nil
-      t.references :receiver, index: true, references: :users, default: nil
-      t.references :request, index: true, references: :requests, default: nil
+      t.references :sender, index: true, references: :users
+      t.references :receiver, index: true, references: :users
+      t.references :request, index: true, references: :requests
 
       t.timestamps null: false
     end
