@@ -1,10 +1,6 @@
 class Decision < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
+  include PublicActivity::Common
   include Errorable
-
-  include PublicActivity::Model
-  tracked only: [], owner: Proc.new{ |controller, model| controller.current_user }
 
   has_many :accepted_items, dependent: :destroy
   belongs_to :request

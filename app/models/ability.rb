@@ -11,6 +11,7 @@ class Ability
     can(:download, Attachment){ |attachment| attachment.message.message_type.to_sym == :post }
 
     if user
+      can :manage, :notification
       can [:show, :statistic, :activity], User
       can [:detach_social_link, :change_password], User do |usr|
         user == usr
@@ -45,9 +46,7 @@ class Ability
         decision.request.user == user
       end
 
-      can :manage, Notification do |notification|
-        notification.user == user
-      end
+
 
       if user.with_privileges?
         can :manage, Category
@@ -81,9 +80,6 @@ class Ability
           request.user != user
         end
 
-        can :manage, Notification do |notification|
-          notification.user == user
-        end
       end
     end
   end
