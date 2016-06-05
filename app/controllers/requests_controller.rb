@@ -63,15 +63,9 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update(request_params.merge(status: 'unchecked'))
-      byebug
-      sooqa = 1+2
       @request.decisions do |decision|
-        byebug
-        sooqa = 1+2
         decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.update_request', owner: current_user
       end
-      byebug
-      sooqa = 1+2
       @request.create_activity key: 'request.update', owner: @request.user
       @request.decisions.destroy_all
   
