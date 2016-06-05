@@ -24,17 +24,20 @@ module Wordable
   def notification_activity_message_text(activity)
     case activity.key
       when 'decision.accept' then "#{form_user_link(activity.owner)} підтвердив те, що ви допомогли по запиту #{form_request_link(activity.recipient)}."
-      when 'decision.create' then "#{form_user_link(activity.owner)} створив відгук до запиту #{form_request_link(activity.recipient)}."
       when 'decision.deny' then "#{form_user_link(activity.owner)} відхилив факт допомоги по запиту #{form_request_link(activity.recipient)}."
       when 'decision.partly' then "#{form_user_link(activity.owner)} підтвердив те, що ви частково допомогли по запиту #{form_request_link(activity.recipient)}."
       when 'decision.archive_request' then "#{form_user_link(activity.owner)} заархівував запит #{form_request_link(activity.recipient)}."
-      when 'decision.update_request' then
+      when 'decision.update_request' then "#{form_user_link(activity.owner)} оновив запит #{form_request_link(activity.recipient)}."
       when 'request.check' then "Запит #{form_request_link(activity.trackable)} було перевірено адміністрацією."
       when 'request.decline' then "Запит #{form_request_link(activity.trackable)} було відхилено адміністрацією."
       when 'user.ban' then 'Ваш аккаунт було заблоковано адміністрацією.'
       when 'user.unban' then 'Ваш аккаунт було розблоковано адміністрацією.'
       when 'user.moder' then 'Вашому аккаунту було надано права модератора.'
       when 'user.unmoder' then 'Вашому аккаунту було надано права звичайного користувача.'
+      when 'user.upvote' then "#{form_user_link(activity.recipient)} поставив вам позитивний голос."
+      when 'user.downvote' then "#{form_user_link(activity.recipient)} поставив вам негативний голос."
+      when 'request.upvote' then "#{form_user_link(activity.recipient)} поставив позитивний голос на вашому запиті #{form_request_link(activity.trackable)}."
+      when 'request.downvote' then "#{form_user_link(activity.recipient)} поставив негативний голос на вашому запиті #{form_request_link(activity.trackable)}."
     end
   end
 
@@ -53,6 +56,10 @@ module Wordable
       when 'user.unban' then 'Аккаунт було розблоковано адміністрацією.'
       when 'user.moder' then 'Аккаунту було надано права адміністратора.'
       when 'user.unmoder' then 'Аккаунт було надано права звичайного користувача.'
+      when 'user.upvote' then "Поставив позитивний голос на запиті #{form_request_link(activity.trackable)}."
+      when 'user.downvote' then "Поставив негативний голос на запиті #{form_request_link(activity.trackable)}."
+      when 'request.upvote' then "Поставив позитивний голос на запиті #{form_request_link(activity.trackable)}."
+      when 'request.downvote' then "Поставив негативний голос на запиті #{form_request_link(activity.trackable)}."
     end
   end
 
@@ -67,6 +74,8 @@ module Wordable
       when 'request.update' then "#{form_user_link(activity.trackable.user)} змінив запит."
       when 'request.check' then 'Запит було перевірено адміністрацією.'
       when 'request.decline' then 'Запит було відхилено адміністрацією.'
+      when 'request.upvote' then "#{form_user_link(activity.recipient)} поставив позитивний голос запиті."
+      when 'request.downvote' then "#{form_user_link(activity.recipient)} поставив негативний голос запиті."
     end
   end
 
@@ -85,6 +94,8 @@ module Wordable
       when 'unban' then 'fa fa-unlock'
       when 'moder' then 'fa fa-user-secret'
       when 'unmoder' then 'fa fa-user'
+      when 'upvote' then 'glyphicon glyphicon-thumbs-up'
+      when 'downvote' then 'glyphicon glyphicon-thumbs-down'
     end
   end
 

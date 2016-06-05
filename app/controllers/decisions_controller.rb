@@ -15,7 +15,7 @@ class DecisionsController < ApplicationController
   def create
     @decision = Decision.new(decision_params)
     if @decision.save
-      @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.request.user.id }, key: 'decision.create'
+      @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.request.user.id }, key: 'decision.create', owner: current_user
       flash[:success] = 'Вашу пропозицію допомоги відправлено'
     else
       flash[:error] = @decision.form_errors(:decision)
@@ -24,8 +24,7 @@ class DecisionsController < ApplicationController
   end
 
   def accept
-    # @decision.helper.notifications.create(message_type: 1, reason_user: current_user, request: @decision.request)
-    @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.accept'
+    @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.accept', owner: current_user
 
     @decision.accepted_items.each do |item|
       @decision.helper.update_helped_item!(item.required_item.category, item.count)
@@ -40,8 +39,7 @@ class DecisionsController < ApplicationController
     ids = data.map{ |key, value| key }
     accepted_items = @decision.accepted_items.where(id: ids)
     respond_to do |format|
-      # @decision.helper.notifications.create(message_type: 2, reason_user: current_user, request: @decision.request)
-      @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.partly'
+      @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.partly', owner: current_user
 
       accepted_items.each do |item|
         @decision.helper.update_helped_item!(item.required_item.category, data[item.id])
@@ -54,8 +52,7 @@ class DecisionsController < ApplicationController
   end
 
   def deny
-    # @decision.helper.notifications.create(message_type: 3, reason_user: current_user, request: @decision.request)
-    @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.deny'
+    @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.deny', owner: current_user
     @decision.destroy
     redirect_to decisions_url
   end

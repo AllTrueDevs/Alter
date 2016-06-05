@@ -105,9 +105,9 @@ class User < ActiveRecord::Base
         .or(PublicActivity::Activity.arel_table[:trackable_id].eq(id).and(PublicActivity::Activity.arel_table[:trackable_type].eq('User')))
         .or(
             PublicActivity::Activity.arel_table[:owner_id].eq(id).and(PublicActivity::Activity.arel_table[:owner_type].eq('User'))
-            .and(PublicActivity::Activity.arel_table[:key].eq('request.check')).or(PublicActivity::Activity.arel_table[:key].eq('request.update'))
+            .and(PublicActivity::Activity.arel_table[:key].in(['request.check', 'request.decline', 'request.upvote', 'request.downvote']))
            )
-    )
+    ).where.not(key: 'decision.create')
   end
 
   def counters(type)

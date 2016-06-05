@@ -36,12 +36,10 @@ class UsersController < ApplicationController
   def change_ban_status
     if @user.role?(:banned)
       @user.update(role: 'author')
-      # @user.notifications.create(message_type: 5)
       @user.create_activity key: 'user.unban', status: 'new'
       redirect_to @user
     else
       @user.update(role: 'banned')
-      # @user.notifications.create(message_type: 4)
         @user.create_activity key: 'user.ban', status: 'new'
       @user.requests.update_all(status: 'declined')
 
@@ -59,11 +57,9 @@ class UsersController < ApplicationController
   def change_moder_status
     if @user.role?(:moderator)
       @user.update(role: 'author')
-      # @user.notifications.create(message_type: 7)
       @user.create_activity key: 'user.unmoder', status: 'new'
     else
       @user.update(role: 'moderator')
-      # @user.notifications.create(message_type: 6)
       @user.create_activity key: 'user.moder', status: 'new'
     end
     redirect_to @user
@@ -119,15 +115,13 @@ class UsersController < ApplicationController
 
   def upvote
     @user.upvote_from(current_user)
-    # @user.notifications.create(message_type: 12, reason_user: current_user)
-    # @user.create_activity key: 'user.upvote', status: 'new', recipient: current_user
+    @user.create_activity key: 'user.upvote', status: 'new', recipient: current_user
     respond_to :js
   end
 
   def downvote
     @user.downvote_from(current_user)
-    # @user.notifications.create(message_type: 13, reason_user: current_user)
-    # @user.create_activity key: 'user.downvote', status: 'new', recipient: current_user
+    @user.create_activity key: 'user.downvote', status: 'new', recipient: current_user
     respond_to :js
   end
 
@@ -139,7 +133,8 @@ class UsersController < ApplicationController
             PublicActivity::Activity.arel_table[:trackable_id].eq(@user.id)
             .and(PublicActivity::Activity.arel_table[:trackable_type].eq('User'))
         )
-    ).where.not(key: ['user.moder', 'user.unmoder']).order(created_at: :desc)
+    ).where.not(key: ['user.moder', 'user.unmoder', 'request.upvote', 'request.downvote', 'user.upvote',
+                      'user.downvote']).order(created_at: :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

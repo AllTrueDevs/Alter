@@ -23,14 +23,12 @@ class RequestsController < ApplicationController
 
   def check
     @request.update(status: 'actual')
-    # @request.user.notifications.create(message_type: 10, request_id: @request.id)
     @request.create_activity key: 'request.check', status: 'new', owner: @request.user
     respond_to :js
   end
 
   def decline
     @request.update(status: 'declined')
-    # @request.user.notifications.create(message_type: 11, request_id: @request.id)
     @request.create_activity key: 'request.decline', status: 'new', owner: @request.user
     redirect_to unchecked_requests_url
   end
@@ -65,10 +63,15 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update(request_params.merge(status: 'unchecked'))
+      byebug
+      sooqa = 1+2
       @request.decisions do |decision|
-        # decision.helper.notifications.create(message_type: 8, reason_user: @user, request: decision.request)
-          decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.update_request'
+        byebug
+        sooqa = 1+2
+        decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.update_request', owner: current_user
       end
+      byebug
+      sooqa = 1+2
       @request.create_activity key: 'request.update', owner: @request.user
       @request.decisions.destroy_all
   
@@ -83,7 +86,6 @@ class RequestsController < ApplicationController
   def destroy
     @request.update(status: 'archived')
     @request.decisions do |decision|
-      # decision.helper.notifications.create(message_type: 9, reason_user: @user, request: decision.request)
       decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.helper_id }, key: 'decision.archive_request'
     end
     @request.create_activity key: 'request.archive', owner: @request.user
@@ -96,15 +98,13 @@ class RequestsController < ApplicationController
   end
 
   def upvote
-    # @request.user.notifications.create(message_type: 14, reason_user: @user, request: @request)
-    # @request.create_activity key: 'request.upvote', owner: @request.user, recipient: current_user
+    @request.create_activity key: 'request.upvote', owner: @request.user, recipient: current_user, status: 'new'
     @request.upvote_from(@user)
     respond_to :js
   end
 
   def downvote
-    # @request.user.notifications.create(message_type: 15, reason_user: @user, request: @request)
-    # @request.create_activity key: 'request.downvote', owner: @request.user, recipient: current_user
+    @request.create_activity key: 'request.downvote', owner: @request.user, recipient: current_user, status: 'new'
     @request.downvote_from(@user)
     respond_to :js
   end
@@ -132,7 +132,7 @@ class RequestsController < ApplicationController
                 PublicActivity::Activity.arel_table[:trackable_id].eq(@request.id)
                     .and(PublicActivity::Activity.arel_table[:trackable_type].eq('Request'))
             )
-    ).order(created_at: :desc)
+    ).order(created_at: :desc).page(params[:page]).per(10)
     respond_to :js
   end
 

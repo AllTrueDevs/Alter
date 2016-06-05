@@ -1,6 +1,6 @@
 = link_to send("upvote_#{source.class.name.downcase}_url", source), class: "upvote #{current_user.voted_as_when_voted_for(source) ? 'voted' : ''}", remote: true do
   %span.glyphicon.glyphicon-thumbs-up
   %p= source.get_upvotes.size
-= link_to send("downvote_#{source.class.name.downcase}_url", source), class: "downvote #{!current_user.voted_as_when_voted_for(source) ? 'voted' : ''}", remote: true do
+= link_to send("downvote_#{source.class.name.downcase}_url", source), class: "downvote #{current_user.voted_as_when_voted_for(source) == false ? 'voted' : ''}", remote: true do
   %span.glyphicon.glyphicon-thumbs-down
   %p= source.get_downvotes.size
