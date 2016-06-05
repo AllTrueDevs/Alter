@@ -243,6 +243,8 @@ GEM
     pg (0.18.4)
     private_pub (1.0.3)
       faye
+    protected_attributes (1.1.3)
+      activemodel (>= 4.0.1, < 5.0)
     public_activity (1.5.0)
       actionpack (>= 3.0.0)
       activerecord (>= 3.0)
@@ -389,6 +391,7 @@ DEPENDENCIES
   paperclip (~> 4.3)
   pg
   private_pub
+  protected_attributes
   public_activity
   rails (= 4.2.4)
   rails-i18n (~> 4.0.0)
@@ -406,4 +409,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
