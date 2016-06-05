@@ -92,13 +92,13 @@ class RequestsController < ApplicationController
   end
 
   def upvote
-    @request.create_activity key: 'request.upvote', owner: @request.user, recipient: current_user, status: 'new'
+    @request.create_activity key: 'request.upvote', owner: @request.user, recipient: current_user, status: 'new' unless @request.user == current_user
     @request.upvote_from(@user)
     respond_to :js
   end
 
   def downvote
-    @request.create_activity key: 'request.downvote', owner: @request.user, recipient: current_user, status: 'new'
+    @request.create_activity key: 'request.downvote', owner: @request.user, recipient: current_user, status: 'new' unless @request.user == current_user
     @request.downvote_from(@user)
     respond_to :js
   end
