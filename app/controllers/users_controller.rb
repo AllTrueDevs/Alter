@@ -115,13 +115,13 @@ class UsersController < ApplicationController
 
   def upvote
     @user.upvote_from(current_user)
-    @user.create_activity key: 'user.upvote', status: 'new', recipient: current_user
+    @user.create_activity key: 'user.upvote', status: 'new', recipient: current_user unless @user == current_user
     respond_to :js
   end
 
   def downvote
     @user.downvote_from(current_user)
-    @user.create_activity key: 'user.downvote', status: 'new', recipient: current_user
+    @user.create_activity key: 'user.downvote', status: 'new', recipient: current_user unless @user == current_user
     respond_to :js
   end
 
