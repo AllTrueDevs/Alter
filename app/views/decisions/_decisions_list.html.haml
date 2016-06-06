@@ -1,5 +1,5 @@
 - if decisions.size.zero?
-  %h5.text-center Відгуків не знайдено
+  %p.nothing-to-show Відгуків не знайдено
 - else
   - decisions.each do |decision|
     = render partial: 'decisions/decision', locals: { decision: decision }
