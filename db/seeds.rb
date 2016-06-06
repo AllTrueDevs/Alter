@@ -174,61 +174,53 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
                when 1 then :actual
                when 2 then :unchecked
                end
-      request = User.find(i).requests.new(
+
+      temp = Random.rand(9)
+      categories = (1..Random.rand(1..5)).map do |x|
+        rand = (temp + x != 1)? Random.rand(1..50) : Random.rand(100..20000)
+        remaining = (temp + x != 1)? Random.rand(1..50) : Random.rand(100..20000)
+        { current_count: rand, goal_count: rand + remaining, category_id:  temp + x }
+      end
+
+      User.find(i).requests.create(
         name: "#{BetterLorem.w(15, true, true)}",
         description: BetterLorem.p(7, true, true ),
         status: status,
-        :photo_file_name => Random.rand(2) == 0 ? 'photo.jpg' : nil
-      )
-      request.save(validate: false)
-    end
-
-    User.find(i).requests.each do |request|
-      temp = Random.rand(9)
-      request.required_items.create(
-        (1..Random.rand(1..5)).map do |x|
-          rand = (temp + x != 1)? Random.rand(1..50) : Random.rand(100..20000)
-          remaining = (temp + x != 1)? Random.rand(1..50) : Random.rand(100..20000)
-          { current_count: rand, goal_count: rand + remaining, category_id:  temp + x }
-        end
+        :photo_file_name => Random.rand(2) == 0 ? 'photo.jpg' : nil,
+        required_items_attributes: categories
       )
     end
   end
 
-  temp_user = User.first
-  temp_request = temp_user.requests.new(
+  User.first.requests.create(
     :name => 'Потрібна допомога: У харківський госпіталь привезли 40 поранених бійців, медики та волонтери не встигають',
     :description => "Зранку, 12 січня, стало відомо про те, що у військовий госпіталь Харкова надійшло 40 тяжко поранених українських військових. Про це йдеться у повідомленні волонтерів з групи «Сестри милосердя АТО/Харків», передають Патріоти України.
       Через наплив поранених бійців волонтери не встигають надавати адресну допомогу усім, хто цього потребує. До того ж у госпіталі медики не можуть самотужки забезпечити усіх хворих необхідним, потрібним доглядом в тому числі.
       «ГОСПІТАЛЬ ХАРКІВ!!!! Станом на 5 ранку 11 січня 2016 р. Надійшло 40 осіб - є важкі в реанімації, палатах інтенсивної терапії. В травматології багато народу на милицях і лежачих», - йдеться у повідомленні спільноти у соціальній мережі.",
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 4, current_count: 0, goal_count: 5},
+        {category_id: 8, current_count: 2, goal_count: 2},
+        {category_id: 11, current_count: 5, goal_count: 15}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.first.requests.create(
     :name => 'Спецкор: у Маріуполі загонам ВСУ вже потрібна допомога волонтерів',
     :description => "«Вчора з другої години дня збиралися підписи на знак протесту, і тепер всі ці підписи будуть направлені разом із листом президенту України Петру Порошенку. На 2 серпня вже призначений великий мітинг. Можна сказати, що ті, хто підписався сьогодні, там будуть точно. Тобто це мінімум 200 осіб. Також поставили ще один намет, додаткові прапори, наметове містечко потихеньку розростається.
       Крім тих, хто проти, є і люди, які позитивно дивляться на ротацію. Військові залишилися, а все важке озброєння було відведено. За словами Ярослава Чепурнова, прес-офіцера сектора М, вже сьогодні вивели всі батальйони з Широкино, їх місце зайняли морські піхотинці. Цікаво, що морська піхота, як говорив президент України, повністю обмундирована від А до Я, це кращі бійці і самі забезпечені війська нашої країни. Але вже вчора волонтери кидали клич на Facebook про те, що нашим морським котикам потрібні шкарпетки, ліхтарики, труси, генератори і так далі, тобто предмети першої необхідності.
       Всі чекають 2 серпня, щоб прийти на великий мітинг. До нього йде повномасштабна підготовка. Вчора було кілька конфліктів прихильників і супротивників відводу добровольців з Широкиного. Звучали і мати, але бійок не було. Сьогодні прийшла, наскільки я знаю, поки тільки одна людина, яка проти цієї мирної акції, але ніякого відкритого невдоволення вона не висловлювала.
       Біля наметів регулярно перебувають до 30 осіб. Прості жителі просто проходять повз, дізнаються про ситуацію, в чому причина, деякі на знак згоди ставлять свій підпис. Хтось бере плакати, вони також підтримують повністю цей мітинг.",
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 1, current_count: 500, goal_count: 8000},
+        {category_id: 3, current_count: 2, goal_count: 4},
+        {category_id: 6, current_count: 15, goal_count: 21},
+        {category_id: 7, current_count: 1, goal_count: 7}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_user.requests.first.required_items.create([
-                                                      {category_id: 4, current_count: 0, goal_count: 5},
-                                                      {category_id: 8, current_count: 2, goal_count: 2},
-                                                      {category_id: 11, current_count: 5, goal_count: 15}
-  ])
-  temp_user.requests.second.required_items.create([
-                                                      {category_id: 1, current_count: 500, goal_count: 8000},
-                                                      {category_id: 3, current_count: 2, goal_count: 4},
-                                                      {category_id: 6, current_count: 15, goal_count: 21},
-                                                      {category_id: 7, current_count: 1, goal_count: 7}
-                                                  ])
-
-  temp_user = User.second
-  temp_request = temp_user.requests.new(
+  User.second.requests.create(
     :name => 'Луцьк: волонтеру терміново потрібна допомога',
     :description => "Волонтер міжнародного фонду «Милосердні руки» Анатолій наразі перебуває у Волинській обласній лікарні і терміново потребує грошей для лікування.
        Про це у соціальній мережі Facebook написала волонтерка Марина Бляшук.
@@ -236,28 +228,29 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
        На лікування вже пішло більше 100 ста тисяч гривень і, за прогнозами лікарі,в може піти ще 150-200 тисяч.
        Терміново потрібні шість донорів будь-якої групи крові.
        “За детальною інформацією звертатися по тел. 050 152 11 17 до Володимира або 099 327 03 07 (зазвичай, слухавку бере мама Анатолія – Марія Йосипівна…. вона постійно сидить поряд з сином у лікарні)”, – йдеться у повідомленні.",
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 3, current_count: 2, goal_count: 15},
+        {category_id: 4, current_count: 9, goal_count: 10},
+        {category_id: 12, current_count: 4, goal_count: 10}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_user.requests.first.required_items.create([
-      {category_id: 3, current_count: 2, goal_count: 15},
-      {category_id: 4, current_count: 9, goal_count: 10},
-      {category_id: 12, current_count: 4, goal_count: 10}
-  ])
-
-  temp_user = User.third
-  temp_request = temp_user.requests.new(
+  User.third.requests.create(
      :name => 'Загону №3 з Харківського батальону потрібна допомога.',
      :description => "Поки держава, фактично з нуля відбудовували наші Збройні сили, саме ті патріоти, які з першого до останнього дня пройшли Майдан, першими пішли на фронт захищати Україну.
         Першими був батальйон на базі 1-го та 2-го резервних батальйонів Національної гвардії, який пізніше отримав ім'я генерала-героя Кульчицького. Саме батальйон імені Кульчицького взяв на себе перший і найважчий удар, і, безумовно, втрат серед перших було більше.
         Згідно з інформацією на сторінці підрозділу в соцмережі Facebook, за час боїв в Донбасі батальйон втратив 23 людини, 76 бійців були поранені.
         Потрібні 3 мішки шкарпеток, 10 бронежилетів та провізія. Допоможіть хто чим може, дякуємо.",
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+         {category_id: 1, current_count: 900, goal_count: 2000},
+         {category_id: 2, current_count: 2, goal_count: 2},
+         {category_id: 7, current_count: 3, goal_count: 6}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.third.requests.create(
      :name => 'Друзья : волонтёры , военнослужащие , дембеля !',
      :description => "Большая просьба ко всем этим категориям !
         Если у кого из Вас есть или знаете у кого есть :
@@ -270,26 +263,33 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         Это очень важно во время т.н. ''перемирья'' и спасёт много жизней !!!
         Ну нахрена Вам весь этот хлам ?! Отдайте , помогите братьям побыстрей ''прозреть'' !!!
         Перепост крайне приветствуется !!!",
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+        {category_id: 7, current_count: 1, goal_count: 10}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.third.requests.create(
      :name => 'Вельмишановні! Хто найближчого часу іде в Маріуполь?',
      :description => "Вельмишановні! Хто найближчого часу іде в Маріуполь, і у нього є ще трошки вільного місця, будь ласочка прихопить 2 мішки подарунків для хлопців. Підробиці в лічку.",
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+        {category_id: 10, current_count: 8, goal_count: 10}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.third.requests.create(
      :name => 'Потрібна допомога волонтерів!',
      :description => "95 аеромобілна бригада \"рота розвідників\". Потребує допомогу. Їм потрібен спец. одяг.
         Будь ласка допоможіть!",
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+         {category_id: 1, current_count: 1000, goal_count: 25000},
+         {category_id: 7, current_count: 5, goal_count: 7}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.third.requests.create(
      :name => 'Просимо допомогти зібрати кошти на лікування Максима Лободюка.',
      :description => "Лободюк Максим Віталійович, 2015 року народження, тяжко хворіє, йому був поставлений діагноз: Гемофілія А, тяжкий перебіг. Дитина перебувала на профілактичному лікуванні у рамках Швейцарської програми з травня 2014р.
         Через чотири місяці після початку лікування розвинувся інгібітор до РУНІ (вересень 2014р. ) з титром 12,8 БО/мл., (квітень 2015 р.) титр 7,9 БО/мл. Від вересня 2014 року по сьогодні хлопчик не має можливості на нормальне існування, оскільки держава не виділяє необхідних препаратів (Новосевен), які б допомогли дитині жити нормально, а саме головне, як наслідок нелікування стати інвалідом.
@@ -299,49 +299,44 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         Карта Приват Банку мами 5168 7572 9873 9501
         Віримо, що спільними зусиллями, та завдяки вашій небайдужості та підтримці дитина зможе отримати необхідну допомогу.
         Директор благодійної організації Благодійний фонд «Сучасне село та місто» Євгеній Клімов",
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+         {category_id: 4, current_count: 2, goal_count: 10},
+         {category_id: 3, current_count: 2, goal_count: 2}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_user.requests.first.required_items.create([
-                                                      {category_id: 1, current_count: 900, goal_count: 2000},
-                                                      {category_id: 2, current_count: 2, goal_count: 2},
-                                                      {category_id: 7, current_count: 3, goal_count: 6}
-                                                  ])
-  temp_user.requests.second.required_items.create(category_id: 7, current_count: 1, goal_count: 10)
-  temp_user.requests.third.required_items.create(category_id: 10, current_count: 8, goal_count: 10)
-  temp_user.requests.fourth.required_items.create([
-                                                       {category_id: 1, current_count: 1000, goal_count: 25000},
-                                                       {category_id: 7, current_count: 5, goal_count: 7}
-                                                   ])
-  temp_user.requests.fifth.required_items.create([
-                                                      {category_id: 4, current_count: 2, goal_count: 10},
-                                                      {category_id: 3, current_count: 2, goal_count: 2}
-                                                  ])
-
-  temp_user = User.fourth
-  temp_request = temp_user.requests.new(
+  User.fourth.requests.create(
     :name => 'Потрібна допомога: У харківський госпіталь привезли 40 поранених бійців, медики та волонтери не встигають',
     :description => "Зранку, 12 січня, стало відомо про те, що у військовий госпіталь Харкова надійшло 40 тяжко поранених українських військових. Про це йдеться у повідомленні волонтерів з групи «Сестри милосердя АТО/Харків», передають Патріоти України.
       Через наплив поранених бійців волонтери не встигають надавати адресну допомогу усім, хто цього потребує. До того ж у госпіталі медики не можуть самотужки забезпечити усіх хворих необхідним, потрібним доглядом в тому числі.
       «ГОСПІТАЛЬ ХАРКІВ!!!! Станом на 5 ранку 11 січня 2016 р. Надійшло 40 осіб - є важкі в реанімації, палатах інтенсивної терапії. В травматології багато народу на милицях і лежачих», - йдеться у повідомленні спільноти у соціальній мережі.",
     :status => 'declined',
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 4, current_count: 10, goal_count: 10},
+        {category_id: 8, current_count: 5, goal_count: 20},
+        {category_id: 11, current_count: 3, goal_count: 9}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fourth.requests.create(
     :name => 'Спецкор: у Маріуполі загонам ВСУ вже потрібна допомога волонтерів',
     :description => "«Вчора з другої години дня збиралися підписи на знак протесту, і тепер всі ці підписи будуть направлені разом із листом президенту України Петру Порошенку. На 2 серпня вже призначений великий мітинг. Можна сказати, що ті, хто підписався сьогодні, там будуть точно. Тобто це мінімум 200 осіб. Також поставили ще один намет, додаткові прапори, наметове містечко потихеньку розростається.
       Крім тих, хто проти, є і люди, які позитивно дивляться на ротацію. Військові залишилися, а все важке озброєння було відведено. За словами Ярослава Чепурнова, прес-офіцера сектора М, вже сьогодні вивели всі батальйони з Широкино, їх місце зайняли морські піхотинці. Цікаво, що морська піхота, як говорив президент України, повністю обмундирована від А до Я, це кращі бійці і самі забезпечені війська нашої країни. Але вже вчора волонтери кидали клич на Facebook про те, що нашим морським котикам потрібні шкарпетки, ліхтарики, труси, генератори і так далі, тобто предмети першої необхідності.
       Всі чекають 2 серпня, щоб прийти на великий мітинг. До нього йде повномасштабна підготовка. Вчора було кілька конфліктів прихильників і супротивників відводу добровольців з Широкиного. Звучали і мати, але бійок не було. Сьогодні прийшла, наскільки я знаю, поки тільки одна людина, яка проти цієї мирної акції, але ніякого відкритого невдоволення вона не висловлювала.
       Біля наметів регулярно перебувають до 30 осіб. Прості жителі просто проходять повз, дізнаються про ситуацію, в чому причина, деякі на знак згоди ставлять свій підпис. Хтось бере плакати, вони також підтримують повністю цей мітинг.",
     :status => 'declined',
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 1, current_count: 14560, goal_count: 20000},
+        {category_id: 3, current_count: 0, goal_count: 2},
+        {category_id: 6, current_count: 0, goal_count: 8},
+        {category_id: 7, current_count: 10, goal_count: 15}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fourth.requests.create(
     :name => 'Луцьк: волонтеру терміново потрібна допомога',
     :description => "Волонтер міжнародного фонду «Милосердні руки» Анатолій наразі перебуває у Волинській обласній лікарні і терміново потребує грошей для лікування.
       Про це у соціальній мережі Facebook написала волонтерка Марина Бляшук.
@@ -350,22 +345,30 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       Терміново потрібні шість донорів будь-якої групи крові.
       “За детальною інформацією звертатися по тел. 050 152 11 17 до Володимира або 099 327 03 07 (зазвичай, слухавку бере мама Анатолія – Марія Йосипівна…. вона постійно сидить поряд з сином у лікарні)”, – йдеться у повідомленні.",
     :status => 'declined',
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 3, current_count: 25, goal_count: 27},
+        {category_id: 4, current_count: 2, goal_count: 5},
+        {category_id: 12, current_count: 3, goal_count: 4}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fourth.requests.create(
      :name => 'Загону №3 з Харківського батальону потрібна допомога.',
      :description => "Поки держава, фактично з нуля відбудовували наші Збройні сили, саме ті патріоти, які з першого до останнього дня пройшли Майдан, першими пішли на фронт захищати Україну.
         Першими був батальйон на базі 1-го та 2-го резервних батальйонів Національної гвардії, який пізніше отримав ім'я генерала-героя Кульчицького. Саме батальйон імені Кульчицького взяв на себе перший і найважчий удар, і, безумовно, втрат серед перших було більше.
         Згідно з інформацією на сторінці підрозділу в соцмережі Facebook, за час боїв в Донбасі батальйон втратив 23 людини, 76 бійців були поранені.
         Потрібні 3 мішки шкарпеток, 10 бронежилетів та провізія. Допоможіть хто чим може, дякуємо.",
      :status => 'declined',
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+         {category_id: 1, current_count: 1000, goal_count: 2000},
+         {category_id: 2, current_count: 2, goal_count: 3},
+         {category_id: 7, current_count: 3, goal_count: 4}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fourth.requests.create(
      :name => 'Друзья : волонтёры , военнослужащие , дембеля !',
      :description => "Большая просьба ко всем этим категориям !
         Если у кого из Вас есть или знаете у кого есть :
@@ -379,28 +382,35 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         Ну нахрена Вам весь этот хлам ?! Отдайте , помогите братьям побыстрей ''прозреть'' !!!
         Перепост крайне приветствуется !!!",
      :status => 'declined',
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+        {category_id: 7, current_count: 11, goal_count: 33}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fourth.requests.create(
      :name => 'Вельмишановні! Хто найближчого часу іде в Маріуполь?',
      :description => "Вельмишановні! Хто найближчого часу іде в Маріуполь, і у нього є ще трошки вільного місця, будь ласочка прихопить 2 мішки подарунків для хлопців. Підробиці в лічку.",
      :status => 'declined',
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+        {category_id: 10, current_count: 35, goal_count: 50}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fourth.requests.create(
      :name => 'Потрібна допомога волонтерів!',
      :description => "95 аеромобілна бригада \"рота розвідників\". Потребує допомогу. Їм потрібен спец. одяг.
         Будь ласка допоможіть!",
      :status => 'declined',
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+         {category_id: 1, current_count: 1100, goal_count: 1150},
+         {category_id: 7, current_count: 2, goal_count: 4}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fourth.requests.create(
      :name => 'Просимо допомогти зібрати кошти на лікування Максима Лободюка.',
      :description => "Лободюк Максим Віталійович, 2015 року народження, тяжко хворіє, йому був поставлений діагноз: Гемофілія А, тяжкий перебіг. Дитина перебувала на профілактичному лікуванні у рамках Швейцарської програми з травня 2014р.
         Через чотири місяці після початку лікування розвинувся інгібітор до РУНІ (вересень 2014р. ) з титром 12,8 БО/мл., (квітень 2015 р.) титр 7,9 БО/мл. Від вересня 2014 року по сьогодні хлопчик не має можливості на нормальне існування, оскільки держава не виділяє необхідних препаратів (Новосевен), які б допомогли дитині жити нормально, а саме головне, як наслідок нелікування стати інвалідом.
@@ -411,45 +421,14 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         Віримо, що спільними зусиллями, та завдяки вашій небайдужості та підтримці дитина зможе отримати необхідну допомогу.
         Директор благодійної організації Благодійний фонд «Сучасне село та місто» Євгеній Клімов",
      :status => 'declined',
-     :photo_file_name => "photo.jpg"
+     :photo_file_name => "photo.jpg",
+     required_items_attributes: [
+         {category_id: 4, current_count: 1, goal_count: 5},
+         {category_id: 3, current_count: 1, goal_count: 10}
+     ]
   )
-  temp_request.save(validate: false)
 
-  temp_user.requests.first.required_items.create([
-                                                      {category_id: 4, current_count: 10, goal_count: 10},
-                                                      {category_id: 8, current_count: 5, goal_count: 20},
-                                                      {category_id: 11, current_count: 3, goal_count: 9}
-                                                  ])
-  temp_user.requests.second.required_items.create([
-                                                       {category_id: 1, current_count: 14560, goal_count: 20000},
-                                                       {category_id: 3, current_count: 0, goal_count: 2},
-                                                       {category_id: 6, current_count: 0, goal_count: 8},
-                                                       {category_id: 7, current_count: 10, goal_count: 15}
-                                                   ])
-  temp_user.requests.third.required_items.create([
-                                                       {category_id: 3, current_count: 25, goal_count: 27},
-                                                       {category_id: 4, current_count: 2, goal_count: 5},
-                                                       {category_id: 12, current_count: 3, goal_count: 4}
-                                                   ])
-
-  temp_user.requests.fourth.required_items.create([
-                                                      {category_id: 1, current_count: 1000, goal_count: 2000},
-                                                      {category_id: 2, current_count: 2, goal_count: 3},
-                                                      {category_id: 7, current_count: 3, goal_count: 4}
-                                                  ])
-  Request.find(temp_user.requests.fourth.id + 1).required_items.create(category_id: 7, current_count: 11, goal_count: 33)
-  Request.find(temp_user.requests.fourth.id + 2).required_items.create(category_id: 10, current_count: 35, goal_count: 50)
-  Request.find(temp_user.requests.fourth.id + 3).required_items.create([
-                                                       {category_id: 1, current_count: 1100, goal_count: 1150},
-                                                       {category_id: 7, current_count: 2, goal_count: 4}
-                                                   ])
-  Request.find(temp_user.requests.fourth.id + 4).required_items.create([
-                                                      {category_id: 4, current_count: 1, goal_count: 5},
-                                                      {category_id: 3, current_count: 1, goal_count: 10}
-                                                  ])
-
-  temp_user = User.fifth
-  temp_request = temp_user.requests.new(
+  User.fifth.requests.create(
     :name => 'Потрібна допомога: У харківський госпіталь привезли 40 поранених бійців, медики та волонтери не встигають',
     :description => "У 3-го Кіровоградського полку спеціального призначення є необхідність в наступних речах:
       ​​1. Берці демісезонні(-belle wille або wellco розмір 42 -44)
@@ -467,31 +446,42 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       9. Бронежилети або плити (6 клас) -​ 35
       10.​ ​Радіостанціі + гарнітури (портативні та автомобільні Hytera) -​ 10​
       11. Дискові магазини, для патронів калібру 5,45. – 60шт.",
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 1, current_count: 13000, goal_count: 35000},
+        {category_id: 3, current_count: 1, goal_count: 2},
+        {category_id: 4, current_count: 3, goal_count: 4},
+        {category_id: 7, current_count: 5, goal_count: 6},
+        {category_id: 8, current_count: 7, goal_count: 8}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fifth.requests.create(
     :name => 'Потребуємо допомоги',
     :description => "Нашим військовим дуже потрібна фарба маскувальних кольорів (хакі, оливкова, зелена) для фарбування техніки.
       Зараз як ніколи актуально зробити військову техніку непомітною для ворога. Будь ласка, допоможіть фарбою або коштами на її придбання.
       Наша допомога дуже важлива для бійців.",
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 3, current_count: 5, goal_count: 20},
+        {category_id: 13, current_count: 2, goal_count: 50}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fifth.requests.create(
     :name => 'УВАГА! ВОЛОНТЕРИ!',
     :description => "В понеділок 9 березня  запрошуємо волонтерів долучитись до виробництва хімічних термопакетів “ПТН ПХ”.
       Всі бажаючі попрацювати для фронту можуть приходити до офісу “Української Жіночої Варти” за адресою м.Шулявка, вул..О.Довженка, 14/1
       Приходьте, будь ласка! Хлопцям на фронті дуже потрібно тепло!
       Виробничий процес розпочнеться: 09 березня 2015 року в 11:00
       Якщо є можливість попереджайте, будь ласка, заздалегідь коли ви можете прийти та на який час.",
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 11, current_count: 7, goal_count: 10}
+    ]
   )
-  temp_request.save(validate: false)
 
-  temp_request = temp_user.requests.new(
+  User.fifth.requests.create(
     :name => 'Терміново потрібна допомога у облаштуванні 12 казарми учбового центру «Десна»',
     :description => "Терміново потрібна допомога у облаштуванні 12 казарми учбового центру «Десна», куди повернулися на ротацію бійці 25-го батальйону «Київська Русь». Умови жахливі, їх просто немає. 14 січня до казарми повернуться 300 бійців, яким фактично ніде спати. Маємо встигнути до тих пір по максимуму!
       Передмова: ми зустріли героїв у «Десні». Героїв, що 4 місяці тримали Дебальцеве – апендикс нашої землі, вклинений у гущу сепаратизму. Зустріли душевно, та без особливих почестей. Тому що «генштаб дав наказ не пускати нікого на територію частини».
@@ -502,33 +492,16 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
       Звернення до меценатів. Будьмо реалістами, швидко наше керівництво вміє тільки красти. З найнеобхіднішого (це окрім ремонту) у казармах потрібні: ліжка, матраци, подушки, сантехніка (раковини, змішувачі для умивальників та душів), вікна. Якщо ви виробляєте або реалізуєте щось із цієї продукції – ви матимете найкращу рекламу з усіх можливих. Всі медіа говоритимуть про вашу допомогу.
       Як зробити, щоб все це не осіло в звітах та кишенях керівництва? Гравірування (штампи) на видному місці продукції. Щось на кшталт «Не для продажу! Подарунок від волонтерів» абощо. Прозора звітніть. Підписання керівництвом «Десни» документів про прийняття мат.забезпечення у якості благодійної допомоги. З можливістю перевірки наявності та справності у майбутньому. Простими словами: щоб даючи частині 500 ліжок ми змогли приїхати через місяць/півроку і порахувати їх. Звичайно, з висвітленням цього факту у ЗМІ. Якщо не дорахуємося – висвітлимо навіть з більшим ентузіазмом.
       Волонтерська допомога. Руками, часом та фінансами. Руками: утеплити вікна (поролон + скотч), у деякі – вставити скло (зараз закрито клейонкою), змайструвати душові кабіни. Фінансами: на динамічні водонагрівачі (бойлери не потягне мережа казарми), баки для душів, електрику (стабілізатори напруження, кабель тощо).",
-    :photo_file_name => "photo.jpg"
+    :photo_file_name => "photo.jpg",
+    required_items_attributes: [
+        {category_id: 1, current_count: 220, goal_count: 875},
+        {category_id: 2, current_count: 3, goal_count: 19},
+        {category_id: 3, current_count: 5, goal_count: 21},
+        {category_id: 7, current_count: 3, goal_count: 6},
+        {category_id: 11, current_count: 1, goal_count: 2},
+        {category_id: 13, current_count: 20, goal_count: 25}
+    ]
   )
-  temp_request.save(validate: false)
-
-  temp_user.requests.first.required_items.create([
-      {category_id: 1, current_count: 13000, goal_count: 35000},
-      {category_id: 3, current_count: 1, goal_count: 2},
-      {category_id: 4, current_count: 3, goal_count: 4},
-      {category_id: 7, current_count: 5, goal_count: 6},
-      {category_id: 8, current_count: 7, goal_count: 8}
-  ])
-  temp_user.requests.second.required_items.create([
-      {category_id: 3, current_count: 5, goal_count: 20},
-      {category_id: 13, current_count: 2, goal_count: 50}
-  ])
-  temp_user.requests.third.required_items.create([
-      {category_id: 11, current_count: 7, goal_count: 10}
-  ])
-
-  temp_user.requests.fourth.required_items.create([
-      {category_id: 1, current_count: 220, goal_count: 875},
-      {category_id: 2, current_count: 3, goal_count: 19},
-      {category_id: 3, current_count: 5, goal_count: 21},
-      {category_id: 7, current_count: 3, goal_count: 6},
-      {category_id: 11, current_count: 1, goal_count: 2},
-      {category_id: 13, current_count: 20, goal_count: 25}
-  ])
 
 ####################
 
@@ -560,32 +533,28 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
             throw :found unless usr.id == helper_id || decisions.map{|value| value[:helper_id] }.include?(helper_id)
           end
         end
+
+        accepted_items = Array.new
+        Random.rand(1..request.required_items.size).times do
+          required_item_id = nil
+          catch (:found) do
+            loop do
+              required_item_id = request.required_items.offset(Random.rand(request.required_items.size)).first.id
+              throw :found unless accepted_items.map{|value| value[:required_item_id] }.include?(required_item_id)
+            end
+          end
+          accepted_items << {required_item_id: required_item_id, count: Random.rand(0..RequiredItem.find(required_item_id).remaining_count)}
+        end
+
         decisions << {
             helper_id: helper_id,
             description: BetterLorem.p(3, true, true ),
-            status: Random.rand(2) == 0 ? 'unaccepted' : 'new'
+            status: Random.rand(2) == 0 ? 'unaccepted' : 'new',
+            accepted_items_attributes: accepted_items
         }
-      end
-      decisions.each do |decision|
-        temp_decision = request.decisions.new(decision)
-        temp_decision.save(validate: false)
-      end
 
-      request.decisions.each do |decision|
-        accepted_items = Array.new
-          Random.rand(1..request.required_items.size).times do
-            required_item_id = nil
-            catch (:found) do
-              loop do
-                required_item_id = request.required_items.offset(Random.rand(request.required_items.size)).first.id
-                throw :found unless accepted_items.map{|value| value[:required_item_id] }.include?(required_item_id)
-              end
-            end
-            accepted_items << {required_item_id: required_item_id, count: Random.rand(0..RequiredItem.find(required_item_id).remaining_count)}
-          end
-        decision.accepted_items.create(accepted_items)
       end
-
+      request.decisions.create(decisions)
     end
   end
 
@@ -621,4 +590,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 
 ################
 
-User.first.received_messages.create(body: 'What is that, my friend?', sender: User.fourth, access: 'both')
+Message.create([
+    { body: 'What is that, my friend?', sender: User.fourth, receiver: User.first },
+    { body: 'We have what we have, comrad!', receiver: User.fourth, sender: User.first }
+])

@@ -1,16 +1,16 @@
 module Wordable
   def human_truncate(name, max, ending = '...', splitter = ' ')
     return name if name.size <= max
-    add = symbols.include?(name[max])? true : false
+    add = symbols.include?(name[max])
     part = name.truncate(max).gsub(/[#{regular_symbols}]+$/, '').split(splitter)
     part = (part.size > 1)? part[0..-2].join(splitter) : part.join
-    if add
-      part = part.gsub(/[#{regular_symbols}]+$/, '')
-      "#{part}#{ending}"
-    else
-      part = part.split
-      (part.size > 1)? part[0..-2].join(' ') : part.join
-    end
+    part = if add
+             part.gsub(/[#{regular_symbols}]+$/, '')
+           else
+             part = part.split
+             (part.size > 1)? part[0..-2].join(' ') : part.join
+           end
+    "#{part}#{ending}"
   end
 
   def form_user_link(user)
@@ -44,7 +44,7 @@ module Wordable
   def user_activity_message_text(activity)
     case activity.key
       when 'decision.accept' then "Прийняв відгук за запитом #{form_request_link(activity.recipient)}."
-      when 'decision.create' then "Створив відгук за запитом #{form_request_link(activity.recipient)}."
+      when 'decision.create' then "Відгукнувся по запиту #{form_request_link(activity.recipient)}."
       when 'decision.deny' then "Відхилив відгук за запитом #{form_request_link(activity.recipient)}."
       when 'decision.partly' then "Частково прийняв відгук за запитом #{form_request_link(activity.recipient)}."
       when 'request.archive' then "Заархівував запит #{form_request_link(activity.trackable)}."
@@ -66,7 +66,7 @@ module Wordable
   def request_activity_message_text(activity)
     case activity.key
       when 'decision.accept' then "#{form_user_link(activity.owner)} прийняв допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
-      when 'decision.create' then "#{form_user_link(activity.owner)} створив відгук."
+      when 'decision.create' then "#{form_user_link(activity.owner)} відгукнувся по даному запиту."
       when 'decision.deny' then "#{form_user_link(activity.owner)} відхилив допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
       when 'decision.partly' then "#{form_user_link(activity.owner)} частково прийняв допомогу від #{form_user_link(User.find(activity.parameters.fetch(:helper_id)))}."
       when 'request.archive' then "#{form_user_link(activity.trackable.user)} заархівував запит."

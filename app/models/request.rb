@@ -18,12 +18,12 @@ class Request < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 150 }
   validates :user_id, presence: true
   validates :status, presence: true, inclusion: { in: %w(actual archived unchecked declined) }
-  validate :without_required_items?, on: :create, :if => proc { |r| r.required_items.empty? } # comment for db:seed
+  validate :without_required_items?, on: :create, :if => proc { |r| r.required_items.empty? }
   [:unchecked, :actual, :archived, :declined].each do |status|
-    scope status, -> { where("requests.status = ?", status) }
+    scope status, -> { where(status: status) }
   end
 
-  scope :near_with, -> (user){ joins(:user).where(users: { region: user.region }) }
+  scope :near_with, -> (user){ joins(:user).where(users: { region: [nil, user.region, *Request.unsecured_regions] }) }
 
   def status?(request_status)
     status == request_status.to_s
@@ -61,5 +61,11 @@ class Request < ActiveRecord::Base
 
   def without_required_items?
     errors.add(:base, 'Не обрано жодної категорії допомоги')
+  end
+
+  def self.unsecured_regions
+    requests_regions = Request.all.map{ |request| request.user.region }.uniq
+    moderators_regions = User.moderators.map{ |user| user.region }.uniq
+    requests_regions - moderators_regions
   end
 end
