@@ -2,9 +2,6 @@
 .info
   %p.author= link_to decision.helper.name, user_url(decision.helper)
   %p.date= l(decision.created_at, format: '%d %B, %Y')
-  - unless defined?(in_list)
-    %p= link_to 'Допоміг', accept_decision_url(decision)
-    %p= link_to 'Не допоміг', deny_decision_url(decision)
 %br
 - if defined?(in_list)
   %p.description= decision.description.truncate(530, separator:' ')
