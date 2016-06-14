@@ -169,10 +169,11 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 
   (6..30).each do |i|
     Random.rand(6).times.each do
-      status = case Random.rand(3)
+      status = case Random.rand(4)
                when 0 then :archived
                when 1 then :actual
                when 2 then :unchecked
+               when 3 then :declined
                end
 
       temp = Random.rand(9)
@@ -189,6 +190,18 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         :photo_file_name => Random.rand(2) == 0 ? 'photo.jpg' : nil,
         required_items_attributes: categories
       )
+      User.find(i).requests.each do |request|
+        request.create_activity key: 'request.create', owner: request.user
+        case request.status
+        when 'actual'
+          request.create_activity key: 'request.check', status: 'new', owner: request.user
+        when 'declined'
+          request.create_activity key: 'request.decline', status: 'new', owner: request.user
+        when 'archived'
+          request.create_activity key: 'request.check', status: 'new', owner: request.user
+          request.create_activity key: 'request.archive', owner: request.user
+        end
+      end
     end
   end
 
@@ -204,6 +217,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 11, current_count: 5, goal_count: 15}
     ]
   )
+  User.first.requests.last.create_activity key: 'request.create', owner: User.first
 
   User.first.requests.create(
     :name => 'Спецкор: у Маріуполі загонам ВСУ вже потрібна допомога волонтерів',
@@ -219,6 +233,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 7, current_count: 1, goal_count: 7}
     ]
   )
+  User.first.requests.last.create_activity key: 'request.create', owner: User.first
 
   User.second.requests.create(
     :name => 'Луцьк: волонтеру терміново потрібна допомога',
@@ -235,6 +250,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 12, current_count: 4, goal_count: 10}
     ]
   )
+  User.second.requests.last.create_activity key: 'request.create', owner: User.second
 
   User.third.requests.create(
      :name => 'Загону №3 з Харківського батальону потрібна допомога.',
@@ -249,6 +265,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
          {category_id: 7, current_count: 3, goal_count: 6}
      ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.third.requests.create(
      :name => 'Друзья : волонтёры , военнослужащие , дембеля !',
@@ -268,6 +285,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 7, current_count: 1, goal_count: 10}
      ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.third.requests.create(
      :name => 'Вельмишановні! Хто найближчого часу іде в Маріуполь?',
@@ -277,6 +295,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 10, current_count: 8, goal_count: 10}
      ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.third.requests.create(
      :name => 'Потрібна допомога волонтерів!',
@@ -288,6 +307,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
          {category_id: 7, current_count: 5, goal_count: 7}
      ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.third.requests.create(
      :name => 'Просимо допомогти зібрати кошти на лікування Максима Лободюка.',
@@ -305,6 +325,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
          {category_id: 3, current_count: 2, goal_count: 2}
      ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.fourth.requests.create(
     :name => 'Потрібна допомога: У харківський госпіталь привезли 40 поранених бійців, медики та волонтери не встигають',
@@ -319,6 +340,9 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 11, current_count: 3, goal_count: 9}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
+
 
   User.fourth.requests.create(
     :name => 'Спецкор: у Маріуполі загонам ВСУ вже потрібна допомога волонтерів',
@@ -335,6 +359,8 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 7, current_count: 10, goal_count: 15}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
 
   User.fourth.requests.create(
     :name => 'Луцьк: волонтеру терміново потрібна допомога',
@@ -352,6 +378,8 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 12, current_count: 3, goal_count: 4}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
 
   User.fourth.requests.create(
      :name => 'Загону №3 з Харківського батальону потрібна допомога.',
@@ -367,6 +395,8 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
          {category_id: 7, current_count: 3, goal_count: 4}
      ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
 
   User.fourth.requests.create(
      :name => 'Друзья : волонтёры , военнослужащие , дембеля !',
@@ -387,28 +417,36 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 7, current_count: 11, goal_count: 33}
      ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
 
   User.fourth.requests.create(
      :name => 'Вельмишановні! Хто найближчого часу іде в Маріуполь?',
      :description => "Вельмишановні! Хто найближчого часу іде в Маріуполь, і у нього є ще трошки вільного місця, будь ласочка прихопить 2 мішки подарунків для хлопців. Підробиці в лічку.",
-     :status => 'declined',
+     :status => 'archive',
      :photo_file_name => "photo.jpg",
      required_items_attributes: [
         {category_id: 10, current_count: 35, goal_count: 50}
      ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.check', status: 'new', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.archive', owner: User.fourth
 
   User.fourth.requests.create(
      :name => 'Потрібна допомога волонтерів!',
      :description => "95 аеромобілна бригада \"рота розвідників\". Потребує допомогу. Їм потрібен спец. одяг.
         Будь ласка допоможіть!",
-     :status => 'declined',
+     :status => 'archive',
      :photo_file_name => "photo.jpg",
      required_items_attributes: [
          {category_id: 1, current_count: 1100, goal_count: 1150},
          {category_id: 7, current_count: 2, goal_count: 4}
      ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.check', status: 'new', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.archive', owner: User.fourth
 
   User.fourth.requests.create(
      :name => 'Просимо допомогти зібрати кошти на лікування Максима Лободюка.',
@@ -420,13 +458,16 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         Карта Приват Банку мами 5168 7572 9873 9501
         Віримо, що спільними зусиллями, та завдяки вашій небайдужості та підтримці дитина зможе отримати необхідну допомогу.
         Директор благодійної організації Благодійний фонд «Сучасне село та місто» Євгеній Клімов",
-     :status => 'declined',
+     :status => 'archive',
      :photo_file_name => "photo.jpg",
      required_items_attributes: [
          {category_id: 4, current_count: 1, goal_count: 5},
          {category_id: 3, current_count: 1, goal_count: 10}
      ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.check', status: 'new', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.archive', owner: User.fourth
 
   User.fifth.requests.create(
     :name => 'Потрібна допомога: У харківський госпіталь привезли 40 поранених бійців, медики та волонтери не встигають',
@@ -467,6 +508,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 13, current_count: 2, goal_count: 50}
     ]
   )
+  User.fifth.requests.last.create_activity key: 'request.create', owner: User.fifth
 
   User.fifth.requests.create(
     :name => 'УВАГА! ВОЛОНТЕРИ!',
@@ -480,6 +522,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 11, current_count: 7, goal_count: 10}
     ]
   )
+  User.fifth.requests.last.create_activity key: 'request.create', owner: User.fifth
 
   User.fifth.requests.create(
     :name => 'Терміново потрібна допомога у облаштуванні 12 казарми учбового центру «Десна»',
@@ -502,6 +545,7 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
         {category_id: 13, current_count: 20, goal_count: 25}
     ]
   )
+  User.fifth.requests.last.create_activity key: 'request.create', owner: User.fifth
 
 ####################
 
@@ -555,38 +599,12 @@ RANDOM_TEXT = "Lorem Ipsum - це текст-\"риба\", що використ
 
       end
       request.decisions.create(decisions)
+
+      # request.decisions.each do |decision|
+      #   decision.create_activity recipient: request, status: 'new', parameters: { helper_id: request.user.id }, key: 'decision.create', owner: decision.helper
+      # end
     end
   end
-
-################
-
-############Create Notifications
-
-  # User.all.each do |usr|
-  #   usr.notifications.create(Random.rand(1..10).times.map do
-  #                              message_type = Random.rand(1..8)
-  #                              reason_user_id = nil
-  #                              request_id = nil
-  #                              temp = nil
-  #                              if [1, 2, 3, 8, 9].include? message_type
-  #                                catch (:found) do
-  #                                  loop do
-  #                                    reason_user_id = Random.rand(1..30)
-  #                                    temp = User.find(reason_user_id).requests
-  #                                    throw :found unless usr.id == reason_user_id || temp.empty?
-  #                                  end
-  #                                end
-  #                                request_id = temp.offset(Random.rand(temp.size)).first.id
-  #                              end
-  #                              {
-  #                                 message_type: message_type,
-  #                                 status: Random.rand(2) == 0 ? 'read' : 'new',
-  #                                 reason_user_id: reason_user_id,
-  #                                 request_id: request_id
-  #                              }
-  #                           end
-  #   )
-  # end
 
 ################
 
