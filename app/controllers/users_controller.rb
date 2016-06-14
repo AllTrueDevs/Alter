@@ -20,13 +20,17 @@ class UsersController < ApplicationController
   def search_settlements
     query, limit = autocomplete_params[:query], autocomplete_params[:limit].to_i
     json = nova_poshta_data(query)
-    @settlements = json.take(limit).map do |data|
-      {
-         settlement: data[:Description],
-         type: data[:SettlementTypeDescription],
-         region: data[:AreaDescription],
-         district: data[:RegionsDescription]
-      }
+    begin
+      @settlements = json.take(limit).map do |data|
+        {
+           settlement: data[:Description],
+           type: data[:SettlementTypeDescription],
+           region: data[:AreaDescription],
+           district: data[:RegionsDescription]
+        }
+      end
+    rescue
+      @settlements = []
     end
     respond_to do |format|
       format.json { render :json => @settlements }
