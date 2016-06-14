@@ -277,10 +277,11 @@ requests_data = [
 
   (6..30).each do |i|
     Random.rand(6).times.each do
-      status = case Random.rand(3)
+      status = case Random.rand(4)
                when 0 then :archived
                when 1 then :actual
                when 2 then :unchecked
+               when 3 then :declined
                end
 
       temp = Random.rand(9)
@@ -297,6 +298,18 @@ requests_data = [
         :photo_file_name => Random.rand(2) == 0 ? 'photo.jpg' : nil,
         required_items_attributes: categories
       )
+      User.find(i).requests.each do |request|
+        request.create_activity key: 'request.create', owner: request.user
+        case request.status
+        when 'actual'
+          request.create_activity key: 'request.check', status: 'new', owner: request.user
+        when 'declined'
+          request.create_activity key: 'request.decline', status: 'new', owner: request.user
+        when 'archived'
+          request.create_activity key: 'request.check', status: 'new', owner: request.user
+          request.create_activity key: 'request.archive', owner: request.user
+        end
+      end
     end
   end
 
@@ -310,6 +323,7 @@ requests_data = [
       {category_id: 11, current_count: 5, goal_count: 15}
     ]
   )
+  User.first.requests.last.create_activity key: 'request.create', owner: User.first
 
   User.first.requests.create(
     :name => requests_data[Random.rand(requests_data.length)][:name],
@@ -322,6 +336,7 @@ requests_data = [
       {category_id: 7, current_count: 1, goal_count: 7}
     ]
   )
+  User.first.requests.last.create_activity key: 'request.create', owner: User.first
 
   User.second.requests.create(
     :name => requests_data[Random.rand(requests_data.length)][:name],
@@ -333,6 +348,7 @@ requests_data = [
       {category_id: 12, current_count: 4, goal_count: 10}
     ]
   )
+  User.second.requests.last.create_activity key: 'request.create', owner: User.second
 
   User.third.requests.create(
     :name => requests_data[Random.rand(requests_data.length)][:name],
@@ -344,6 +360,7 @@ requests_data = [
       {category_id: 7, current_count: 3, goal_count: 6}
     ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.third.requests.create(
     :name => requests_data[Random.rand(requests_data.length)][:name],
@@ -353,6 +370,7 @@ requests_data = [
       {category_id: 7, current_count: 1, goal_count: 10}
     ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.third.requests.create(
     :name => requests_data[Random.rand(requests_data.length)][:name],
@@ -362,6 +380,7 @@ requests_data = [
       {category_id: 10, current_count: 8, goal_count: 10}
     ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.third.requests.create(
     :name => requests_data[Random.rand(requests_data.length)][:name],
@@ -372,6 +391,7 @@ requests_data = [
        {category_id: 7, current_count: 5, goal_count: 7}
     ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.third.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -382,6 +402,7 @@ requests_data = [
       {category_id: 3, current_count: 2, goal_count: 2}
     ]
   )
+  User.third.requests.last.create_activity key: 'request.create', owner: User.third
 
   User.fourth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -394,6 +415,9 @@ requests_data = [
       {category_id: 11, current_count: 3, goal_count: 9}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
+
 
   User.fourth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -407,6 +431,8 @@ requests_data = [
       {category_id: 7, current_count: 10, goal_count: 15}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
 
   User.fourth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -419,6 +445,8 @@ requests_data = [
       {category_id: 12, current_count: 3, goal_count: 4}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
 
   User.fourth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -431,6 +459,8 @@ requests_data = [
       {category_id: 7, current_count: 3, goal_count: 4}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
 
   User.fourth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -441,38 +471,49 @@ requests_data = [
       {category_id: 7, current_count: 11, goal_count: 33}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.decline', status: 'new', owner: User.fourth
 
   User.fourth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
     description: requests_data[Random.rand(requests_data.length)][:description],
-    :status => 'declined',
+    :status => 'archived',
     :photo_file_name => "photo.jpg",
     required_items_attributes: [
       {category_id: 10, current_count: 35, goal_count: 50}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.check', status: 'new', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.archive', owner: User.fourth
 
   User.fourth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
     description: requests_data[Random.rand(requests_data.length)][:description],
-    :status => 'declined',
+    :status => 'archived',
     :photo_file_name => "photo.jpg",
     required_items_attributes: [
       {category_id: 1, current_count: 1100, goal_count: 1150},
       {category_id: 7, current_count: 2, goal_count: 4}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.check', status: 'new', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.archive', owner: User.fourth
 
   User.fourth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
     description: requests_data[Random.rand(requests_data.length)][:description],
-    :status => 'declined',
+    :status => 'archived',
     :photo_file_name => "photo.jpg",
     required_items_attributes: [
       {category_id: 4, current_count: 1, goal_count: 5},
       {category_id: 3, current_count: 1, goal_count: 10}
     ]
   )
+  User.fourth.requests.last.create_activity key: 'request.create', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.check', status: 'new', owner: User.fourth
+  User.fourth.requests.last.create_activity key: 'request.archive', owner: User.fourth
 
   User.fifth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -496,6 +537,7 @@ requests_data = [
       {category_id: 13, current_count: 2, goal_count: 50}
     ]
   )
+  User.fifth.requests.last.create_activity key: 'request.create', owner: User.fifth
 
   User.fifth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -505,6 +547,7 @@ requests_data = [
       {category_id: 11, current_count: 7, goal_count: 10}
     ]
   )
+  User.fifth.requests.last.create_activity key: 'request.create', owner: User.fifth
 
   User.fifth.requests.create(
     name: requests_data[Random.rand(requests_data.length)][:name],
@@ -519,6 +562,7 @@ requests_data = [
       {category_id: 13, current_count: 20, goal_count: 25}
     ]
   )
+  User.fifth.requests.last.create_activity key: 'request.create', owner: User.fifth
 
 ####################
 
@@ -572,8 +616,15 @@ requests_data = [
 
       end
       request.decisions.create(decisions)
+
+      # request.decisions.each do |decision|
+      #   decision.create_activity recipient: request, status: 'new', parameters: { helper_id: request.user.id }, key: 'decision.create', owner: decision.helper
+      # end
     end
   end
+
+
+################
 
 Message.create([
     { body: 'What is that, my friend?', sender: User.fourth, receiver: User.first },
