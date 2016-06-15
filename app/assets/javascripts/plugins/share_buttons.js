@@ -2,16 +2,16 @@ Share = {
     vkontakte: function() {
         url  = 'http://vkontakte.ru/share.php?';
         url += 'url='          + encodeURIComponent(window.location.href);
-        url += '&title='       + encodeURIComponent($('.title').text());
-        url += '&description=' + encodeURIComponent($('.description').text().substring(0, $('.description').text().substring(0, 250).lastIndexOf(" "))+'...');
-        url += '&image='       + encodeURIComponent($('.photo').attr('src'));
+        url += '&title='       + encodeURIComponent($('.request-show .title').text());
+        url += '&description=' + encodeURIComponent($('.request-show .description').text().substring(0, $('.request-show .description').text().substring(0, 250).lastIndexOf(" "))+'...');
+        url += '&image='       + encodeURIComponent($('.request-show .photo').attr('src'));
         url += '&noparse=true';
         Share.popup(url);
     },
     twitter: function() {
         url  = 'https://twitter.com/share?';
         url += 'url='      + encodeURIComponent(window.location.href);
-        url += '&text='      + encodeURIComponent($('.title').text());
+        url += '&text='      + encodeURIComponent($('.request-show .title').text());
         url +='&via=alter_dev'
         Share.popup(url);
     },
