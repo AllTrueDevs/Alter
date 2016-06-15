@@ -1,0 +1,289 @@
+/* line 1, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.home-page-bg {
+  background: url("home_background.png") no-repeat;
+  background-size: cover;
+}
+
+/* line 4, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.img-center {
+  margin: 0 auto;
+  padding: 5px;
+  display: block;
+}
+
+/* line 8, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 12, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.inline {
+  display: inline-block;
+}
+
+/* line 15, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.votes a {
+  color: #cbcbcb;
+}
+/* line 17, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.votes p {
+  display: inline;
+  margin: 0 !important;
+  float: none !important;
+}
+/* line 22, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.votes .upvote.voted {
+  color: #04cc07 !important;
+}
+/* line 24, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.votes .upvote:hover {
+  color: #90cc81;
+}
+/* line 27, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.votes .downvote.voted {
+  color: #d52845 !important;
+}
+/* line 29, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.votes .downvote:hover {
+  color: #d58b7f;
+}
+
+/* line 33, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .navbar {
+  margin-bottom: 0;
+}
+/* line 35, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header {
+  border-radius: 0;
+  border: none;
+}
+/* line 38, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-brand, header .custom-header .navbar-nav li a {
+  line-height: 80px;
+  height: 80px;
+  padding-top: 0;
+}
+/* line 42, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+/* line 46, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav li a {
+  text-transform: uppercase;
+}
+/* line 48, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav .dropdown-menu {
+  border: none;
+  padding: 0;
+}
+/* line 51, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav .dropdown-menu li a {
+  text-transform: none;
+  line-height: 35px;
+  height: 35px;
+}
+/* line 55, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav .dropdown-menu li:last-child a {
+  line-height: 50px;
+  height: 50px;
+}
+/* line 58, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-nav .dropdown-menu .number {
+  font-weight: bold;
+  padding-left: 8px;
+}
+/* line 61, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-collapse {
+  text-align: center;
+}
+/* line 63, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-right {
+  font-family: "Roboto";
+  text-align: center;
+}
+/* line 66, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .dropdown a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 70, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .dropdown a span {
+  font-family: "Roboto";
+  font-weight: bold;
+}
+/* line 73, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+header .custom-header .navbar-right li, header .custom-header .dropdown-menu {
+  width: 240px;
+}
+
+/* line 77, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+footer {
+  color: #fff;
+}
+/* line 79, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+footer .contacts li {
+  display: inline-block;
+}
+/* line 81, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+footer .contacts li a {
+  color: #fff;
+}
+/* line 83, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+footer .contacts li a:hover, footer .contacts li a:focus {
+  color: #d3d3d3;
+}
+
+/* line 88, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header {
+  box-shadow: 0 3px 17px #2B2B39;
+  background: rgba(19, 18, 41, 0.4);
+}
+/* line 91, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header .navbar-brand, .dark-theme .custom-header .navbar-nav li a {
+  color: #fff;
+}
+/* line 94, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header .navbar-nav a:hover, .dark-theme .custom-header .navbar-nav a:focus {
+  color: #fff;
+  background: rgba(19, 18, 41, 0.3);
+}
+/* line 97, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header .navbar-nav .open > a, .dark-theme .custom-header .navbar-nav .open > a:hover, .dark-theme .custom-header .navbar-nav .open > a:focus {
+  background: rgba(19, 18, 41, 0.3);
+}
+/* line 99, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-header .navbar-nav .dropdown-menu {
+  background: rgba(19, 18, 41, 0.6);
+}
+/* line 101, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-footer {
+  text-align: center;
+}
+/* line 103, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.dark-theme .custom-footer .contacts li {
+  line-height: 100px;
+  height: 100px;
+  font-size: 1.7em;
+  margin: 0 10px;
+}
+
+/* line 111, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header {
+  background: #35353f;
+}
+/* line 113, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header .navbar-brand, .light-theme .custom-header .navbar-nav li a {
+  color: #fff;
+}
+/* line 116, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header .navbar-nav a:hover, .light-theme .custom-header .navbar-nav a:focus {
+  color: #35353f;
+  background: #fff;
+}
+/* line 119, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header .navbar-nav .open > a, .light-theme .custom-header .navbar-nav .open > a:hover, .light-theme .custom-header .navbar-nav .open > a:focus {
+  background: #fff;
+  color: #35353f;
+}
+/* line 122, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-header .navbar-nav .dropdown-menu {
+  background: #35353f;
+}
+/* line 137, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .contacts li {
+  font-size: 1.3em;
+  margin: 0 5px;
+}
+/* line 140, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .top {
+  line-height: 133px;
+  height: 133px;
+  background: #35353f;
+}
+/* line 144, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .top .brand {
+  font-size: 2.5em;
+  color: #fff;
+  text-decoration: none;
+}
+/* line 148, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .top .contact-information {
+  text-align: right;
+  transform: translateY(43px);
+}
+/* line 151, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .top .contact-information li {
+  line-height: 30px;
+}
+/* line 153, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.light-theme .custom-footer .bottom {
+  text-transform: uppercase;
+  color: #35353f;
+  line-height: 70px;
+  height: 70px;
+  text-align: center;
+}
+
+/* line 160, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.button {
+  display: block;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  background: #35353f;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 6px 8px 22px -5px #2B2B39;
+}
+/* line 170, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.button:disabled {
+  background: #efefef;
+  color: #b2b2b2;
+  box-shadow: none;
+  border: 1px solid #eeeeee;
+}
+
+/* line 176, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.pagination {
+  margin-bottom: 0;
+  border-radius: 5px;
+  border-color: #35353f;
+}
+/* line 180, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.pagination li span, .pagination .last a, .pagination .first a, .pagination li span a {
+  color: #35353f;
+}
+/* line 182, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.pagination li span {
+  border-color: #eeeeee;
+}
+/* line 184, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.pagination li span:hover, .pagination li span:focus {
+  background: #eeeeee;
+  border-color: #eeeeee;
+}
+/* line 188, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.pagination .active span, .pagination .active span:active, .pagination .active span:hover, .pagination .active span:focus {
+  background: #d52845;
+  border-color: #d52845;
+}
+
+/* line 191, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.pagination-info {
+  padding: 10px 0 15px 0;
+  text-align: center;
+  font-size: 0.6em;
+}
+
+/* line 196, /home/shpak/Projects/alter_beta/app/assets/stylesheets/layouts.sass */
+.nothing-to-show {
+  margin: 15px;
+  text-align: center;
+  font-size: 1.3em;
+}
