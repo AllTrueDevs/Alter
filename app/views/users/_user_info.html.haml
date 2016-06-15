@@ -3,6 +3,9 @@
   %p.name= user.name
   - unless user_role(user).blank?
     %p.role= user_role(user)
+  - if can? :vote, user
+    %div{ class: "votes votes-#{user.id}" }
+      = render partial: 'layouts/votes', locals: { source: user }
   - unless user.info.blank?
     %p.description= user.info
   .contact-info

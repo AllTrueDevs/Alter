@@ -6,5 +6,6 @@
   .article-show
     .photo
       = image_tag @article.photo.url
+    = render partial: 'articles/article_actions', locals: { article: @article }
     = render partial: 'articles/article_tags', locals: { article: @article }
     = render partial: 'articles/article_info', locals: { article: @article }

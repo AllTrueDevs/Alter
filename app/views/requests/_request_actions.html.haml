@@ -1,7 +1,4 @@
-.request-actions
-  - if can? :vote, request
-    %div{ class: "votes votes-#{request.id}" }
-      = render partial: 'layouts/votes', locals: { source: request }
+.actions.request-actions
   - case request.status
   - when 'actual'
     - if can? :edit, request

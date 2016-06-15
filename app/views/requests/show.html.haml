@@ -16,6 +16,7 @@
   .request-show
     .photo
       = image_tag @request.photo.url
+    = render partial: 'requests/request_actions', locals: { request: @request }
     = render partial: 'request_categories', locals: { request: @request }
     = render partial: 'request_info', locals: { request: @request }
     = render partial: 'request_progress', locals: { request: @request, decision: @decision, user: @user }
