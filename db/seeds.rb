@@ -295,7 +295,7 @@ requests_data = [
         name: requests_data[Random.rand(requests_data.length)][:name],
         description: requests_data[Random.rand(requests_data.length)][:description],
         status: status,
-        :photo_file_name => Random.rand(2) == 0 ? 'photo.jpg' : nil,
+        photo_file_name: 'photo.jpg',
         required_items_attributes: categories
       )
       User.find(i).requests.each do |request|

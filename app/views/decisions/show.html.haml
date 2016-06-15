@@ -9,17 +9,6 @@
   .decision-show
     .photo
       = image_tag @decision.helper.avatar.url
+    = render partial: 'decisions/decision_actions', locals: { decision: @decision }
     = render partial: 'decisions/decision_categories', locals: { decision: @decision }
     = render partial: 'decisions/decision_info', locals: { decision: @decision }
-
-    .pull-right.request-actions
-      .dropdown
-        %button#dropdownMenu1.btn.btn-default.dropdown-toggle{ 'data-toggle': :dropdown, type: :button }
-          Підтвердження
-          %span.caret
-        %ul.dropdown-menu
-          %li
-            %a{ 'data-target': '#closeDecisionModal', 'data-toggle': :modal, 'href': '#' } Частково допоміг
-          %li= link_to 'Допоміг', accept_decision_url, method: :post
-          %li= link_to 'Не допоміг', deny_decision_url, method: :post
-    = render 'modals/decision_close'

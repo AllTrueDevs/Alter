@@ -1,4 +1,4 @@
-.decision{id: "decision-#{decision.id}"}
+.decision{id: "decision-#{decision.id}", class: decision.status?(:new) ? 'new' : ''}
   .row
     .col-md-4
       .photo
