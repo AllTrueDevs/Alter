@@ -8,6 +8,11 @@
   - if can? :vote, request
     %div{ class: "votes votes-#{request.id}" }
       = render partial: 'layouts/votes', locals: { source: request }
+  - if @request.status?(:actual)
+    %a.share-button{onclick: 'Share.vkontakte()', style: 'background: #5f83aa;'}
+      %span.fa.fa-vk &nbsp;Поділитись
+    %a.share-button{onclick: 'Share.twitter()', style: 'background: #0c7abf;'}
+      %span.fa.fa-twitter &nbsp;Tweet
 %br
 - if defined?(in_list)
   %p.description= request.description.truncate(530, separator:' ')
