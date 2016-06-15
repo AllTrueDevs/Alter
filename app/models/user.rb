@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   validates :skype, length:  { maximum: 32 }
 
   scope :search, -> (query) { where("LOWER(name) LIKE LOWER('%#{query}%') OR LOWER(settlement) LIKE LOWER('%#{query}%')") }
-
+  scope :moderators, -> { where(role: 'moderator') }
   after_create do
     user_tags.create(form_tags(default_tags, :news))
   end

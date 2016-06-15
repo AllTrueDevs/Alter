@@ -1,5 +1,5 @@
 - if @users.size.zero?
-  %h5.text-center Користувачів не знайдено
+  %p.nothing-to-show Користувачів не знайдено
 - else
   .users-in-list.text-center.inline
     - @users.each do |user|

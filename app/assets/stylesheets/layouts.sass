@@ -11,11 +11,6 @@
   text-overflow: ellipsis
 .inline
   display: inline-block
-.pagination-info
-  padding: 10px 0 15px 0
-  text-align: center
-  font-size: 0.6em
-  color: #777
 .votes
   a
     color: #cbcbcb
@@ -161,3 +156,44 @@ footer
       line-height: 70px
       height: 70px
       text-align: center
+
+.button
+  display: block
+  color: #fff
+  border: none
+  border-radius: 30px
+  background: #35353f
+  text-align: center
+  text-transform: uppercase
+  font-weight: bold
+  box-shadow: 6px 8px 22px -5px #2B2B39
+  &:disabled
+    background: #efefef
+    color: #b2b2b2
+    box-shadow: none
+    border: 1px solid #eeeeee
+
+.pagination
+  margin-bottom: 0
+  border-radius: 5px
+  border-color: #35353f
+  li span, .last a, .first a, li span a
+    color: #35353f
+  li span
+    border-color: #eeeeee
+    &:hover, &:focus
+      background: #eeeeee
+      border-color: #eeeeee
+  .active
+    span, span:active, span:hover, span:focus
+      background: #d52845
+      border-color: #d52845
+.pagination-info
+  padding: 10px 0 15px 0
+  text-align: center
+  font-size: 0.6em
+
+.nothing-to-show
+  margin: 15px
+  text-align: center
+  font-size: 1.3em

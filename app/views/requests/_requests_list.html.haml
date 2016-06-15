@@ -1,5 +1,5 @@
 - if requests.blank?
-  %h5.text-center Запитів не знайдено
+  %p.nothing-to-show Запитів не знайдено
 - else
   - requests.each do |request|
     = render partial: 'requests/request', locals: { request: request }

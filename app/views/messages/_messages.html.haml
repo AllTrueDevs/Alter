@@ -1,5 +1,5 @@
 - if messages.size.zero?
-  %h5.text-center У вас немає переписки з цим користувачем
+  %p.nothing-to-show У вас немає переписки з цим користувачем
 - else
   - messages.reverse_each do |message|
     = render partial: 'message', locals: { message: message, companion: companion }

@@ -1,5 +1,5 @@
 - if notifications.size.zero?
-  %h5.text-center Сповіщень не знайдено
+  %p.nothing-to-show Сповіщень не знайдено
 - else
   - notifications.each do |notification|
     = render partial: 'notifications/notification', locals: { notification: notification, destination: destination }
