@@ -6,34 +6,35 @@
 = content_for :plugins do
   = javascript_include_tag 'plugins/file-field'
 
-.edit-profile
-  .group-form
-    %h1.title Налаштування профілю
-    = form_for(@user, url: registration_path(@user), html: { method: :put, multipart: true, role: 'form', class: 'user-form' }) do |f|
-      - if @user.social_sign_up_type.blank?
-        = f.text_field :email, value: @user.email, disabled: true, class: 'disabled'
-      - else
-        = f.text_field :social_sign_up_url, value: @user.social_sign_up_url, disabled: true, class: 'disabled'
-      = f.text_field :name, placeholder: "Введіть ім'я"
-      = f.text_area :info, rows: '10', placeholder: 'Особиста інформація'
-      = f.text_field :phone, placeholder: 'Введіть номер телефону'
-      = f.text_field :skype, placeholder: 'Введіть Skype'
-      = f.text_field :settlement, class: 'autocomplete', data: { 'autocomplete-url' => search_settlements_users_url(limit: 10, query: '_QUERY_'),
-                   'autocomplete-search' => 'settlement' }, placeholder: 'Оберіть населений пункт'
-      = f.hidden_field :settlement_type, class: 'settlement-type'
-      = f.text_field :region, disabled: true, class: "region #{f.object.region.blank? ? 'hidden' : ''}", placeholder: 'Область'
-      = f.hidden_field :district, class: 'district'
-      - social_networks.each do |network|
-        - unless @user.social_sign_up_type == network
-          .social{class: "#{network}#{@user.send(network).nil? ? ' empty' : ''}"}
-            = render partial: 'devise/registrations/edit_url', locals: { social: network, user: @user }
-      .file-field-container
-        = f.file_field :avatar, accept: 'image/png, image/jpeg', class: 'file-field', placeholder: 'Змінити фото'
-      = f.submit 'Зберегти', class: 'button', data: { disable_with: 'Обробка...' }
-    .password-form
-      %h1.title Зміна паролю
-      = form_for(@user, url: change_password_users_url  ) do |f|
-        = f.password_field :current_password, placeholder: 'Поточний пароль'
-        = f.password_field :password, :autocomplete => 'off', placeholder: 'Новий пароль'
-        = f.password_field :password_confirmation, placeholder: 'Підтвердження паролю'
-        = f.submit 'Змінити пароль', class: 'button', data: { disable_with: 'Обробка...' }
+.container
+  .edit-profile
+    .group-form
+      %h1.title Налаштування профілю
+      = form_for(@user, url: registration_path(@user), html: { method: :put, multipart: true, role: 'form', class: 'user-form' }) do |f|
+        - if @user.social_sign_up_type.blank?
+          = f.text_field :email, value: @user.email, disabled: true, class: 'disabled'
+        - else
+          = f.text_field :social_sign_up_url, value: @user.social_sign_up_url, disabled: true, class: 'disabled'
+        = f.text_field :name, placeholder: "Ім'я"
+        = f.text_area :info, rows: '10', placeholder: 'Особиста інформація'
+        = f.text_field :phone, placeholder: 'Номер телефону'
+        = f.text_field :skype, placeholder: 'Skype'
+        = f.text_field :settlement, class: 'autocomplete', data: { 'autocomplete-url' => search_settlements_users_url(limit: 10, query: '_QUERY_'),
+                     'autocomplete-search' => 'settlement' }, placeholder: 'Населений пункт'
+        = f.hidden_field :settlement_type, class: 'settlement-type'
+        = f.text_field :region, disabled: true, class: "region #{f.object.region.blank? ? 'hidden' : ''}", placeholder: 'Область'
+        = f.hidden_field :district, class: 'district'
+        - social_networks.each do |network|
+          - unless @user.social_sign_up_type == network
+            .social{class: "#{network}#{@user.send(network).nil? ? ' empty' : ''}"}
+              = render partial: 'devise/registrations/edit_url', locals: { social: network, user: @user }
+        .file-field-container
+          = f.file_field :avatar, accept: 'image/png, image/jpeg', class: 'file-field', placeholder: 'Змінити фото'
+        = f.submit 'Зберегти', class: 'button', data: { disable_with: 'Обробка...' }
+      .password-form
+        %h1.title Зміна паролю
+        = form_for(@user, url: change_password_users_url  ) do |f|
+          = f.password_field :current_password, placeholder: 'Поточний пароль'
+          = f.password_field :password, :autocomplete => 'off', placeholder: 'Новий пароль'
+          = f.password_field :password_confirmation, placeholder: 'Підтвердження паролю'
+          = f.submit 'Змінити пароль', class: 'button', data: { disable_with: 'Обробка...' }
