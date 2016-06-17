@@ -1,13 +1,21 @@
 = content_for :title, 'Створення нового запиту на допомогу'
-= content_for :plugins do
-  = javascript_include_tag 'plugins/file-field'
-= content_for :javascript do
-  = javascript_include_tag 'items'
 = content_for :styles do
   = stylesheet_link_tag 'items'
+  = stylesheet_link_tag 'login_signup'
+= content_for :javascript do
+  = javascript_include_tag 'items'
+  = javascript_include_tag 'user-forms'
+= content_for :plugins do
+  = javascript_include_tag 'plugins/file-field'
 
-.panel.panel-default
-  .panel-heading
-    %h4 Новий запит про допомогу
-  .panel-body
-    = render partial: 'requests/form', locals: { request: @request }
+.container
+  .request-new
+    .group-form
+      %p.title Новий запит про допомогу
+      = render partial: 'requests/form', locals: { request: @request }
+
+-#.panel.panel-default
+-#  .panel-heading
+-#    %h4 Новий запит про допомогу
+-#  .panel-body
+-#    = render partial: 'requests/form', locals: { request: @request }
