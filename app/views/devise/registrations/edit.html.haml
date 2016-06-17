@@ -5,6 +5,7 @@
   = javascript_include_tag 'user-forms'
 = content_for :plugins do
   = javascript_include_tag 'plugins/file-field'
+
 .container
   .edit-profile
     .group-form
@@ -14,12 +15,12 @@
           = f.text_field :email, value: @user.email, disabled: true, class: 'disabled'
         - else
           = f.text_field :social_sign_up_url, value: @user.social_sign_up_url, disabled: true, class: 'disabled'
-        = f.text_field :name, placeholder: "Введіть ім'я"
+        = f.text_field :name, placeholder: "Ім'я"
         = f.text_area :info, rows: '10', placeholder: 'Особиста інформація'
-        = f.text_field :phone, placeholder: 'Введіть номер телефону'
-        = f.text_field :skype, placeholder: 'Введіть Skype'
+        = f.text_field :phone, placeholder: 'Номер телефону'
+        = f.text_field :skype, placeholder: 'Skype'
         = f.text_field :settlement, class: 'autocomplete', data: { 'autocomplete-url' => search_settlements_users_url(limit: 10, query: '_QUERY_'),
-                     'autocomplete-search' => 'settlement' }, placeholder: 'Оберіть населений пункт'
+                     'autocomplete-search' => 'settlement' }, placeholder: 'Населений пункт'
         = f.hidden_field :settlement_type, class: 'settlement-type'
         = f.text_field :region, disabled: true, class: "region #{f.object.region.blank? ? 'hidden' : ''}", placeholder: 'Область'
         = f.hidden_field :district, class: 'district'
