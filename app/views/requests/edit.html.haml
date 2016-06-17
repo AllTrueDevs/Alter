@@ -1,13 +1,16 @@
 = content_for :title, 'Редагування запиту на допомогу'
-= content_for :plugins do
-  = javascript_include_tag 'plugins/file-field'
-= content_for :javascript do
-  = javascript_include_tag 'items'
 = content_for :styles do
   = stylesheet_link_tag 'items'
-.panel.panel-default
-  .panel-heading
-    %h4 Редагування запиту
-  .panel-body
-    = render partial: 'requests/form', locals: { request: @request }
+  = stylesheet_link_tag 'login_signup'
+= content_for :javascript do
+  = javascript_include_tag 'items'
+  = javascript_include_tag 'user-forms'
+= content_for :plugins do
+  = javascript_include_tag 'plugins/file-field'
+
+.container
+  .request-edit
+    .group-form
+      %p.title Редагування запиту про допомогу
+      = render partial: 'requests/form', locals: { request: @request }
 
