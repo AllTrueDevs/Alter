@@ -8,11 +8,7 @@
       - if can?(:destroy, post)
         = link_to post, method: :delete, class: 'delete', title: 'Видалити запис', data: { confirm: 'Видалити запис?'}, remote: true do
           %span.fa.fa-times
-      %p.date
-        - if post.updated_at == post.created_at
-          = 'Опубліковано ' + time_ago_in_words(post.created_at) + ' тому'
-        - else
-          = 'Змінено ' + time_ago_in_words(post.updated_at) + ' тому'
+      %p.date= 'Опубліковано ' + time_ago_in_words(post.created_at) + ' тому'
       .description
         %p.break-word= simple_format(post.parsed_body)
         - unless post.attachments.empty?
