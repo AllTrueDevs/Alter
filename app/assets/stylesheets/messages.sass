@@ -45,13 +45,25 @@
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
       border-radius: 15px
   .actions
-    float: right
-    margin-top: 10px
     text-align: right
+    margin: 10px 0 0 0
     a
       text-decoration: none
-  input[type=submit]
-    outline: none
+    input[type=submit]
+      outline: none
+      margin: 0
+      width: 15%
+      padding: 10px 5px
+      color: #fff
+      border: none
+      border-radius: 30px
+      background: #35353f
+    .bootstrap-filestyle
+      .group-span-filestyle
+        input
+          padding: 10px 5px
+    .fields
+      margin: 5px
 
 .dialog
   .message, .message-container, input, textarea
@@ -100,36 +112,46 @@
         width: auto
 
 .wall
-  .posts
-    h5
-      margin: 75px 0
-    .post-in-list
-      margin: 25px 0
-      padding: 25px
-      border-bottom: 1px solid #eeeeee
-      border-top: 1px solid #eeeeee
-      .attachments
-        .image-attachments
-          margin-top: 25px
-          div.attachment
-            display: inline-block !important
-            small
-              font-size: 10px
-              display: block
-              text-align: center
-        .other-attachments
-          margin-top: 25px
-      .inline
-        vertical-align: top
-        small
-          font-size: 10px
-          color: #333
-          font-weight: bold
-          display: block
-        .thumb
-          width: 50px
-          max-width: 50px
-          height: 50px
-          max-height: 50px
-      .body
-        margin-top: 10px
+  padding: 15px 0
+  .post-index
+    .photo
+      padding: 0
+      width: 100%
+    .title
+      margin-top: 5px
+      font-size: 1.2em
+    .date
+      font-size: 0.7em
+      color: #666666
+      margin-bottom: 5px
+    .description
+      margin: 0
+      color: #35353f
+    .delete
+      position: absolute
+      top: 0
+      right: 0
+    .attachments
+      .image-attachments
+        margin-top: 25px
+        div.attachment
+          display: inline-block !important
+          small
+            font-size: 10px
+            display: block
+            text-align: center
+      .other-attachments
+        margin-top: 25px
+    .inline
+      vertical-align: top
+      small
+        font-size: 10px
+        color: #333
+        font-weight: bold
+        display: block
+      .thumb
+        width: 50px
+        max-width: 50px
+        height: 50px
+        max-height: 50px
+

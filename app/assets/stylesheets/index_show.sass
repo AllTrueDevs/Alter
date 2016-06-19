@@ -28,6 +28,7 @@
   color: #666666
   font-size: 0.9em
   line-height: 25px
+  word-wrap: break-word
 .title
   a
     color: #35353f
@@ -107,7 +108,7 @@ h1, h2
             vertical-align: middle
 
 
-.request-index, .article-index, .decision-index
+.request-index, .article-index, .decision-index, .post-index
   padding: 5px 20px
 .request, .article, .decision
   padding: 15px 0
@@ -129,15 +130,17 @@ h1, h2
     margin-bottom: 5px
     border-radius: 10px
 
-.notification-index
-  padding: 5px 20px
-.notification
+.notification, .post
   padding: 15px 0
   border-bottom: 1px solid #eeeeee
   &:last-child
     border-bottom: none
   a
     color: #d52845
+
+.notification-index
+  padding: 5px 20px
+.notification
   .col-md-11
     display: table
     height: 50px
@@ -219,7 +222,7 @@ h1, h2
             &:hover, &:focus
               text-decoration: underline
 .user-show, .request-show
-  .user-tabs
+  .tabs
     clear: both
     .nav-tabs
       border-radius: 10px 10px 0 0
