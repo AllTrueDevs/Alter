@@ -1,9 +1,9 @@
-.panel-body.wall
+.wall
   - post = request.posts.new
   - unless cannot?(:new_post, post)
     = nested_form_for post, url: new_post_messages_url(post), html: { class: 'message-form', multipart: true },
                   remote: true, authenticity_token: true, format: :js do |f|
-      = f.text_area :body, class: 'form-control', rows: '5'
+      = f.text_area :body, rows: '5'
       = f.hidden_field :message_type, value: :post
       = f.hidden_field :sender_id, value: current_user.id
       = f.hidden_field :request_id, value: request.id
@@ -11,12 +11,11 @@
         = render 'messages/attachment_field', f: builder
       .actions
         = f.link_to_add :attachments do
-          %span.glyphicon.glyphicon-paperclip{ 'aria-hidden': true }
-        = f.submit 'Надіслати', class: 'btn btn-default btn-info'
-    .clearfix
+          %span.glyphicon.glyphicon-paperclip
+        = f.submit 'Надіслати'
   .infinite
-    %ul.posts
-      = render partial: 'messages/posts', locals: { posts: posts }
+    .post-index
+      = render partial: 'messages/posts', locals: { posts: posts, ajax: true }
     = image_tag 'loader.gif', class: "loader icon img-center#{(request.posts.size > 10)? '' : ' hidden'}"
     .pagination-info
       = link_to_next_page(posts, '', :remote => true)

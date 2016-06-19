@@ -1,5 +1,8 @@
-- if posts.size.zero?
-  %p.nothing-to-show На стіні немає записів
+- if posts.blank?
+  %p.nothing-to-show Запитів не знайдено
 - else
   - posts.each do |post|
     = render partial: 'messages/post', locals: { post: post }
+  -#= paginate posts, remote: defined?(ajax) ? ajax : false
+  -#.pagination-info
+  -#  = page_entries_info posts
