@@ -1,0 +1,248 @@
+/* line 1, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.image {
+  width: 100px;
+  max-width: 100px;
+  height: 100px;
+  max-height: 100px;
+}
+
+/* line 6, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.icon {
+  width: 50px;
+  max-width: 50px;
+  height: 50px;
+  max-height: 50px;
+}
+
+/* line 12, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.modal .attachment {
+  margin-bottom: 25px;
+  text-align: center !important;
+}
+/* line 15, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.modal .attachment img {
+  margin: 0 auto;
+}
+
+/* line 17, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.disabled {
+  background-color: #fff !important;
+}
+/* line 19, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.disabled a {
+  color: #999 !important;
+  border: none !important;
+  background-color: #fff !important;
+}
+
+/* line 23, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.listing-messages {
+  margin-top: 25px;
+}
+/* line 25, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.listing-messages .message-info {
+  margin-bottom: 10px;
+}
+/* line 27, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.listing-messages .message-info .label {
+  display: inline-block;
+}
+/* line 29, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.listing-messages .message-info .date {
+  font-size: 0.7em;
+  color: #777;
+}
+
+/* line 33, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .blocked {
+  cursor: no-drop;
+}
+/* line 35, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form textarea {
+  resize: none;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+/* line 39, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form textarea::-webkit-scrollbar {
+  width: 20px;
+}
+/* line 41, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form textarea::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: #b5d3dc;
+}
+/* line 44, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form textarea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+}
+/* line 47, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions {
+  text-align: right;
+  margin: 10px 0 0 0;
+}
+/* line 50, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions a {
+  text-decoration: none;
+}
+/* line 52, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions input[type=submit] {
+  outline: none;
+  margin: 0;
+  width: 15%;
+  padding: 10px 5px;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  background: #35353f;
+}
+/* line 63, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions .bootstrap-filestyle .group-span-filestyle input {
+  padding: 10px 5px;
+}
+/* line 65, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions .fields {
+  margin: 5px;
+}
+
+/* line 69, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .message, .dialog .message-container, .dialog input, .dialog textarea {
+  border-radius: 15px !important;
+}
+/* line 71, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages {
+  margin-top: 20px;
+}
+/* line 73, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .sent .message-container {
+  background-color: #a1d7db !important;
+  text-align: right;
+  float: right;
+}
+/* line 77, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .new {
+  background-color: #ddecf2;
+}
+/* line 79, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .new .message-container {
+  background-color: #ddecf2 !important;
+}
+/* line 81, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .sent.new {
+  background-color: #c6ccff;
+}
+/* line 83, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .sent.new .message-container {
+  background-color: #c6ccff !important;
+}
+/* line 85, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message {
+  display: inline-block;
+  margin: 5px 0;
+  width: 100%;
+}
+/* line 89, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container {
+  width: 60%;
+  background-color: #e9efeb;
+  display: inline-block;
+  padding: 15px 15px;
+}
+/* line 95, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container .attachments .image-attachments {
+  margin-top: 25px;
+}
+/* line 97, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container .attachments .image-attachments .attachment {
+  display: inline-block;
+}
+/* line 99, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container .attachments .image-attachments .attachment small {
+  font-size: 10px;
+  display: block;
+  text-align: center;
+}
+/* line 103, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container .attachments .other-attachments {
+  margin-top: 25px;
+}
+/* line 105, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .message-form {
+  margin-top: 20px;
+}
+/* line 108, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .message-form .bootstrap-filestyle input {
+  border: none;
+  background: none;
+  box-shadow: none;
+  width: auto;
+}
+
+/* line 114, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall {
+  padding: 15px 0;
+}
+/* line 117, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .photo {
+  padding: 0;
+  width: 100%;
+}
+/* line 120, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .title {
+  margin-top: 5px;
+  font-size: 1.2em;
+}
+/* line 123, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .date {
+  font-size: 0.7em;
+  color: #666666;
+  margin-bottom: 5px;
+}
+/* line 127, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .description {
+  margin: 0;
+  color: #35353f;
+}
+/* line 130, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* line 135, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .attachments .image-attachments {
+  margin-top: 25px;
+}
+/* line 137, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .attachments .image-attachments div.attachment {
+  display: inline-block !important;
+}
+/* line 139, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .attachments .image-attachments div.attachment small {
+  font-size: 10px;
+  display: block;
+  text-align: center;
+}
+/* line 143, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .attachments .other-attachments {
+  margin-top: 25px;
+}
+/* line 145, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .inline {
+  vertical-align: top;
+}
+/* line 147, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .inline small {
+  font-size: 10px;
+  color: #333;
+  font-weight: bold;
+  display: block;
+}
+/* line 152, /home/shpak/Projects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .inline .thumb {
+  width: 50px;
+  max-width: 50px;
+  height: 50px;
+  max-height: 50px;
+}
