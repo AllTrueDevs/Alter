@@ -6,8 +6,8 @@ $ ->
     $(this).parent().siblings('a').prop('disabled', true) if state
     $(this).TouchSpin({
       verticalbuttons: true,
-      verticalupclass: 'glyphicon glyphicon-plus',
-      verticaldownclass: 'glyphicon glyphicon-minus',
+      verticalupclass: 'fa fa-chevron-up',
+      verticaldownclass: 'fa fa-chevron-down',
       initval: 1,
       min: min,
       max: max,
@@ -28,8 +28,8 @@ $ ->
     $('.item-form#new_request .remove_nested_fields').prop('disabled', false)
     field.find('.count').TouchSpin({
       verticalbuttons: true,
-      verticalupclass: 'glyphicon glyphicon-plus',
-      verticaldownclass: 'glyphicon glyphicon-minus',
+      verticalupclass: 'fa fa-chevron-up',
+      verticaldownclass: 'fa fa-chevron-down',
       initval: 1,
       min: 1,
       max: 1,

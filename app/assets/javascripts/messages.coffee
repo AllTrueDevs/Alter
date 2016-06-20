@@ -62,3 +62,7 @@ $ ->
     $('.bootstrap-filestyle input').on 'change', (e) ->
       if this.val().length == 0
         this.prop(placeholder: 'Файл не обрано')
+
+  $('.nav-tabs .tab').click ->
+    $('ul.nav-tabs li.active').removeClass('active')
+    $(this).parent('li').addClass('active')

@@ -1,4 +1,4 @@
-$("<%= escape_javascript(render 'messages/posts', posts: @posts) %>").appendTo($(".posts"));
+$("<%= escape_javascript(render 'messages/posts', posts: @posts) %>").appendTo($(".post-index"));
 
 <% if @posts.last_page? %>
     $('.pagination-info').html("");

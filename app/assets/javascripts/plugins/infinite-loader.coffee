@@ -9,6 +9,7 @@ $ ->
 
   window.setTopInfiniteLoader = ->
     $('.infinite').infinitePages('pause')
+    debugger
     window.scrollTo(0,document.body.scrollHeight)
 
     $(window).on 'mousewheel', ->

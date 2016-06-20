@@ -2,19 +2,19 @@
 = content_for :styles do
   = stylesheet_link_tag 'messages'
 = content_for :javascript do
-  = javascript_include_tag 'tabs'
   = javascript_include_tag 'messages'
 .container
-  = form_tag remove_selected_messages_url do
-    %ul.nav.nav-tabs
-      %li.active
-        = link_to 'Отримані', select_messages_url(messages_type: :received_messages), remote: true
-      %li
-        = link_to 'Надіслані', select_messages_url(messages_type: :sent_messages), remote: true
-      %li.submit-container.disabled
-        = link_to 'Видалити обрані', '#'
-      %li{class: !(@user.mailbox_empty?)? '' : 'disabled'}
-        = link_to 'Видалити всі повідомлення', !(@user.mailbox_empty?)? clear_messages_url : '#', method: :get, data: !(@user.mailbox_empty?)? { confirm: 'Ви дійсно хочете видалити всі повідомлення?' } : ''
-    .tab-content
-      .tab-pane.active
-        = render partial: 'messages_list', locals: { messages: @messages }
+  .message-box
+    = form_tag remove_selected_messages_url do
+      %ul.nav.nav-tabs
+        %li.active
+          = link_to 'Отримані', select_messages_url(messages_type: :received_messages), remote: true, class: 'tab'
+        %li
+          = link_to 'Надіслані', select_messages_url(messages_type: :sent_messages), remote: true, class: 'tab'
+        %li.submit-container.disabled
+          = link_to 'Видалити обрані', '#'
+        %li{class: !(@user.mailbox_empty?)? '' : 'disabled'}
+          = link_to 'Видалити всі повідомлення', !(@user.mailbox_empty?)? clear_messages_url : '#', method: :get, data: !(@user.mailbox_empty?)? { confirm: 'Ви дійсно хочете видалити всі повідомлення?' } : ''
+      .tab-content
+        .tab-pane.active
+          = render partial: 'messages_list', locals: { messages: @messages }

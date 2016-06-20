@@ -52,6 +52,10 @@ class Request < ActiveRecord::Base
     required_item.save
   end
 
+  def unsecured?
+    Request.unsecured_regions.include?(self.user.region)
+  end
+
 
   private
 
