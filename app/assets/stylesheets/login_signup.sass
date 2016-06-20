@@ -1,9 +1,10 @@
 .group-form
   .field_with_errors
-    input
+    input, textarea
       border-color: rgba(231, 10, 10, 0.2) !important
     ::-webkit-input-placeholder
       color: rgba(231, 10, 10, 0.5)
+
   font-family: 'Roboto', regular
   font-size: 0.9em
   margin: 0 auto
@@ -13,24 +14,6 @@
     margin: 40px auto
     width: 70%
     padding: 20px
-  input[type=email], input[type=password], input[type=text], textarea
-    background-color: transparent !important
-    width: 100%
-    margin-bottom: 10px
-  input[type=email], input[type=password], input[type=text]
-    border: none
-    padding: 20px 10px
-    border-bottom: 1px solid #cbcbcb
-    &:focus
-      border-color: #8e8e9b
-      box-shadow: 0 4px 6px -6px #8e8e9b
-    &:disabled
-      cursor: not-allowed
-      background-color: #fcfcfc !important
-      border-top-left-radius: 4px
-      border-top-right-radius: 4px
-      border-bottom-color: #b9b9b9
-
   .error
     border-color: rgba(231, 10, 10, 0.2) !important
     &::-webkit-input-placeholder
@@ -103,6 +86,11 @@
       text-align: center
       a
         font-size: 2em
+  .tags-field
+    margin-bottom: 10px
+  .selectize-control.tags-field.multi .selectize-input .item
+    background: #d52845
+    border: none
 
 .request-new, .edit-profile, .request-edit
   margin: 40px 20px

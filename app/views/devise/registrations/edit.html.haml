@@ -12,18 +12,18 @@
       %h1.title Налаштування профілю
       = form_for(@user, url: registration_path(@user), html: { method: :put, multipart: true, role: 'form', class: 'user-form' }) do |f|
         - if @user.social_sign_up_type.blank?
-          = f.text_field :email, value: @user.email, disabled: true, class: 'disabled'
+          = f.text_field :email, value: @user.email, disabled: true, class: 'disabled custom-input'
         - else
-          = f.text_field :social_sign_up_url, value: @user.social_sign_up_url, disabled: true, class: 'disabled'
-        = f.text_field :name, placeholder: "Ім'я"
-        = f.text_area :info, rows: '10', placeholder: 'Особиста інформація'
-        = f.text_field :phone, placeholder: 'Номер телефону'
-        = f.text_field :skype, placeholder: 'Skype'
+          = f.text_field :social_sign_up_url, value: @user.social_sign_up_url, disabled: true, class: 'disabled custom-input'
+        = f.text_field :name, placeholder: "Ім'я", class: 'custom-input'
+        = f.text_area :info, rows: '10', placeholder: 'Особиста інформація', class: 'custom-textarea'
+        = f.text_field :phone, placeholder: 'Номер телефону', class: 'custom-input'
+        = f.text_field :skype, placeholder: 'Skype', class: 'custom-input'
         = f.text_field :settlement, class: 'autocomplete', data: { 'autocomplete-url' => search_settlements_users_url(limit: 10, query: '_QUERY_'),
-                     'autocomplete-search' => 'settlement' }, placeholder: 'Населений пункт'
-        = f.hidden_field :settlement_type, class: 'settlement-type'
-        = f.text_field :region, disabled: true, class: "region #{f.object.region.blank? ? 'hidden' : ''}", placeholder: 'Область'
-        = f.hidden_field :district, class: 'district'
+                     'autocomplete-search' => 'settlement' }, placeholder: 'Населений пункт', class: 'custom-input'
+        = f.hidden_field :settlement_type, class: 'settlement-type custom-input'
+        = f.text_field :region, disabled: true, class: "custom-input region #{f.object.region.blank? ? 'hidden' : ''}", placeholder: 'Область'
+        = f.hidden_field :district, class: 'district custom-input'
         - social_networks.each do |network|
           - unless @user.social_sign_up_type == network
             .social{class: "#{network}#{@user.send(network).nil? ? ' empty' : ''}"}
@@ -34,7 +34,7 @@
       .password-form
         %h1.title Зміна паролю
         = form_for(@user, url: change_password_users_url  ) do |f|
-          = f.password_field :current_password, placeholder: 'Поточний пароль'
-          = f.password_field :password, :autocomplete => 'off', placeholder: 'Новий пароль'
-          = f.password_field :password_confirmation, placeholder: 'Підтвердження паролю'
+          = f.password_field :current_password, placeholder: 'Поточний пароль', class: 'custom-input'
+          = f.password_field :password, :autocomplete => 'off', placeholder: 'Новий пароль', class: 'custom-input'
+          = f.password_field :password_confirmation, placeholder: 'Підтвердження паролю', class: 'custom-input'
           = f.submit 'Змінити пароль', class: 'button', data: { disable_with: 'Обробка...' }

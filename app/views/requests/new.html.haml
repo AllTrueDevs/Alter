@@ -4,7 +4,6 @@
   = stylesheet_link_tag 'login_signup'
 = content_for :javascript do
   = javascript_include_tag 'items'
-  = javascript_include_tag 'user-forms'
 = content_for :plugins do
   = javascript_include_tag 'plugins/file-field'
 
@@ -13,9 +12,3 @@
     .group-form
       %p.title Новий запит про допомогу
       = render partial: 'requests/form', locals: { request: @request }
-
--#.panel.panel-default
--#  .panel-heading
--#    %h4 Новий запит про допомогу
--#  .panel-body
--#    = render partial: 'requests/form', locals: { request: @request }

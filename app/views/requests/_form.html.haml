@@ -1,9 +1,9 @@
 = nested_form_for request, html: { multipart: true, role: :form, class: 'item-form', data: { url: refresh_counters_url(type: :required_items) } } do |f|
-  = f.text_field :name, placeholder: 'Назва'
-  = f.text_area :description, autofocus: true, rows: '5', placeholder: 'Опис'
+  = f.text_field :name, placeholder: 'Назва', class: 'custom-input'
+  = f.text_area :description, autofocus: true, rows: '10', placeholder: 'Опис', class: 'custom-textarea'
   .required-items
     = f.fields_for :required_items do |builder|
-      = render 'item', f: builder, type: :required_item
+      = render 'requests/item', f: builder, type: :required_item
     .clear-fix
     = f.link_to_add :required_items do
       %span.fa.fa-plus-square
