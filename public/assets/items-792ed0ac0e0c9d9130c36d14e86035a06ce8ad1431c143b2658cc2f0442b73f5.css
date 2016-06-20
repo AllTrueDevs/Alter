@@ -1,0 +1,97 @@
+/* line 2, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items, .item-form .accepted-items, .item-form .helped-items {
+  padding: 20px;
+  margin: 20px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+/* line 7, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items a, .item-form .accepted-items a, .item-form .helped-items a {
+  color: #d52845;
+}
+/* line 9, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item, .item-form .accepted-items .form-item, .item-form .helped-items .form-item {
+  padding: 20px;
+}
+/* line 12, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .bootstrap-touchspin .count, .item-form .accepted-items .form-item .bootstrap-touchspin .count, .item-form .helped-items .form-item .bootstrap-touchspin .count {
+  border: none;
+  border-bottom: 1px solid #cbcbcb;
+  box-shadow: none;
+}
+/* line 16, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .bootstrap-touchspin .count:focus, .item-form .accepted-items .form-item .bootstrap-touchspin .count:focus, .item-form .helped-items .form-item .bootstrap-touchspin .count:focus {
+  box-shadow: 0 4px 6px -6px #8e8e9b;
+}
+/* line 18, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .bootstrap-touchspin button, .item-form .accepted-items .form-item .bootstrap-touchspin button, .item-form .helped-items .form-item .bootstrap-touchspin button {
+  border: none;
+  background: none !important;
+  box-shadow: none;
+  color: #cbcbcb;
+}
+/* line 23, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .bootstrap-touchspin button:hover, .item-form .accepted-items .form-item .bootstrap-touchspin button:hover, .item-form .helped-items .form-item .bootstrap-touchspin button:hover {
+  color: #8e8e9b;
+}
+/* line 25, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .selectize-input, .item-form .accepted-items .form-item .selectize-input, .item-form .helped-items .form-item .selectize-input {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: inset 0 -1px 0 0 #cbcbcb;
+}
+/* line 30, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .selectize-dropdown, .item-form .accepted-items .form-item .selectize-dropdown, .item-form .helped-items .form-item .selectize-dropdown {
+  border-top: 1px solid #d0d0d0;
+}
+/* line 32, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .selectize-dropdown ::-webkit-scrollbar, .item-form .accepted-items .form-item .selectize-dropdown ::-webkit-scrollbar, .item-form .helped-items .form-item .selectize-dropdown ::-webkit-scrollbar {
+  width: 5px;
+}
+/* line 34, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .selectize-dropdown ::-webkit-scrollbar-thumb, .item-form .accepted-items .form-item .selectize-dropdown ::-webkit-scrollbar-thumb, .item-form .helped-items .form-item .selectize-dropdown ::-webkit-scrollbar-thumb {
+  background-color: rgba(53, 53, 63, 0.6);
+  border-radius: 2px;
+}
+/* line 37, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .selectize-dropdown ::-webkit-scrollbar-track, .item-form .accepted-items .form-item .selectize-dropdown ::-webkit-scrollbar-track, .item-form .helped-items .form-item .selectize-dropdown ::-webkit-scrollbar-track {
+  border-radius: 2px;
+}
+/* line 39, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .cute-select, .item-form .required-items .form-item .cute-input, .item-form .accepted-items .form-item .cute-select, .item-form .accepted-items .form-item .cute-input, .item-form .helped-items .form-item .cute-select, .item-form .helped-items .form-item .cute-input {
+  width: 45%;
+}
+/* line 41, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .right-side, .item-form .accepted-items .form-item .right-side, .item-form .helped-items .form-item .right-side {
+  width: 45%;
+  float: right;
+}
+/* line 44, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .right-side .count-container, .item-form .accepted-items .form-item .right-side .count-container, .item-form .helped-items .form-item .right-side .count-container {
+  width: 80%;
+  margin-right: 10%;
+}
+/* line 47, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item .right-side .remove_nested_fields span, .item-form .accepted-items .form-item .right-side .remove_nested_fields span, .item-form .helped-items .form-item .right-side .remove_nested_fields span {
+  vertical-align: top;
+}
+/* line 49, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .clearfix, .item-form .accepted-items .clearfix, .item-form .helped-items .clearfix {
+  padding: 5px 0;
+}
+/* line 52, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .add_nested_fields span, .item-form .accepted-items .add_nested_fields span, .item-form .helped-items .add_nested_fields span {
+  text-align: center;
+  font-size: 2em;
+  width: 100%;
+  margin-top: 20px;
+}
+/* line 57, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .accepted-items .form-item, .item-form .helped-items .form-item {
+  margin: 0 5%;
+}
+/* line 59, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/items.sass */
+.item-form .required-items .form-item {
+  margin: 0 20%;
+}

@@ -1,0 +1,299 @@
+/* line 1, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box {
+  margin: 20px 0;
+}
+/* line 3, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box a {
+  color: #d52845;
+  outline: none;
+}
+/* line 6, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages {
+  margin-top: 25px;
+}
+/* line 8, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages .message {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+/* line 12, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages .message:first-child {
+  border-top: 1px solid #eeeeee;
+}
+/* line 14, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages .message-info {
+  margin-bottom: 10px;
+}
+/* line 16, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages .message-info h4 {
+  display: inline;
+}
+/* line 18, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages .message-info .status {
+  display: inline;
+  vertical-align: middle;
+  font-size: 0.5em;
+  font-weight: bold;
+  border-radius: 2px;
+  border: 1px solid #cbcbcb;
+}
+/* line 25, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages .message-info .attachment {
+  color: #777;
+}
+/* line 27, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages .message-info .date {
+  font-size: 0.7em;
+  color: #777;
+}
+/* line 30, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .listing-messages .message-body {
+  text-align: justify;
+  line-height: 1em;
+  font-size: 0.8em;
+  height: 3em;
+  overflow: hidden;
+}
+/* line 37, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .modal .attachment {
+  margin-bottom: 25px;
+  text-align: center !important;
+}
+/* line 40, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .modal .attachment img {
+  margin: 0 auto 5px auto;
+}
+/* line 43, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .nav a {
+  margin: 0;
+}
+/* line 45, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .nav .disabled {
+  background-color: transparent !important;
+}
+/* line 47, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-box .nav .disabled a {
+  color: #999 !important;
+  border: 1px solid transparent;
+  background-color: transparent !important;
+}
+
+/* line 52, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.image {
+  width: 100px;
+  max-width: 100px;
+  height: 100px;
+  max-height: 100px;
+}
+
+/* line 57, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.icon {
+  width: 50px;
+  max-width: 50px;
+  height: 50px;
+  max-height: 50px;
+}
+
+/* line 63, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .blocked {
+  cursor: no-drop;
+}
+/* line 65, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form textarea {
+  resize: none;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+/* line 69, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form textarea::-webkit-scrollbar {
+  width: 20px;
+}
+/* line 71, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form textarea::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: #b5d3dc;
+}
+/* line 74, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form textarea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+}
+/* line 77, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions {
+  text-align: right;
+  margin: 10px 0 0 0;
+}
+/* line 80, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions a {
+  text-decoration: none;
+}
+/* line 82, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions input[type=submit] {
+  outline: none;
+  margin: 0;
+  width: 15%;
+  padding: 10px 5px;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  background: #35353f;
+}
+/* line 92, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions .bootstrap-filestyle .group-span-filestyle {
+  border-right: 1px solid #cbcbcb;
+}
+/* line 94, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions .bootstrap-filestyle input {
+  padding: 10px 5px;
+}
+/* line 96, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.message-form .actions .fields {
+  margin: 5px;
+}
+
+/* line 99, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog {
+  padding: 20px 15px;
+}
+/* line 101, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog a {
+  color: #d52845;
+  outline: none;
+}
+/* line 104, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .message, .dialog .message-container, .dialog input, .dialog textarea {
+  border-radius: 15px !important;
+}
+/* line 107, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .sent .message-container {
+  background-color: #eddcc0 !important;
+  text-align: right;
+  float: right;
+}
+/* line 111, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .new {
+  background-color: #d2d2d2;
+}
+/* line 113, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .new .message-container {
+  background-color: #d2d2d2 !important;
+}
+/* line 115, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .sent.new {
+  background-color: #e6b9aa;
+}
+/* line 117, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .sent.new .message-container {
+  background-color: #e6b9aa !important;
+}
+/* line 119, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message {
+  display: inline-block;
+  margin: 5px 0;
+  width: 100%;
+}
+/* line 123, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container {
+  width: 60%;
+  background-color: #f0f0f0;
+  display: inline-block;
+  padding: 15px 15px;
+}
+/* line 129, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container .attachments .image-attachments {
+  margin-top: 25px;
+}
+/* line 131, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container .attachments .image-attachments .attachment {
+  display: inline-block;
+}
+/* line 133, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container .attachments .image-attachments .attachment small {
+  font-size: 10px;
+  display: block;
+  text-align: center;
+}
+/* line 137, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .messages .message .message-container .attachments .other-attachments {
+  margin-top: 25px;
+}
+/* line 139, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .message-form {
+  margin-top: 20px;
+}
+/* line 142, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.dialog .message-form .bootstrap-filestyle input {
+  border: none;
+  background: none;
+  box-shadow: none;
+  width: auto;
+}
+
+/* line 148, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall {
+  padding: 15px 0;
+}
+/* line 151, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .photo {
+  padding: 0;
+  width: 100%;
+}
+/* line 154, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .title {
+  margin-top: 5px;
+  font-size: 1.2em;
+}
+/* line 157, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .date {
+  font-size: 0.7em;
+  color: #666666;
+  margin-bottom: 5px;
+}
+/* line 161, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .description {
+  margin: 0;
+  color: #35353f;
+}
+/* line 164, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* line 169, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .attachments .image-attachments {
+  margin-top: 25px;
+}
+/* line 171, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .attachments .image-attachments div.attachment {
+  display: inline-block !important;
+}
+/* line 173, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .attachments .image-attachments div.attachment small {
+  font-size: 10px;
+  display: block;
+  text-align: center;
+}
+/* line 177, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .attachments .other-attachments {
+  margin-top: 25px;
+}
+/* line 179, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .inline {
+  vertical-align: top;
+}
+/* line 181, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .inline small {
+  font-size: 10px;
+  color: #333;
+  font-weight: bold;
+  display: block;
+}
+/* line 186, /home/notebook/RubymineProjects/alter_beta/app/assets/stylesheets/messages.sass */
+.wall .post-index .inline .thumb {
+  width: 50px;
+  max-width: 50px;
+  height: 50px;
+  max-height: 50px;
+}
