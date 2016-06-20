@@ -59,6 +59,7 @@ class RequestsController < ApplicationController
       else
         errors = @request.form_errors(:request)
         flash.now[:error] = errors
+        ''
         format.html { render :new }
       end
     end
