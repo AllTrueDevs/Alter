@@ -52,7 +52,7 @@ class Ability
         can :manage, Category
         can [:unchecked, :destroy], Request
         can [:check, :decline], Request do |request|
-          user.settlement.blank? || request.user.settlement.blank? || user.region == request.user.region
+          user.settlement.blank? || request.user.settlement.blank? || user.region == request.user.region || request.unsecured?
         end
       end
 
