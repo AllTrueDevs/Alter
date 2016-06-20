@@ -1,11 +1,11 @@
 = content_for :title, 'Редагувати новину'
+= content_for :styles do
+  = stylesheet_link_tag 'login_signup'
+= content_for :plugins do
+  = javascript_include_tag 'plugins/file-field'
 
-.panel.panel-default
-  .panel-heading
-    %h4 Редагувати новину
-  .panel-body
-    = render partial: 'form', locals: { article: @article }
-
-= link_to 'Show', show_article_url(@article, url: @article.article_url)
-\|
-= link_to 'Back', news_url
+.container
+  .request-new
+    .group-form
+      %p.title Редагувати новину
+      = render partial: 'articles/form', locals: { article: @article }

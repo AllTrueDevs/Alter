@@ -1,9 +1,11 @@
 = content_for :title, 'Додати новину'
+= content_for :styles do
+  = stylesheet_link_tag 'login_signup'
+= content_for :plugins do
+  = javascript_include_tag 'plugins/file-field'
 
-.panel.panel-default
-  .panel-heading
-    %h4 Додати новину
-  .panel-body
-    = render partial: 'form', locals: { article: @article }
-
-= link_to 'Back', news_url
+.container
+  .request-new
+    .group-form
+      %p.title Додати новину
+      = render partial: 'articles/form', locals: { article: @article }

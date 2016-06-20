@@ -1,5 +1,5 @@
 - flash.each do |key, value|
-  - unless value.empty?
+  - unless value.blank?
     %div{ class: flash_class(key)}
       %button.close{ data: {dismiss: 'alert'}, type: :button }
         %span{ aria: { hidden: true } } ×

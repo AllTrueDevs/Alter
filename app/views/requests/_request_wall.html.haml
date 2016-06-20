@@ -3,7 +3,7 @@
   - unless cannot?(:new_post, post)
     = nested_form_for post, url: new_post_messages_url(post), html: { class: 'message-form', multipart: true },
                   remote: true, authenticity_token: true, format: :js do |f|
-      = f.text_area :body, rows: '5'
+      = f.text_area :body, rows: '5', class: 'custom-textarea'
       = f.hidden_field :message_type, value: :post
       = f.hidden_field :sender_id, value: current_user.id
       = f.hidden_field :request_id, value: request.id

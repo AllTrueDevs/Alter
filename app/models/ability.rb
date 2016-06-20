@@ -51,17 +51,18 @@ class Ability
       if user.with_privileges?
         can :manage, Category
         can [:unchecked, :destroy], Request
-        can [:check, :decline], Request do |request|
-          user.settlement.blank? || request.user.settlement.blank? || user.region == request.user.region || request.unsecured?
-        end
       end
 
       case user.role
       when 'admin'
         can :manage, User
         can :manage, Article
+        can [:check, :decline], Request
       when 'moderator'
         can [:change_ban_status, :index, :search], User
+        can [:check, :decline], Request do |request|
+          user.settlement.blank? || request.user.settlement.blank? || user.region == request.user.region || request.unsecured?
+        end
       when 'newsmaker'
          can :manage, Article
       when 'banned'
@@ -79,7 +80,6 @@ class Ability
         cannot [:show, :index], Request do |request|
           request.user != user
         end
-
       end
     end
   end
