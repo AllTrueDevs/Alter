@@ -1,0 +1,412 @@
+/* line 1, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.photo {
+  text-align: center;
+  float: left;
+  padding: 0 20px 15px 0;
+}
+/* line 5, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.photo img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* line 8, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.categories, .tags {
+  height: 20px;
+}
+
+/* line 11, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.categories span:hover {
+  color: #35353f;
+}
+/* line 13, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.categories .label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+/* line 17, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info {
+  color: #666666;
+}
+/* line 19, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .author, .info .date {
+  font-weight: bold;
+}
+/* line 21, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info p {
+  margin-right: 20px;
+  float: left;
+}
+/* line 25, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .author a {
+  color: #d52845;
+}
+/* line 27, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .author a:hover, .info .author a:focus {
+  text-decoration: underline;
+}
+/* line 29, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.info .views .fa {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+/* line 32, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.description {
+  color: #666666;
+  font-size: 0.9em;
+  line-height: 25px;
+  word-wrap: break-word;
+}
+
+/* line 38, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.title a {
+  color: #35353f;
+}
+/* line 40, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.title a:hover, .title a:focus {
+  text-decoration: underline;
+}
+
+/* line 42, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+h1, h2 {
+  font-family: "Roboto";
+  font-weight: bold;
+}
+
+/* line 47, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show, .article-show, .decision-show {
+  margin: 20px;
+}
+/* line 49, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .actions, .article-show .actions, .decision-show .actions {
+  margin-bottom: 5px;
+}
+/* line 51, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .actions span, .article-show .actions span, .decision-show .actions span {
+  color: #d52845;
+}
+/* line 53, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .share-button, .article-show .share-button, .decision-show .share-button {
+  color: #fff;
+  border-radius: 5px;
+  padding: 4px 6px;
+  cursor: pointer;
+  font-size: 0.8em;
+  line-height: 25px;
+  margin-right: 10px;
+}
+/* line 61, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .share-button .fa, .article-show .share-button .fa, .decision-show .share-button .fa {
+  margin-right: 3px;
+}
+/* line 63, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .share-button span, .article-show .share-button span, .decision-show .share-button span {
+  width: 87px;
+}
+/* line 66, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .photo, .article-show .photo, .decision-show .photo {
+  width: 40%;
+}
+/* line 68, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .title, .article-show .title, .decision-show .title {
+  text-align: justify;
+  margin-top: 25px;
+  font-size: 1.9em;
+}
+/* line 72, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .info, .article-show .info, .decision-show .info {
+  display: flex;
+  margin-top: 25px;
+  font-size: 1em;
+}
+/* line 76, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .description, .article-show .description, .decision-show .description {
+  text-align: justify;
+  margin-top: 25px;
+}
+/* line 79, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals, .article-show .goals, .decision-show .goals {
+  clear: both;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 50px 0 75px 0;
+  margin: 20px 0;
+}
+/* line 85, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals button, .article-show .goals button, .decision-show .goals button {
+  float: right;
+}
+/* line 87, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress-title, .article-show .goals .progress-title, .decision-show .goals .progress-title {
+  width: 25%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+  margin-right: 5%;
+}
+/* line 93, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress-title small, .article-show .goals .progress-title small, .decision-show .goals .progress-title small {
+  font-size: 0.6em;
+  color: #555;
+}
+/* line 96, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress, .article-show .goals .progress, .decision-show .goals .progress {
+  height: 30px;
+  width: 65%;
+  display: inline-block;
+}
+/* line 100, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress:last-child, .article-show .goals .progress:last-child, .decision-show .goals .progress:last-child {
+  margin-bottom: 0;
+}
+/* line 102, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress .progress-bar, .article-show .goals .progress .progress-bar, .decision-show .goals .progress .progress-bar {
+  height: 30px;
+  position: relative;
+}
+/* line 105, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress .progress-bar .percents, .article-show .goals .progress .progress-bar .percents, .decision-show .goals .progress .progress-bar .percents {
+  position: absolute;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+/* line 110, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-show .goals .progress .progress-bar .percents p, .article-show .goals .progress .progress-bar .percents p, .decision-show .goals .progress .progress-bar .percents p {
+  font-size: 1.2em;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 117, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request-index, .article-index, .decision-index, .post-index {
+  padding: 5px 20px;
+}
+
+/* line 119, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request, .article, .decision {
+  padding: 15px 0;
+}
+/* line 121, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request .photo, .article .photo, .decision .photo {
+  width: 100%;
+}
+/* line 123, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request .title, .article .title, .decision .title {
+  font-size: 1em;
+}
+/* line 125, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request .info, .article .info, .decision .info {
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+/* line 128, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.request .description, .article .description, .decision .description {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+/* line 133, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.decision-index .new {
+  background: #f3f3f3;
+  padding: 15px 15px 0 15px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+
+/* line 139, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification, .post {
+  padding: 15px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+/* line 142, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification:last-child, .post:last-child {
+  border-bottom: none;
+}
+/* line 144, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification a, .post a {
+  color: #d52845;
+}
+
+/* line 147, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification-index {
+  padding: 5px 20px;
+}
+
+/* line 150, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .col-md-11 {
+  display: table;
+  height: 50px;
+}
+/* line 153, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .body {
+  display: table-cell;
+  height: inherit;
+  vertical-align: middle;
+}
+/* line 157, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .circle-icon {
+  background: #35353f;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 1.4em;
+  color: #fff;
+}
+/* line 166, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .circle-icon.new {
+  background: #d52845;
+}
+/* line 168, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .photo {
+  line-height: 50px;
+  font-size: 1em;
+  width: 50px;
+  color: #fff;
+  font-size: 2em;
+  background: #35353f;
+  padding: 0;
+  border-radius: 25px;
+}
+/* line 177, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .title {
+  font-size: 14px;
+}
+/* line 179, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .delete {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  color: #9ea0a7;
+}
+/* line 184, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .delete:hover, .notification .delete:focus {
+  color: #35353f;
+}
+/* line 186, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.notification .info {
+  margin-top: 5px;
+  font-weight: normal;
+  font-size: 12px;
+  color: #777;
+}
+
+/* line 193, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show {
+  margin: 20px;
+}
+/* line 195, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .actions {
+  margin-bottom: 5px;
+}
+/* line 197, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .actions span {
+  color: #d52845;
+}
+/* line 200, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .photo {
+  width: 40%;
+}
+/* line 203, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info p {
+  float: none;
+}
+/* line 205, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info .name {
+  color: #35353f;
+  font-weight: bold;
+  font-size: 1em;
+}
+/* line 209, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info .role {
+  color: #d52845;
+  font-size: 0.7em;
+}
+/* line 212, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info .description {
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+/* line 215, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info .contact-info {
+  font-size: 0.9em;
+  margin-top: 20px;
+}
+/* line 218, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info .contact-info p {
+  font-weight: bold;
+  color: #35353f;
+  margin-bottom: 10px;
+}
+/* line 222, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info .contact-info p span {
+  color: #b2b2b2;
+  font-weight: normal;
+}
+/* line 225, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info .contact-info p a {
+  color: #d52845;
+  font-weight: normal;
+}
+/* line 228, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .user-block .info .contact-info p a:hover, .user-show .user-block .info .contact-info p a:focus {
+  text-decoration: underline;
+}
+
+/* line 231, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .tabs, .request-show .tabs {
+  clear: both;
+}
+/* line 233, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .tabs .nav-tabs, .request-show .tabs .nav-tabs {
+  border-radius: 10px 10px 0 0;
+  border: 1px solid #eeeeee;
+  border-bottom: none;
+}
+/* line 238, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .tabs .nav-tabs li:first-child a, .request-show .tabs .nav-tabs li:first-child a {
+  border-top-left-radius: 8px;
+}
+/* line 241, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .tabs .nav-tabs li:last-child a, .request-show .tabs .nav-tabs li:last-child a {
+  border-top-right-radius: 8px;
+}
+/* line 244, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .tabs .nav-tabs li a, .request-show .tabs .nav-tabs li a {
+  background: #efefef;
+  color: #b2b2b2;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none !important;
+  border-radius: 0;
+  line-height: 30px;
+}
+/* line 252, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .tabs .nav-tabs li.active a, .request-show .tabs .nav-tabs li.active a {
+  background: #35353f;
+  color: #fff;
+}
+/* line 255, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.user-show .tabs .tab-content, .request-show .tabs .tab-content {
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #eeeeee;
+  border-top: none;
+  padding: 5px 20px;
+}
+
+/* line 261, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.statistic {
+  padding: 20px;
+}
+
+/* line 263, /home/shpak/Projects/alter_beta/app/assets/stylesheets/index_show.sass */
+.button {
+  margin-right: 60px;
+  width: 30%;
+  padding: 15px 25px;
+}
