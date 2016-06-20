@@ -5,14 +5,14 @@ class Ability
     alias_action [:destroy, :create, :update], to: :cud
     alias_action [:upvote, :downvote], to: :vote
 
-    can [:select_requests], User
+    can [:read, :select_requests], User
     can :read, Request
     can :read, Article
     can(:download, Attachment){ |attachment| attachment.message.message_type.to_sym == :post }
 
     if user
       can :manage, :notification
-      can [:show, :statistic, :activity], User
+      can [:statistic, :activity], User
       can [:detach_social_link, :change_password], User do |usr|
         user == usr
       end
