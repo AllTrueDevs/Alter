@@ -21,7 +21,7 @@
   .clearfix
   = nested_form_for @message, url: new_private_messages_url(@message, user: @companion),
       html: { class: 'message-form', multipart: true }, remote: true, authenticity_token: true, format: :js do |f|
-    = f.text_area :body, class: 'form-control', rows: '5', disabled: banned, value: !(banned)? '' : 'Ваш аккаунт заблоковано',
+    = f.text_area :body, class: 'custom-textarea', rows: '5', disabled: banned, value: !(banned)? '' : 'Ваш аккаунт заблоковано',
       data: { url: mark_as_read_messages_url(user: @companion) }
     = f.hidden_field :sender_id, value: @user.id
     = f.hidden_field :receiver_id, value: @companion.id

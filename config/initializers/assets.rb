@@ -4,7 +4,6 @@ Rails.application.config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
 ######################### Stylesheets
 Rails.application.config.assets.precompile += %w(
-  applications.scss
   fonts.sass
   layouts.sass
   scaffolds.sass

@@ -1,4 +1,4 @@
-%div{ class: 'message-in-list' }
+.message
   .row
     .col-md-1
       = check_box_tag "id_#{message.id}"
@@ -11,14 +11,13 @@
           .col-md-12.message-info
             = link_to dialog_messages_url(user: message.sent_by?(current_user) ? message.receiver : message.sender) do
               %h4= message.sent_by?(current_user) ? message.receiver.name : message.sender.name
+            - unless message.attachments.empty?
+              = link_to '#', class: 'attachment', data: { target: "#attachments_#{message.id}", toggle: :modal, placement: :bottom }, title: 'Показати прикріплення' do
+                .fa.fa-paperclip
+              = render partial: 'modals/attachments', locals: { id: message.id, attachments: message.attachments }
             - if message.status?(:new)
-              %p.label.label-primary
+              .status
                 = message.sent_by?(current_user) ? 'Непрочитане' : 'Нове'
             .date= "#{time_ago_in_words(message.created_at)} тому"
           .col-md-12
-            %p.break-word= message.body.truncate(530, separator:' ')
-            - unless message.attachments.empty?
-              = link_to '#', data: { target: "#attachments_#{message.id}", toggle: :modal, placement: :bottom }, title: 'Показати прикріплення' do
-                %small <Прикріплення>
-              = render partial: 'modals/attachments', locals: { id: message.id, attachments: message.attachments }
-  %hr
+            %p.message-body= message.human_truncate(message.body, 310, '...', '.')

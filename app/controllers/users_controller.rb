@@ -19,9 +19,9 @@ class UsersController < ApplicationController
 
   def search_settlements
     query, limit = autocomplete_params[:query], autocomplete_params[:limit].to_i
-    json = nova_poshta_data(query)
+    json = nova_poshta_data(query, limit)
     begin
-      @settlements = json.take(limit).map do |data|
+      @settlements = json.map do |data|
         {
            settlement: data[:Description],
            type: data[:SettlementTypeDescription],
@@ -146,7 +146,7 @@ class UsersController < ApplicationController
   private
 
 
-  def nova_poshta_data(query)
+  def nova_poshta_data(query, limit)
     require 'json'
     require 'net/http'
 
@@ -158,8 +158,9 @@ class UsersController < ApplicationController
         modelName: 'AddressGeneral',
         calledMethod: 'getSettlements',
         methodProperties: {
-            FindByString: query,
-            MainCitiesOnly: query.blank?
+            # FindByString: query,
+            MainCitiesOnly: true
+            # MainCitiesOnly: query.blank?
         }
     }.to_json
 
@@ -167,7 +168,9 @@ class UsersController < ApplicationController
       http.request(request)
     end
 
+    # JSON.parse(response.body, symbolize_names: true)[:data]
     JSON.parse(response.body, symbolize_names: true)[:data]
+        .select{ |data| data[:Description].downcase.include? query }.take(limit)
   end
 
   def set_user
