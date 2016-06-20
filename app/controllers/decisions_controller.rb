@@ -16,7 +16,6 @@ class DecisionsController < ApplicationController
     @decision = Decision.new(decision_params)
     if @decision.save
       @decision.create_activity recipient: @decision.request, status: 'new', parameters: { helper_id: @decision.request.user.id }, key: 'decision.create', owner: current_user
-      flash[:success] = 'Вашу пропозицію допомоги відправлено'
     else
       flash[:error] = @decision.form_errors(:decision)
     end

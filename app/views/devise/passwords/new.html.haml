@@ -4,6 +4,6 @@
 
 .group-form
   = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, role: 'form' }) do |f|
-    = f.email_field :email, autofocus: true, placeholder: 'Поштова скринька'
+    = f.email_field :email, autofocus: true, placeholder: 'Поштова скринька', class: 'custom-input'
     = f.submit 'Надіслати', class: 'button', data: {disable_with: 'Обробка...'}
     = render 'devise/shared/links'

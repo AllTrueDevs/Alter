@@ -2,7 +2,7 @@
   = link_to t("edit_#{social}_new"), user_omniauth_authorize_path(social), class: 'empty-url'
 - else
   .url-field
-    = text_field_tag social, user.send(social), class: 'add-url', disabled: true, placeholder: "#{social.capitalize}:"
+    = text_field_tag social, user.send(social), class: 'add-url custom-input', disabled: true, placeholder: "#{social.capitalize}:"
     .actions
       = link_to user_omniauth_authorize_path(social) do
         %i.fa.fa-pencil
