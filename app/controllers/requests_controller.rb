@@ -51,17 +51,13 @@ class RequestsController < ApplicationController
 
   def create
     @request = @user.requests.new(request_params)
-
-    respond_to do |format|
-      if @request.save
-        @request.create_activity key: 'request.create', owner: @request.user
-        flash.delete(:error)
-        format.html { redirect_to @request }
-      else
-        errors = @request.form_errors(:request)
-        flash[:error] = errors
-        format.html { render :new }
-      end
+    if @request.save
+      @request.create_activity key: 'request.create', owner: @request.user
+      redirect_to @request
+    else
+      errors = @request.form_errors(:request)
+      flash[:error] = errors
+      redirect_to :back
     end
   end
 
