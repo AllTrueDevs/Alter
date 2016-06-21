@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: [:select_requests, :search_settlements]
   before_action :set_user, except: [:index, :search, :search_settlements]
-  before_action :authenticate_user!, except: [:select_requests, :search_settlements]
+  before_action :authenticate_user!, except: [:show, :select_requests, :search_settlements]
 
   def show
     redirect_to root_url, notice: 'Користувач ще не підтвердив реєстрацію' if @user.confirmed_at.nil?
