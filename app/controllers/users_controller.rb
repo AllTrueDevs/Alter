@@ -176,7 +176,7 @@ class UsersController < ApplicationController
         SettlementTypeDescription: "місто",
         AreaDescription: "Хмельницька область",
         RegionsDescription: ""
-    } if 'хмельницький'.include?(query.downcase) || query.blank?
+    } if 'Хмельницький'.downcase.include?(query.downcase) || query.blank?
     result
   end
 
