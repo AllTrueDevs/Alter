@@ -19,7 +19,7 @@ class RequiredItem < ActiveRecord::Base
   end
 
   after_save do
-    self.request.update(status: 'archived') unless self.request.required_items.any?{ |item| !item.completed? }
+    self.request.update(status: 'archived') unless self.request.required_items.reload.any?{ |item| !item.completed? }
   end
 
   def self.completed
