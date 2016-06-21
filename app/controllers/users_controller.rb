@@ -169,8 +169,15 @@ class UsersController < ApplicationController
     end
 
     # JSON.parse(response.body, symbolize_names: true)[:data]
-    JSON.parse(response.body, symbolize_names: true)[:data]
-        .select{ |data| data[:Description].downcase.include? query }.take(limit)
+    result = JSON.parse(response.body, symbolize_names: true)[:data]
+        .select{ |data| data[:Description].downcase.include?(query.downcase) }.take(limit)
+    result << {
+        Description: "Хмельницький",
+        SettlementTypeDescription: "місто",
+        AreaDescription: "Хмельницька область",
+        RegionsDescription: ""
+    } if 'хмельницький'.include?(query.downcase) || query.blank?
+    result
   end
 
   def set_user

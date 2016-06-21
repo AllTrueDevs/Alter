@@ -19,8 +19,8 @@
         = f.text_area :info, rows: '10', placeholder: 'Особиста інформація', class: 'custom-textarea'
         = f.text_field :phone, placeholder: 'Номер телефону', class: 'custom-input'
         = f.text_field :skype, placeholder: 'Skype', class: 'custom-input'
-        = f.text_field :settlement, class: 'autocomplete', data: { 'autocomplete-url' => search_settlements_users_url(limit: 10, query: '_QUERY_'),
-                     'autocomplete-search' => 'settlement' }, placeholder: 'Населений пункт', class: 'custom-input'
+        = f.text_field :settlement, data: { 'autocomplete-url' => search_settlements_users_url(limit: 10, query: '_QUERY_'),
+                     'autocomplete-search' => 'settlement' }, placeholder: 'Населений пункт', class: 'custom-input autocomplete'
         = f.hidden_field :settlement_type, class: 'settlement-type custom-input'
         = f.text_field :region, disabled: true, class: "custom-input region #{f.object.region.blank? ? 'hidden' : ''}", placeholder: 'Область'
         = f.hidden_field :district, class: 'district custom-input'
