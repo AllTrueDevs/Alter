@@ -12,7 +12,6 @@
 !/log/.keep
 /tmp
 /public/system
-/public/assets
 
 .idea
 
