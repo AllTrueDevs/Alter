@@ -11,7 +11,8 @@
 /log/*
 !/log/.keep
 /tmp
-/public/system/attachments
+/public/system
+/public/assets
 
 .idea
 
